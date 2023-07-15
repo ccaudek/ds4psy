@@ -1,0 +1,95 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+options: # The options key will be applied to all chapters, but not sub-sections
+  numbered: True
+parts:
+  - caption: Python
+    numbered: True
+    chapters:
+      - file: preface
+      - file: 010_installation
+      - file: 015_intro_python
+      - file: 020_intro_numpy
+      - file: 025_intro_pandas
+      - file: 026_pandas_aggregate
+      - file: 035_intro_matplotlib
+      - file: 040_intro_seaborn
+  - caption: Statistica descrittiva
+    numbered: True
+    chapters:
+      - file: 051_key_notions
+      - file: 055_measurement
+      - file: 060_freq_distr
+      - file: 065_loc_scale
+      - file: 070_correlation
+  - caption: Probabilità
+    numbered: True
+    chapters:
+      - file: 100_sets
+      - file: 105_combinatorics
+      - file: 110_intro_prob
+      - file: 111_prob_tutorial
+      - file: 115_conditional_prob
+      - file: 120_bayes_theorem
+      - file: 125_expval_var
+      - file: 130_joint_prob
+      - file: 135_density_func
+  - caption: Distribuzioni di v.c.
+    numbered: True
+    chapters:
+      - file: 205_discr_rv_distr
+      - file: 210_cont_rv_distr
+      - file: 215_rng
+      - file: 225_likelihood
+      - file: 226_rescorla_wagner
+  - caption: Inferenza bayesiana
+    numbered: True
+    chapters:
+      - file: 305_intro_bayes
+      - file: 310_subj_prop
+      - file: 316_conjugate_families
+      - file: 321_balance-prior-post
+      - file: 325_metropolis
+      - file: 330_beta_binomial
+      - file: 335_mcmc_diagnostics
+      - file: 340_summarize_posterior
+      - file: 341_example_prop
+      - file: 345_bayesian_prediction
+      - file: 346_predict_counts
+      - file: 350_normal_normal_mod
+      - file: 355_groups_comparison
+      - file: 356_repeated_measures
+  - caption: Regressione lineare
+    numbered: True
+    chapters:
+      - file: 400_reglin_1
+      - file: 405_reglin_2
+      - file: 406_reglin_python_tutorial
+      - file: 410_reglin_3
+      - file: 415_reglin_4
+      - file: 420_reglin_ppc
+  - caption: Inferenza frequentista
+    numbered: True
+    chapters:
+      - file: 500_intro_frequentist
+      - file: 505_conf_interv
+      - file: 510_test_ipotesi
+      - file: 514_two_ind_samples
+      - file: 516_ttest_exercises
+      - file: 515_limiti_stat_frequentista
+      - file: 520_s_m_errors
+  - caption: Bibliografia
+    numbered: True
+    chapters:
+      - file: z_biblio
+  - caption: Appendici
+    numbered: True
+    chapters:
+      - file: a01_math_symbols
+      - file: a02_number_sets
+      - file: a04_summation_notation
+      - file: a05_calculus
+      - file: a06_kde_plot

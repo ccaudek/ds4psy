@@ -33,6 +33,7 @@ parts:
       - file: 110_intro_prob
       - file: 111_prob_tutorial
       - file: 115_conditional_prob
+      - file: 116_conditional_prob_tutorial
       - file: 120_bayes_theorem
       - file: 125_expval_var
       - file: 130_joint_prob

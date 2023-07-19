@@ -51,7 +51,7 @@ parts:
     chapters:
       - file: 305_intro_bayes
       - file: 310_subj_prop
-      - file: 316_conjugate_families
+      - file: 317_conjugate_families
       - file: 321_balance-prior-post
       - file: 325_metropolis
       - file: 330_beta_binomial

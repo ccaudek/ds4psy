@@ -11,7 +11,8 @@ parts:
     chapters:
       - file: preface
       - file: 010_installation
-      - file: 015_intro_python
+      - file: 015_intro_python_1
+      - file: 016_intro_python_2
       - file: 020_intro_numpy
       - file: 025_intro_pandas
       - file: 026_pandas_aggregate
@@ -28,8 +29,6 @@ parts:
   - caption: Probabilità
     numbered: True
     chapters:
-      - file: 100_sets
-      - file: 105_combinatorics
       - file: 110_intro_prob
       - file: 111_prob_tutorial
       - file: 115_conditional_prob
@@ -93,5 +92,7 @@ parts:
       - file: a01_math_symbols
       - file: a02_number_sets
       - file: a04_summation_notation
-      - file: a05_calculus
-      - file: a06_kde_plot
+      - file: a05_sets
+      - file: a06_combinatorics
+      - file: a07_calculus
+      - file: a08_kde_plot

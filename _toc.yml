@@ -37,14 +37,9 @@ parts:
       - file: 125_expval_var
       - file: 130_joint_prob
       - file: 135_density_func
-  - caption: Distribuzioni di v.c.
-    numbered: True
-    chapters:
       - file: 205_discr_rv_distr
       - file: 210_cont_rv_distr
-      - file: 215_rng
       - file: 225_likelihood
-      - file: 226_rescorla_wagner
   - caption: Inferenza bayesiana
     numbered: True
     chapters:
@@ -70,7 +65,6 @@ parts:
       - file: 406_reglin_python_tutorial
       - file: 410_reglin_3
       - file: 415_reglin_4
-      - file: 420_reglin_ppc
       - file: 425_hierarchical_models
   - caption: Inferenza frequentista
     numbered: True
@@ -96,3 +90,7 @@ parts:
       - file: a06_combinatorics
       - file: a07_calculus
       - file: a08_kde_plot
+      - file: a10_rescorla_wagner
+      - file: a12_rng
+      - file: a15_reglin_ppc
+  

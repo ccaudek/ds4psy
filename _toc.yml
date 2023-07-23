@@ -32,7 +32,6 @@ parts:
       - file: 110_intro_prob
       - file: 111_prob_tutorial
       - file: 115_conditional_prob
-      - file: 116_conditional_prob_tutorial
       - file: 120_bayes_theorem
       - file: 125_expval_var
       - file: 130_joint_prob
@@ -56,16 +55,13 @@ parts:
       - file: 346_predict_counts
       - file: 350_normal_normal_mod
       - file: 354_two_groups
-      - file: 356_repeated_measures
+      - file: 360_hierarchical_models
   - caption: Regressione lineare
     numbered: True
     chapters:
       - file: 400_reglin_1
       - file: 405_reglin_2
-      - file: 406_reglin_python_tutorial
       - file: 410_reglin_3
-      - file: 415_reglin_4
-      - file: 425_hierarchical_models
   - caption: Inferenza frequentista
     numbered: True
     chapters:
@@ -90,7 +86,11 @@ parts:
       - file: a06_combinatorics
       - file: a07_calculus
       - file: a08_kde_plot
+      - file: a09_prob_tutorial
       - file: a10_rescorla_wagner
       - file: a12_rng
-      - file: a15_reglin_ppc
+      - file: a15_lin_fun
+      - file: a20_reglin_1
+      - file: a21_reglin_2
+      - file: a23_reglin_4
   

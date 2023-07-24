@@ -53,6 +53,7 @@ parts:
       - file: 341_example_prop
       - file: 345_bayesian_prediction
       - file: 346_predict_counts
+      - file: 347_poisson_model
       - file: 350_normal_normal_mod
       - file: 354_two_groups
       - file: 360_hierarchical_models

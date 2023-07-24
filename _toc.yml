@@ -52,7 +52,6 @@ parts:
       - file: 340_summarize_posterior
       - file: 341_example_prop
       - file: 345_bayesian_prediction
-      - file: 346_predict_counts
       - file: 347_poisson_model
       - file: 350_normal_normal_mod
       - file: 354_two_groups
@@ -89,6 +88,7 @@ parts:
       - file: a09_prob_tutorial
       - file: a10_rescorla_wagner
       - file: a12_rng
+      - file: a14_predict_counts
       - file: a15_lin_fun
       - file: a20_reglin_1
       - file: a21_reglin_2

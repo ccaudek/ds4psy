@@ -70,7 +70,6 @@ parts:
       - file: 505_conf_interv
       - file: 510_test_ipotesi
       - file: 514_two_ind_samples
-      - file: 516_ttest_exercises
       - file: 515_limiti_stat_frequentista
       - file: 520_s_m_errors
   - caption: Bibliografia
@@ -94,4 +93,6 @@ parts:
       - file: a20_reglin_1
       - file: a21_reglin_2
       - file: a23_reglin_4
+      - file: a30_ttest_exercises
+      
   

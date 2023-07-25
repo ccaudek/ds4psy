@@ -43,13 +43,13 @@ parts:
     numbered: True
     chapters:
       - file: 305_intro_bayes
+      - file: 306_summarize_posterior
       - file: 310_subj_prop
       - file: 317_conjugate_families
       - file: 321_balance-prior-post
       - file: 325_metropolis
       - file: 330_beta_binomial
       - file: 335_mcmc_diagnostics
-      - file: 340_summarize_posterior
       - file: 341_example_prop
       - file: 345_bayesian_prediction
       - file: 347_poisson_model

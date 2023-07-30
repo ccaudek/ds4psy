@@ -47,46 +47,38 @@ chapters:
   - file: chapter_4/12_normal_normal_mod
   - file: chapter_4/13_two_groups
   - file: chapter_4/14_hierarchical_models
-#  - caption: Regressione lineare
-#    numbered: True
-#    chapters:
-#      - file: chapter_5/introduction_part_5
-#      - file: chapter_5/01_reglin_1
-#      - file: chapter_5/02_reglin_2
-#      - file: chapter_5/03_reglin_3
-#  - caption: Inferenza frequentista
-#    numbered: True
-#    chapters:
-#      - file: chapter_6/introduction_part_6
-#      - file: chapter_6/01_intro_frequentist
-#      - file: chapter_6/02_conf_interv
-#      - file: chapter_6/03_test_ipotesi
-#      - file: chapter_6/04_two_ind_samples
-#      - file: chapter_6/05_limiti_stat_frequentista
-#      - file: chapter_6/06_s_m_errors
-#  - caption: Bibliografia
-#    numbered: True
-#    chapters:
-#      - file: references/bibliography
-#  - caption: Appendici
-#    numbered: True
-#    chapters:
-#      - file: chapter_7/a00_installation
-#      - file: chapter_7/a01_math_symbols
-#      - file: chapter_7/a02_number_sets
-#      - file: chapter_7/a04_summation_notation
-#      - file: chapter_7/a05_sets
-#      - file: chapter_7/a06_combinatorics
-#      - file: chapter_7/a07_calculus
-#      - file: chapter_7/a08_kde_plot
-#      - file: chapter_7/a09_prob_tutorial
-#      - file: chapter_7/a10_rescorla_wagner
-#      - file: chapter_7/a12_rng
-#      - file: chapter_7/a14_predict_counts
-#      - file: chapter_7/a15_lin_fun
-#      - file: chapter_7/a20_reglin_1
-#      - file: chapter_7/a21_reglin_2
-#      - file: chapter_7/a23_reglin_4
-#      - file: chapter_7/a30_ttest_exercises
+- file: chapter_5/introduction_part_5
+  sections:
+  - file: chapter_5/01_reglin_1
+  - file: chapter_5/02_reglin_2
+  - file: chapter_5/03_reglin_3
+- file: chapter_6/introduction_part_6
+  sections:
+  - file: chapter_6/01_intro_frequentist
+  - file: chapter_6/02_conf_interv
+  - file: chapter_6/03_test_ipotesi
+  - file: chapter_6/04_two_ind_samples
+  - file: chapter_6/05_limiti_stat_frequentista
+  - file: chapter_6/06_s_m_errors
+- file: references/bibliography
+- file: chapter_7/introduction_appendix
+  sections:
+  - file: chapter_7/a00_installation
+  - file: chapter_7/a01_math_symbols
+  - file: chapter_7/a02_number_sets
+  - file: chapter_7/a04_summation_notation
+  - file: chapter_7/a05_sets
+  - file: chapter_7/a06_combinatorics
+  - file: chapter_7/a07_calculus
+  - file: chapter_7/a08_kde_plot
+  - file: chapter_7/a09_prob_tutorial
+  - file: chapter_7/a10_rescorla_wagner
+  - file: chapter_7/a12_rng
+  - file: chapter_7/a14_predict_counts
+  - file: chapter_7/a15_lin_fun
+  - file: chapter_7/a20_reglin_1
+  - file: chapter_7/a21_reglin_2
+  - file: chapter_7/a23_reglin_4
+  - file: chapter_7/a30_ttest_exercises
       
   

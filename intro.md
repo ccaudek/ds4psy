@@ -6,7 +6,9 @@
 
 # Benvenuti
 
-Questo sito web presenta il materiale didattico dell'insegnamento di [Psicometria](https://www.unifi.it/index.php?module=ofform2&mode=1&cmd=3&AA=2019&afId=523562) (A.A. 2023/2024) rivolto agli studenti del primo anno del Corso di Laurea in Scienze e Tecniche Psicologiche dell'Università degli Studi di Firenze.
+Questo sito web è dedicato al materiale didattico dell'insegnamento di [Psicometria](https://www.unifi.it/index.php?module=ofform2&mode=1&cmd=3&AA=2023&afId=689762) (A.A. 2023/2024), rivolto agli studenti del primo anno del [Corso di Laurea in Scienze e Tecniche Psicologiche](https://www.psicologia.unifi.it/vp-130-scienze-e-tecniche-psicologiche-l-24.html) dell'[Università degli Studi di Firenze](https://www.unifi.it/).
+
+L'insegnamento di Psicometria introduce i concetti fondamentali della Data Science applicati all'analisi di dati psicologici. Acquisire una solida comprensione dei principi della Data Science è essenziale per progettare studi psicologici validi e interpretare correttamente la letteratura scientifica nel campo della psicologia. Inoltre, le competenze nella Data Science sono ampiamente utilizzate in vari aspetti della pratica psicologica, soprattutto nella costruzione, somministrazione e interpretazione dei test psicometrici. La competenza nella Data Science è, quindi, un elemento fondamentale nel bagaglio professionale degli psicologi.
 
 ## 🎫 License for this book
 

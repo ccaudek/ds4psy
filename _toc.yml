@@ -3,96 +3,90 @@
 
 format: jb-book
 root: intro
-options: # The options key will be applied to all chapters, but not sub-sections
-  numbered: True
-parts:
-  - caption: Python
-    numbered: True
-    chapters:
-      - file: preface
-      - file: 010_installation
-      - file: 015_intro_python_1
-      - file: 016_intro_python_2
-      - file: 020_intro_numpy
-      - file: 025_intro_pandas
-      - file: 026_pandas_aggregate
-      - file: 035_intro_matplotlib
-      - file: 040_intro_seaborn
-  - caption: Statistica descrittiva
-    numbered: True
-    chapters:
-      - file: 051_key_notions
-      - file: 055_measurement
-      - file: 060_freq_distr
-      - file: 065_loc_scale
-      - file: 070_correlation
-  - caption: Probabilità
-    numbered: True
-    chapters:
-      - file: 110_intro_prob
-      - file: 111_prob_tutorial
-      - file: 115_conditional_prob
-      - file: 120_bayes_theorem
-      - file: 125_expval_var
-      - file: 130_joint_prob
-      - file: 135_density_func
-      - file: 205_discr_rv_distr
-      - file: 210_cont_rv_distr
-      - file: 225_likelihood
-  - caption: Inferenza bayesiana
-    numbered: True
-    chapters:
-      - file: 305_intro_bayes
-      - file: 306_summarize_posterior
-      - file: 310_subj_prop
-      - file: 317_conjugate_families
-      - file: 321_balance-prior-post
-      - file: 325_metropolis
-      - file: 330_beta_binomial
-      - file: 335_mcmc_diagnostics
-      - file: 341_example_prop
-      - file: 345_bayesian_prediction
-      - file: 347_poisson_model
-      - file: 350_normal_normal_mod
-      - file: 354_two_groups
-      - file: 360_hierarchical_models
-  - caption: Regressione lineare
-    numbered: True
-    chapters:
-      - file: 400_reglin_1
-      - file: 405_reglin_2
-      - file: 410_reglin_3
-  - caption: Inferenza frequentista
-    numbered: True
-    chapters:
-      - file: 500_intro_frequentist
-      - file: 505_conf_interv
-      - file: 510_test_ipotesi
-      - file: 514_two_ind_samples
-      - file: 515_limiti_stat_frequentista
-      - file: 520_s_m_errors
-  - caption: Bibliografia
-    numbered: True
-    chapters:
-      - file: z_biblio
-  - caption: Appendici
-    numbered: True
-    chapters:
-      - file: a01_math_symbols
-      - file: a02_number_sets
-      - file: a04_summation_notation
-      - file: a05_sets
-      - file: a06_combinatorics
-      - file: a07_calculus
-      - file: a08_kde_plot
-      - file: a09_prob_tutorial
-      - file: a10_rescorla_wagner
-      - file: a12_rng
-      - file: a14_predict_counts
-      - file: a15_lin_fun
-      - file: a20_reglin_1
-      - file: a21_reglin_2
-      - file: a23_reglin_4
-      - file: a30_ttest_exercises
+chapters:
+- file: chapter_1/introduction_chapter_1
+  sections:
+  - file: chapter_1/01_python_1
+  - file: chapter_1/02_python_2
+  - file: chapter_1/03_numpy
+  - file: chapter_1/04_pandas
+  - file: chapter_1/05_pandas_aggregate
+  - file: chapter_1/06_matplotlib
+  - file: chapter_1/07_seaborn
+- file: chapter_2/introduction_chapter_2
+  sections:
+  - file: chapter_2/01_key_notions
+  - file: chapter_2/02_measurement
+  - file: chapter_2/03_freq_distr
+  - file: chapter_2/04_loc_scale
+  - file: chapter_2/05_correlation
+- file: chapter_3/introduction_chapter_3
+  sections:
+  - file: chapter_3/01_intro_prob
+  - file: chapter_3/02_conditional_prob
+  - file: chapter_3/03_bayes_theorem
+  - file: chapter_3/04_expval_var
+  - file: chapter_3/05_joint_prob
+  - file: chapter_3/06_density_func
+  - file: chapter_3/07_discr_rv_distr
+  - file: chapter_3/08_cont_rv_distr
+  - file: chapter_3/09_likelihood
+- file: chapter_4/introduction_part_4
+  sections:
+  - file: chapter_4/01_intro_bayes
+  - file: chapter_4/02_summarize_posterior
+  - file: chapter_4/03_subj_prop
+  - file: chapter_4/04_conjugate_families
+  - file: chapter_4/05_balance-prior-post
+  - file: chapter_4/06_metropolis
+  - file: chapter_4/07_beta_binomial
+  - file: chapter_4/08_mcmc_diagnostics
+  - file: chapter_4/09_example_prop
+  - file: chapter_4/10_bayesian_prediction
+  - file: chapter_4/11_poisson_model
+  - file: chapter_4/12_normal_normal_mod
+  - file: chapter_4/13_two_groups
+  - file: chapter_4/14_hierarchical_models
+#  - caption: Regressione lineare
+#    numbered: True
+#    chapters:
+#      - file: chapter_5/introduction_part_5
+#      - file: chapter_5/01_reglin_1
+#      - file: chapter_5/02_reglin_2
+#      - file: chapter_5/03_reglin_3
+#  - caption: Inferenza frequentista
+#    numbered: True
+#    chapters:
+#      - file: chapter_6/introduction_part_6
+#      - file: chapter_6/01_intro_frequentist
+#      - file: chapter_6/02_conf_interv
+#      - file: chapter_6/03_test_ipotesi
+#      - file: chapter_6/04_two_ind_samples
+#      - file: chapter_6/05_limiti_stat_frequentista
+#      - file: chapter_6/06_s_m_errors
+#  - caption: Bibliografia
+#    numbered: True
+#    chapters:
+#      - file: references/bibliography
+#  - caption: Appendici
+#    numbered: True
+#    chapters:
+#      - file: chapter_7/a00_installation
+#      - file: chapter_7/a01_math_symbols
+#      - file: chapter_7/a02_number_sets
+#      - file: chapter_7/a04_summation_notation
+#      - file: chapter_7/a05_sets
+#      - file: chapter_7/a06_combinatorics
+#      - file: chapter_7/a07_calculus
+#      - file: chapter_7/a08_kde_plot
+#      - file: chapter_7/a09_prob_tutorial
+#      - file: chapter_7/a10_rescorla_wagner
+#      - file: chapter_7/a12_rng
+#      - file: chapter_7/a14_predict_counts
+#      - file: chapter_7/a15_lin_fun
+#      - file: chapter_7/a20_reglin_1
+#      - file: chapter_7/a21_reglin_2
+#      - file: chapter_7/a23_reglin_4
+#      - file: chapter_7/a30_ttest_exercises
       
   

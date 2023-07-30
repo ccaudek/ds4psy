@@ -1,15 +1,10 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: ds4p23
+title: ds4psy
 author: Corrado Caudek
-logo: logo.png
+logo: "images/logo.png"
 copyright: "2023"
-
-# Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
-execute:
-  execute_notebooks: force
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -19,11 +14,11 @@ latex:
 
 # Bibtex config
 bibtex_reference_style: author_year
-bibtex_bibfiles: "references.bib"
+bibtex_bibfiles: "references/references.bib"
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/ccaudek/ds4psy_2023 # Online location of your book
+  url: https://github.com/ccaudek/ds4psy # Online location of your book
   path_to_book: docs/ # Optional path to your book, relative to the repository root
   branch: main # Which branch of the repository should be used when creating links (optional)
 
@@ -42,11 +37,11 @@ launch_buttons:
 html:
   favicon: "images/increasing.png"
   google_analytics_id: "G-VMXNE4BCDL"
-  baseurl: "https://github.com/ccaudek/ds4psy_2023"
+  baseurl: "https://github.com/ccaudek/ds4psy"
   use_repository_button     : false
   use_edit_page_button      : false
   use_issues_button         : false 
-  baseurl: https://ccaudek.github.io/ds4psy_2023  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
+  baseurl: https://ccaudek.github.io/ds4psy  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
   comments:
     hypothesis: false
 
@@ -54,9 +49,11 @@ sphinx:
     config:
       html_theme_options:
         use_download_button: true
-        repository_url: "https://github.com/ccaudek/ds4psy_2023"
+        repository_url: "https://github.com/ccaudek/ds4psy"
         use_issues_button: false
         use_repository_button: false
         use_edit_page_button: false
 
-
+# Cache execution outputs
+execute:
+  execute_notebooks: cache

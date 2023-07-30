@@ -31,7 +31,6 @@ launch_buttons:
   binderhub_url: ""
   thebe: false  # Add a thebe button to pages (requires the repository to run on Binder)
 
-
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:

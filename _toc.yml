@@ -67,7 +67,7 @@ chapters:
   sections:
   - file: chapter_7/a00_installation
   - file: chapter_7/a01_math_symbols
-  - file: chapter_7/a02_number_sets
+  - file: chapter_7/a02_numbers
   - file: chapter_7/a04_summation_notation
   - file: chapter_7/a05_sets
   - file: chapter_7/a06_combinatorics

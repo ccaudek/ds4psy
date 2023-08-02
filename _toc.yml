@@ -77,6 +77,7 @@ chapters:
   - file: chapter_5/02_reglin_2
   - file: chapter_5/03_reglin_3
   - file: chapter_5/E_reglin
+  - file: chapter_5/04_causal_inference
 
 - file: chapter_6/introduction_part_6
   sections:

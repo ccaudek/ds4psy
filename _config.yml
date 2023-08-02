@@ -56,3 +56,7 @@ sphinx:
 # Cache execution outputs
 execute:
   execute_notebooks: cache
+
+sphinx:
+  extra_extensions:
+    - sphinx_exercise

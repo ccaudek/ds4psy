@@ -61,6 +61,7 @@ chapters:
   - file: chapter_4/05_balance-prior-post
   - file: chapter_4/06_metropolis
   - file: chapter_4/07_beta_binomial
+  - file: chapter_4/07_inference_prediction
   - file: chapter_4/08_mcmc_diagnostics
   - file: chapter_4/09_example_prop
   - file: chapter_4/10_bayesian_prediction

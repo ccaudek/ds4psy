@@ -54,17 +54,17 @@ chapters:
 - file: chapter_4/introduction_part_4
   sections:
   - file: chapter_4/01_intro_bayes
-  - file: chapter_4/02_summarize_posterior
-  - file: chapter_4/03_subj_prop
-  - file: chapter_4/04_conjugate_families
+  - file: chapter_4/02_subj_prop
+  - file: chapter_4/03_conjugate_families
+  - file: chapter_4/04_summarize_posterior
   - file: chapter_4/E_conjugate
   - file: chapter_4/05_balance-prior-post
   - file: chapter_4/06_metropolis
-  - file: chapter_4/07_beta_binomial
-  - file: chapter_4/07_inference_prediction
+  - file: chapter_4/07_beta_binomial_pymc
   - file: chapter_4/08_mcmc_diagnostics
   - file: chapter_4/09_example_prop
   - file: chapter_4/10_bayesian_prediction
+  - file: chapter_4/04N_summarize_posterior
   - file: chapter_4/11_poisson_model
   - file: chapter_4/E_freq
   - file: chapter_4/12_normal_normal_mod

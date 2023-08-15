@@ -4,7 +4,9 @@
 In precedenza abbiamo visto come stimare i parametri di un modello bayesiano nel quale le osservazioni sono indipendenti e identicamente distribuite secondo una densità gaussiana,
 
 $$
+\begin{equation}
 y_i \stackrel{i.i.d.}{\sim} \mathcal{N}(\mu, \sigma), \quad i = 1, \dots, n.
+\end{equation}
 $$ (eq-normalsamplingmodel)
 
 Il modello dell'eq. {eq}`eq-normalsamplingmodel` assume che ogni $y_i$ sia la realizzazione di una v.c. distribuita come $\mathcal{N}(\mu, \sigma^2)$. Da un punto di vista bayesiano, questo modello può essere implementato imponendo delle distribuzioni a priori ai parametri $\mu$ e $\sigma$ e generando la verosimiglianza in base ai dati osservati. Per esempio, possiamo usare le seguenti distribuzioni a priori.
@@ -52,6 +54,20 @@ Va sottolineato che il modello fornisce una stima del valore atteso $\mu_i$ e no
 ### Assunzioni
 
 Il modello di regressione lineare bivariato assume che la variabile $x$ sia fissa e costante tra i diversi campioni. Per ogni valore di $x$, il modello ipotizza che la variabile $y$ segua una distribuzione Normale di media $\mu_i = \alpha + \beta x_i$ e deviazione standard $\sigma$, dove $\alpha$ e $\beta$ sono i parametri del modello. Questa è l'assunzione di normalità e linearità del modello. Il modello assume anche che le distribuzioni condizionate $p(y \mid x_i)$ siano omoschedastiche, cioè che abbiano la stessa deviazione standard $\sigma$ per tutti i valori di $x_i$. Infine, il modello assume che i dati campionati siano indipendenti e che gli errori $\varepsilon_i$ siano distribuiti in maniera Normale con media zero e deviazione standard $\sigma$. In altre parole, il modello ipotizza che ogni osservazione $y_i$ sia una realizzazione della variabile casuale $Y = y_i \mid X = x_i$.
+
+## Una nota di cautela
+
+Nel suo saggio *Statistical Rethinking*, {cite:t}`McElreath_rethinking` esplora il concetto dei Golem. Nel XVI secolo, la Casa degli Asburgo dominava ampie regioni dell'Europa Centrale, i Paesi Bassi, la Spagna e le colonie americane, sotto la guida di un sovrano che portava il titolo di Imperatore del Sacro Romano Impero. A Praga, il sovrano Rodolfo II promosse l'arte, le scienze e la matematica, trasformando la città in un centro culturale di rilievo.
+
+In questo contesto, emergé il Golem di Praga, un'antica creatura di argilla secondo la tradizione ebraica, animata dalla "verità" ma priva di volontà. Nonostante fosse dotato di una grande potenza, mancava di saggezza e poteva divenire pericoloso se non controllato.
+
+Secondo alcune versioni, il rabbino Judah Loew ben Bezalel costruì il Golem per difendere gli ebrei perseguitati di Praga, impiegando antiche tecniche ebraiche. Tuttavia, il Golem fu in definitiva disattivato a causa della sua potenza incontrollata e pericolosa.
+
+Quanto ai modelli scientifici, gli scienziati creano dei "golem" attraverso modelli matematici, spesso implementati come software. Questi modelli producono effetti tangibili mediante previsioni e intuizioni, ma non possono essere categorizzati come veritieri o falsi; si configurano piuttosto come strumenti progettati per uno scopo specifico. Essi costituiscono strumenti potenti che possono condurre a scoperte preziose o a conclusioni insensate.
+
+I modelli statistici rivestono un ruolo essenziale in svariate discipline scientifiche. Ad esempio, un modello di regressione rappresenta una forma di "golem" statistico che effettua calcoli coerenti e precisi. Tuttavia, questi modelli mancano di saggezza e non considerano il contesto circostante.
+
+In sintesi, McElreath riflette sul concetto dei Golem, simbolo dei modelli scientifici. Questi modelli, come il popolare modello di regressione, producono risultati concreti ma presentano una carenza di saggezza e adattabilità, il che limita la loro utilità in situazioni che richiedono un pensiero innovativo. Inoltre, è di fondamentale importanza comprendere che nessun strumento statistico, di per sé, è in grado di affrontare in maniera sensata il problema dell'inferenza delle cause dalle evidenze empiriche. I golem statistici non comprendono il concetto di causa ed effetto, ma si limitano a comprendere le associazioni. Senza la nostra guida e il nostro scetticismo, i golem pre-costruiti molto spesso si rivelano inutili. Anzi, potrebbero causare danni, proprio come accadde alla città di Praga.
 
 ## Commenti e considerazioni finali
 

@@ -48,6 +48,12 @@ La descrizione delle modalità d'esame è disponibile tramite il seguente [link]
 
 La descrizione delle modalità d'esame è disponibile nel seguente [link](chapter_0/esame.ipynb).
 
+## Laboratorio didattico
+
+Le istruzioni relative allo svolgimento del laboratorio didattico sono disponibili al seguente [link](chapter_0/laboratorio_didattico/laboratorio_didattico.ipynb).
+
+Un esempio di report, analogo a quelli che saranno necessari per i progetti di gruppo dedicati all'analisi dei dati di una pubblicazione psicologica, è disponibile tramite il seguente [link](chapter_0/laboratorio_didattico/melody.ipynb).
+
 ## 👨‍🏫 Informazioni sul docente
 
 [Corrado Caudek](https://www.unifi.it/p-doc2-2008-0-A-2c2a342f3b29-1.html)<br>

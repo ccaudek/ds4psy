@@ -73,6 +73,8 @@ chapters:
   - file: chapter_4/E_one_mean
   - file: chapter_4/23_two_groups
   - file: chapter_4/24_hierarchical_models
+  - file: chapter_4/30_entropy
+  - file: chapter_4/31_kl
 
 - file: chapter_5/introduction_part_5
   sections:

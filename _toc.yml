@@ -72,6 +72,7 @@ chapters:
   - file: chapter_4/E_freq
   - file: chapter_4/22_normal_normal_model
   - file: chapter_4/E_one_mean
+  - file: chapter_4/E_one_mean_2
   - file: chapter_4/23_two_groups
   - file: chapter_4/24_hierarchical_models
   - file: chapter_4/30_entropy
@@ -82,7 +83,10 @@ chapters:
   - file: chapter_5/05_reglin_1
   - file: chapter_5/05_reglin_2
   - file: chapter_5/05_reglin_3
-  - file: chapter_5/E_reglin
+  - file: chapter_5/E_reglin_1
+  - file: chapter_5/E_reglin_2
+  - file: chapter_5/E_reglin_3
+  - file: chapter_5/E_reglin_4
   - file: chapter_5/05_logistic_reg
   - file: chapter_5/05_causal_inference
   - file: chapter_5/E_stab
@@ -125,5 +129,3 @@ chapters:
   - file: chapter_7/a21_reglin_2
   - file: chapter_7/a23_reglin_4
   - file: chapter_7/a30_ttest_exercises
-      
-  

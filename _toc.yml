@@ -29,6 +29,7 @@ chapters:
   - file: chapter_2/04_loc_scale
   - file: chapter_2/05_correlation
   - file: chapter_2/E_eda
+  - file: chapter_2/E_mehr_song_spelke
 
 - file: chapter_3/introduction_chapter_3
   sections:
@@ -84,6 +85,7 @@ chapters:
   - file: chapter_5/E_reglin
   - file: chapter_5/05_logistic_reg
   - file: chapter_5/05_causal_inference
+  - file: chapter_5/E_stab
 
 - file: chapter_6/introduction_part_6
   sections:

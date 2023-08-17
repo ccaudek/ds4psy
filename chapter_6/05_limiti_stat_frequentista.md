@@ -1,4 +1,4 @@
-(sec-limits-inf-freq)=
+(limits-freq-inference-notebook)=
 
 # Limiti dell'inferenza frequentista
 

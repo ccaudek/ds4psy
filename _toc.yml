@@ -40,6 +40,8 @@ chapters:
   - file: chapter_3/03_bayes_theorem
   - file: chapter_3/E_bayes_theorem
   - file: chapter_3/04_expval_var
+  - file: chapter_3/04a_sampling_distr
+  - file: chapter_3/04b_illusion
   - file: chapter_3/E_rv_discrete
   - file: chapter_3/05_joint_prob
   - file: chapter_3/E_joint_prob
@@ -64,11 +66,13 @@ chapters:
   - file: chapter_4/06_balance-prior-post
   - file: chapter_4/10_metropolis
   - file: chapter_4/11_beta_binomial_pymc
+  - file: chapter_4/11a_jax
   - file: chapter_4/12_summary_posterior_pymc
   - file: chapter_4/13_prediction
   - file: chapter_4/14_mcmc_diagnostics
   - file: chapter_4/20_odds_ratio
   - file: chapter_4/21_poisson_model
+  - file: chapter_4/21a_poisson_sim
   - file: chapter_4/E_freq
   - file: chapter_4/22_normal_normal_model
   - file: chapter_4/E_one_mean

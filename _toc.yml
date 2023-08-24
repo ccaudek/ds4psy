@@ -66,19 +66,20 @@ chapters:
   - file: chapter_4/06_balance-prior-post
   - file: chapter_4/10_metropolis
   - file: chapter_4/11_beta_binomial_pymc
-  - file: chapter_4/11a_jax
-  - file: chapter_4/12_summary_posterior_pymc
-  - file: chapter_4/13_prediction
-  - file: chapter_4/14_mcmc_diagnostics
-  - file: chapter_4/20_odds_ratio
-  - file: chapter_4/21_poisson_model
-  - file: chapter_4/21a_poisson_sim
+  - file: chapter_4/12_jax
+  - file: chapter_4/16_summary_posterior_pymc
+  - file: chapter_4/17_prediction
+  - file: chapter_4/18_mcmc_diagnostics
+  - file: chapter_4/19_odds_ratio
+  - file: chapter_4/20_poisson_model
+  - file: chapter_4/21_poisson_sim
   - file: chapter_4/E_freq
   - file: chapter_4/22_normal_normal_model
   - file: chapter_4/E_one_mean
   - file: chapter_4/E_one_mean_2
   - file: chapter_4/23_two_groups
   - file: chapter_4/24_hierarchical_models
+  - file: chapter_4/25_hierarchical_poisson
   - file: chapter_4/30_entropy
   - file: chapter_4/31_kl
 

@@ -6,6 +6,7 @@ root: intro
 chapters:
 - file: chapter_1/introduction_chapter_1
   sections:
+  - file: chapter_1/00_installation
   - file: chapter_1/01_python_1
   - file: chapter_1/02_python_2
   - file: chapter_1/ex_python
@@ -90,6 +91,7 @@ chapters:
   - file: chapter_5/05_reglin_3
   - file: chapter_5/05_reglin_4
   - file: chapter_5/05_reglin_5
+  - file: chapter_5/05_reglin_6
   - file: chapter_5/E_reglin_1
   - file: chapter_5/E_reglin_2
   - file: chapter_5/E_reglin_3

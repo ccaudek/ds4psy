@@ -100,7 +100,7 @@ chapters:
   - file: chapter_5/E_reglin_3
   - file: chapter_5/E_reglin_4
   - file: chapter_5/05_logistic_reg
-  - file: chapter_5/05_causal_inference
+  - file: chapter_5/05_binomial_reg
   - file: chapter_5/E_stab
 
 - file: chapter_6/introduction_part_6

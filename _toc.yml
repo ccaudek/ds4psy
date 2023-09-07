@@ -91,6 +91,7 @@ chapters:
   sections:
   - file: chapter_5/05_reglin_1
   - file: chapter_5/05_reglin_2
+  - file: chapter_5/05_params_recovery
   - file: chapter_5/05_reglin_3
   - file: chapter_5/05_reglin_4
   - file: chapter_5/05_reglin_5
@@ -101,6 +102,7 @@ chapters:
   - file: chapter_5/E_reglin_4
   - file: chapter_5/05_logistic_reg
   - file: chapter_5/05_binomial_reg
+  - file: chapter_5/05_counterfactual
   - file: chapter_5/E_stab
 
 - file: chapter_6/introduction_part_6

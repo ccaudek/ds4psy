@@ -126,7 +126,6 @@ chapters:
 
 - file: chapter_7/introduction_appendix
   sections:
-  - file: chapter_7/a00_installation
   - file: chapter_7/a01_math_symbols
   - file: chapter_7/a02_numbers
   - file: chapter_7/a04_summation_notation

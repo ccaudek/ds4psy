@@ -44,15 +44,6 @@ html:
   comments:
     hypothesis: false
 
-sphinx:
-    config:
-      html_theme_options:
-        use_download_button: true
-        repository_url: "https://github.com/ccaudek/ds4psy"
-        use_issues_button: false
-        use_repository_button: false
-        use_edit_page_button: false
-
 # Cache execution outputs
 execute:
   execute_notebooks: cache
@@ -61,3 +52,5 @@ sphinx:
   extra_extensions:
     - sphinx_proof
     - sphinx_exercise
+
+

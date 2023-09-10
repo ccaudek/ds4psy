@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: ds4psy
+title: ds4p
 author: Corrado Caudek
 logo: "images/logo.png"
 copyright: "2024"
@@ -52,5 +52,3 @@ sphinx:
   extra_extensions:
     - sphinx_proof
     - sphinx_exercise
-
-

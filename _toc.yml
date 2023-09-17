@@ -68,6 +68,7 @@ chapters:
   - file: chapter_4/10_metropolis
   - file: chapter_4/11_beta_binomial_pymc
   - file: chapter_4/12_jax
+  - file: chapter_4/13_preliz
   - file: chapter_4/16_summary_posterior_pymc
   - file: chapter_4/17_prediction
   - file: chapter_4/18_mcmc_diagnostics

@@ -29,6 +29,7 @@ chapters:
   - file: chapter_2/E_sums
   - file: chapter_2/04_loc_scale
   - file: chapter_2/05_correlation
+  - file: chapter_2/06_causality
   - file: chapter_2/E_eda
   - file: chapter_2/E_mehr_song_spelke
 

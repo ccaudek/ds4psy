@@ -30,6 +30,7 @@ chapters:
   - file: chapter_2/04_loc_scale
   - file: chapter_2/05_correlation
   - file: chapter_2/06_causality
+  - file: chapter_2/07_crisis
   - file: chapter_2/E_eda
   - file: chapter_2/E_mehr_song_spelke
 
@@ -105,6 +106,7 @@ chapters:
   - file: chapter_5/E_reglin_4
   - file: chapter_5/05_logistic_reg
   - file: chapter_5/05_binomial_reg
+  - file: chapter_5/05_covid
   - file: chapter_5/05_counterfactual
   - file: chapter_5/E_stab
 

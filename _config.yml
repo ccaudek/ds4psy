@@ -27,7 +27,7 @@ footer_text: Created by <a href="https://ccaudek.github.io/caudeklab/">Corrado C
 # Launch button settings
 launch_buttons:
   notebook_interface: "classic"  # The interface interactive links will activate ["classic", "jupyterlab"]
-  colab_url: ""
+  colab_url: "https://colab.research.google.com"
   binderhub_url: ""
   thebe: false  # Add a thebe button to pages (requires the repository to run on Binder)
 

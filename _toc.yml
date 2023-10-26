@@ -13,9 +13,10 @@ chapters:
   - file: chapter_1/ex_numpy
   - file: chapter_1/04_pandas
   - file: chapter_1/05_pandas_aggregate
+  - file: chapter_1/06_pandas_functions
   - file: chapter_1/ex_pandas
-  - file: chapter_1/06_matplotlib
-  - file: chapter_1/07_seaborn
+  - file: chapter_1/07_matplotlib
+  - file: chapter_1/08_seaborn
   - file: chapter_1/ex_matplotlib
 
 - file: chapter_2/introduction_chapter_2

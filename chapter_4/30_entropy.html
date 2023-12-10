@@ -1,0 +1,1124 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Entropia &#8212; ds4p</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter_4/30_entropy';</script>
+    <link rel="canonical" href="https://ccaudek.github.io/ds4psy/chapter_4/30_entropy.html" />
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="La divergenza di Kullback-Leibler" href="31_kl.html" />
+    <link rel="prev" title="Gruppi multipli" href="24_multiple_groups.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ds4p - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ds4p - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_1/introduction_chapter_1.html">Python</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/01_python_1.html">Python (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/02_python_2.html">Python (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_python.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/03_numpy.html">NumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_numpy.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/04_pandas.html">Pandas (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/05_pandas_aggregate.html">Pandas (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/06_pandas_functions.html">Pandas (3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_pandas.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/07_matplotlib.html">Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/08_seaborn.html">Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_matplotlib.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_2/introduction_chapter_2.html">Statistica descrittiva</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/01_key_notions.html">Concetti chiave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_key_notions.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/02_measurement.html">La misurazione in psicologia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_scales.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/03_freq_distr.html">Dati e frequenze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_sums.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/04_loc_scale.html">Indici di posizione e di scala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/05_correlation.html">Le relazioni tra variabili</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/06_causality.html">Correlazione e causazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/07_crisis.html">La crisi della generalizzabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_eda.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_mehr_song_spelke.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_3/introduction_chapter_3.html">Probabilità</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/01_intro_prob.html">Introduzione al calcolo delle probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/02_conditional_prob.html">Probabilità condizionata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/05_joint_prob.html">Probabilità congiunta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_joint_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/06_density_func.html">La funzione di densità di probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/07_discr_rv_distr.html">Distribuzioni di v.c. discrete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_binomial.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/08_cont_rv_distr.html">Distribuzioni di v.c. continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_gaussian.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_beta_distr.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/09_likelihood.html">La verosimiglianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/10_rescorla_wagner.html">Apprendimento per rinforzo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_likelihood.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="introduction_part_4.html">Inferenza bayesiana</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_summary_posterior.html">Sintesi a posteriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_conjugate.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_balance-prior-post.html">L’influenza della distribuzione a priori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_jax.html">Usare JAX per un campionamento più veloce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_preliz.html">Scegliere le distribuzioni a priori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_prediction.html">La predizione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_odds_ratio.html">Analisi bayesiana dell’odds-ratio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_poisson_model.html">Modello di Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_poisson_sim.html">Modello di Poisson: derivazione analitica e MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_freq.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_normal_normal_model.html">Inferenza bayesiana su una media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_one_mean.html">✏️ Esercizio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_one_mean_2.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_two_groups.html">Confronto tra due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Entropia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hssm.html">Drift Diffusion Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_5/introduction_part_5.html">Analisi della regressione</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_1.html">Il modello di regressione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_2.html">Analisi bayesiana del modello di regressione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_2.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_3.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_6/introduction_part_6.html">Inferenza frequentista</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_estimation.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/02_conf_interv.html">Intervallo di confidenza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/03_test_ipotesi.html">Significatività statistica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_interpretation_test.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_significato_test.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/04_two_ind_samples.html">Test t di Student per campioni indipendenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_test_media_pop.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_medie_pop_ampie.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_medie_pop_piccoli.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_campioni_appaiati.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_confronto_proporzioni.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/05_limiti_stat_frequentista.html">Limiti dell’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/06_s_m_errors.html">Crisi della replicabilità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/00_installation.html">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a05_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ccaudek/ds4psy/blob/main/docs/chapter_4/30_entropy.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapter_4/30_entropy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Entropia</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizzabilita-dei-modelli-e-fondamenti-del-metodo-scientifico">Generalizzabilità dei modelli e fondamenti del metodo scientifico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-replicabilita-il-punto-di-partenza-fondamentale">La Replicabilità: Il Punto di Partenza Fondamentale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tre-domande-fondamentali-per-la-robustezza-dei-modelli">Tre Domande Fondamentali per la Robustezza dei Modelli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sfide-e-soluzioni-sovra-adattamento-e-sotto-adattamento">Sfide e Soluzioni: Sovra-Adattamento e Sotto-Adattamento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrio-nella-selezione-dei-modelli-semplicita-e-precisione">Equilibrio nella Selezione dei Modelli: Semplicità e Precisione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obiettivita-nella-misurazione-entropia-e-divergenza-di-kullback-leibler">Obiettività nella Misurazione: Entropia e Divergenza di Kullback-Leibler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selezione-di-modelli-e-entropia">Selezione di Modelli e Entropia</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#entropia-una-misura-dell-incertezza">Entropia: Una Misura dell’Incertezza</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#divergenza-di-kullback-leibler-un-strumento-per-confrontare-le-distribuzioni">Divergenza di Kullback-Leibler: Un Strumento per Confrontare le Distribuzioni</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazione-nella-selezione-di-modelli">Applicazione nella Selezione di Modelli</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempi-concreti-per-l-entropia">Esempi concreti per l’Entropia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-entropia-di-un-singolo-evento">L’Entropia di un Singolo Evento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informazione-di-shannon-e-entropia-differenze-e-relazioni">Informazione di Shannon e Entropia: Differenze e Relazioni</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#entropia-e-varianza-di-una-distribuzione">Entropia e Varianza di una Distribuzione</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esercizio-sulla-divergenza-di-kullback-leibler-in-un-contesto-di-esame">Esercizio sulla Divergenza di Kullback-Leibler in un Contesto di Esame</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riflessioni-conclusive-e-prospettive-future">Riflessioni Conclusive e Prospettive Future</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/ccaudek/ds4psy_2023/blob/main/entropy.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="entropia">
+<span id="entropy-notebook"></span><h1>Entropia<a class="headerlink" href="#entropia" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.graphics</span> <span class="kn">import</span> <span class="n">tsaplots</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">Warning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="generalizzabilita-dei-modelli-e-fondamenti-del-metodo-scientifico">
+<h2>Generalizzabilità dei modelli e fondamenti del metodo scientifico<a class="headerlink" href="#generalizzabilita-dei-modelli-e-fondamenti-del-metodo-scientifico" title="Permalink to this heading">#</a></h2>
+<p>Uno degli aspetti più cruciali dei modelli scientifici è la loro capacità di generalizzarsi. La generalizzabilità non è soltanto un attributo desiderabile di un buon modello, ma costituisce anche uno dei pilastri fondamentali del metodo scientifico. Se i risultati di uno studio o di un modello non possono essere applicati a contesti più ampi, il valore scientifico del nostro lavoro rischia di essere significativamente limitato.</p>
+<section id="la-replicabilita-il-punto-di-partenza-fondamentale">
+<h3>La Replicabilità: Il Punto di Partenza Fondamentale<a class="headerlink" href="#la-replicabilita-il-punto-di-partenza-fondamentale" title="Permalink to this heading">#</a></h3>
+<p>Nel contesto del metodo scientifico, la replicabilità è spesso vista come un requisito essenziale, una sorta di “biglietto d’ingresso” alla discussione scientifica. I risultati che non possono essere replicati sono difficilmente considerati validi. Tuttavia, è essenziale riconoscere che la replicabilità, pur necessaria, non è di per sé sufficiente. Un modello può essere replicabile ma non generalizzabile, il che significa che i suoi risultati potrebbero non essere applicabili al di fuori del contesto specifico in cui è stato testato.</p>
+</section>
+<section id="tre-domande-fondamentali-per-la-robustezza-dei-modelli">
+<h3>Tre Domande Fondamentali per la Robustezza dei Modelli<a class="headerlink" href="#tre-domande-fondamentali-per-la-robustezza-dei-modelli" title="Permalink to this heading">#</a></h3>
+<p>Secondo <span id="id1">Johnson <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id85" title="Alicia A. Johnson, Miles Ott, and Mine Dogucu. Bayes Rules! An Introduction to Bayesian Modeling with R. CRC Press, 2022.">JOD22</a>]</span>, ci sono tre domande chiave da porsi per valutare la robustezza di un modello: Quali sono le implicazioni delle nostre inferenze? Le assunzioni del modello sono valide? Quanto accuratamente il modello può fare previsioni? Quest’ultima domanda è particolarmente cruciale quando si parla di generalizzabilità. In altre parole, un modello che riesce a fare previsioni accurate su nuovi dati supera un test fondamentale della sua utilità scientifica.</p>
+</section>
+<section id="sfide-e-soluzioni-sovra-adattamento-e-sotto-adattamento">
+<h3>Sfide e Soluzioni: Sovra-Adattamento e Sotto-Adattamento<a class="headerlink" href="#sfide-e-soluzioni-sovra-adattamento-e-sotto-adattamento" title="Permalink to this heading">#</a></h3>
+<p>Una delle principali sfide nella creazione di modelli generalizzabili è evitare le trappole del sovra-adattamento e del sotto-adattamento, come descritto in <span id="id2">[<a class="reference internal" href="../references/bibliography.html#id106" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span>.  Il sovra-adattamento si verifica quando i modelli sono troppo specifici e quindi inutili al di fuori del set di dati su cui sono stati addestrati. Al contrario, il sotto-adattamento si verifica quando i modelli sono troppo generali per essere utili anche nel contesto specifico per cui sono stati creati. Qui, l’approccio bayesiano offre una soluzione elegante, concentrandosi sulla capacità predittiva del modello su nuovi set di dati.</p>
+</section>
+<section id="equilibrio-nella-selezione-dei-modelli-semplicita-e-precisione">
+<h3>Equilibrio nella Selezione dei Modelli: Semplicità e Precisione<a class="headerlink" href="#equilibrio-nella-selezione-dei-modelli-semplicita-e-precisione" title="Permalink to this heading">#</a></h3>
+<p>Nella selezione dei modelli, oltre all’approccio bayesiano, è importante considerare principi come il rasoio di Ockham, che suggerisce di privilegiare la semplicità ove possibile. Tuttavia, questa semplicità non deve compromettere la capacità del modello di descrivere accuratamente i dati. Anche i test di ipotesi, nonostante le critiche per l’enfasi sui valori-p, rimangono uno strumento comune, ma devono essere utilizzati con attenzione per evitare errori di sovra-adattamento e sotto-adattamento.</p>
+</section>
+<section id="obiettivita-nella-misurazione-entropia-e-divergenza-di-kullback-leibler">
+<h3>Obiettività nella Misurazione: Entropia e Divergenza di Kullback-Leibler<a class="headerlink" href="#obiettivita-nella-misurazione-entropia-e-divergenza-di-kullback-leibler" title="Permalink to this heading">#</a></h3>
+<p>Nel confronto tra modelli alternativi, emerge spesso la necessità di misurare quanto un modello si avvicini al “vero” processo generativo dei dati. La divergenza di Kullback-Leibler è una metrica popolare in questo contesto, usata per quantificare questa “vicinanza”.</p>
+</section>
+<section id="selezione-di-modelli-e-entropia">
+<h3>Selezione di Modelli e Entropia<a class="headerlink" href="#selezione-di-modelli-e-entropia" title="Permalink to this heading">#</a></h3>
+<p>Nella sfida di selezionare il modello più aderente al “vero” processo generativo dei dati, cerchiamo un modo per quantificare la “vicinanza” del modello alla distribuzione sottostante dei dati. Questa vicinanza va intesa non solo in termini della famiglia di distribuzioni (ad esempio, normale contro Gamma), ma anche in termini dei parametri specifici che caratterizzano queste distribuzioni. La divergenza di Kullback-Leibler (KL) è un indice spesso utilizzato per affrontare questa sfida in modo quantitativo. Tuttavia, per comprendere appieno questa metrica, è essenziale introdurre prima il concetto di entropia.</p>
+<section id="entropia-una-misura-dell-incertezza">
+<h4>Entropia: Una Misura dell’Incertezza<a class="headerlink" href="#entropia-una-misura-dell-incertezza" title="Permalink to this heading">#</a></h4>
+<p>Nel campo dell’informazione e della teoria delle probabilità, l’entropia è un concetto chiave che misura l’incertezza o la sorpresa associata all’osservazione di un evento. Immaginiamo di scoprire che un evento con una certa probabilità <span class="math notranslate nohighlight">\( p \)</span> si è verificato. La “sorpresa” di questa scoperta è quantificata come <span class="math notranslate nohighlight">\( -\log_2(p) \)</span>, misurata in bit. In questo contesto, gli eventi rari, con bassa probabilità, sono associati a un alto livello di sorpresa, mentre un evento certo (con probabilità 1) non produce sorpresa. Il logaritmo in base 2 è scelto perché in informatica un bit è l’unità fondamentale di misura dell’informazione, che rappresenta una scelta binaria tra due esiti equiprobabili.</p>
+<p>Per esemplificare, se osserviamo due eventi indipendenti <span class="math notranslate nohighlight">\( A \)</span> e <span class="math notranslate nohighlight">\( B \)</span>, la sorpresa totale per l’osservazione dell’evento congiunto <span class="math notranslate nohighlight">\( A \cap B \)</span> è la somma delle sorprese individuali. Questo è dovuto alla proprietà del logaritmo che rende il logaritmo dell’intersezione uguale alla somma dei logaritmi.</p>
+<p>Consideriamo ora <span class="math notranslate nohighlight">\( X \)</span> come una variabile casuale discreta con un insieme di possibili valori distinti <span class="math notranslate nohighlight">\( a_1, a_2, \ldots, a_n \)</span> e probabilità associate <span class="math notranslate nohighlight">\( p_1, p_2, \ldots, p_n \)</span>, dove la somma delle probabilità è 1. L’entropia di <span class="math notranslate nohighlight">\( X \)</span> è definita come la media ponderata della sorpresa per ciascun possibile esito di <span class="math notranslate nohighlight">\( X \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+H(X) = -\sum_{x} p(x) \log_2 p(x),
+\]</div>
+<p>dove la somma si estende a tutti i possibili esiti di <span class="math notranslate nohighlight">\( X \)</span>. Interessante notare che l’entropia dipende solo dalle probabilità <span class="math notranslate nohighlight">\(p_j\)</span> e non dai valori specifici <span class="math notranslate nohighlight">\(a_j\)</span>. Questa misura rappresenta la quantità media di informazione o sorpresa che ci aspettiamo dall’osservazione di <span class="math notranslate nohighlight">\( X \)</span>.</p>
+<p>Per variabili continue, il concetto di entropia si estende a:</p>
+<div class="math notranslate nohighlight">
+\[
+H(X) = -\int p(x) \log_2 p(x) \, dx,
+\]</div>
+<p>dove l’integrazione avviene su tutti i possibili esiti di <span class="math notranslate nohighlight">\( X \)</span>.</p>
+<p>L’entropia raggiunge il suo valore massimo in condizioni di completa incertezza, ovvero quando tutti i possibili esiti di <span class="math notranslate nohighlight">\( X \)</span> sono equiprobabili. Questo indica la massima variabilità o imprevedibilità nei dati. Al contrario, l’entropia è minima (zero) quando l’esito è completamente prevedibile, ovvero quando un esito è assolutamente certo.</p>
+</section>
+<section id="divergenza-di-kullback-leibler-un-strumento-per-confrontare-le-distribuzioni">
+<h4>Divergenza di Kullback-Leibler: Un Strumento per Confrontare le Distribuzioni<a class="headerlink" href="#divergenza-di-kullback-leibler-un-strumento-per-confrontare-le-distribuzioni" title="Permalink to this heading">#</a></h4>
+<p>Dopo aver introdotto il concetto di entropia, possiamo esaminare la Divergenza di Kullback-Leibler (KL), un’importante misura che quantifica le differenze tra due distribuzioni di probabilità. La divergenza KL tra due distribuzioni, <span class="math notranslate nohighlight">\(P\)</span> e <span class="math notranslate nohighlight">\(Q\)</span>, relative alla stessa variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span>, è definita come segue:</p>
+<p>Per distribuzioni discrete:
+$<span class="math notranslate nohighlight">\(
+D_{KL}(P \parallel Q) = \sum_x p(x) \log \left(\frac{p(x)}{q(x)}\right),
+\)</span>$</p>
+<p>e per distribuzioni continue:
+$<span class="math notranslate nohighlight">\(
+D_{KL}(P \parallel Q) = \int p(x) \log \left(\frac{p(x)}{q(x)}\right) \, dx.
+\)</span>$</p>
+<p>Questa misura è sempre non negativa e rappresenta la quantità di informazione “persa” quando si usa la distribuzione <span class="math notranslate nohighlight">\(Q\)</span> per approssimare la distribuzione <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p>La Divergenza KL può essere anche interpretata attraverso il prisma dell’entropia, esprimendola come la differenza tra l’entropia incrociata <span class="math notranslate nohighlight">\(H(P, Q)\)</span> e l’entropia <span class="math notranslate nohighlight">\(H(P)\)</span> di <span class="math notranslate nohighlight">\(P\)</span>. In formule, abbiamo:</p>
+<p>Entropia di <span class="math notranslate nohighlight">\(P\)</span>:
+$<span class="math notranslate nohighlight">\(
+H(P) = -\sum_x p(x) \log(p(x)),
+\)</span>$</p>
+<p>e Entropia incrociata tra <span class="math notranslate nohighlight">\(P\)</span> e <span class="math notranslate nohighlight">\(Q\)</span>:
+$<span class="math notranslate nohighlight">\(
+H(P, Q) = -\sum_x p(x) \log(q(x)).
+\)</span>$</p>
+<p>In questo contesto, l’entropia <span class="math notranslate nohighlight">\(H(P)\)</span> misura l’incertezza intrinseca nella distribuzione <span class="math notranslate nohighlight">\(P\)</span>, mentre l’entropia incrociata <span class="math notranslate nohighlight">\(H(P, Q)\)</span> quantifica l’incertezza derivante dall’uso di <span class="math notranslate nohighlight">\(Q\)</span> per approssimare <span class="math notranslate nohighlight">\(P\)</span>. La divergenza KL, quindi, indica la differenza tra la sorpresa media che sperimentiamo quando operiamo con le probabilità effettive <span class="math notranslate nohighlight">\(p\)</span>, ma ci basiamo su <span class="math notranslate nohighlight">\(q\)</span> (ad esempio, quando <span class="math notranslate nohighlight">\(p\)</span> è sconosciuta e <span class="math notranslate nohighlight">\(q\)</span> è la nostra stima), e la nostra sorpresa media quando operiamo con le probabilità <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>Nella pratica, la divergenza KL è spesso impiegata come criterio per la selezione di modelli. L’obiettivo è trovare un modello <span class="math notranslate nohighlight">\(Q\)</span> che minimizzi <span class="math notranslate nohighlight">\(D_{KL}(P \parallel Q)\)</span>, o equivalentemente, minimizzi la differenza <span class="math notranslate nohighlight">\(H(P, Q) - H(P)\)</span>.</p>
+<p>È importante sottolineare che la divergenza KL è non negativa e assume valore zero se e solo se <span class="math notranslate nohighlight">\(P\)</span> e <span class="math notranslate nohighlight">\(Q\)</span> sono identiche. Inoltre, la divergenza KL non è simmetrica, cioè <span class="math notranslate nohighlight">\(D_{KL}(P \parallel Q) \neq D_{KL}(Q \parallel P)\)</span>.</p>
+<p>In conclusione, la divergenza di Kullback-Leibler offre un metodo quantitativo per valutare quanto una distribuzione <span class="math notranslate nohighlight">\(Q\)</span> sia un’efficace approssimazione di un’altra distribuzione <span class="math notranslate nohighlight">\(P\)</span>, considerando le incertezze intrinseche a entrambe le distribuzioni.</p>
+</section>
+<section id="applicazione-nella-selezione-di-modelli">
+<h4>Applicazione nella Selezione di Modelli<a class="headerlink" href="#applicazione-nella-selezione-di-modelli" title="Permalink to this heading">#</a></h4>
+<p>Uno degli obiettivi chiave nella selezione di modelli statistici è identificare il modello <span class="math notranslate nohighlight">\(Q\)</span> che minimizza la divergenza di Kullback-Leibler (KL) rispetto alla distribuzione “vera” <span class="math notranslate nohighlight">\(P\)</span> dei dati. Tuttavia, nella realtà pratica, la distribuzione <span class="math notranslate nohighlight">\(P\)</span> è spesso sconosciuta e non direttamente osservabile. Pertanto, si ricorre a criteri approssimativi come il Criterio di Informazione di Akaike (AIC) o il Criterio di Informazione Bayesiano (BIC). Questi criteri forniscono stime surrogate per la minimizzazione della divergenza KL, permettendo una valutazione indiretta dell’adeguatezza del modello.</p>
+</section>
+</section>
+</section>
+<section id="esempi-concreti-per-l-entropia">
+<h2>Esempi concreti per l’Entropia<a class="headerlink" href="#esempi-concreti-per-l-entropia" title="Permalink to this heading">#</a></h2>
+<p>Per comprendere meglio il concetto di entropia, esaminiamo alcuni esempi pratici.</p>
+<section id="l-entropia-di-un-singolo-evento">
+<h3>L’Entropia di un Singolo Evento<a class="headerlink" href="#l-entropia-di-un-singolo-evento" title="Permalink to this heading">#</a></h3>
+<p>Prendiamo in considerazione il lancio di una moneta equilibrata. In questo caso, la probabilità di ottenere testa (così come croce) è di 0.5. La quantità di informazione, o sorpresa, risultante dall’ottenimento di “testa” in un tale esperimento è calcolata mediante la formula dell’entropia:</p>
+<div class="math notranslate nohighlight">
+\[
+H(\text{Testa}) = -\log_2(0.5).
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calcolando il logaritmo in base 2 di 0.5, otteniamo un valore di 1 bit. Questo significa che, in termini di entropia, ogni risultato del lancio di una moneta (sia testa che croce) contribuisce con un bit di informazione. Questo riflette l’incertezza massima in un processo con due esiti equiprobabili: ogni lancio di una moneta equilibrata è completamente imprevedibile e, di conseguenza, fornisce la massima quantità di informazione possibile.</p>
+<p>In questo contesto, dove tutti gli esiti sono equiprobabili, l’entropia raggiunge il suo valore massimo, indicando un’incertezza totale sul risultato prima del lancio. La sorpresa, o informazione acquisita, osservando il risultato è quindi massima.</p>
+<p>Al contrario, se consideriamo un evento con una probabilità di 1 (per esempio, una moneta truccata che produce sempre “Testa”), l’entropia è <span class="math notranslate nohighlight">\( H(p = 1) = 0 \)</span>. Questo implica che l’osservazione dell’esito “Testa” non fornisce alcuna informazione aggiuntiva, in quanto l’evento è prevedibile con certezza.</p>
+<p>Se si effettuano <span class="math notranslate nohighlight">\( n \)</span> lanci di una moneta equilibrata, ogni lancio contribuisce con 1 bit all’informazione totale. Pertanto, una sequenza di <span class="math notranslate nohighlight">\( n \)</span> lanci richiede <span class="math notranslate nohighlight">\( n \)</span> bit di informazione per essere descritta completamente.</p>
+<p>Consideriamo ora una moneta sbilanciata, dove la probabilità di ottenere “Testa” è solo del 10% (0.1). In questo caso, l’evento “Testa” diventa più raro e, quindi, sorprendente quando si verifica. L’entropia per l’evento “Testa” in questa situazione è calcolata come:</p>
+<div class="math notranslate nohighlight">
+\[
+H(\text{Testa}) = -\log_2(0.1).
+\]</div>
+<p>Calcolando questo logaritmo, otteniamo un valore superiore a 3 bit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.321928094887362
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questo significa che l’informazione necessaria per rappresentare adeguatamente l’evento “Testa” in una moneta sbilanciata è maggiore rispetto a una moneta equilibrata. La maggiore rarità dell’evento aumenta la sorpresa e, di conseguenza, l’informazione associata alla sua osservazione.</p>
+<p>Consideriamo ora il caso di un dado a sei facce e concentriamoci sull’evento “uscita del numero 6”. La probabilità di questo evento è di 1/6, inferiore rispetto alla probabilità di 1/2 di ottenere “testa” con un lancio di moneta. Conseguentemente, ci aspettiamo che l’evento “uscita del numero 6” generi una sorpresa maggiore rispetto all’evento “testa” in un lancio di moneta.</p>
+<p>Per quantificare l’informazione associata all’evento “uscita del numero 6”, possiamo utilizzare la formula dell’informazione di Shannon:</p>
+<div class="math notranslate nohighlight">
+\[
+-\log_2\left(\frac{1}{6}\right) \approx 2.58 \text{ bit}.
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.584962500721156
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questo calcolo mostra che l’informazione associata all’uscita del numero 6 è di circa 2.58 bit, significativamente superiore all’informazione di 1 bit per l’evento “testa”. In pratica, ciò significa che l’evento legato al dado è più “sorprendente” e porta con sé più informazione rispetto all’evento del lancio di moneta.</p>
+</section>
+<section id="informazione-di-shannon-e-entropia-differenze-e-relazioni">
+<h3>Informazione di Shannon e Entropia: Differenze e Relazioni<a class="headerlink" href="#informazione-di-shannon-e-entropia-differenze-e-relazioni" title="Permalink to this heading">#</a></h3>
+<p>L’informazione di Shannon e l’entropia sono due concetti strettamente correlati ma con alcune distinzioni chiave. La principale differenza tra i due concetti è che l’informazione di Shannon si concentra su un singolo evento, mentre l’entropia considera la distribuzione di probabilità complessiva di una variabile aleatoria.</p>
+<p>L’informazione di Shannon <span class="math notranslate nohighlight">\( I(x) \)</span> è definita come la quantità di informazione contenuta in un singolo evento <span class="math notranslate nohighlight">\( x \)</span>, in base alla sua probabilità <span class="math notranslate nohighlight">\( p(x) \)</span>. La formula è:</p>
+<div class="math notranslate nohighlight">
+\[
+I(x) = -\log_{2}(p(x)).
+\]</div>
+<p>L’informazione è tanto maggiore quanto più bassa è la probabilità dell’evento (ovvero, gli eventi rari sono più “sorprendenti”) e diminuisce all’aumentare della probabilità dell’evento.</p>
+<p>D’altro canto, l’entropia <span class="math notranslate nohighlight">\( H(X) \)</span> rappresenta l’incertezza media associata a una variabile aleatoria <span class="math notranslate nohighlight">\( X \)</span>, considerando la sua distribuzione di probabilità <span class="math notranslate nohighlight">\( p(x) \)</span>. Viene calcolata come l’aspettazione matematica dell’informazione di Shannon per tutti i possibili esiti <span class="math notranslate nohighlight">\( x \)</span> di <span class="math notranslate nohighlight">\( X \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+H(X) = \mathbb{E}[I(X)] = -\sum_{x \in X} p(x) \log_{2}(p(x)).
+\]</div>
+<p>In questo modo, l’entropia rappresenta la media ponderata delle informazioni di Shannon per ogni possibile esito di <span class="math notranslate nohighlight">\( X \)</span>. Si tratta, in altre parole, di una misura della sorpresa media o dell’informazione attesa osservando la variabile aleatoria <span class="math notranslate nohighlight">\( X \)</span> nel lungo termine.</p>
+<p>In sintesi, mentre l’informazione di Shannon ci dice quanto saremmo sorpresi dall’osservare un singolo esito, l’entropia fornisce un’indicazione aggregata della nostra sorpresa media, tenendo conto di tutti gli esiti possibili.</p>
+<p>La figura successiva mostra la relazione tra probabilità e informazione, per valori di probabilità nell’intervallo tra 0 e 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a sequence of 1000 equally spaced points from 0 to 1</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Avoid log(0) by replacing 0 with a small value</span>
+<span class="n">p</span><span class="p">[</span><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-10</span>
+
+<span class="c1"># Compute the negative log base 2 of p</span>
+<span class="n">h</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Probabilità&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span> <span class="s1">&#39;Informazione&#39;</span><span class="p">:</span> <span class="n">h</span><span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Probabilità&#39;</span><span class="p">,</span> <span class="s1">&#39;Informazione&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Probabilità&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Informazione&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ef2d1de17ca1c182de4c027f19a103b2a36f3c79226ebe5db16d3981ac1a77a1.png" src="../_images/ef2d1de17ca1c182de4c027f19a103b2a36f3c79226ebe5db16d3981ac1a77a1.png" />
+</div>
+</div>
+<p>La figura mostra che questa relazione non è lineare, è infatti leggermente sublineare. Questo ha senso dato che abbiamo usato una funzione logaritmica.</p>
+<section id="entropia-e-varianza-di-una-distribuzione">
+<h4>Entropia e Varianza di una Distribuzione<a class="headerlink" href="#entropia-e-varianza-di-una-distribuzione" title="Permalink to this heading">#</a></h4>
+<p>È comune pensare che l’entropia e la varianza di una distribuzione siano collegate in modo tale che, all’aumentare della varianza, aumenti anche l’entropia. Tuttavia, la relazione tra queste due misure non è così diretta e può variare a seconda delle caratteristiche specifiche delle distribuzioni.</p>
+<p>Consideriamo, per esempio, il caso di distribuzioni normali con diversi valori di varianza. In Python, possiamo calcolare l’entropia di queste distribuzioni come segue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intervallo di valori discreti</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">calculate_entropy</span><span class="p">(</span><span class="n">variance</span><span class="p">):</span>
+    <span class="c1"># Distribuzione normale con media 0 e varianza specifica</span>
+    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">))</span>
+    
+    <span class="c1"># Normalizzazione delle probabilità in modo che sommino a 1</span>
+    <span class="n">probabilities</span> <span class="o">/=</span> <span class="n">probabilities</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># Calcolo dell&#39;entropia</span>
+    <span class="n">entropy</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probabilities</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">probabilities</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">entropy</span>
+
+<span class="c1"># Varianze da esplorare</span>
+<span class="n">variances</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+
+<span class="c1"># Calcolo e tracciamento dell&#39;entropia per diverse varianze</span>
+<span class="n">entropies</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_entropy</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span> <span class="k">for</span> <span class="n">variance</span> <span class="ow">in</span> <span class="n">variances</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">variances</span><span class="p">,</span> <span class="n">entropies</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Entropia vs varianza&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Varianza&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Entropia&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/00843b463f754ebfab2a4f2d55e2b3c25feb13a1723bdf41559834427455c5fa.png" src="../_images/00843b463f754ebfab2a4f2d55e2b3c25feb13a1723bdf41559834427455c5fa.png" />
+</div>
+</div>
+<p>Questo script mostra che, per la distribuzione normale, l’entropia tende ad aumentare con l’aumento della varianza. Tuttavia, consideriamo ora due distribuzioni con la stessa varianza ma probabilità differenti:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_entropy</span><span class="p">(</span><span class="n">probabilities</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probabilities</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">probabilities</span><span class="p">))</span>
+
+<span class="c1"># Distribuzioni con la stessa varianza ma diverse probabilità</span>
+<span class="n">probabilities1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">])</span>
+<span class="n">probabilities2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.3333</span><span class="p">,</span> <span class="mf">0.3333</span><span class="p">,</span> <span class="mf">0.3334</span><span class="p">])</span>
+
+<span class="c1"># Calcolo dell&#39;entropia per entrambe le distribuzioni</span>
+<span class="n">entropy1</span> <span class="o">=</span> <span class="n">calculate_entropy</span><span class="p">(</span><span class="n">probabilities1</span><span class="p">)</span>
+<span class="n">entropy2</span> <span class="o">=</span> <span class="n">calculate_entropy</span><span class="p">(</span><span class="n">probabilities2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entropia della distribuzione 1: </span><span class="si">{</span><span class="n">entropy1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entropia della distribuzione 2: </span><span class="si">{</span><span class="n">entropy2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entropia della distribuzione 1: 1.5
+Entropia della distribuzione 2: 1.5849624862946867
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questo esempio dimostra che due distribuzioni con la stessa varianza possono avere entropie differenti, a seconda della configurazione delle loro probabilità.</p>
+<p>In sintesi:</p>
+<ul class="simple">
+<li><p><em>Varianza:</em> Misura la dispersione dei dati intorno alla loro media. Quantifica quanto i valori si discostano dalla media, ma non considera la probabilità di ciascun valore.</p></li>
+<li><p><em>Entropia:</em> Valuta l’incertezza nella distribuzione di probabilità. Considera la probabilità di ogni possibile esito, quantificando l’incertezza media nell’osservazione di un esito casuale.</p></li>
+</ul>
+<p>Pertanto, distribuzioni con la stessa varianza possono avere entropie differenti e viceversa. Questo dipende da come sono distribuite le probabilità all’interno della distribuzione. La varianza e l’entropia sono, quindi, indicatori complementari dell’incertezza in una distribuzione di dati, ma esplorano questa incertezza da prospettive diverse.</p>
+</section>
+</section>
+<section id="esercizio-sulla-divergenza-di-kullback-leibler-in-un-contesto-di-esame">
+<h3>Esercizio sulla Divergenza di Kullback-Leibler in un Contesto di Esame<a class="headerlink" href="#esercizio-sulla-divergenza-di-kullback-leibler-in-un-contesto-di-esame" title="Permalink to this heading">#</a></h3>
+<p>Immaginatevi in un contesto di esame a scelta multipla, dove, invece di selezionare una sola risposta per domanda, dovete assegnare una probabilità di correttezza a ciascuna delle opzioni. Il vostro punteggio per ogni domanda sarà calcolato usando il logaritmo della probabilità assegnata all’opzione corretta. Se la risposta giusta è <span class="math notranslate nohighlight">\(A_i\)</span>, il vostro punteggio per quella domanda sarà <span class="math notranslate nohighlight">\(\log(p_i)\)</span>, dove <span class="math notranslate nohighlight">\(p_i\)</span> è la probabilità che avete attribuito a <span class="math notranslate nohighlight">\(A_i\)</span>.</p>
+<p>In questo sistema di punteggio, il massimo che potete ottenere per una singola domanda è 0 (assegnando una probabilità del 100% alla risposta corretta), mentre il punteggio minimo è <span class="math notranslate nohighlight">\(-\infty\)</span> se assegnate una probabilità di zero alla risposta corretta. Il vostro obiettivo finale è massimizzare il punteggio atteso per l’intero esame.</p>
+<p>Dato che non conoscete a priori la risposta corretta a ogni domanda, diventa cruciale utilizzare le vostre “migliori stime personali” delle probabilità. Supponiamo che queste stime siano rappresentate dal vettore <span class="math notranslate nohighlight">\(p = [p_1, p_2, \ldots, p_n]\)</span>.</p>
+<p>Il punteggio atteso, basato su queste stime personali, è dato da:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Punteggio atteso con } p = \sum_{i=1}^{n} p_i \log(p_i).
+\]</div>
+<p>Considerando l’idea di utilizzare un set alternativo di probabilità <span class="math notranslate nohighlight">\(q = [q_1, q_2, \ldots, q_n]\)</span>, il punteggio atteso cambierebbe a:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Punteggio atteso con } q = \sum_{i=1}^{n} p_i \log(q_i).
+\]</div>
+<p>La divergenza di Kullback-Leibler (KL) tra i due set di probabilità <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span> è calcolata come:</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta = D_{KL}(p \parallel q) = \sum_{i=1}^{n} p_i \log\left(\frac{p_i}{q_i}\right).
+\]</div>
+<p>Questa divergenza KL, sempre non negativa, misura la differenza tra le stime <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span>. Si annulla solo se <span class="math notranslate nohighlight">\(p = q\)</span>, indicando che il punteggio atteso è massimizzato quando si utilizzano le stime personali più accurate, <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>In questo scenario, quindi, l’approccio ottimale è utilizzare stime basate sulle informazioni a disposizione. Qualsiasi manipolazione delle stime senza giustificazione basata su nuove informazioni riduce il punteggio atteso. Le vostre migliori stime personali rappresentano la comprensione più accurata che avete del problema. Deviare da queste stime senza validi motivi equivale a compromettere le vostre possibilità di successo.</p>
+<p>Inoltre, nel sistema di punteggio basato sul logaritmo delle probabilità, non esiste alcun vantaggio nel tentare di “ingannare” il sistema; ogni tentativo di manipolazione si traduce in una penalizzazione del punteggio atteso. Questo allinea perfettamente con i principi della teoria delle decisioni bayesiane, che premia la trasparenza e l’accuratezza nelle stime probabilistiche.</p>
+<p>Nella seguente simulazione abbiamo due gruppi di studenti che rispondono a un esame a scelta multipla di sei domande, ognuna con cinque alternative di risposta. Per il gruppo di studenti “onesti”, abbiamo impostato che nel 75% dei casi assegnano la probabilità più alta alla risposta corretta. Per il gruppo di studenti che “imbrogliano”, abbiamo assunto che riescano a indovinare la risposta corretta nel 60% dei casi, ma assegnano le probabilità in modo distorto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numero di studenti per gruppo</span>
+<span class="n">num_studenti</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">num_domande</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">num_alternative</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Funzione per calcolare il punteggio atteso usando la metrica del logaritmo delle probabilità</span>
+<span class="k">def</span> <span class="nf">calcola_punteggio</span><span class="p">(</span><span class="n">probabilita</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probabilita</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">probabilita</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Creazione di risposte per il gruppo di studenti onesti (75% di risposte corrette)</span>
+<span class="n">p_onesti</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">num_studenti</span><span class="p">,</span> <span class="n">num_domande</span><span class="p">,</span> <span class="n">num_alternative</span><span class="p">),</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">num_alternative</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">studente</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_studenti</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">domanda</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_domande</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.75</span>
+        <span class="p">):</span>  <span class="c1"># 75% di possibilità di scegliere la risposta corretta</span>
+            <span class="n">risposta_corretta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">num_alternative</span><span class="p">)</span>
+            <span class="n">p_onesti</span><span class="p">[</span>
+                <span class="n">studente</span><span class="p">,</span> <span class="n">domanda</span><span class="p">,</span> <span class="p">:</span>
+            <span class="p">]</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># probabilità di base per le risposte sbagliate</span>
+            <span class="n">p_onesti</span><span class="p">[</span>
+                <span class="n">studente</span><span class="p">,</span> <span class="n">domanda</span><span class="p">,</span> <span class="n">risposta_corretta</span>
+            <span class="p">]</span> <span class="o">=</span> <span class="mf">0.6</span>  <span class="c1"># probabilità più alta per la risposta corretta</span>
+        <span class="c1"># Altrimenti lascia le probabilità uguali (caso in cui la risposta è sbagliata)</span>
+
+<span class="c1"># Creazione di risposte per il gruppo di studenti che &quot;imbrogliano&quot; (60% di risposte corrette)</span>
+<span class="n">p_imbrogli</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_studenti</span><span class="p">,</span> <span class="n">num_domande</span><span class="p">,</span> <span class="n">num_alternative</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">studente</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_studenti</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">domanda</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_domande</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.60</span>
+        <span class="p">):</span>  <span class="c1"># 60% di possibilità di scegliere la risposta corretta</span>
+            <span class="n">risposta_corretta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">num_alternative</span><span class="p">)</span>
+            <span class="n">p_imbrogli</span><span class="p">[</span>
+                <span class="n">studente</span><span class="p">,</span> <span class="n">domanda</span><span class="p">,</span> <span class="n">risposta_corretta</span>
+            <span class="p">]</span> <span class="o">+=</span> <span class="mi">5</span>  <span class="c1"># aumentare la probabilità per la risposta corretta</span>
+        <span class="c1"># Distribuzione distorta di probabilità</span>
+        <span class="n">p_imbrogli</span><span class="p">[</span><span class="n">studente</span><span class="p">,</span> <span class="n">domanda</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/=</span> <span class="n">p_imbrogli</span><span class="p">[</span><span class="n">studente</span><span class="p">,</span> <span class="n">domanda</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calcolo del punteggio atteso per i due gruppi di soggetti</span>
+<span class="n">punteggio_onesti</span> <span class="o">=</span> <span class="n">calcola_punteggio</span><span class="p">(</span><span class="n">p_onesti</span><span class="p">)</span>
+<span class="n">punteggio_imbrogli</span> <span class="o">=</span> <span class="n">calcola_punteggio</span><span class="p">(</span><span class="n">p_imbrogli</span><span class="p">)</span>
+
+<span class="c1"># Calcolo della differenza media dei punteggi tra i due gruppi</span>
+<span class="n">differenza_media_onesti_imbrogli</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">punteggio_onesti</span> <span class="o">-</span> <span class="n">punteggio_imbrogli</span><span class="p">)</span>
+
+<span class="n">differenza_media_onesti_imbrogli</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.2168279165062206
+</pre></div>
+</div>
+</div>
+</div>
+<p>La differenza media dei punteggi attesi tra i due gruppi, calcolata usando la metrica del logaritmo delle probabilità, è di circa -0.2. Questo risultato suggerisce che, in media, i soggetti che “imbrogliano” (assegnando le probabilità in modo distorto) hanno ottenuto punteggi attesi inferiori rispetto a quelli che hanno assegnato le probabilità in modo più accurato e onesto.</p>
+<p>Questo dimostra che, nel contesto di questo esame a scelta multipla, un approccio accurato e onesto nella stima delle probabilità porta a un punteggio atteso più alto, mentre la manipolazione delle stime probabilistiche senza basi informative solide porta a una penalizzazione nel punteggio atteso.​</p>
+<p>Calcoliamo ora la divergenza di Kullback-Leibler (KL).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcolo della divergenza di Kullback-Leibler tra i due gruppi di studenti</span>
+
+<span class="k">def</span> <span class="nf">calcola_divergenza_kl</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">q</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Calcolo della divergenza KL per ogni studente e ogni domanda</span>
+<span class="n">divergenza_kl</span> <span class="o">=</span> <span class="n">calcola_divergenza_kl</span><span class="p">(</span><span class="n">p_onesti</span><span class="p">,</span> <span class="n">p_imbrogli</span><span class="p">)</span>
+
+<span class="c1"># Calcolo della media della divergenza KL tra tutti gli studenti</span>
+<span class="n">media_divergenza_kl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">divergenza_kl</span><span class="p">)</span>
+
+<span class="n">media_divergenza_kl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8895637559305881
+</pre></div>
+</div>
+</div>
+</div>
+<p>La divergenza di KL media calcolata tra i due gruppi di studenti è di circa 0.9.</p>
+<p>Nel contesto dell’esercizio, la divergenza KL misura la differenza, su scala logaritmica, tra due approcci di stima delle probabilità rispetto a una distribuzione di probabilità “vera” (che idealmente assegna una probabilità di 1 alla risposta corretta e 0 a tutte le altre).</p>
+<p>La divergenza KL di circa 0.9 indica quanto la stima media fornita dal gruppo che “imbroglia” sia più distante dalla distribuzione vera rispetto alla stima media fornita dal gruppo “onesto”. In altre parole, un valore di divergenza KL di circa 0.9 indica che le stime dei rispondenti che “imbrogliano” sono in media più lontane dalla distribuzione vera rispetto a quelle dei rispondenti “onesti”.</p>
+</section>
+</section>
+<section id="riflessioni-conclusive-e-prospettive-future">
+<h2>Riflessioni Conclusive e Prospettive Future<a class="headerlink" href="#riflessioni-conclusive-e-prospettive-future" title="Permalink to this heading">#</a></h2>
+<p>Nel corso di questo capitolo, abbiamo intrapreso un viaggio attraverso il concetto di entropia, esplorandone l’importanza come strumento per quantificare l’incertezza all’interno di una distribuzione di probabilità. Questa esplorazione ci ha permesso di comprendere come l’entropia non sia semplicemente una misura di incertezza, ma anche una lente attraverso cui possiamo osservare e interpretare la natura probabilistica dei fenomeni.</p>
+<p>Una domanda naturale che potrebbe emergere a questo punto è: come possiamo sfruttare l’entropia per valutare la “distanza” tra un modello teorico e la realtà effettiva dei dati? È qui che entra in gioco la divergenza di Kullback-Leibler, un concetto che abbiamo solo accennato ma che riveste un’importanza fondamentale. La divergenza KL non è solo uno strumento per misurare le discrepanze tra due distribuzioni probabilistiche, ma rappresenta anche un ponte concettuale tra la teoria e la pratica, tra il modello ideale e il mondo empirico.</p>
+<p>Nel prossimo capitolo, ci immergeremo più profondamente nel mondo della divergenza di Kullback-Leibler. Esploreremo come questo strumento possa essere utilizzato per confrontare modelli teorici con dati empirici, e come possa aiutarci a comprendere meglio il grado di aderenza di un modello alla realtà che cerca di rappresentare. Inoltre, discuteremo delle implicazioni pratiche della divergenza KL in vari ambiti, dalla selezione del modello all’ottimizzazione delle stime probabilistiche, evidenziando come questa misura possa essere applicata in situazioni concrete di analisi dei dati.</p>
+<p>In conclusione, la nostra esplorazione dell’entropia e della divergenza KL ci guida verso una comprensione più profonda non solo della teoria della probabilità, ma anche di come queste misure si rivelino strumenti vitali nel campo della statistica e della ricerca scientifica.</p>
+</section>
+<section id="watermark">
+<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Wed Nov 15 2023
+
+Python implementation: CPython
+Python version       : 3.11.6
+IPython version      : 8.17.2
+
+numpy      : 1.25.2
+scipy      : 1.11.3
+pandas     : 2.1.3
+seaborn    : 0.13.0
+matplotlib : 3.8.1
+statsmodels: 0.14.0
+arviz      : 0.16.1
+
+Watermark: 2.4.3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapter_4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="24_multiple_groups.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Gruppi multipli</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="31_kl.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">La divergenza di Kullback-Leibler</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizzabilita-dei-modelli-e-fondamenti-del-metodo-scientifico">Generalizzabilità dei modelli e fondamenti del metodo scientifico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-replicabilita-il-punto-di-partenza-fondamentale">La Replicabilità: Il Punto di Partenza Fondamentale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tre-domande-fondamentali-per-la-robustezza-dei-modelli">Tre Domande Fondamentali per la Robustezza dei Modelli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sfide-e-soluzioni-sovra-adattamento-e-sotto-adattamento">Sfide e Soluzioni: Sovra-Adattamento e Sotto-Adattamento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrio-nella-selezione-dei-modelli-semplicita-e-precisione">Equilibrio nella Selezione dei Modelli: Semplicità e Precisione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obiettivita-nella-misurazione-entropia-e-divergenza-di-kullback-leibler">Obiettività nella Misurazione: Entropia e Divergenza di Kullback-Leibler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selezione-di-modelli-e-entropia">Selezione di Modelli e Entropia</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#entropia-una-misura-dell-incertezza">Entropia: Una Misura dell’Incertezza</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#divergenza-di-kullback-leibler-un-strumento-per-confrontare-le-distribuzioni">Divergenza di Kullback-Leibler: Un Strumento per Confrontare le Distribuzioni</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazione-nella-selezione-di-modelli">Applicazione nella Selezione di Modelli</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempi-concreti-per-l-entropia">Esempi concreti per l’Entropia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-entropia-di-un-singolo-evento">L’Entropia di un Singolo Evento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informazione-di-shannon-e-entropia-differenze-e-relazioni">Informazione di Shannon e Entropia: Differenze e Relazioni</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#entropia-e-varianza-di-una-distribuzione">Entropia e Varianza di una Distribuzione</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esercizio-sulla-divergenza-di-kullback-leibler-in-un-contesto-di-esame">Esercizio sulla Divergenza di Kullback-Leibler in un Contesto di Esame</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riflessioni-conclusive-e-prospettive-future">Riflessioni Conclusive e Prospettive Future</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

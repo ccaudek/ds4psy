@@ -1,0 +1,3326 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>La predizione bayesiana &#8212; ds4p</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter_4/17_prediction';</script>
+    <link rel="canonical" href="https://ccaudek.github.io/ds4psy/chapter_4/17_prediction.html" />
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Diagnostica delle catene markoviane" href="18_mcmc_diagnostics.html" />
+    <link rel="prev" title="Metodi di sintesi della distribuzione a posteriori" href="16_summary_posterior_pymc.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ds4p - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ds4p - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_1/introduction_chapter_1.html">Python</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/01_python_1.html">Python (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/02_python_2.html">Python (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_python.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/03_numpy.html">NumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_numpy.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/04_pandas.html">Pandas (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/05_pandas_aggregate.html">Pandas (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/06_pandas_functions.html">Pandas (3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_pandas.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/07_matplotlib.html">Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/08_seaborn.html">Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_matplotlib.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_2/introduction_chapter_2.html">Statistica descrittiva</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/01_key_notions.html">Concetti chiave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_key_notions.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/02_measurement.html">La misurazione in psicologia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_scales.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/03_freq_distr.html">Dati e frequenze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_sums.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/04_loc_scale.html">Indici di posizione e di scala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/05_correlation.html">Le relazioni tra variabili</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/06_causality.html">Correlazione e causazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/07_crisis.html">La crisi della generalizzabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_eda.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_mehr_song_spelke.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_3/introduction_chapter_3.html">Probabilità</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/01_intro_prob.html">Introduzione al calcolo delle probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/02_conditional_prob.html">Probabilità condizionata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/05_joint_prob.html">Probabilità congiunta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_joint_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/06_density_func.html">La funzione di densità di probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/07_discr_rv_distr.html">Distribuzioni di v.c. discrete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_binomial.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/08_cont_rv_distr.html">Distribuzioni di v.c. continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_gaussian.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_beta_distr.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/09_likelihood.html">La verosimiglianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/10_rescorla_wagner.html">Apprendimento per rinforzo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_likelihood.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="introduction_part_4.html">Inferenza bayesiana</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_summary_posterior.html">Sintesi a posteriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_conjugate.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_balance-prior-post.html">L’influenza della distribuzione a priori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_jax.html">Usare JAX per un campionamento più veloce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_preliz.html">Scegliere le distribuzioni a priori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">La predizione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_odds_ratio.html">Analisi bayesiana dell’odds-ratio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_poisson_model.html">Modello di Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_poisson_sim.html">Modello di Poisson: derivazione analitica e MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_freq.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_normal_normal_model.html">Inferenza bayesiana su una media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_one_mean.html">✏️ Esercizio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_one_mean_2.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_two_groups.html">Confronto tra due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hssm.html">Drift Diffusion Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_5/introduction_part_5.html">Analisi della regressione</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_1.html">Il modello di regressione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_2.html">Analisi bayesiana del modello di regressione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_2.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_3.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_6/introduction_part_6.html">Inferenza frequentista</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_estimation.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/02_conf_interv.html">Intervallo di confidenza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/03_test_ipotesi.html">Significatività statistica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_interpretation_test.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_significato_test.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/04_two_ind_samples.html">Test t di Student per campioni indipendenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_test_media_pop.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_medie_pop_ampie.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_medie_pop_piccoli.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_campioni_appaiati.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_confronto_proporzioni.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/05_limiti_stat_frequentista.html">Limiti dell’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/06_s_m_errors.html">Crisi della replicabilità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/00_installation.html">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a05_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ccaudek/ds4psy/blob/main/docs/chapter_4/17_prediction.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapter_4/17_prediction.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>La predizione bayesiana</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-distribuzione-predittiva-a-posteriori">La distribuzione predittiva a posteriori</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivazione-analitica">Derivazione analitica</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-basato-sulla-simulazione">Metodo basato sulla simulazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-mcmc">Metodo MCMC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-predictive-checks">Posterior predictive checks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-predittiva-a-priori">Distribuzione predittiva a priori</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-con-stan">Esempio con Stan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/ccaudek/ds4psy_2023/blob/main/345_bayesian_prediction.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="la-predizione-bayesiana">
+<span id="bayesian-prediction-notebook"></span><h1>La predizione bayesiana<a class="headerlink" href="#la-predizione-bayesiana" title="Permalink to this heading">#</a></h1>
+<p>L’analisi bayesiana ha diversi obiettivi chiave, che includono la formulazione della distribuzione a posteriori dei parametri, la valutazione delle ipotesi e la previsione di dati futuri. Una volta determinate le distribuzioni a posteriori dei parametri, si può procedere a formulare stime riguardo alle possibili caratteristiche di dati futuri. Questo processo porta alla creazione di una <em>distribuzione predittiva a posteriori</em>, che serve come strumento essenziale per la verifica e la validazione del modello statistico in uso. Questa distribuzione predittiva permette un confronto diretto tra le previsioni generate dal modello e i dati che sono stati effettivamente osservati nel campione. In pratica, utilizziamo il modello corrente per generare previsioni sui possibili dati futuri e poi confrontiamo queste previsioni con i dati che abbiamo effettivamente raccolto. Se le previsioni generate dal modello sono in buon accordo con i dati osservati, possiamo concludere che il modello fornisce una rappresentazione accurata dei dati.</p>
+<p>Una seconda forma di predizione bayesiana riguarda la distribuzione predittiva a priori (<em>prior predictive distribution</em>). La distribuzione predittiva a priori rappresenta la distribuzione dei possibili dati osservabili prima di aver effettivamente osservato qualsiasi dato. Essa incorpora la nostra conoscenza a priori, o le nostre credenze iniziali, riguardo ai parametri del modello.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span> 
+<span class="kn">import</span> <span class="nn">pymc</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">pymc.sampling_jax</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">Warning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc9_env/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="la-distribuzione-predittiva-a-posteriori">
+<h2>La distribuzione predittiva a posteriori<a class="headerlink" href="#la-distribuzione-predittiva-a-posteriori" title="Permalink to this heading">#</a></h2>
+<p>Un modo molto intuitivo per valutare la qualità complessiva di un modello è esaminare quanto bene il modello si adatti ai dati reali.  Questo tipo di approccio è diffuso nelle statistiche frequentiste, spesso basato su misure di “badness-of-fit” (inadeguatezza dell’adattamento). Nel contesto delle statistiche Bayesiane, l’analisi dell’adattamento del modello ai dati si avvale del concetto di verifica predittiva a posteriori (<em>Posterior Predictive Checking</em>, PPC) <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id9" title="Andrew Gelman and Cosma Rohilla Shalizi. Philosophy and the practice of bayesian statistics. British Journal of Mathematical and Statistical Psychology, 66(1):8–38, 2013.">GS13</a>]</span>.</p>
+<p>L’idea fondamentale della verifica predittiva a posteriori è che dovrebbe esserci una minima, se non assente, discrepanza tra i dati generati dal modello e i dati reali. In sostanza, la verifica predittiva a posteriori rappresenta un metodo per valutare la qualità della specificazione del modello. Qualsiasi divergenza tra i dati prodotti dal modello e i dati effettivi indica una errata specificazione del modello.</p>
+<p>Per esemplificare il concetto di “distribuzione predittiva a posteriori”, esploriamo il modello beta-binomiale. In questo contesto, il parametro <span class="math notranslate nohighlight">\(\theta\)</span> (che indica la probabilità di successo) segue una distribuzione a priori modellizzata attraverso una distribuzione Beta, mentre la verosimiglianza dei dati è delineata da una distribuzione Binomiale. I dati vengono rappresentati dal numero <span class="math notranslate nohighlight">\(y\)</span> di successi in <span class="math notranslate nohighlight">\(n\)</span> prove Bernoulliane indipendenti.</p>
+<p>Esaminiamo un caso pratico precedentemente discusso, relativo alla rappresentanza di artisti della generazione X o successive al MOMA. In uno specifico campione di 100 artisti, abbiamo notato che solo 14 di essi appartengono a queste generazioni, registrando così 14 “successi” in 100 prove Bernoulliane indipendenti. Ora, immaginiamo di analizzare un nuovo campione casuale di <span class="math notranslate nohighlight">\(m\)</span>=20 artisti al MOMA, con l’intento di stimare quanti di essi siano della generazione X o successive. In modo più ampio, l’obiettivo è formulare previsioni riguardanti i risultati di futuri campioni potenziali composti da <span class="math notranslate nohighlight">\(m\)</span> osservazioni.</p>
+<p>Introduciamo la variabile casuale <span class="math notranslate nohighlight">\(\tilde{Y}\)</span> che denota il numero di “successi” in un nuovo campione di <span class="math notranslate nohighlight">\(m\)</span> prove. In tale campione, <span class="math notranslate nohighlight">\(\tilde{Y}\)</span> può assumere valori come <span class="math notranslate nohighlight">\(\tilde{y}_1\)</span> (per esempio, 12), <span class="math notranslate nohighlight">\(\tilde{y}_2\)</span> (per esempio, 7), e così via. L’obiettivo è di calcolare le probabilità associate a ciascuno dei valori possibili di <span class="math notranslate nohighlight">\(\tilde{Y}\)</span>, che variano da 0 a 20 inclusi. Questa distribuzione di probabilità discreta è definita come “distribuzione predittiva a posteriori”, <span class="math notranslate nohighlight">\(p(\tilde{Y} = \tilde{y} \mid Y = y)\)</span>, e rappresenta la probabilità di ciascuno dei possibili valori di <span class="math notranslate nohighlight">\(\tilde{Y}\)</span> (0, 1, …, 19, 20) in futuri campioni di <span class="math notranslate nohighlight">\(m\)</span> = 20 osservazioni.</p>
+<p>In questo capitolo, esploriamo tre strategie per ottenere tale distribuzione:</p>
+<ol class="arabic simple">
+<li><p><strong>Approccio analitico</strong>: Risolveremo matematicamente la distribuzione.</p></li>
+<li><p><strong>Simulazione</strong>: Applicheremo tecniche di simulazione per raggiungere i risultati desiderati.</p></li>
+<li><p><strong>Campionamento MCMC</strong>: Utilizzeremo il metodo di campionamento MCMC per stimare la distribuzione predittiva a posteriori.</p></li>
+</ol>
+<p>Sebbene i tre metodi conducano agli stessi risultati, è importante notare che l’approccio MCMC facilita l’ottenimento della soluzione, specialmente quando una soluzione analitica non è disponibile, come nei casi al di fuori delle famiglie coniugate.</p>
+<section id="derivazione-analitica">
+<h3>Derivazione analitica<a class="headerlink" href="#derivazione-analitica" title="Permalink to this heading">#</a></h3>
+<p>Nel contesto in esame, la variabile casuale <span class="math notranslate nohighlight">\( \tilde{Y} \)</span> è governata da una distribuzione che dipende dal parametro <span class="math notranslate nohighlight">\( \theta \)</span>. Le informazioni relative a <span class="math notranslate nohighlight">\( \theta \)</span> sono contenute nella distribuzione a posteriori <span class="math notranslate nohighlight">\( p(\theta | y) \)</span>. Utilizzando la regola della probabilità congiunta, la distribuzione congiunta delle variabili <span class="math notranslate nohighlight">\( \tilde{y} \)</span> e <span class="math notranslate nohighlight">\( \theta \)</span> può essere rappresentata come:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\tilde{y}, \theta | y) = p(\tilde{y} | \theta, y) p(\theta | y).
+\]</div>
+<p>La distribuzione <span class="math notranslate nohighlight">\( p(\tilde{y}, \theta | y) \)</span> descrive la probabilità congiunta di osservare dati futuri <span class="math notranslate nohighlight">\( \tilde{y} \)</span> e un valore specifico del parametro <span class="math notranslate nohighlight">\( \theta \)</span>, dati i dati storici <span class="math notranslate nohighlight">\( y \)</span>. Si scompone in due parti:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\( p(\tilde{y} | \theta, y) \)</span>: la probabilità di osservare <span class="math notranslate nohighlight">\( \tilde{y} \)</span> dato un valore specifico di <span class="math notranslate nohighlight">\( \theta \)</span> e i dati storici <span class="math notranslate nohighlight">\( y \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( p(\theta | y) \)</span>: la distribuzione a posteriori di <span class="math notranslate nohighlight">\( \theta \)</span>, che rappresenta una versione aggiornata della nostra conoscenza su <span class="math notranslate nohighlight">\( \theta \)</span> dopo aver osservato i dati <span class="math notranslate nohighlight">\( y \)</span>.</p></li>
+</ol>
+<p>Se assumiamo che le osservazioni passate <span class="math notranslate nohighlight">\( y \)</span> e le future <span class="math notranslate nohighlight">\( \tilde{y} \)</span> siano indipendenti, condizionate al valore di <span class="math notranslate nohighlight">\( \theta \)</span>, la formula si semplifica in:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\tilde{y}, \theta | y) = p(\tilde{y} | \theta) p(\theta | y).
+\]</div>
+<p>Per ottenere la distribuzione predittiva a posteriori <span class="math notranslate nohighlight">\( p(\tilde{y} | y) \)</span>, è necessario integrare la distribuzione congiunta rispetto a <span class="math notranslate nohighlight">\( \theta \)</span>. Questo passaggio è noto come “marginalizzazione” e serve a eliminare la dipendenza da <span class="math notranslate nohighlight">\( \theta \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\tilde{y} | y) = \int p(\tilde{y} | \theta) p(\theta | y) \, d\theta.
+\]</div>
+<p>Nel caso del modello beta-binomiale, <span class="math notranslate nohighlight">\( p(\tilde{y} | \theta) \)</span> è una distribuzione binomiale con parametri <span class="math notranslate nohighlight">\( m \)</span> e <span class="math notranslate nohighlight">\( \theta \)</span>, mentre <span class="math notranslate nohighlight">\( p(\theta | y) \)</span> è una distribuzione Beta con parametri <span class="math notranslate nohighlight">\( \alpha + y \)</span> e <span class="math notranslate nohighlight">\( \beta + n - y \)</span>.</p>
+<p>L’integrazione può essere risolta esplicitamente, data la forma funzionale delle distribuzioni Beta e Binomiale. Il risultato è una formula chiusa per <span class="math notranslate nohighlight">\( p(\tilde{y} | y) \)</span>, che rappresenta una distribuzione beta-binomiale.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+p(\tilde{y} | y) &amp;= \int_0^1 p(\tilde{y} | \theta) p(\theta | y) \, d\theta \\
+&amp;= \int_0^1 \binom{m}{\tilde{y}} \theta^{\tilde{y}} (1 - \theta)^{m - \tilde{y}} \cdot \frac{1}{B(\alpha + y, \beta + n - y)} \theta^{\alpha + y - 1} (1 - \theta)^{\beta + n - y - 1} \, d\theta \\
+&amp;= \binom{m}{\tilde{y}} \frac{B(\tilde{y} + \alpha + y, \beta + n - y + m - \tilde{y})}{B(\alpha + y, \beta + n - y)}
+\end{align*}
+\end{split}\]</div>
+<p>In conclusione, nel contesto del modello beta-binomiale, la distribuzione predittiva a posteriori è una distribuzione beta-binomiale con parametri <span class="math notranslate nohighlight">\( m \)</span>, <span class="math notranslate nohighlight">\( \alpha + y \)</span>, e <span class="math notranslate nohighlight">\( \beta + n - y \)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-beta-binomial-distr">
+<span class="eqno">(65)<a class="headerlink" href="#equation-eq-beta-binomial-distr" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+f(\tilde{y} | y) = \binom{m}{\tilde{y}} \frac{B(\alpha + y + \tilde{y}, \beta + n - y + m - \tilde{y})}{B(\alpha + y, \beta + n - y)}.
+\end{equation}
+\]</div>
+<p>È importante notare che, se il nostro modello è ben specificato, la distribuzione predittiva a posteriori e la distribuzione dei dati osservati dovrebbero somigliarsi, essendo governate dalla stessa funzione di densità di probabilità (PDF). Per assicurarsi di questa congruenza, è usuale effettuare verifiche predittive a posteriori, mettendo a confronto la distribuzione predittiva a posteriori con i dati empirici. Un approccio consolidato per tale verifica utilizza le stime di densità Kernel (KDE, dall’inglese Kernel Density Estimates). Una KDE è in pratica una stima empirica della PDF di una variabile aleatoria, basata su un campione finito di dati. Confrontando la KDE derivata dai dati osservati con quella generata dalla distribuzione predittiva a posteriori, siamo in grado di valutare l’adeguatezza del nostro modello nel rappresentare la struttura sottostante dei dati, nonché la sua idoneità per effettuare inferenze future.</p>
+<section id="un-esempio-concreto">
+<h4>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Permalink to this heading">#</a></h4>
+<p>Nell’esempio riguardante gli artisti della generazione X esposti al MOMA, la funzione di verosimiglianza dei dati è modellata mediante una distribuzione binomiale, registrando 14 successi su un totale di 100 tentativi. La distribuzione a priori per il parametro di successo, indicato come <span class="math notranslate nohighlight">\(\theta\)</span>, è descritta da una distribuzione Beta con parametri (4, 6). Di conseguenza, la distribuzione a posteriori relativa al parametro <span class="math notranslate nohighlight">\(\theta\)</span> sarà una distribuzione Beta con parametri (18, 92).</p>
+<p>Ipotizziamo ora di voler determinare la distribuzione predittiva a posteriori per un nuovo campione di dati che comprende <span class="math notranslate nohighlight">\(m\)</span> = 20 osservazioni.</p>
+<p>Con riferimento all’eq. <a class="reference internal" href="#equation-eq-beta-binomial-distr">(65)</a>, sappiamo che la distribuzione predittiva a posteriori assume la forma di una distribuzione beta-binomiale con i parametri <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(\alpha + y\)</span> e <span class="math notranslate nohighlight">\(\beta + n - y\)</span>. Qui, <span class="math notranslate nohighlight">\(m\)</span> denota il numero di prove nel nuovo campione, <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\beta\)</span> rappresentano i parametri della distribuzione a priori, mentre <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(n\)</span> indicano rispettivamente il numero di successi e il numero totale di prove nel campione attuale. Nell’esempio in esame, otteniamo i seguenti valori per i parametri della distribuzione beta-binomiale: <span class="math notranslate nohighlight">\(m = 20\)</span>, <span class="math notranslate nohighlight">\(\alpha' = 4 + 14 = 18\)</span>, <span class="math notranslate nohighlight">\(\beta' = 6 + 100 - 14 = 92\)</span>.</p>
+<p>Possiamo rappresentare graficamente la distribuzione predittiva a posteriori che abbiamo definito usando la funzione <code class="docutils literal notranslate"><span class="pre">betabinom.pmf</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">alpha_prime</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">y</span>
+<span class="n">beta_prime</span> <span class="o">=</span> <span class="n">beta</span> <span class="o">+</span> <span class="n">n</span> <span class="o">-</span> <span class="n">y</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">betabinom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">alpha_prime</span><span class="p">,</span> <span class="n">beta_prime</span><span class="p">),</span>
+    <span class="s2">&quot;C0o&quot;</span><span class="p">,</span>
+    <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;betabinom pmf&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">betabinom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">alpha_prime</span><span class="p">,</span> <span class="n">beta_prime</span><span class="p">),</span>
+    <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Set x-ticks to be every 5 units</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Beta-Binomial PMF&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Beta-Binomial PMF&#39;)
+</pre></div>
+</div>
+<img alt="../_images/dc8abe1216bb7669fb3cc43c7b2f8ce97739e5089920d05f709fb20b58c3123e.png" src="../_images/dc8abe1216bb7669fb3cc43c7b2f8ce97739e5089920d05f709fb20b58c3123e.png" />
+</div>
+</div>
+<p>La distribuzione predittiva a posteriori, mostrata nella figura precedente, fornisce informazioni sulla probabilità di osservare <span class="math notranslate nohighlight">\(0, 1, \dots, 20\)</span> successi su <span class="math notranslate nohighlight">\(m = 20\)</span> prove in un futuro campione di <span class="math notranslate nohighlight">\(m\)</span> = 20 osservazioni. Queste probabilità sono valutate tenendo conto dei dati osservati nel campione corrente (14 successi su 100 prove) e delle nostre opinioni iniziali sulla plausibilità dei possibili valori di <span class="math notranslate nohighlight">\(\theta\)</span> (rappresentate dalla distribuzione a priori Beta(4, 6)). In altre parole, la distribuzione predittiva a posteriori ci offre una visione delle possibili frequenze di successo che potremmo osservare nei futuri campioni, basandoci sulle nostre conoscenze attuali e sull’esperienza passata.</p>
+<p>La distribuzione predittiva a posteriori rivela che, nei potenziali campioni futuri composti da 20 osservazioni, il valore <span class="math notranslate nohighlight">\(\tilde{y}\)</span> con la probabilità più elevata è 3. Tuttavia, la distribuzione predittiva a posteriori ci fornisce informazioni sulla probabilità relativa di ciascuno dei possibili valori futuri di <span class="math notranslate nohighlight">\(\tilde{y}\)</span>. Questi valori rappresentano il numero di artisti della Generazione X o successive che potrebbero trovarsi all’interno di un futuro campione di 20 osservazioni.</p>
+<p>Una volta ottenuta la distribuzione predittiva a posteriori possiamo rispondere a ulteriori domande. Ad esempio, Qual è la probabilità a posteriori che almeno 5 degli 20 artisti siano della generazione X, ossia <span class="math notranslate nohighlight">\(P(\tilde{Y} \geq 5 \mid Y = 14)\)</span>?</p>
+<p>Il risultato è dato da <span class="math notranslate nohighlight">\(\sum_i(P(\tilde{Y} = \tilde{y}_i)\)</span>, con <span class="math notranslate nohighlight">\(i \in 5, \dots, 20\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">betabinom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">alpha_prime</span><span class="p">,</span> <span class="n">beta_prime</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.23298739435887628
+</pre></div>
+</div>
+</div>
+</div>
+<p>È altresì possibile calcolare il valore atteso della distribuzione predittiva a posteriori, cioè il numero previsto di artisti appartenenti alla Generazione X o successiva in un campione casuale di 20.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="n">px</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">betabinom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span> <span class="n">m</span><span class="p">,</span> <span class="n">alpha_prime</span><span class="p">,</span> <span class="n">beta_prime</span><span class="p">)</span>
+
+<span class="n">ev</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">px</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.272727272727284
+</pre></div>
+</div>
+</div>
+</div>
+<p>In conclusione, per il caso beta-binomiale, possiamo affermare che la previsione bayesiana di una nuova osservazione futura è rappresentata dalla distribuzione beta-binomiale con parametri <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(\alpha + y\)</span> e <span class="math notranslate nohighlight">\(\beta + n - y\)</span>. Qui, <span class="math notranslate nohighlight">\(m\)</span> rappresenta il numero di prove nel nuovo campione, <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\beta\)</span> sono i parametri della distribuzione a priori, e <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(n\)</span> sono le caratteristiche del campione attuale. In altre parole, la distribuzione beta-binomiale ci fornisce una stima delle possibili frequenze di successi che potremmo osservare in futuri campioni, tenendo conto dei dati osservati e delle nostre conoscenze iniziali sulla probabilità di successo.</p>
+</section>
+</section>
+<section id="metodo-basato-sulla-simulazione">
+<h3>Metodo basato sulla simulazione<a class="headerlink" href="#metodo-basato-sulla-simulazione" title="Permalink to this heading">#</a></h3>
+<p>In situazioni in cui non è possibile ottenere esattamente la distribuzione predittiva a posteriori, è comunque possibile ottenere un campione casuale di valori dalla distribuzione mediante simulazione. Nel caso in esame, supponiamo di voler generare un campione casuale di <span class="math notranslate nohighlight">\(n\)</span> osservazioni dalla distribuzione predittiva a posteriori. Per farlo, possiamo seguire due fasi di simulazione:</p>
+<ol class="arabic simple">
+<li><p>Estraiamo casualmente <span class="math notranslate nohighlight">\(n\)</span> valori del parametro <span class="math notranslate nohighlight">\(\theta\)</span> dalla distribuzione a posteriori <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span>.</p></li>
+<li><p>Utilizziamo i valori del parametro <span class="math notranslate nohighlight">\(\theta\)</span> estratti per generare <span class="math notranslate nohighlight">\(n\)</span> valori casuali di <span class="math notranslate nohighlight">\(\tilde{y}\)</span>, utilizzando il modello binomiale con i parametri <span class="math notranslate nohighlight">\(m\)</span> e <span class="math notranslate nohighlight">\(\theta_i\)</span> (con <span class="math notranslate nohighlight">\(i = 1, \dots, n\)</span>).</p></li>
+</ol>
+<p>In questo modo, otteniamo <span class="math notranslate nohighlight">\(n\)</span> realizzazioni casuali di <span class="math notranslate nohighlight">\(n\)</span> distribuzioni binomiali, ciascuna con i parametri specificati sopra, le quali rappresentano un campione casuale di valori della distribuzione predittiva a posteriori.</p>
+<p>Vediamo come ottenere questo risultato in pratica. Per l’esempio che stiamo discutendo, la distribuzione a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span> è una Beta(25, 17). Procediamo con l’estrazione casuale di 100,000 valori da questa distribuzione e esaminiamo i primi 10 valori:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nrep</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">alpha_prime</span><span class="p">,</span> <span class="n">beta_prime</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">nrep</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10690593268568664 0.13656584036049846 0.1911333734806792 0.11753800154788582 0.1333087835911437 0.23398485098882602 0.11461446842498316 0.13882252017347255 0.14962613636443134 0.15786487352678533
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per ciascuno dei 100,000 valori estratti per <span class="math notranslate nohighlight">\(\theta\)</span>, generiamo casualmente un valore dalla distribuzione binomiale con parametri <span class="math notranslate nohighlight">\(n = 20\)</span> e probabilità <span class="math notranslate nohighlight">\(\theta\)</span>. Esaminiamo i primi 50 valori così ottenuti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_tilde</span> <span class="o">=</span> <span class="p">[</span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">th</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">th</span> <span class="ow">in</span> <span class="n">theta</span><span class="p">]</span>
+<span class="n">y_tilde</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">y_tilde</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">y_tilde</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 2 4 0 5 4 2 3 4 3 1 4 2 4 2 4 4 0 2 5 1 7 0 3 2 3 2 3 5 6 2 3 2 3 4 4 2 4 5 3 3 5 6 1 3 5 4 4 1 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’insieme dei valori <code class="docutils literal notranslate"><span class="pre">y_tilde</span></code> costituisce un campione casuale dalla distribuzione predittiva a posteriori. Nella figura seguente, è presentato un istogramma che mostra la distribuzione dei valori <code class="docutils literal notranslate"><span class="pre">y_tilde</span></code>. I punti corrispondenti alla distribuzione predittiva a posteriori corretta, ossia una distribuzione Beta-Binomiale con parametri <span class="math notranslate nohighlight">\(m = 20\)</span>, <span class="math notranslate nohighlight">\(\alpha' = 18\)</span>, e <span class="math notranslate nohighlight">\(\beta' = 92\)</span>, sono sovrapposti sull’istogramma. Si può notare una quasi perfetta concordanza tra i valori ottenuti tramite la simulazione e quelli ricavati con la derivazione analitica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y_tilde</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">bin_centers</span> <span class="o">=</span> <span class="p">(</span><span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">px</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">betabinom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span> <span class="n">m</span><span class="p">,</span> <span class="n">alpha_prime</span><span class="p">,</span> <span class="n">beta_prime</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bin_centers</span><span class="p">,</span> <span class="n">px</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Beta-Binomial&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4f7435fee00ddf54b3ca625a89c448bf7f67b204795a4e7e4091fef034ebd3ac.png" src="../_images/4f7435fee00ddf54b3ca625a89c448bf7f67b204795a4e7e4091fef034ebd3ac.png" />
+</div>
+</div>
+<p>Un intervallo di credibilità all’80% si può facilmente ottenere usando ArviZ.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">y_tilde</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e692a8e58a53dc521664712417326f021ce4a80d2400f46127b67c443ec1c5e9.png" src="../_images/e692a8e58a53dc521664712417326f021ce4a80d2400f46127b67c443ec1c5e9.png" />
+</div>
+</div>
+<p>Possiamo concludere affermando che, nel caso in cui analizzassimo un nuovo campione di 20 artisti provenienti dal MOMA, ci potremmo attendere che solamente 3 di questi artisti facciano parte della generazione X o di una generazione successiva. Tuttavia, è importante sottolineare che questa stima è soggetta a un certo grado di incertezza. Considerando un livello di fiducia soggettivo dell’80%, l’intervallo di variabilità stimato va da un minimo di 1 ad un massimo di 5 artisti, che potrebbero essere rappresentativi di queste generazioni successive.</p>
+</section>
+</section>
+<section id="metodo-mcmc">
+<h2>Metodo MCMC<a class="headerlink" href="#metodo-mcmc" title="Permalink to this heading">#</a></h2>
+<p>Il metodo di simulazione discusso sopra segue la stessa logica utilizzata dai metodi MCMC per ottenere un’approssimazione della distribuzione predittiva a posteriori. Mediante i metodi MCMC, vengono stimate le possibili osservazioni future <span class="math notranslate nohighlight">\(p(\tilde{y} \mid y)\)</span>, rappresentate come <span class="math notranslate nohighlight">\(p(y^{rep} \mid y)\)</span>, attraverso i seguenti passaggi:</p>
+<ol class="arabic simple">
+<li><p>Campionare <span class="math notranslate nohighlight">\(\theta_i \sim p(\theta \mid y)\)</span>: Viene selezionato casualmente un valore del parametro dalla distribuzione a posteriori.</p></li>
+<li><p>Campionare <span class="math notranslate nohighlight">\(y^{rep} \sim p(y^{rep} \mid \theta_i)\)</span>: Viene selezionata casualmente un’osservazione dalla funzione di verosimiglianza, condizionata al valore del parametro ottenuto nel passo precedente.</p></li>
+</ol>
+<p>Ripetendo questi due passaggi un numero sufficiente di volte, l’istogramma risultante approssimerà la distribuzione predittiva a posteriori. In alcuni casi, come nel presente esempio, è possibile ottenere analiticamente la distribuzione predittiva a posteriori. In altre situazioni, invece, l’utilizzo dei metodi MCMC consente di ottenere un’approssimazione accurata della distribuzione predittiva a posteriori quando una derivazione analitica non è possibile.</p>
+<p>Esaminiamo ora come ottenere la distribuzione predittiva a posteriori con PyMC per i dati dell’esempio. Iniziamo a creare la distribuzione a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ntrials</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">14</span>
+
+<span class="n">alpha_prior</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">beta_prior</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha_prior</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta_prior</span><span class="p">)</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s2">&quot;obs&quot;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">ntrials</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="p">:</span>
+    <span class="n">idata</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sampling_jax</span><span class="o">.</span><span class="n">sample_numpyro_nuts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1699425553.589456       1 tfrt_cpu_pjrt_client.cc:349] TfrtCpuClient created.
+Compilation time = 0:00:00.680499
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1842.80it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1844.88it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1846.88it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1849.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.291413
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.050323
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">idata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>sd</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>theta</th>
+      <td>0.164</td>
+      <td>0.035</td>
+      <td>0.097</td>
+      <td>0.228</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>1553.0</td>
+      <td>1857.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Il processo della simulazione descritta in precedenza può essere automatizzato usando PyMC, ma solo per un campione futuro avente la stessa ampiezza del campione presente (<span class="math notranslate nohighlight">\(n = m\)</span> = 100). Le istruzioni necessarie per generare la distribuzione predittiva a posteriori, <span class="math notranslate nohighlight">\(y^{rep} \sim p(y^{rep} \mid \theta_i)\)</span> sono fornite di seguito.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="p">:</span>
+    <span class="n">post_pred</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_posterior_predictive</span><span class="p">(</span><span class="n">idata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling: [obs]
+</pre></div>
+</div>
+<div class="output text_html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div><div class="output text_html">
+    <div>
+      <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      100.00% [4000/4000 00:00&lt;00:00]
+    </div>
+    </div></div>
+</div>
+<p>Esaminiamo il risultato ottenuto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post_pred</span><span class="o">.</span><span class="n">posterior_predictive</span><span class="o">.</span><span class="n">obs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;obs&#x27; (chain: 4, draw: 1000)&gt;
+array([[18, 24, 13, ..., 14, 16, 21],
+       [12, 19, 25, ..., 12, 19, 21],
+       [16, 26, 18, ..., 15, 11, 20],
+       [12, 10, 11, ..., 12, 18,  8]])
+Coordinates:
+  * chain    (chain) int64 0 1 2 3
+  * draw     (draw) int64 0 1 2 3 4 5 6 7 8 ... 992 993 994 995 996 997 998 999</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'obs'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 4</li><li><span class='xr-has-index'>draw</span>: 1000</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-bc231751-ff07-4df3-813d-c5359a6ac756' class='xr-array-in' type='checkbox' checked><label for='section-bc231751-ff07-4df3-813d-c5359a6ac756' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>18 24 13 15 16 13 8 13 15 24 15 29 ... 11 17 18 14 18 22 16 13 12 18 8</span></div><div class='xr-array-data'><pre>array([[18, 24, 13, ..., 14, 16, 21],
+       [12, 19, 25, ..., 12, 19, 21],
+       [16, 26, 18, ..., 15, 11, 20],
+       [12, 10, 11, ..., 12, 18,  8]])</pre></div></div></li><li class='xr-section-item'><input id='section-10e4547e-5123-49c7-907c-a5fc1c4def2c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-10e4547e-5123-49c7-907c-a5fc1c4def2c' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3</div><input id='attrs-35bdb0e9-6019-49e6-9864-81dff1c0a07e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-35bdb0e9-6019-49e6-9864-81dff1c0a07e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a69507a5-4140-4781-b308-6b2d3e63a94f' class='xr-var-data-in' type='checkbox'><label for='data-a69507a5-4140-4781-b308-6b2d3e63a94f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1, 2, 3])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 995 996 997 998 999</div><input id='attrs-53e85d2a-598f-458a-b506-f5d2bdd4e762' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-53e85d2a-598f-458a-b506-f5d2bdd4e762' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-24bdf4a1-7555-4ba4-b7d8-5e3d93280b4e' class='xr-var-data-in' type='checkbox'><label for='data-24bdf4a1-7555-4ba4-b7d8-5e3d93280b4e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 997, 998, 999])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-044b1b68-4998-4590-a801-c40197e5fa7c' class='xr-section-summary-in' type='checkbox'  ><label for='section-044b1b68-4998-4590-a801-c40197e5fa7c' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-5ef4cdb7-d0f3-4365-9bf4-f12ba17bc44b' class='xr-index-data-in' type='checkbox'/><label for='index-5ef4cdb7-d0f3-4365-9bf4-f12ba17bc44b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0, 1, 2, 3], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-c68c11f0-dd0b-43e5-95dc-354227836ab1' class='xr-index-data-in' type='checkbox'/><label for='index-c68c11f0-dd0b-43e5-95dc-354227836ab1' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
+       ...
+       990, 991, 992, 993, 994, 995, 996, 997, 998, 999],
+      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;, length=1000))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-2b6882ad-2889-473d-8644-edfd23cb9143' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-2b6882ad-2889-473d-8644-edfd23cb9143' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+</div>
+<p>Creiamo un istogramma con i dati <span class="math notranslate nohighlight">\(y^{rep}\)</span>. L’intervallo di credibilità dell’80% è [9, 21].</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">post_pred</span><span class="o">.</span><span class="n">posterior_predictive</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b24823dba7e09530d2e9a399ec345cc15d8ce32200f9bbf698686c235c5307ad.png" src="../_images/b24823dba7e09530d2e9a399ec345cc15d8ce32200f9bbf698686c235c5307ad.png" />
+</div>
+</div>
+<p>Se invece vogliamo una distribuzione predittiva a posteriori nel caso di <span class="math notranslate nohighlight">\(m\)</span> = 20 dobbiamo procedere svolgendo i calcoli “manualmente”.</p>
+<p>Il modello predittivo a posteriori riflette due fonti di variabilità:</p>
+<ul class="simple">
+<li><p>la prima fonte di variabilità riguarda la varianza della distribuzione binomiale <span class="math notranslate nohighlight">\(\tilde{Y} \mid \pi \sim \text{Binomiale}(20, \pi)\)</span>;</p></li>
+<li><p>la seconda fonte di variabilità riguarda l’incertezza su <span class="math notranslate nohighlight">\(\pi\)</span> che è espressa dalla distribuzione a posteriori di questo parametro.</p></li>
+</ul>
+<p>Per considerare entrambe le fonti di variabilità nelle previsioni a posteriori di <span class="math notranslate nohighlight">\(\tilde{Y}\)</span>, possiamo impiegare <code class="docutils literal notranslate"><span class="pre">stats.binom.rvs</span></code> per simulare un singolo risultato <span class="math notranslate nohighlight">\(\tilde{Y}\)</span> dalla distribuzione Binomiale(20, <span class="math notranslate nohighlight">\(\theta\)</span>) per ciascuno dei 4000 valori nella catena di Markov relativa a <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Iniziamo combinando catene e iterazioni della catena di Markov in un unico vettore.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">idata</span><span class="p">)</span>
+<span class="n">post</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generiamo poi un valore casuale dalla distribuzione Binomiale di parametri <span class="math notranslate nohighlight">\(n\)</span> = 20 e <span class="math notranslate nohighlight">\(\theta\)</span>, per ciascuno dei 4000 valori <span class="math notranslate nohighlight">\(\theta\)</span> della distribuzione a posteriori. Il vettore così risultante sarà un campione dalla distribuzione predittiva a posteriori, nel caso di un’ampiezza campionaria pari a 20.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_rep</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usiamo ArviZ per creare un istogramma della distribuzione di <code class="docutils literal notranslate"><span class="pre">y_rep</span></code> e per trovare l’intervallo di credibilità all’80%.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">y_rep</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0658435fa9dd3c5eba0d68ca6de26bf9c104b3c2b93fca3c477b3723433d956b.png" src="../_images/0658435fa9dd3c5eba0d68ca6de26bf9c104b3c2b93fca3c477b3723433d956b.png" />
+</div>
+</div>
+<section id="posterior-predictive-checks">
+<h3>Posterior predictive checks<a class="headerlink" href="#posterior-predictive-checks" title="Permalink to this heading">#</a></h3>
+<p>La distribuzione predittiva a posteriori è utilizzata per eseguire i <em>controlli predittivi a posteriori</em> (PPC), noti come <em>Posterior Predictive Checks</em>. I PPC consistono in un confronto grafico tra <span class="math notranslate nohighlight">\(p(y^{rep} \mid y)\)</span>, ossia la distribuzione delle osservazioni future previste, e i dati osservati <span class="math notranslate nohighlight">\(y\)</span>. Questo confronto visivo permette di valutare se il modello utilizzato è adeguato per descrivere le proprietà dei dati osservati.</p>
+<p>Oltre al confronto grafico tra le distribuzioni <span class="math notranslate nohighlight">\(p(y)\)</span> e <span class="math notranslate nohighlight">\(p(y^{rep})\)</span>, è possibile effettuare un confronto tra le distribuzioni di varie statistiche descrittive calcolate su diversi campioni <span class="math notranslate nohighlight">\(y^{rep}\)</span> e le corrispondenti statistiche calcolate sui dati osservati. Tipicamente, vengono considerate statistiche descrittive come la media, la varianza, la deviazione standard, il minimo o il massimo, ma è possibile confrontare qualsiasi altra statistica rilevante.</p>
+<p>I controlli predittivi a posteriori offrono un valido strumento per un’analisi critica delle prestazioni del modello e, se necessario, per apportare eventuali modifiche o considerare modelli alternativi più adatti ai dati in esame.</p>
+</section>
+</section>
+<section id="distribuzione-predittiva-a-priori">
+<h2>Distribuzione predittiva a priori<a class="headerlink" href="#distribuzione-predittiva-a-priori" title="Permalink to this heading">#</a></h2>
+<p>Prima di procedere con un’analisi Bayesiana completa, è cruciale valutare l’adeguatezza della distribuzione a priori, specie alla luce di una preesistente conoscenza del dominio che può permettere di scartare distribuzioni a priori manifestamente erronee. Questa metodologia di valutazione delle distribuzioni a priori è conosciuta come verifica predittiva a priori, ed è stata introdotta inizialmente da <span id="id2">Box [<a class="reference internal" href="../references/bibliography.html#id10" title="George EP Box. Sampling and bayes’ inference in scientific modelling and robustness. Journal of the Royal Statistical Society Series A: Statistics in Society, 143(4):383–404, 1980.">Box80</a>]</span> e successivamente promossa da <span id="id3">Gelman <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id11" title="Andrew Gelman, Daniel Simpson, and Michael Betancourt. The prior can often only be understood in the context of the likelihood. Entropy, 19(10):555, 2017.">GSB17</a>]</span>.</p>
+<p>Nella sezione precedente, abbiamo esaminato l’uso della distribuzione predittiva per rappresentare l’incertezza relativa alla distribuzione di futuri dati osservabili. Tale distribuzione predittiva incorpora sia la distribuzione a posteriori del parametro <span class="math notranslate nohighlight">\(\theta\)</span> che la scelta del modello basata sui dati precedentemente osservati. Un concetto affine, ma distinto, è la <em>distribuzione predittiva a priori</em>, che proietta le aspettative sulle future osservazioni del modello, prima dell’acquisizione di qualsiasi dato. Questa distribuzione è definita dalla seguente espressione matematica:</p>
+<div class="math notranslate nohighlight">
+\[
+p(y) = \int p(y \mid \theta) p(\theta) d\theta,
+\]</div>
+<p>dove</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p(y \mid \theta)\)</span> rappresenta la funzione di verosimiglianza, ovvero la dipendenza dei dati dai parametri,</p></li>
+<li><p><span class="math notranslate nohighlight">\(p(\theta)\)</span> è la distribuzione a priori dei parametri, che manifesta le nostre credenze iniziali riguardo ai valori dei parametri.</p></li>
+</ul>
+<p>Se i dati osservati discostano significativamente dalla distribuzione predittiva a priori, ciò può indicare una possibile inadeguatezza nel modello Bayesiano (relativa alla distribuzione a priori, al meccanismo generativo dei dati, o entrambi). In pratica, ciò suggerisce che, data la formulazione del modello Bayesiano, i dati effettivamente osservati risultano improbabili, il che potrebbe implicare un’insufficienza del modello.</p>
+<p>La distribuzione predittiva a priori risulta utile per molteplici motivi:</p>
+<ul class="simple">
+<li><p><em>Esplorazione delle credenze iniziali:</em> permette di investigare come le credenze iniziali sui parametri (es. la probabilità di ottenere testa nel lancio di una moneta) si traducano in aspettative concrete riguardo agli esiti osservabili.</p></li>
+<li><p><em>Confronto con dati reali:</em> confrontando i dati effettivamente osservati con la distribuzione predittiva a priori, è possibile valutare l’adeguatezza del modello e delle credenze a priori.</p></li>
+<li><p><em>Analisi di sensibilità:</em> la distribuzione predittiva a priori può anche illustrare quanto le conclusioni del modello siano sensibili alle diverse scelte della distribuzione a priori.</p></li>
+</ul>
+<p>La distribuzione predittiva a priori può essere ottenuta mediante metodi MCMC, replicando il procedimento utilizzato per la distribuzione predittiva a posteriori, ma in assenza di dati osservati.</p>
+<p>Nell’esempio con i dati di <span id="id4">Zetsche <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id56" title="Ulrike Zetsche, Paul-Christian Buerkner, and Babette Renneberg. Future expectations in clinical depression: biased or realistic? Journal of Abnormal Psychology, 128(7):678, 2019.">ZBR19</a>]</span>, se avessimo scelto una distribuzione Beta(2, 10) come a priori, l’analisi predittiva a priori avrebbe potuto rivelare che questa scelta non era adeguata per i dati considerati. Questo esempio dimostra come la distribuzione predittiva a priori possa servire come potente strumento diagnostico nell’analisi bayesiana, aiutando a guidare e rifinire le scelte del modello.</p>
+<p>Ritorniamo all’esempio con i dati degli artisti della generazione X al MOMA. Per questi dati abbiamo scelto una distribuzione a priori Beta(4, 6) per il parametro di successo <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">alpha_prior</span><span class="p">,</span> <span class="n">beta_prior</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Eseguiamo l’analisi predittiva a priori con <code class="docutils literal notranslate"><span class="pre">sample_prior_predictive</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="p">:</span>
+    <span class="n">idata_prior_pred</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_prior_predictive</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling: [obs, theta]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo l’oggetto <code class="docutils literal notranslate"><span class="pre">idata_prior_pred</span></code> che abbiamo creato.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idata_prior_pred</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <div>
+              <div class='xr-header'>
+                <div class="xr-obj-type">arviz.InferenceData</div>
+              </div>
+              <ul class="xr-sections group-sections">
+              
+            <li class = "xr-section-item">
+                  <input id="idata_prior1be2882e-c464-4806-9244-33879064388a" class="xr-section-summary-in" type="checkbox">
+                  <label for="idata_prior1be2882e-c464-4806-9244-33879064388a" class = "xr-section-summary">prior</label>
+                  <div class="xr-section-inline-details"></div>
+                  <div class="xr-section-details">
+                      <ul id="xr-dataset-coord-list" class="xr-var-list">
+                          <div style="padding-left:2rem;"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:  (chain: 1, draw: 500)
+Coordinates:
+  * chain    (chain) int64 0
+  * draw     (draw) int64 0 1 2 3 4 5 6 7 8 ... 492 493 494 495 496 497 498 499
+Data variables:
+    theta    (chain, draw) float64 0.4497 0.5028 0.2643 ... 0.5516 0.398 0.5789
+Attributes:
+    created_at:                 2023-11-08T06:39:15.254764
+    arviz_version:              0.16.1
+    inference_library:          pymc
+    inference_library_version:  5.9.1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-75bcee2e-f566-446f-8a7c-4dba3d1a74cb' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-75bcee2e-f566-446f-8a7c-4dba3d1a74cb' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 1</li><li><span class='xr-has-index'>draw</span>: 500</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-c38227c3-c030-4308-b065-c249f943f02a' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c38227c3-c030-4308-b065-c249f943f02a' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-d38d44be-8678-4e95-bffb-ac01080344df' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d38d44be-8678-4e95-bffb-ac01080344df' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1b7f5cd4-1f57-4dde-abaf-889bfba4323c' class='xr-var-data-in' type='checkbox'><label for='data-1b7f5cd4-1f57-4dde-abaf-889bfba4323c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 495 496 497 498 499</div><input id='attrs-87daf46b-fc59-4e36-8de3-a99fb1ce5b0e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-87daf46b-fc59-4e36-8de3-a99fb1ce5b0e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fafb3dda-9594-48fb-adcb-8470c578ea95' class='xr-var-data-in' type='checkbox'><label for='data-fafb3dda-9594-48fb-adcb-8470c578ea95' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 497, 498, 499])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-edceea92-ee10-412f-b31b-bc1ebe0056af' class='xr-section-summary-in' type='checkbox'  checked><label for='section-edceea92-ee10-412f-b31b-bc1ebe0056af' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>theta</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.4497 0.5028 ... 0.398 0.5789</div><input id='attrs-efd85e28-a7d8-40f1-8efa-cb200bc431b2' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-efd85e28-a7d8-40f1-8efa-cb200bc431b2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-084005d9-729a-4ff1-8801-9ed41f3616d0' class='xr-var-data-in' type='checkbox'><label for='data-084005d9-729a-4ff1-8801-9ed41f3616d0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[0.44971104, 0.50280228, 0.26430093, 0.52638509, 0.22005858,
+        0.1964469 , 0.72562936, 0.34905405, 0.39418093, 0.14584267,
+        0.33846604, 0.57675382, 0.27047066, 0.37972169, 0.48399804,
+        0.2994671 , 0.46670838, 0.559749  , 0.35327225, 0.18603645,
+        0.4677712 , 0.3938961 , 0.43602096, 0.38954475, 0.56005968,
+        0.51510451, 0.52222853, 0.35345877, 0.32217475, 0.26667929,
+        0.44103908, 0.3197909 , 0.7519731 , 0.1555016 , 0.57550968,
+        0.61268004, 0.45969589, 0.50692999, 0.33479783, 0.45682198,
+        0.33085556, 0.41418545, 0.37651993, 0.49949767, 0.54849606,
+        0.42495192, 0.64119119, 0.37439858, 0.41602482, 0.27138004,
+        0.54661795, 0.27360453, 0.50406959, 0.46086719, 0.38340285,
+        0.47489297, 0.45612017, 0.52716272, 0.41603555, 0.29776786,
+        0.17746313, 0.62964278, 0.29247517, 0.15236585, 0.3605659 ,
+        0.44126322, 0.51373752, 0.39592033, 0.16607829, 0.42135285,
+        0.31307451, 0.3784154 , 0.14136137, 0.24724102, 0.30442581,
+        0.35727425, 0.46334845, 0.44262743, 0.61979673, 0.40582   ,
+        0.42180246, 0.28199655, 0.49229099, 0.41132343, 0.41539092,
+        0.35327563, 0.62186505, 0.42977105, 0.29581801, 0.36703987,
+        0.26558536, 0.40758604, 0.36433883, 0.38825976, 0.24687576,
+        0.26556989, 0.38847902, 0.58168498, 0.29157988, 0.33815755,
+...
+        0.66191024, 0.44362785, 0.38006696, 0.47213553, 0.20784099,
+        0.4002475 , 0.41294311, 0.23151261, 0.41682499, 0.58638018,
+        0.4695742 , 0.17086043, 0.19836075, 0.21121299, 0.25546401,
+        0.53247619, 0.60942893, 0.34617402, 0.35054327, 0.43034855,
+        0.4493799 , 0.25511003, 0.68272193, 0.54888073, 0.2738289 ,
+        0.46950164, 0.33454343, 0.33465285, 0.16041131, 0.50838628,
+        0.46271085, 0.29164752, 0.56097799, 0.50813695, 0.30535109,
+        0.4721372 , 0.37500947, 0.46407047, 0.68886646, 0.66029267,
+        0.50612748, 0.34977757, 0.42646668, 0.56222427, 0.29785626,
+        0.48519292, 0.05253912, 0.32884704, 0.69802316, 0.36316789,
+        0.42460785, 0.44610257, 0.45138318, 0.69288474, 0.28378123,
+        0.1186762 , 0.56738768, 0.32279961, 0.2592883 , 0.29874295,
+        0.35841523, 0.58342139, 0.32148883, 0.54590802, 0.55965917,
+        0.17701207, 0.39506085, 0.45320487, 0.38652767, 0.11399164,
+        0.43916059, 0.14074541, 0.51391581, 0.35283772, 0.50580027,
+        0.24618232, 0.30798224, 0.68766347, 0.30013653, 0.24876072,
+        0.2315637 , 0.35464847, 0.57520873, 0.34602421, 0.63709991,
+        0.57646012, 0.51478972, 0.5964704 , 0.26989153, 0.42284328,
+        0.24571864, 0.27373605, 0.25950745, 0.52565968, 0.38631814,
+        0.66986233, 0.36867243, 0.5516383 , 0.39802883, 0.5788673 ]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-be245409-7223-4934-b40f-9550fd19dcaa' class='xr-section-summary-in' type='checkbox'  ><label for='section-be245409-7223-4934-b40f-9550fd19dcaa' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-7c5ad5d7-9eed-4a92-9c3c-d0de3b47cf04' class='xr-index-data-in' type='checkbox'/><label for='index-7c5ad5d7-9eed-4a92-9c3c-d0de3b47cf04' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-82c0e67e-21f7-44b9-9a65-ebd5f1b5ad19' class='xr-index-data-in' type='checkbox'/><label for='index-82c0e67e-21f7-44b9-9a65-ebd5f1b5ad19' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
+       ...
+       490, 491, 492, 493, 494, 495, 496, 497, 498, 499],
+      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;, length=500))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b2f602df-be52-482d-ae5c-2e667a34410d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-b2f602df-be52-482d-ae5c-2e667a34410d' class='xr-section-summary' >Attributes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2023-11-08T06:39:15.254764</dd><dt><span>arviz_version :</span></dt><dd>0.16.1</dd><dt><span>inference_library :</span></dt><dd>pymc</dd><dt><span>inference_library_version :</span></dt><dd>5.9.1</dd></dl></div></li></ul></div></div><br></div>
+                      </ul>
+                  </div>
+            </li>
+            
+            <li class = "xr-section-item">
+                  <input id="idata_prior_predictive17ac7daa-8024-46e3-b2ef-c66cf250b173" class="xr-section-summary-in" type="checkbox">
+                  <label for="idata_prior_predictive17ac7daa-8024-46e3-b2ef-c66cf250b173" class = "xr-section-summary">prior_predictive</label>
+                  <div class="xr-section-inline-details"></div>
+                  <div class="xr-section-details">
+                      <ul id="xr-dataset-coord-list" class="xr-var-list">
+                          <div style="padding-left:2rem;"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:  (chain: 1, draw: 500)
+Coordinates:
+  * chain    (chain) int64 0
+  * draw     (draw) int64 0 1 2 3 4 5 6 7 8 ... 492 493 494 495 496 497 498 499
+Data variables:
+    obs      (chain, draw) int64 50 58 32 54 22 21 83 ... 53 37 64 29 52 43 59
+Attributes:
+    created_at:                 2023-11-08T06:39:15.256234
+    arviz_version:              0.16.1
+    inference_library:          pymc
+    inference_library_version:  5.9.1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-3f793d11-facb-45b6-8fa0-642c8eded8dd' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3f793d11-facb-45b6-8fa0-642c8eded8dd' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 1</li><li><span class='xr-has-index'>draw</span>: 500</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-74f24468-570c-4ccf-aab1-f259272e2d7c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-74f24468-570c-4ccf-aab1-f259272e2d7c' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-fdd950b7-a828-4233-bc4d-3b51c42cf09c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fdd950b7-a828-4233-bc4d-3b51c42cf09c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-656ce7dc-9ff2-4304-83cf-e37939d3156b' class='xr-var-data-in' type='checkbox'><label for='data-656ce7dc-9ff2-4304-83cf-e37939d3156b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 495 496 497 498 499</div><input id='attrs-fbc67b7e-6d16-44ab-b076-3f066b6bd269' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fbc67b7e-6d16-44ab-b076-3f066b6bd269' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-907dd2a5-6b86-40c8-890e-df4720408f26' class='xr-var-data-in' type='checkbox'><label for='data-907dd2a5-6b86-40c8-890e-df4720408f26' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 497, 498, 499])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e73bd81a-7400-40dc-b129-1af5d4af02ee' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e73bd81a-7400-40dc-b129-1af5d4af02ee' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>obs</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>50 58 32 54 22 ... 64 29 52 43 59</div><input id='attrs-299713eb-bc87-49d9-903f-f0be147ecc02' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-299713eb-bc87-49d9-903f-f0be147ecc02' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4da90e12-4c69-4d14-979e-b42f90825cf4' class='xr-var-data-in' type='checkbox'><label for='data-4da90e12-4c69-4d14-979e-b42f90825cf4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[50, 58, 32, 54, 22, 21, 83, 36, 37, 14, 38, 63, 20, 36, 43, 28,
+        49, 62, 36, 18, 41, 38, 44, 40, 58, 57, 56, 47, 36, 19, 46, 35,
+        81, 23, 66, 57, 43, 51, 31, 47, 31, 42, 32, 53, 53, 46, 59, 35,
+        43, 32, 54, 30, 47, 48, 32, 46, 43, 46, 42, 21, 26, 66, 25, 19,
+        35, 47, 60, 36, 16, 36, 37, 44, 12, 28, 28, 42, 53, 42, 68, 43,
+        44, 21, 43, 33, 39, 36, 58, 46, 27, 32, 33, 43, 39, 36, 31, 27,
+        43, 69, 26, 31, 44, 43, 34, 40, 41, 35, 61, 51, 30, 38, 43, 30,
+        50, 36, 36, 44, 21, 60, 41, 45, 59, 37, 62, 47, 41, 36, 47, 41,
+        33, 48, 52, 66, 27, 28, 20, 46, 60, 80, 69, 42, 42, 37, 33, 14,
+        25, 41, 31, 54, 54, 54, 53, 46, 60, 52, 80, 13, 35, 25, 33, 24,
+        32, 57, 43, 50, 38, 69, 14, 58, 58, 38, 33, 34, 36, 60, 36, 59,
+        40, 45, 49, 33, 41, 22, 28, 54, 22, 37, 52, 25, 19, 46, 41, 32,
+        51, 36, 28, 75, 52, 51, 42, 51, 31, 36, 60, 65, 59, 56, 55, 48,
+        63, 24, 19, 24, 26, 20, 17, 35, 32, 28, 21, 71, 15, 42, 61, 15,
+        19, 59, 70, 33, 37, 32, 16, 29, 33, 22, 55, 22, 33, 18, 23, 54,
+        61, 72, 59, 21, 46, 55, 60, 30, 28, 68, 37, 51, 76, 75, 32, 33,
+        52, 73, 56, 55, 21, 41, 40, 33, 41, 42, 45, 31, 65, 37, 24, 58,
+        35, 30, 48, 57, 43, 32, 35, 47, 33, 62, 39, 53, 27, 33, 41, 54,
+        52, 49, 44, 49, 45, 28, 29, 38, 29, 32, 25, 48, 12, 48, 44, 38,
+        75, 37, 69, 56, 36, 25, 39, 24, 10, 31, 17, 42, 35, 40, 39, 33,
+        18, 93, 49,  9, 48, 39, 30, 13, 81, 77, 48, 45, 61, 38, 37, 33,
+        58, 30, 55, 32, 32, 55, 30, 58, 36, 50, 53, 38,  9, 24, 23, 54,
+        29,  7, 24, 38, 39, 33, 61, 20, 41, 34, 58, 53, 18, 36, 21, 73,
+        48, 51, 46, 20, 34, 50, 27, 70, 19, 23, 45, 41, 11, 41, 10, 41,
+        31, 51, 12, 31, 25, 35, 25, 62, 21, 45, 28, 50, 44, 29, 38, 41,
+        72, 50, 35, 40, 29, 43, 36, 27, 41, 62, 47, 20, 25, 27, 31, 60,
+        59, 28, 32, 44, 51, 30, 65, 64, 28, 48, 33, 28, 15, 39, 48, 29,
+        58, 44, 28, 49, 44, 46, 70, 64, 48, 34, 39, 58, 33, 56,  4, 36,
+        69, 27, 40, 42, 45, 66, 28, 12, 58, 34, 25, 28, 33, 57, 31, 51,
+        55, 13, 41, 50, 42, 13, 56,  9, 55, 34, 54, 29, 28, 61, 30, 26,
+        18, 44, 55, 32, 59, 48, 60, 66, 22, 37, 21, 26, 26, 53, 37, 64,
+        29, 52, 43, 59]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-dd6b8f8c-f610-489a-b87c-b4b682c82baa' class='xr-section-summary-in' type='checkbox'  ><label for='section-dd6b8f8c-f610-489a-b87c-b4b682c82baa' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-b527db41-86da-4546-be8b-2a10d406cb92' class='xr-index-data-in' type='checkbox'/><label for='index-b527db41-86da-4546-be8b-2a10d406cb92' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-3ad808a2-0b77-4b01-8b81-ac0bdd201e02' class='xr-index-data-in' type='checkbox'/><label for='index-3ad808a2-0b77-4b01-8b81-ac0bdd201e02' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
+       ...
+       490, 491, 492, 493, 494, 495, 496, 497, 498, 499],
+      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;, length=500))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7a95828d-3b8c-46eb-b8c1-a61895f8317f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-7a95828d-3b8c-46eb-b8c1-a61895f8317f' class='xr-section-summary' >Attributes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2023-11-08T06:39:15.256234</dd><dt><span>arviz_version :</span></dt><dd>0.16.1</dd><dt><span>inference_library :</span></dt><dd>pymc</dd><dt><span>inference_library_version :</span></dt><dd>5.9.1</dd></dl></div></li></ul></div></div><br></div>
+                      </ul>
+                  </div>
+            </li>
+            
+            <li class = "xr-section-item">
+                  <input id="idata_observed_datae93cf953-8eab-4515-ad26-fabd5d8b2504" class="xr-section-summary-in" type="checkbox">
+                  <label for="idata_observed_datae93cf953-8eab-4515-ad26-fabd5d8b2504" class = "xr-section-summary">observed_data</label>
+                  <div class="xr-section-inline-details"></div>
+                  <div class="xr-section-details">
+                      <ul id="xr-dataset-coord-list" class="xr-var-list">
+                          <div style="padding-left:2rem;"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:    (obs_dim_0: 1)
+Coordinates:
+  * obs_dim_0  (obs_dim_0) int64 0
+Data variables:
+    obs        (obs_dim_0) int64 14
+Attributes:
+    created_at:                 2023-11-08T06:39:15.256867
+    arviz_version:              0.16.1
+    inference_library:          pymc
+    inference_library_version:  5.9.1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-b62eca18-e88e-45ae-8cc5-68175da55599' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-b62eca18-e88e-45ae-8cc5-68175da55599' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>obs_dim_0</span>: 1</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-274a639c-6f48-497e-a28d-a3d814d9ed27' class='xr-section-summary-in' type='checkbox'  checked><label for='section-274a639c-6f48-497e-a28d-a3d814d9ed27' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>obs_dim_0</span></div><div class='xr-var-dims'>(obs_dim_0)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-dbc15ec4-6a76-4fd1-9b7b-2259c206da75' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-dbc15ec4-6a76-4fd1-9b7b-2259c206da75' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fb5f1f2b-2228-4289-b12c-51dcefa8b82a' class='xr-var-data-in' type='checkbox'><label for='data-fb5f1f2b-2228-4289-b12c-51dcefa8b82a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d32dd2ef-8c48-47b7-8108-896c72710acc' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d32dd2ef-8c48-47b7-8108-896c72710acc' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>obs</span></div><div class='xr-var-dims'>(obs_dim_0)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>14</div><input id='attrs-ad9165c7-c50d-4e43-a5cc-184d79060854' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ad9165c7-c50d-4e43-a5cc-184d79060854' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-eb3faa72-23f5-4a68-9c52-855ed73c1869' class='xr-var-data-in' type='checkbox'><label for='data-eb3faa72-23f5-4a68-9c52-855ed73c1869' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([14])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e6237bbe-48f0-4043-813e-c52b48a3a4d8' class='xr-section-summary-in' type='checkbox'  ><label for='section-e6237bbe-48f0-4043-813e-c52b48a3a4d8' class='xr-section-summary' >Indexes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>obs_dim_0</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-ee43fb08-90e3-4def-9b4f-3de4d05e5a31' class='xr-index-data-in' type='checkbox'/><label for='index-ee43fb08-90e3-4def-9b4f-3de4d05e5a31' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0], dtype=&#x27;int64&#x27;, name=&#x27;obs_dim_0&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f6ce1a1f-0356-4c74-a44e-acdddb635b73' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f6ce1a1f-0356-4c74-a44e-acdddb635b73' class='xr-section-summary' >Attributes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2023-11-08T06:39:15.256867</dd><dt><span>arviz_version :</span></dt><dd>0.16.1</dd><dt><span>inference_library :</span></dt><dd>pymc</dd><dt><span>inference_library_version :</span></dt><dd>5.9.1</dd></dl></div></li></ul></div></div><br></div>
+                      </ul>
+                  </div>
+            </li>
+            
+              </ul>
+            </div>
+            <style> /* CSS stylesheet for displaying InferenceData objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-sections.group-sections {
+  grid-template-columns: auto;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt, dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+.xr-wrap{width:700px!important;} </style></div></div>
+</div>
+<p>I dati (sulla scala delle osservazioni <span class="math notranslate nohighlight">\(y\)</span>) sono contenuti in <code class="docutils literal notranslate"><span class="pre">idata.prior_predictive.obs</span></code>. Possiamo usare <code class="docutils literal notranslate"><span class="pre">arviz</span></code> per generare un istogramma della distribuzione predittiva a priori usando la funzione <code class="docutils literal notranslate"><span class="pre">plot_posterior</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">idata_prior_pred</span><span class="o">.</span><span class="n">prior_predictive</span><span class="o">.</span><span class="n">obs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0d4620aad86e0fd0c8a09ad08353aa342367f848d2262b5cbcfa749de5c4b1e9.png" src="../_images/0d4620aad86e0fd0c8a09ad08353aa342367f848d2262b5cbcfa749de5c4b1e9.png" />
+</div>
+</div>
+<p>La regione dell’intervallo di credibilità ad alta densità (HDI) al 94% è [9, 67]. Nel nostro campione, abbiamo osservato un valore di <span class="math notranslate nohighlight">\(y\)</span> = 14. Poiché questo risultato rientra nell’intervallo di credibilità della distribuzione predittiva a priori, possiamo dedurre che la scelta di una distribuzione Beta(4, 6) come distribuzione a priori sembra essere adeguata per i dati in questione.</p>
+<section id="esempio-con-stan">
+<h3>Esempio con Stan<a class="headerlink" href="#esempio-con-stan" title="Permalink to this heading">#</a></h3>
+<p>Per sviluppare un’intuizione relativa alla distribuzione predittiva a priori, consideriamo il seguente codice Stan, il quale mira a stimare i parametri di una distribuzione gaussiana. Nonostante non sia necessario avere una conoscenza approfondita della sintassi Stan, è possibile comprendere l’essenza del processo. Nel codice, viene specificata solo la dimensione del campione, <code class="docutils literal notranslate"><span class="pre">n</span></code>, senza fornire i dati effettivi. Vengono definiti i prior per i parametri <span class="math notranslate nohighlight">\(\mu\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span>. Nel blocco <code class="docutils literal notranslate"><span class="pre">generated</span> <span class="pre">quantities</span></code>, viene generata la distribuzione predittiva a priori.</p>
+<p>Il codice illustra che, per il numero <code class="docutils literal notranslate"><span class="pre">n</span></code> dell’ampiezza campionaria specificata, si estrae un valore casuale da una distribuzione gaussiana, la cui media e deviazione standard sono a loro volta estratte casualmente dalle distribuzioni a priori specificate per <span class="math notranslate nohighlight">\(\mu\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span>. Questo processo produce <code class="docutils literal notranslate"><span class="pre">n</span></code> valori, e viene ripetuto 1000 o più volte, a seconda del numero di iterazioni specificate in Stan, per ottenere una rappresentazione della distribuzione predittiva a priori.</p>
+<div class="highlight-stan notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">&lt;-</span><span class="s">&quot;</span>
+<span class="s">    data {</span>
+<span class="s">        int n;  // Dimensione del campione</span>
+<span class="s">    }</span>
+
+<span class="s">    parameters {</span>
+<span class="s">        real&lt;lower=0&gt; mu;  // Media</span>
+<span class="s">        real&lt;lower=0&gt; sigma;  // Deviazione standard</span>
+<span class="s">    }</span>
+
+<span class="s">    model {</span>
+<span class="s">        // Distribuzioni a priori</span>
+<span class="s">        mu ~ normal(400,1);  // Prior per la media</span>
+<span class="s">        sigma ~ normal(100,5);  // Prior per la deviazione standard</span>
+<span class="s">    }</span>
+
+<span class="s">    generated quantities {</span>
+<span class="s">        vector[n] prior_rep;  // Vettore per contenere la distribuzione predittiva a priori</span>
+<span class="s">        // Generazione della distribuzione predittiva a priori</span>
+<span class="s">        for(i in 1:n) {</span>
+<span class="s">            prior_rep[i] = normal_rng(mu,sigma);  // Estrazione di un valore casuale dalla distribuzione gaussiana</span>
+<span class="s">        } </span>
+<span class="s">    }</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+<p>In questo modo, il codice Stan fornisce un mezzo per esplorare e comprendere come i prior sui parametri della distribuzione gaussiana influenzano la distribuzione predittiva a priori, anche senza un insieme di dati osservati.</p>
+</section>
+</section>
+<section id="watermark">
+<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Wed Nov 08 2023
+
+Python implementation: CPython
+Python version       : 3.11.6
+IPython version      : 8.16.1
+
+matplotlib: 3.8.0
+numpy     : 1.25.2
+seaborn   : 0.13.0
+pymc      : 5.9.1
+pandas    : 2.1.1
+arviz     : 0.16.1
+scipy     : 1.11.3
+
+Watermark: 2.4.3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapter_4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="16_summary_posterior_pymc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Metodi di sintesi della distribuzione a posteriori</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="18_mcmc_diagnostics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Diagnostica delle catene markoviane</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-distribuzione-predittiva-a-posteriori">La distribuzione predittiva a posteriori</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivazione-analitica">Derivazione analitica</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-basato-sulla-simulazione">Metodo basato sulla simulazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-mcmc">Metodo MCMC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-predictive-checks">Posterior predictive checks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-predittiva-a-priori">Distribuzione predittiva a priori</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-con-stan">Esempio con Stan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

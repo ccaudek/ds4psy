@@ -1,0 +1,1830 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Modello di regressione logistica &#8212; ds4p</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter_5/05_logistic_reg';</script>
+    <link rel="canonical" href="https://ccaudek.github.io/ds4psy/chapter_5/05_logistic_reg.html" />
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Regressione binomiale" href="05_binomial_reg.html" />
+    <link rel="prev" title="✏️ Esercizi" href="E_reglin_4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ds4p - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ds4p - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_1/introduction_chapter_1.html">Python</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/01_python_1.html">Python (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/02_python_2.html">Python (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_python.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/03_numpy.html">NumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_numpy.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/04_pandas.html">Pandas (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/05_pandas_aggregate.html">Pandas (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/06_pandas_functions.html">Pandas (3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_pandas.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/07_matplotlib.html">Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/08_seaborn.html">Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_matplotlib.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_2/introduction_chapter_2.html">Statistica descrittiva</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/01_key_notions.html">Concetti chiave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_key_notions.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/02_measurement.html">La misurazione in psicologia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_scales.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/03_freq_distr.html">Dati e frequenze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_sums.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/04_loc_scale.html">Indici di posizione e di scala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/05_correlation.html">Le relazioni tra variabili</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/06_causality.html">Correlazione e causazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/07_crisis.html">La crisi della generalizzabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_eda.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_mehr_song_spelke.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_3/introduction_chapter_3.html">Probabilità</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/01_intro_prob.html">Introduzione al calcolo delle probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/02_conditional_prob.html">Probabilità condizionata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/05_joint_prob.html">Probabilità congiunta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_joint_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/06_density_func.html">La funzione di densità di probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/07_discr_rv_distr.html">Distribuzioni di v.c. discrete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_binomial.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/08_cont_rv_distr.html">Distribuzioni di v.c. continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_gaussian.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_beta_distr.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/09_likelihood.html">La verosimiglianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/10_rescorla_wagner.html">Apprendimento per rinforzo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_likelihood.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/05_summary_posterior.html">Sintesi a posteriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/E_conjugate.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/06_balance-prior-post.html">L’influenza della distribuzione a priori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/19_odds_ratio.html">Analisi bayesiana dell’odds-ratio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/20_poisson_model.html">Modello di Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/21_poisson_sim.html">Modello di Poisson: derivazione analitica e MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/E_freq.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/22_normal_normal_model.html">Inferenza bayesiana su una media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/E_one_mean.html">✏️ Esercizio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/E_one_mean_2.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/23_two_groups.html">Confronto tra due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="introduction_part_5.html">Analisi della regressione</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="05_reglin_1.html">Il modello di regressione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reglin_2.html">Analisi bayesiana del modello di regressione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reglin_3.html">Zucchero sintattico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reglin_5.html">Il modello lineare gerarchico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_reglin_7.html">Regressione robusta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_simpson.html">Paradosso di Simpson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_reglin_1.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_reglin_2.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_reglin_3.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_reglin_4.html">✏️ Esercizi</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Modello di regressione logistica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_binomial_reg.html">Regressione binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_counterfactual.html">Analisi causale con PyMC</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="E_stab.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_6/introduction_part_6.html">Inferenza frequentista</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_estimation.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/02_conf_interv.html">Intervallo di confidenza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/03_test_ipotesi.html">Significatività statistica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_interpretation_test.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_significato_test.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/04_two_ind_samples.html">Test t di Student per campioni indipendenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_test_media_pop.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_medie_pop_ampie.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_medie_pop_piccoli.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_campioni_appaiati.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_confronto_proporzioni.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/05_limiti_stat_frequentista.html">Limiti dell’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/06_s_m_errors.html">Crisi della replicabilità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/00_installation.html">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a05_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ccaudek/ds4psy/blob/main/docs/chapter_5/05_logistic_reg.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapter_5/05_logistic_reg.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modello di regressione logistica</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica">Regressione logistica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-del-modello-e-logit">Coefficienti del modello e logit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#american-national-election-studies-anes">American National Election Studies (ANES)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specificare-e-adattare-il-modello-in-bambi">Specificare e adattare il modello in Bambi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutazione-del-modello">Valutazione del modello</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-predictive-check">Posterior Predictive Check</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametro-hat-kappa">Parametro <span class="math notranslate nohighlight">\(\hat \kappa\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferenza">Inferenza</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-dei-coefficienti-nella-regressione-logistica">Interpretazione dei coefficienti nella regressione logistica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-di-beta-0">Interpretazione di <span class="math notranslate nohighlight">\(\beta_0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-di-beta-1">Interpretazione di <span class="math notranslate nohighlight">\(\beta_1\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuratezza-delle-classificazioni-a-posteriori">Accuratezza delle classificazioni a posteriori</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilita-specificita-e-accuratezza-complessiva-del-modello">Sensibilità, specificità e accuratezza complessiva del modello</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modello-di-regressione-logistica">
+<span id="log-reg-notebook"></span><h1>Modello di regressione logistica<a class="headerlink" href="#modello-di-regressione-logistica" title="Permalink to this heading">#</a></h1>
+<p>In questo capitolo, approfondiremo la regressione logistica bivariata, una metodologia statistica che ci consente di analizzare le relazioni tra una variabile di risultato binaria e una singola variabile indipendente. Esploreremo il processo di stima dei coefficienti del modello attraverso un approccio bayesiano, il quale ci offre stime a posteriori più informative e la possibilità di calcolare intervalli di credibilità per tali coefficienti. In aggiunta, forniremo un’interpretazione dei risultati ottenuti dalla regressione logistica. Mostreremo come i coefficienti influenzano la probabilità di successo della variabile binaria di risultato, nonché come interpretare il loro segno e ampiezza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">bambi</span> <span class="k">as</span> <span class="nn">bmb</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">expit</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">Warning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="regressione-logistica">
+<h2>Regressione logistica<a class="headerlink" href="#regressione-logistica" title="Permalink to this heading">#</a></h2>
+<p>La regressione logistica viene utilizzata nel trattamento di variabili dipendenti binarie, che possono assumere solamente due esiti possibili, comunemente etichettati come “successo” (1) o “fallimento” (0). Prendiamo, per esempio, una ricerca incentrata sulla propensione di una persona a praticare jogging; l’outcome sarà o 0 (non ha fatto jogging) o 1 (ha fatto jogging oggi).</p>
+<p>Tali dati possono anche essere espressi in termini di proporzioni, come nella domanda “Quanti giorni hai fatto jogging negli ultimi 7 giorni?”. In tale contesto, parliamo di regressione binomiale. Tuttavia, l’utilizzo di proporzioni può causare la perdita di dettagli informativi. Ad esempio, una proporzione di 0.5 potrebbe essere generata da diverse combinazioni di successi e fallimenti (come 1 su 2 o 2 su 4), e tali dettagli vanno persi se usiamo solo la proporzione. Quindi, è preferibile lavorare con dati grezzi, ovvero con l’intera sequenza di 0 e 1, quando possibile.</p>
+<p>Dal punto di vista della statistica Bayesiana, la regressione logistica è strutturata in modo che ogni suo elemento, compresi i coefficienti di regressione, sia considerato come una variabile casuale. L’obiettivo principale diventa l’identificazione della distribuzione a posteriori dei coefficienti di regressione, calcolata mediante la formula Bayesiana:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{p(y)}.
+\]</div>
+<p>Calcolare il denominatore di questa formula è notoriamente complicato, ma l’uso di metodi di campionamento MCMC ci permette di eludere tale problematica, focalizzando l’attenzione solo sul numeratore. A questo scopo, è necessario specificare due elementi: la distribuzione a priori <span class="math notranslate nohighlight">\( p(\theta) \)</span> e la funzione di verosimiglianza <span class="math notranslate nohighlight">\( p(y \mid \theta) \)</span>. Generalmente, si opta per una distribuzione a priori debolmente informativa, in modo da lasciare che i dati influenzino significativamente le stime a posteriori, riducendo l’effetto di assunzioni soggettive o arbitrarie.</p>
+<p>La funzione di verosimiglianza in una regressione logistica è rappresentata dal prodotto di <span class="math notranslate nohighlight">\( n \)</span> prove di Bernoulli, ciascuna delle quali è descritta da:</p>
+<div class="math notranslate nohighlight">
+\[
+p_i^{y_i} (1-p_i)^{1-y_i},
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(p_i = P(y_i = 1)\)</span> è la probabilità di successo in una singola prova Bernoulliana e <span class="math notranslate nohighlight">\( y_i \)</span> è l’effettivo esito (0 o 1).</p>
+<p>Per specificare <span class="math notranslate nohighlight">\( p_i \)</span>, una delle opzioni più comuni è ricorrere alla funzione link logistica, definita come segue:</p>
+<div class="math notranslate nohighlight">
+\[
+p_i = \frac{1}{1 + e^{-\eta_i}},
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\( \eta_i \)</span> è calcolato come una combinazione lineare dei predittori <span class="math notranslate nohighlight">\( X \)</span> e dei coefficienti di regressione <span class="math notranslate nohighlight">\( \theta \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_i = \theta_0 + \theta_1 X_{i}.
+\]</div>
+<p>In questa formulazione, <span class="math notranslate nohighlight">\( \theta_0 \)</span> è l’intercetta e <span class="math notranslate nohighlight">\( \theta_1 \)</span> è il coefficiente del predittore <span class="math notranslate nohighlight">\( X_i \)</span>. La funzione logit mappa quindi il valore di <span class="math notranslate nohighlight">\( \eta_i \)</span>, che può variare da <span class="math notranslate nohighlight">\( -\infty\)</span> a <span class="math notranslate nohighlight">\( \infty \)</span>, in una probabilità <span class="math notranslate nohighlight">\( p_i \)</span> compresa tra 0 e 1.</p>
+<p>In definitiva, la regressione logistica è una specializzazione della regressione lineare, focalizzata sulla modellazione delle probabilità condizionate di una variabile Bernoulliana <span class="math notranslate nohighlight">\( Y \)</span>. Utilizza la funzione logistica come funzione link per convertire relazioni lineari nei predittori (<span class="math notranslate nohighlight">\(\eta_i = \theta_0 + \theta_1 X_{i}\)</span>) in probabilità comprese tra 0 e 1. Di conseguenza, anziché modellare direttamente la probabilità <span class="math notranslate nohighlight">\( \pi \)</span>, modelliamo una funzione di questa probabilità attraverso un modello lineare, utilizzando la funzione logit come funzione di collegamento.</p>
+<section id="coefficienti-del-modello-e-logit">
+<h3>Coefficienti del modello e logit<a class="headerlink" href="#coefficienti-del-modello-e-logit" title="Permalink to this heading">#</a></h3>
+<p>Nella regressione logistica, i coefficienti dei predittori sono espressi come logaritmi dell’odds ratio. Questa rappresentazione lineare dei coefficienti semplifica la modellazione e l’interpretazione dei risultati.</p>
+<p>Ad esempio, supponiamo di avere un modello di regressione logistica con un singolo predittore binario <span class="math notranslate nohighlight">\(X\)</span>, e il coefficiente stimato per <span class="math notranslate nohighlight">\(X\)</span> è <span class="math notranslate nohighlight">\(\beta_1 = 0.50\)</span>. Questo significa che il logaritmo dell’odds ratio per <span class="math notranslate nohighlight">\(X\)</span> è <span class="math notranslate nohighlight">\(\log(OR) = 0.50\)</span>. Per interpretare questo valore, dobbiamo esponenziarlo:</p>
+<div class="math notranslate nohighlight">
+\[ OR = e^{0.50} \approx 1.65. \]</div>
+<p>Questo ci dice che la probabilità dell’evento di interesse nel gruppo con <span class="math notranslate nohighlight">\(X = 1\)</span> è circa 1.65 volte più grande rispetto al gruppo con <span class="math notranslate nohighlight">\(X = 0\)</span>. Se il valore del logaritmo dell’odds ratio fosse stato negativo, avremmo concluso che l’odds dell’evento nel gruppo con <span class="math notranslate nohighlight">\(X = 1\)</span> è più piccolo rispetto al gruppo con <span class="math notranslate nohighlight">\(X = 0\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Esaminiamo nei dettagli la relazione tra la funzione logistica e i log-odds. Partendo dalla funzione logistica per <span class="math notranslate nohighlight">\( p_i \)</span>, che è:</p>
+<div class="math notranslate nohighlight">
+\[
+p_i = \frac{1}{1 + e^{-\eta_i}}
+\]</div>
+<p>possiamo riformulare questa espressione per isolare <span class="math notranslate nohighlight">\( e^{-\eta_i} \)</span> in termini di <span class="math notranslate nohighlight">\( p_i \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+1 + e^{-\eta_i} = \frac{1}{p_i}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+e^{-\eta_i} = \frac{1}{p_i} - 1
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+e^{-\eta_i} = \frac{1 - p_i}{p_i}
+\]</div>
+<p>Ora, prendiamo il reciproco di entrambi i lati dell’equazione:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{e^{-\eta_i}} = \frac{p_i}{1 - p_i}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+e^{\eta_i} = \frac{p_i}{1 - p_i}
+\]</div>
+<p>Infine, applichiamo il logaritmo naturale ad entrambi i lati per ottenere <span class="math notranslate nohighlight">\( \eta_i \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln(e^{\eta_i}) = \ln\left(\frac{p_i}{1 - p_i}\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\eta_i = \ln\left(\frac{p_i}{1 - p_i}\right)
+\]</div>
+<p>In questo modo abbiamo dimostrato che</p>
+<div class="math notranslate nohighlight">
+\[ 
+\eta_i = \ln\left(\frac{p_i}{1 - p_i}\right) = \theta_0 + \theta_1 X_{i},
+\]</div>
+<p>che è una combinazione lineare del predittore <span class="math notranslate nohighlight">\(X\)</span>, è effettivamente il logaritmo del rapporto delle probabilità, o il log-odds. Questa è la connessione fondamentale tra la funzione logistica e il log-odds in un modello di regressione logistica.</p>
+</div>
+</section>
+</section>
+<section id="un-esempio-concreto">
+<h2>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Permalink to this heading">#</a></h2>
+<p>Esaminiamo ora come eseguire la regressione logistica con PyMC.</p>
+</section>
+<section id="american-national-election-studies-anes">
+<h2>American National Election Studies (ANES)<a class="headerlink" href="#american-national-election-studies-anes" title="Permalink to this heading">#</a></h2>
+<p>In questo tutorial, utilizzeremo un set di dati forniti dal sito di Bambi per illustrare il modello di regressione logistica. Questi dati provengono dallo studio pilota del 2016. Lo studio completo includeva 1200 persone, ma in questo caso, è stato selezionato un sottoinsieme di 487 persone che hanno risposto a una domanda riguardante se avrebbero votato per Hillary Clinton o Donald Trump.</p>
+<p>Importiamo i dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">bmb</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;ANES&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>vote</th>
+      <th>age</th>
+      <th>party_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>clinton</td>
+      <td>56</td>
+      <td>democrat</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>trump</td>
+      <td>65</td>
+      <td>republican</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>clinton</td>
+      <td>80</td>
+      <td>democrat</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>trump</td>
+      <td>38</td>
+      <td>republican</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>trump</td>
+      <td>60</td>
+      <td>republican</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La nostra variabile di esito è <code class="docutils literal notranslate"><span class="pre">vote</span></code>, che indica le risposte delle persone alla seguente domanda:</p>
+<blockquote>
+<div><p>If the 2016 presidential election were between Hillary Clinton for the Democrats and Donald Trump for the Republicans, would you vote for Hillary Clinton, Donald Trump, someone else, or probably not vote?</p>
+</div></blockquote>
+<p>Esaminiamo la distribuzione di frequenze della variabile <code class="docutils literal notranslate"><span class="pre">vote</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;vote&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vote
+clinton         215
+trump           158
+someone_else     48
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per semplificare l’analisi, qui considereremo solo le risposte <code class="docutils literal notranslate"><span class="pre">Clinton</span></code> e <code class="docutils literal notranslate"><span class="pre">Trump</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clinton_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;vote&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;clinton&quot;</span><span class="p">,</span> <span class="s2">&quot;trump&quot;</span><span class="p">]),</span> <span class="p">:]</span>
+<span class="n">clinton_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>vote</th>
+      <th>age</th>
+      <th>party_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>clinton</td>
+      <td>56</td>
+      <td>democrat</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>trump</td>
+      <td>65</td>
+      <td>republican</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>clinton</td>
+      <td>80</td>
+      <td>democrat</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>trump</td>
+      <td>38</td>
+      <td>republican</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>trump</td>
+      <td>60</td>
+      <td>republican</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="specificare-e-adattare-il-modello-in-bambi">
+<h2>Specificare e adattare il modello in Bambi<a class="headerlink" href="#specificare-e-adattare-il-modello-in-bambi" title="Permalink to this heading">#</a></h2>
+<p>Nel nostro esempio, miriamo a modellare la probabilità di voto per Clinton in funzione dell’età. L’obiettivo è quindi di utilizzare la regressione logistica per rappresentare <span class="math notranslate nohighlight">\( \pi = P(Y = 1) \)</span>, cioè la probabilità di votare per Clinton, con l’età come variabile esplicativa.</p>
+<p>La regressione logistica collega il logit di <span class="math notranslate nohighlight">\( \pi \)</span> a un predittore o a una combinazione lineare di predittori. Pertanto, l’equazione matematica del nostro modello sarà la seguente:</p>
+<div class="math notranslate nohighlight">
+\[
+\log\left(\frac{\pi}{1 - \pi}\right) = \beta_0 + \beta_1 X,
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\( X \)</span> rappresenta l’età.</p>
+<p>Per applicare l’approccio bayesiano, dobbiamo specificare una distribuzione a priori per i parametri e una funzione di verosimiglianza. Nella nostra analisi, useremo le distribuzioni a priori predefinite offerte da Bambi, e la funzione di verosimiglianza sarà il prodotto delle prove Bernoulliane, ovvero:</p>
+<div class="math notranslate nohighlight">
+\[
+\prod_{i=1}^{n}{p_i^{y_i}(1-p_i)^{1-y_i}},
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\( p_i = P(Y=1) \)</span> e <span class="math notranslate nohighlight">\( y_i = 1 \)</span> se l’intenzione di voto è per Clinton, mentre <span class="math notranslate nohighlight">\( y_i = 0 \)</span> se è per Trump.</p>
+<p>La specificazione del modello è resa intuitiva dalla sintassi richiesta da Bambi: basta formulare il modello seguendo la sintassi delle formule di Wilkinson <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id35" title="GN Wilkinson and CE Rogers. Symbolic description of factorial models for analysis of variance. Journal of the Royal Statistical Society Series C: Applied Statistics, 22(3):392–399, 1973.">WR73</a>]</span> e fornire il corretto argomento per <code class="docutils literal notranslate"><span class="pre">family</span></code>. Vale la pena notare l’uso di una sintassi opzionale sul lato sinistro della formula: <code class="docutils literal notranslate"><span class="pre">vote[clinton]</span></code> indica a Bambi che intendiamo modellare la probabilità che <code class="docutils literal notranslate"><span class="pre">vote</span></code> sia uguale a <code class="docutils literal notranslate"><span class="pre">clinton</span></code>, piuttosto che a <code class="docutils literal notranslate"><span class="pre">trump</span></code>.</p>
+<p>Sul lato destro della formula, utilizziamo il termine <code class="docutils literal notranslate"><span class="pre">age</span></code> per segnalare a Bambi la nostra intenzione di includere la variabile esplicativa <code class="docutils literal notranslate"><span class="pre">age</span></code> nel modello.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clinton_model</span> <span class="o">=</span> <span class="n">bmb</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s2">&quot;vote[&#39;clinton&#39;] ~ age&quot;</span><span class="p">,</span> <span class="n">clinton_data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;bernoulli&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Procediamo ora con il campionamento. L’argomento opzionale <code class="docutils literal notranslate"><span class="pre">idata_kwargs={&quot;log_likelihood&quot;:</span> <span class="pre">True}</span></code> richiede il calcolo del logaritmo della verosimiglianza (log-likelihood) durante l’adattamento. Questo passaggio è rischiesto per potere utilizzare in seguito varie funzioni che valutano quanto bene il modello si adatta ai dati.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clinton_fitted</span> <span class="o">=</span> <span class="n">clinton_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nuts_numpyro&quot;</span><span class="p">,</span> <span class="n">idata_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;log_likelihood&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modeling the probability that vote==clinton
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time =  0:00:01.211638
+Sampling...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                              | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                              | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                              | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                              | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                                           | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                                           | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                                           | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                                           | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|██████████████████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1344.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|██████████████████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1345.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|██████████████████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1346.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|██████████████████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1347.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time =  0:00:01.761461
+Transforming variables...
+Transformation time =  0:00:00.003800
+Computing Log Likelihood...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time =  0:00:00.377440
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Possiamo stampare l’oggetto <code class="docutils literal notranslate"><span class="pre">clinton_model</span></code> per visualizzare informazioni sulla distribuzione della risposta, la funzione link e le distribuzioni a priori.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clinton_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Formula: vote[&#39;clinton&#39;] ~ age
+        Family: bernoulli
+          Link: p = logit
+  Observations: 373
+        Priors: 
+    target = p
+        Common-level effects
+            Intercept ~ Normal(mu: 0.0, sigma: 7.586)
+            age ~ Normal(mu: 0.0, sigma: 0.1454)
+------
+* To see a plot of the priors call the .plot_priors() method.
+* To see a summary or plot of the posterior pass the object returned by .fit() to az.summary() or az.plot_trace()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Otteniamo una rappresentazione delle distribuzioni a priori usate da Bambi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clinton_model</span><span class="o">.</span><span class="n">plot_priors</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling: [Intercept, age]
+</pre></div>
+</div>
+<img alt="../_images/c56563b5f3c1755769b24c7d6a238cbba82f273ef038a70addc1123c6b2e2059.png" src="../_images/c56563b5f3c1755769b24c7d6a238cbba82f273ef038a70addc1123c6b2e2059.png" />
+</div>
+</div>
+</section>
+<section id="valutazione-del-modello">
+<h2>Valutazione del modello<a class="headerlink" href="#valutazione-del-modello" title="Permalink to this heading">#</a></h2>
+<p>Esaminiamo i trace plot delle distribuzioni a posteriori dei parametri.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">clinton_fitted</span><span class="p">,</span> <span class="n">combined</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">compact</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ceb12027d959ada25ea900457a0ffd0e1ab1537b3e7261ade5a789b87a713329.png" src="../_images/ceb12027d959ada25ea900457a0ffd0e1ab1537b3e7261ade5a789b87a713329.png" />
+</div>
+</div>
+<section id="posterior-predictive-check">
+<h3>Posterior Predictive Check<a class="headerlink" href="#posterior-predictive-check" title="Permalink to this heading">#</a></h3>
+<p>Generiamo le previsioni posteriori dal modello di regressione logistica bivariata adattato ai dati di voto per Clinton. Il parametro <code class="docutils literal notranslate"><span class="pre">clinton_fitted</span></code> rappresenta l’output dell’adattamento del modello, che contiene le stime posteriori dei parametri del modello. Il parametro <code class="docutils literal notranslate"><span class="pre">kind=&quot;pps&quot;</span></code> indica il tipo di previsione che vogliamo ottenere, nel caso specifico “pps” sta per “posterior predictive samples” (campioni predittivi posteriori). Questo significa che stiamo generando campioni casuali da una distribuzione predittiva basata sui parametri stimati e sulle distribuzioni a posteriori. In altre parole, stiamo simulando possibili risultati futuri o predizioni che potrebbero verificarsi dato il modello adattato ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">posterior_predictive</span> <span class="o">=</span> <span class="n">clinton_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">clinton_fitted</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;pps&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Otteniamo il Posterior Preditive Check.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_ppc</span><span class="p">(</span><span class="n">clinton_fitted</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/954069b448d85c9b4eb3be3949e12ed988f5ade2e23601b2caf0bbe6665d6b31.png" src="../_images/954069b448d85c9b4eb3be3949e12ed988f5ade2e23601b2caf0bbe6665d6b31.png" />
+</div>
+</div>
+<p>I possibili risultati futuri sono coerenti con i dati osservati, il che fornisce evidenze di un buon adattamento del modello.</p>
+</section>
+</section>
+<section id="parametro-hat-kappa">
+<h2>Parametro <span class="math notranslate nohighlight">\(\hat \kappa\)</span><a class="headerlink" href="#parametro-hat-kappa" title="Permalink to this heading">#</a></h2>
+<p>Possiamo utilizzare ArviZ per calcolare <a class="reference external" href="https://arxiv.org/abs/1507.04544">LOO</a> e individuare le osservazioni che hanno un impatto significativo, basandoci sul valore stimato del parametro <span class="math notranslate nohighlight">\(\hat \kappa\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loo</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">loo</span><span class="p">(</span><span class="n">clinton_fitted</span><span class="p">,</span> <span class="n">pointwise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_khat</span><span class="p">(</span><span class="n">loo</span><span class="o">.</span><span class="n">pareto_k</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/dcc5750c8e88d85eeb82592f8395479949b4b4fd0313319ccae86f49674c03eb.png" src="../_images/dcc5750c8e88d85eeb82592f8395479949b4b4fd0313319ccae86f49674c03eb.png" />
+</div>
+</div>
+<p>La presenza di valori di <span class="math notranslate nohighlight">\(|\hat \kappa| &lt; 0.5\)</span> nel grafico suggerisce un’elevata qualità dell’adattamento del modello, confermata dalla buona mescolanza delle catene MCMC. In questo contesto, non sono rilevabili problemi significativi di convergenza, né si osservano evidenze di punti dati particolarmente influenti. Questo è indicativo di un modello che si adatta efficacemente ai dati a disposizione.</p>
+</section>
+<section id="inferenza">
+<h2>Inferenza<a class="headerlink" href="#inferenza" title="Permalink to this heading">#</a></h2>
+<p>Esaminiamo una sintesi delle distribuzioni a posteriori dei parametri.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_df</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">clinton_fitted</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 mean     sd  hdi_3%  hdi_97%  mcse_mean  mcse_sd  ess_bulk  \
+Intercept       1.206  0.337   0.579    1.840      0.006    0.004    3735.0   
+age            -0.018  0.006  -0.029   -0.006      0.000    0.000    3907.0   
+vote_mean[0]    0.549  0.028   0.495    0.601      0.001    0.000    3124.0   
+vote_mean[1]    0.508  0.036   0.444    0.577      0.001    0.000    3430.0   
+vote_mean[2]    0.442  0.053   0.344    0.542      0.001    0.001    3744.0   
+...               ...    ...     ...      ...        ...      ...       ...   
+vote_mean[368]  0.606  0.028   0.553    0.658      0.001    0.000    3140.0   
+vote_mean[369]  0.593  0.027   0.544    0.646      0.000    0.000    3075.0   
+vote_mean[370]  0.513  0.035   0.451    0.580      0.001    0.000    3393.0   
+vote_mean[371]  0.622  0.030   0.568    0.682      0.001    0.000    3246.0   
+vote_mean[372]  0.622  0.030   0.568    0.682      0.001    0.000    3246.0   
+
+                ess_tail  r_hat  
+Intercept         2882.0    1.0  
+age               2723.0    1.0  
+vote_mean[0]      2274.0    1.0  
+vote_mean[1]      2432.0    1.0  
+vote_mean[2]      2486.0    1.0  
+...                  ...    ...  
+vote_mean[368]    2450.0    1.0  
+vote_mean[369]    2380.0    1.0  
+vote_mean[370]    2498.0    1.0  
+vote_mean[371]    2531.0    1.0  
+vote_mean[372]    2531.0    1.0  
+
+[375 rows x 9 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="interpretazione-dei-coefficienti-nella-regressione-logistica">
+<h3>Interpretazione dei coefficienti nella regressione logistica<a class="headerlink" href="#interpretazione-dei-coefficienti-nella-regressione-logistica" title="Permalink to this heading">#</a></h3>
+<p>Sulla base delle distribuzioni a posteriori dei parametri, possiamo scrivere l’equazione del modello di regressione logistica nel modo seguente:</p>
+<div class="math notranslate nohighlight">
+\[
+\log{\left(\frac{\pi}{1 - \pi}\right)} = \beta_0 + \beta_1 \cdot \text{età}.
+\]</div>
+</section>
+<section id="interpretazione-di-beta-0">
+<h3>Interpretazione di <span class="math notranslate nohighlight">\(\beta_0\)</span><a class="headerlink" href="#interpretazione-di-beta-0" title="Permalink to this heading">#</a></h3>
+<p>Quando il predittore <span class="math notranslate nohighlight">\(X\)</span> è pari a 0, <span class="math notranslate nohighlight">\(\beta_0\)</span> rappresenta il logit dell’evento di interesse (voto per Clinton) e <span class="math notranslate nohighlight">\(e^{\beta_0}\)</span> rappresenta gli odds di successo (<span class="math notranslate nohighlight">\(\pi / (1-\pi)\)</span>).</p>
+<p>Nel caso presente, dunque, per un’età pari a 0, gli odds di successo (<span class="math notranslate nohighlight">\(\pi / (1-\pi)\)</span>) sono pari a</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_0</span> <span class="o">=</span> <span class="n">summary_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Intercept&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.206
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">beta_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.3400975060812867
+</pre></div>
+</div>
+</div>
+</div>
+<p>e la probabilità di un voto per Clinton è</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">beta_0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">beta_0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7695904300309351
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tuttavia, nel caso presente, l’intercetta non fornisce informazioni utili. Se avessimo trasformato i dati codificando l’età come scarti dalla media, le interpretazioni precedenti sarebbero riferite all’età media del campione, il che avrebbe più senso.</p>
+</section>
+<section id="interpretazione-di-beta-1">
+<h3>Interpretazione di <span class="math notranslate nohighlight">\(\beta_1\)</span><a class="headerlink" href="#interpretazione-di-beta-1" title="Permalink to this heading">#</a></h3>
+<p>Quando <span class="math notranslate nohighlight">\(X\)</span> aumenta di 1, da <span class="math notranslate nohighlight">\(x\)</span> a <span class="math notranslate nohighlight">\(x+1\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span> rappresenta il cambiamento tipico nel logit, e <span class="math notranslate nohighlight">\(e^{\beta_1}\)</span> rappresenta il cambiamento tipico moltiplicativo negli odds:</p>
+<div class="math notranslate nohighlight">
+\[
+\beta_1 = \log(\text{odds}_{x+1}) - \log(\text{odds}_x) \quad \text{e} \quad e^{\beta_1} = \frac{\text{odds}_{x+1}}{\text{odds}_x}.
+\]</div>
+<p>In altre parole, sulla scala lineare dei logit, il coefficiente <span class="math notranslate nohighlight">\(\beta_1\)</span> rappresenta semplicemente la pendenza: per un cambiamento unitario dell’età, i logit del voto per Clinton diminuiscono di -0.018.</p>
+<p>Tuttavia, è più facile interpretare questo risultato sulla scala non lineare degli odds, dove questa variazione è moltiplicativa: per ogni anno di aumento dell’età, gli odds stimati dell’evento (votare per Clinton) vengono moltiplicati per <span class="math notranslate nohighlight">\(e^{\beta_1}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_1</span> <span class="o">=</span> <span class="n">summary_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.018
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">beta_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9821610323583008
+</pre></div>
+</div>
+</div>
+</div>
+<p>Poiché la relazione di probabilità è una curva sigmoidale, non possiamo interpretare facilmente il coefficiente <span class="math notranslate nohighlight">\(\beta_1\)</span> su questa scala. È invece preferibile rappresentare graficamente come varia la probabilità attesa di “successo” al variare dell’età. La rappresentazione di questa relazione, basata sulle stime a posteriori del modello, è fornita di seguito.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">91</span><span class="p">)</span>
+<span class="n">new_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="n">new_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>214</th>
+      <td>86</td>
+    </tr>
+    <tr>
+      <th>215</th>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>216</th>
+      <td>88</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>89</td>
+    </tr>
+    <tr>
+      <th>218</th>
+      <td>90</td>
+    </tr>
+  </tbody>
+</table>
+<p>219 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clinton_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">clinton_fitted</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vote_posterior</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">clinton_fitted</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">)[</span><span class="s2">&quot;vote_mean&quot;</span><span class="p">]</span>
+<span class="n">vote_posterior</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(219, 2000)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_data</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">vote_posterior</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Adding a dashed horizontal line at y=0.5 (50% probability)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;P(vote=&#39;clinton&#39; | age)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Age&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fca0951ce0bd2ef5c95043590dac974c9ffa135caf5fcc296ef9d459c4dce552.png" src="../_images/fca0951ce0bd2ef5c95043590dac974c9ffa135caf5fcc296ef9d459c4dce552.png" />
+</div>
+</div>
+<p>È possibile interpretare il grafico precedente nel seguente modo: fino all’età di circa 50 anni, la propensione al voto per Clinton supera quella per Trump. Proseguendo oltre i 50 anni, questa tendenza tende ad invertirsi. La presenza di più curve nel grafico indica l’incertezza a posteriori delle previsioni effettuate dal modello.</p>
+<p>Per chiarire i risultati del modello di regressione logistica possiamo mostrare le predizioni del modello in due formati. Nel primo grafico, mostriamo i logit predetti come funzione lineare dell’età.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eta</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">],</span> <span class="n">eta</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\beta_0 + \beta_1 \cdot x_i$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Age&quot;</span><span class="p">)</span>  <span class="c1"># Label for the x-axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\eta$&quot;</span><span class="p">)</span>  <span class="c1"># Label for the y-axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linear Model of the Logit as a Function of Age&quot;</span><span class="p">)</span>  <span class="c1"># Title for the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ba20990aff37d5d546d87b8f9d7ccea0f5cfb8dd2bf442ff183721c455a8ad1f.png" src="../_images/ba20990aff37d5d546d87b8f9d7ccea0f5cfb8dd2bf442ff183721c455a8ad1f.png" />
+</div>
+</div>
+<p>Nel secondo grafico mostriamo la probabilità di votare per Clinton come funzione non lineare dell’età.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort the age data first</span>
+<span class="n">sorted_age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">])</span>
+
+<span class="c1"># Calculate eta using the sorted ages</span>
+<span class="n">eta_sorted</span> <span class="o">=</span> <span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">sorted_age</span>
+
+<span class="c1"># Compute the sigmoid function</span>
+<span class="n">p_true_sorted</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">eta_sorted</span><span class="p">))</span>
+
+<span class="c1"># Now, plot the sigmoid curve</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sorted_age</span><span class="p">,</span> <span class="n">p_true_sorted</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\frac</span><span class="si">{1}</span><span class="s2">{1 + \exp(-\eta)}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Age&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Probability of Voting for Clinton&quot;</span><span class="p">)</span>  
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Probability of Voting for Clinton as a Function of Age&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/db07364592b7b4fb324fd0af6f1759c73d132c05f28b09b50daa43ca95a7edd8.png" src="../_images/db07364592b7b4fb324fd0af6f1759c73d132c05f28b09b50daa43ca95a7edd8.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="accuratezza-delle-classificazioni-a-posteriori">
+<h2>Accuratezza delle classificazioni a posteriori<a class="headerlink" href="#accuratezza-delle-classificazioni-a-posteriori" title="Permalink to this heading">#</a></h2>
+<p>Esaminiamo ora la precisione delle nostre classificazioni posteriori. Nell’ambito della regressione, quando affrontiamo una variabile quantitativa  <span class="math notranslate nohighlight">\(Y\)</span>, abbiamo risposto a questa domanda analizzando la tipica differenza tra <span class="math notranslate nohighlight">\(Y\)</span> e le sue previsioni posteriori. Tuttavia, nel contesto della classificazione con una variabile <span class="math notranslate nohighlight">\(Y\)</span> categorica, le nostre classificazioni posteriori binarie di <span class="math notranslate nohighlight">\(Y\)</span> possono essere corrette oppure errate. Pertanto, possiamo calcolare un indicatore globale di precisione.</p>
+<p>Per procedere con il calcolo, il primo passo è determinare la probabilità a posteriori <span class="math notranslate nohighlight">\(P(Y = 1 | X)\)</span>, ovvero la probabilità che ciascuna osservazione rappresenti un voto per Clinton, per ogni singola osservazione.</p>
+<p>Calcoliamo le probabilità predette dai coefficienti a posteriori del modello:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clinton_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">clinton_fitted</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le probabilità a posteriori possono essere estratte dall’oggetto <code class="docutils literal notranslate"><span class="pre">clinton_model</span></code> nel modo seguente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">clinton_fitted</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;vote_mean&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;vote_mean&#39; (chain: 4, draw: 1000, vote_obs: 373)&gt;
+array([[[0.53386131, 0.48315942, 0.39992229, ..., 0.48879495,
+         0.62695463, 0.62695463],
+        [0.55319686, 0.52563838, 0.47944235, ..., 0.52871127,
+         0.60424213, 0.60424213],
+        [0.59918042, 0.59421386, 0.58589372, ..., 0.59476667,
+         0.6085056 , 0.6085056 ],
+        ...,
+        [0.55978021, 0.50735167, 0.42018191, ..., 0.51320639,
+         0.65442869, 0.65442869],
+        [0.59966745, 0.5461998 , 0.45530499, ..., 0.55221731,
+         0.69365813, 0.69365813],
+        [0.58606544, 0.53037115, 0.43654869, ..., 0.53662314,
+         0.68455421, 0.68455421]],
+
+       [[0.58592351, 0.54503213, 0.47578986, ..., 0.54961623,
+         0.65963709, 0.65963709],
+        [0.56733999, 0.54198619, 0.49930808, ..., 0.54481651,
+         0.61418304, 0.61418304],
+        [0.54486614, 0.50138951, 0.42920564, ..., 0.50623337,
+         0.62465477, 0.62465477],
+...
+        [0.60491843, 0.58664909, 0.55568742, ..., 0.58869183,
+         0.63860488, 0.63860488],
+        [0.59452831, 0.56888802, 0.52538978, ..., 0.57175791,
+         0.64148356, 0.64148356],
+        [0.49674389, 0.44462575, 0.36091758, ..., 0.4503778 ,
+         0.59447106, 0.59447106]],
+
+       [[0.51826195, 0.4579509 , 0.36091705, ..., 0.46462375,
+         0.62938453, 0.62938453],
+        [0.52355838, 0.5071595 , 0.47981124, ..., 0.50898301,
+         0.55436772, 0.55436772],
+        [0.52329119, 0.49803042, 0.456015  , ..., 0.50083904,
+         0.57058023, 0.57058023],
+        ...,
+        [0.55073339, 0.49105774, 0.39298433, ..., 0.497707  ,
+         0.65832706, 0.65832706],
+        [0.55073339, 0.49105774, 0.39298433, ..., 0.497707  ,
+         0.65832706, 0.65832706],
+        [0.54192324, 0.48673942, 0.39612788, ..., 0.49287964,
+         0.64240112, 0.64240112]]])
+Coordinates:
+  * chain     (chain) int64 0 1 2 3
+  * draw      (draw) int64 0 1 2 3 4 5 6 7 8 ... 992 993 994 995 996 997 998 999
+  * vote_obs  (vote_obs) int64 0 1 2 3 4 5 6 7 ... 366 367 368 369 370 371 372
+</pre></div>
+</div>
+</div>
+</div>
+<p>Otteniamo così un array multidimensionale di dimensioni avente le seguenti dimensioni: chain: 4, draw: 1000, vote_obs: 373. Vogliamo la media a posteriori per ciascuna osservazione, ovvero vogliamo ridurre l’array precedente ad un vettore di 373 elementi. A questo fine possiamo procedere come indicato di seguito.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probs_array</span> <span class="o">=</span> <span class="n">clinton_fitted</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;vote_mean&quot;</span><span class="p">]</span>
+<span class="n">average_posterior_values</span> <span class="o">=</span> <span class="n">probs_array</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;chain&quot;</span><span class="p">,</span> <span class="s2">&quot;draw&quot;</span><span class="p">))</span>
+<span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;probs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">average_posterior_values</span><span class="o">.</span><span class="n">values</span>
+<span class="n">clinton_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>vote</th>
+      <th>age</th>
+      <th>party_id</th>
+      <th>probs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>clinton</td>
+      <td>56</td>
+      <td>democrat</td>
+      <td>0.548535</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>trump</td>
+      <td>65</td>
+      <td>republican</td>
+      <td>0.508210</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>clinton</td>
+      <td>80</td>
+      <td>democrat</td>
+      <td>0.441549</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>trump</td>
+      <td>38</td>
+      <td>republican</td>
+      <td>0.626655</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>trump</td>
+      <td>60</td>
+      <td>republican</td>
+      <td>0.530647</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Creaiamo la variabile <code class="docutils literal notranslate"><span class="pre">predicted</span></code> che assume il valore 1 se la probabilità di un’osservazione è maggiore di 0.5 e 0 altrimenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;predicted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;probs&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Classifichiamo le osservazioni ricodificando il voto “clinton” con 1 e 0 altrimenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;actual&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;vote&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;clinton&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Creiamo una matrice di confusione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confusion</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;actual&quot;</span><span class="p">],</span> <span class="n">clinton_data</span><span class="p">[</span><span class="s2">&quot;predicted&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 33 125]
+ [ 31 184]]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="sensibilita-specificita-e-accuratezza-complessiva-del-modello">
+<h3>Sensibilità, specificità e accuratezza complessiva del modello<a class="headerlink" href="#sensibilita-specificita-e-accuratezza-complessiva-del-modello" title="Permalink to this heading">#</a></h3>
+<p>Consideriamo <span class="math notranslate nohighlight">\( Y \)</span> come un insieme di <span class="math notranslate nohighlight">\( n \)</span> etichette binarie vere per i dati osservati e <span class="math notranslate nohighlight">\( \hat{Y} \)</span> come il set di etichette previste dal modello di classificazione. Possiamo utilizzare una matrice di confusione per riassumere la performance del modello confrontando le etichette vere con quelle predette. In questa matrice, la somma <span class="math notranslate nohighlight">\( a + b + c + d \)</span> è uguale al numero totale <span class="math notranslate nohighlight">\( n \)</span> di osservazioni.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( a \)</span>: Veri Negativi (TN) - Entrambe le etichette, reale e prevista, sono 0.</p></li>
+<li><p><span class="math notranslate nohighlight">\( b \)</span>: Falsi Positivi (FP) - L’etichetta reale è 0, mentre l’etichetta prevista è 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\( c \)</span>: Falsi Negativi (FN) - L’etichetta reale è 1, mentre l’etichetta prevista è 0.</p></li>
+<li><p><span class="math notranslate nohighlight">\( d \)</span>: Veri Positivi (TP) - Entrambe le etichette, reale e prevista, sono 1.</p></li>
+</ul>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\( \hat{Y} = 0 \)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\( \hat{Y} = 1 \)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( Y = 0 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( a \)</span> (TN)</p></td>
+<td><p><span class="math notranslate nohighlight">\( b \)</span> (FP)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\( Y = 1 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( c \)</span> (FN)</p></td>
+<td><p><span class="math notranslate nohighlight">\( d \)</span> (TP)</p></td>
+</tr>
+</tbody>
+</table>
+<p>L’<strong>accuratezza complessiva</strong> fornisce una misura della proporzione di etichette vere che il modello è riuscito a classificare correttamente:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{accuratezza complessiva} = \frac{a + d}{a + b + c + d}
+\]</div>
+<p><strong>Sensibilità</strong> e <strong>specificità</strong> sono altre due metriche importanti:</p>
+<ul class="simple">
+<li><p>La <strong>sensibilità</strong> (o tasso di veri positivi) rappresenta la proporzione di osservazioni positive <span class="math notranslate nohighlight">\( Y = 1 \)</span> che sono state correttamente identificate dal modello:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{sensibilità} = \frac{d}{c + d}
+\]</div>
+<ul class="simple">
+<li><p>La <strong>specificità</strong> (o tasso di veri negativi) rappresenta la proporzione di osservazioni negative <span class="math notranslate nohighlight">\( Y = 0 \)</span> che sono state correttamente identificate dal modello:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{specificità} = \frac{a}{a + b}
+\]</div>
+<p>Queste metriche forniscono una visione completa delle performance del modello di classificazione.</p>
+<p>Per i dati presenti abbiamo un’accuratezza complessiva di</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">33</span> <span class="o">+</span> <span class="mi">184</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">33</span> <span class="o">+</span> <span class="mi">125</span> <span class="o">+</span> <span class="mi">31</span> <span class="o">+</span> <span class="mi">184</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5817694369973191
+</pre></div>
+</div>
+</div>
+</div>
+<p>Abbiamo una sensibilità di</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">184</span><span class="o">/</span> <span class="p">(</span><span class="mi">31</span><span class="o">+</span><span class="mi">184</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8558139534883721
+</pre></div>
+</div>
+</div>
+</div>
+<p>e una specificità di</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">33</span> <span class="o">/</span> <span class="p">(</span><span class="mi">33</span><span class="o">+</span><span class="mi">125</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2088607594936709
+</pre></div>
+</div>
+</div>
+</div>
+<p>I risultati indicano che il modello ha una capacità predittiva molto limitata, soprattutto se consideriamo la sua specificità. È evidente che è stato troppo ambizioso tentare di predire le intenzioni di voto basandosi unicamente sull’età. Questo tutorial rappresenta una versione semplificata dell’esempio discusso nel sito di Bambi, dove, oltre all’età, viene utilizzata anche l’appartenenza a un partito politico come predittore. In quel contesto, è chiaro che l’intenzione di voto può essere prevista con una precisione maggiore. Nell’esempio attuale, a fini didattici, abbiamo volutamente semplificato il modello per avere un unico predittore.</p>
+</section>
+</section>
+<section id="commenti-e-considerazioni-finali">
+<h2>Commenti e considerazioni finali<a class="headerlink" href="#commenti-e-considerazioni-finali" title="Permalink to this heading">#</a></h2>
+<p>In questo capitolo, abbiamo esplorato il modello di regressione logistica, una tecnica statistica utilizzata per analizzare le relazioni tra variabili binarie e variabili indipendenti, sia continue che categoriche. Abbiamo spiegato come il modello di regressione logistica impieghi il logit delle probabilità per modellare il legame tra le variabili di risultato e i predittori. La funzione logit trasforma l’intervallo di probabilità da 0 a 1 in un intervallo da meno infinito a più infinito, rendendo possibile l’utilizzo di un modello di regressione lineare nel caso di variabili dipendenti dicotomiche.</p>
+<p>In aggiunta, abbiamo illustrato come interpretare i coefficienti nel contesto del modello di regressione logistica. Quando il modello coinvolge una singola variabile indipendente, la rappresentazione grafica delle probabilità attese si rivela uno strumento di grande valore per ottenere una comprensione più accurata dei risultati.</p>
+<p>Infine, abbiamo introdotto l’approccio bayesiano per ottenere stime a posteriori dei parametri. Questo approccio ci permette di ottenere una visione più completa delle incertezze legate alle stime dei coefficienti. Attraverso l’aggiornamento bayesiano, siamo in grado di calcolare intervalli di credibilità in base al grado di certezza soggettiva desiderato, offrendo così un ulteriore livello di informazione e interpretazione all’analisi.</p>
+</section>
+<section id="watermark">
+<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Sep 24 2023
+
+Python implementation: CPython
+Python version       : 3.11.5
+IPython version      : 8.15.0
+
+arviz     : 0.16.1
+pandas    : 2.1.1
+numpy     : 1.25.2
+bambi     : 0.12.0
+matplotlib: 3.8.0
+seaborn   : 0.12.2
+
+Watermark: 2.4.3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapter_5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="E_reglin_4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">✏️ Esercizi</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_binomial_reg.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Regressione binomiale</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica">Regressione logistica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-del-modello-e-logit">Coefficienti del modello e logit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#american-national-election-studies-anes">American National Election Studies (ANES)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specificare-e-adattare-il-modello-in-bambi">Specificare e adattare il modello in Bambi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutazione-del-modello">Valutazione del modello</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posterior-predictive-check">Posterior Predictive Check</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametro-hat-kappa">Parametro <span class="math notranslate nohighlight">\(\hat \kappa\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferenza">Inferenza</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-dei-coefficienti-nella-regressione-logistica">Interpretazione dei coefficienti nella regressione logistica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-di-beta-0">Interpretazione di <span class="math notranslate nohighlight">\(\beta_0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-di-beta-1">Interpretazione di <span class="math notranslate nohighlight">\(\beta_1\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuratezza-delle-classificazioni-a-posteriori">Accuratezza delle classificazioni a posteriori</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilita-specificita-e-accuratezza-complessiva-del-modello">Sensibilità, specificità e accuratezza complessiva del modello</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,989 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Ambiente di lavoro &#8212; ds4p</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter_1/00_installation';</script>
+    <link rel="canonical" href="https://ccaudek.github.io/ds4psy/chapter_1/00_installation.html" />
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simbologia di base" href="../chapter_7/a01_math_symbols.html" />
+    <link rel="prev" title="Appendici" href="../chapter_7/introduction_appendix.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ds4p - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ds4p - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="introduction_chapter_1.html">Python</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_python_1.html">Python (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_python_2.html">Python (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_python.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_numpy.html">NumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_numpy.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_pandas.html">Pandas (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_pandas_aggregate.html">Pandas (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_pandas_functions.html">Pandas (3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_pandas.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_matplotlib.html">Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_seaborn.html">Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_matplotlib.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_2/introduction_chapter_2.html">Statistica descrittiva</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/01_key_notions.html">Concetti chiave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_key_notions.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/02_measurement.html">La misurazione in psicologia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_scales.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/03_freq_distr.html">Dati e frequenze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_sums.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/04_loc_scale.html">Indici di posizione e di scala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/05_correlation.html">Le relazioni tra variabili</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/06_causality.html">Correlazione e causazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/07_crisis.html">La crisi della generalizzabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_eda.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_mehr_song_spelke.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_3/introduction_chapter_3.html">Probabilità</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/01_intro_prob.html">Introduzione al calcolo delle probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/02_conditional_prob.html">Probabilità condizionata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/05_joint_prob.html">Probabilità congiunta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_joint_prob.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/06_density_func.html">La funzione di densità di probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/07_discr_rv_distr.html">Distribuzioni di v.c. discrete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_binomial.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/08_cont_rv_distr.html">Distribuzioni di v.c. continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_gaussian.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_beta_distr.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/09_likelihood.html">La verosimiglianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/10_rescorla_wagner.html">Apprendimento per rinforzo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_likelihood.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/05_summary_posterior.html">Sintesi a posteriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/E_conjugate.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/06_balance-prior-post.html">L’influenza della distribuzione a priori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/19_odds_ratio.html">Analisi bayesiana dell’odds-ratio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/20_poisson_model.html">Modello di Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/21_poisson_sim.html">Modello di Poisson: derivazione analitica e MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/E_freq.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/22_normal_normal_model.html">Inferenza bayesiana su una media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/E_one_mean.html">✏️ Esercizio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/E_one_mean_2.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/23_two_groups.html">Confronto tra due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_5/introduction_part_5.html">Analisi della regressione</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_1.html">Il modello di regressione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_2.html">Analisi bayesiana del modello di regressione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_2.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_3.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_6/introduction_part_6.html">Inferenza frequentista</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_estimation.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/02_conf_interv.html">Intervallo di confidenza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/03_test_ipotesi.html">Significatività statistica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_interpretation_test.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_significato_test.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/04_two_ind_samples.html">Test t di Student per campioni indipendenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_test_media_pop.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_medie_pop_ampie.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_medie_pop_piccoli.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_campioni_appaiati.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/E_confronto_proporzioni.html">✏️ Esercizi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/05_limiti_stat_frequentista.html">Limiti dell’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_6/06_s_m_errors.html">Crisi della replicabilità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a05_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ccaudek/ds4psy/blob/main/docs/chapter_1/00_installation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapter_1/00_installation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ambiente di lavoro</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandi-speciali">Comandi speciali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel">Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-magic">Command magic</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-drive">Google Drive</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collegare-google-drive-a-colab">Collegare Google Drive a Colab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installazione-sul-proprio-computer">Installazione sul proprio computer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installazione-di-anaconda-per-principianti">Installazione di Anaconda per Principianti</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-ambiente-virtuale-in-python">L’Ambiente Virtuale in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosa-e-un-ambiente-virtuale">Cosa è un Ambiente Virtuale?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perche-usare-un-ambiente-virtuale">Perché Usare un Ambiente Virtuale?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#come-creare-un-ambiente-virtuale">Come Creare un Ambiente Virtuale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestione-dell-ambiente-virtuale-con-conda">Gestione dell’Ambiente Virtuale con Conda</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#attenzione-importante">Attenzione Importante:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#passaggi-per-gestire-gli-ambienti-virtuali">Passaggi per Gestire gli Ambienti Virtuali</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lavorare-con-vscode">Lavorare con VSCode</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ambiente-di-lavoro">
+<span id="working-env-notebook"></span><h1>Ambiente di lavoro<a class="headerlink" href="#ambiente-di-lavoro" title="Permalink to this heading">#</a></h1>
+<p>Per la realizzazione delle attività di questo corso, è possibile utilizzare <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, una piattaforma che consente di eseguire codice Python direttamente nel browser, senza la necessità di installare software aggiuntivi. Nonostante la comodità e l’accessibilità di Google Colab, però, è vivamente consigliato seguire le indicazioni fornite su questa pagina web per installare Python e i necessari pacchetti in un ambiente virtuale sul proprio computer.</p>
+<p>Uno degli aspetti cruciali da considerare è la stabilità della connessione durante gli esami. Utilizzare Google Colab in tale contesto può presentare sfide significative, specialmente se vi è un alto numero di studenti che tentano di accedere al servizio simultaneamente in aula. Questo può portare a connessioni lente o instabili, creando potenziali interruzioni e ostacoli durante lo svolgimento dell’esame. Inoltre, la dipendenza da una connessione internet affidabile per accedere a Google Colab potrebbe non essere ottimale in situazioni di esame, dove il tempo e la fluidità di esecuzione sono fattori chiave.</p>
+<p>Dunque, per garantire la massima efficienza e ridurre il rischio di inconvenienti tecnici, si consiglia di preparare il proprio ambiente di sviluppo locale seguendo le istruzioni fornite. Questo permetterà di avere un controllo completo sulle proprie risorse di programmazione e di evitare potenziali problemi legati alla connessione internet durante gli esami.</p>
+<section id="google-colab">
+<h2>Google Colab<a class="headerlink" href="#google-colab" title="Permalink to this heading">#</a></h2>
+<p>Utilizzando il seguente <a class="reference external" href="https://colab.research.google.com/">link</a>, è possibile accedere a Google Colab e iniziare a scrivere codice Python direttamente dal proprio browser, senza dover effettuare alcuna installazione. Basta selezionare l’opzione “Nuovo notebook” per creare un nuovo ambiente di lavoro. Per avere un’introduzione completa sulle funzionalità di Colab, si può consultare la guida disponibile al seguente <a class="reference external" href="https://colab.research.google.com/notebooks/intro.ipynb">link</a>. È possibile salvare ogni notebook nella propria cartella di Google Drive per una facile gestione e condivisione dei file.</p>
+</section>
+<section id="comandi-speciali">
+<h2>Comandi speciali<a class="headerlink" href="#comandi-speciali" title="Permalink to this heading">#</a></h2>
+<p>In Google Colab troverete già molte librerie Python pronte all’uso. Queste librerie sono degli strumenti che ci aiutano a svolgere compiti specifici più facilmente. Tuttavia, potreste avere bisogno di altre librerie non preinstallate per alcune delle vostre attività.</p>
+<p>Per aggiungere queste nuove librerie a Colab, useremo dei comandi speciali. Questi comandi iniziano con il simbolo <code class="docutils literal notranslate"><span class="pre">!</span></code>. Pensate a questo simbolo come a un modo per dire a Colab: “Hey, sto per darti un’istruzione speciale, non è codice Python normale”. Questo tipo di comando è chiamato “bash”, una specie di linguaggio usato per comunicare con il computer.</p>
+<p>Ecco un esempio pratico. Supponiamo che vogliate aggiungere tre librerie chiamate <code class="docutils literal notranslate"><span class="pre">pymc</span></code>, <code class="docutils literal notranslate"><span class="pre">bambi</span></code> e <code class="docutils literal notranslate"><span class="pre">arviz</span></code>, che sono utili per le statistiche e l’analisi dei dati. Per farlo, digiterete questi comandi in Colab:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!pip<span class="w"> </span>install<span class="w"> </span>bambi
+!pip<span class="w"> </span>install<span class="w"> </span>pymc
+!pip<span class="w"> </span>install<span class="w"> </span>arviz
+</pre></div>
+</div>
+<p>Digitando questi comandi, installerete automaticamente queste librerie e alcune altre correlate come <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code> e <code class="docutils literal notranslate"><span class="pre">statmodels</span></code>. Queste librerie sono tutte importanti per il lavoro che faremo in questo corso.</p>
+<p>Inoltre, se siete curiosi di sapere quali librerie sono già disponibili in Colab, potete usare il comando <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">freeze</span></code>. Questo comando vi mostrerà un elenco di tutte le librerie già installate, così saprete quali sono già a vostra disposizione.</p>
+</section>
+<section id="jupyter-notebook">
+<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">#</a></h2>
+<p>Durante questo insegnamento, utilizzeremo i <a class="reference external" href="https://www.dataquest.io/blog/jupyter-notebook-tutorial/">Jupyter Notebook</a> come strumento principale per la scrittura del codice e la creazione di documenti interattivi. I Jupyter Notebook offrono la possibilità di creare e condividere documenti che includono codice, testo descrittivo, grafici e altri elementi multimediali. Grazie a queste caratteristiche, i Jupyter Notebook rappresentano uno strumento eccellente per documentare e condividere in modo trasparente e riproducibile i processi di analisi dei dati.</p>
+<p>I Jupyter Notebook offrono un ambiente interattivo in cui il codice può essere eseguito in celle in qualsiasi ordine. Questa flessibilità consente agli utenti di esplorare e analizzare i dati in modo iterativo, contribuendo a una migliore comprensione e affinamento delle analisi. Inoltre, i Jupyter Notebook consentono di integrare agevolmente codice proveniente da diverse lingue di programmazione, tra cui Python, R, Julia e altre.</p>
+<p>Il Jupyter Notebook ha avuto origine come parte del progetto IPython e prende il nome dalle tre principali lingue di programmazione che supporta: Julia, Python e R. Tuttavia, può essere utilizzato con molte altre lingue di programmazione.</p>
+<p>I Jupyter Notebook supportano due tipi di celle: celle di testo e celle di codice.</p>
+<ul class="simple">
+<li><p>Le celle di testo consentono di scrivere testo formattato utilizzando la sintassi Markdown. Questo permette agli autori di inserire del testo descrittivo, inclusi immagini, formule in formato <span class="math notranslate nohighlight">\(\LaTeX\)</span>, tabelle e altro ancora. Le celle di testo facilitano la documentazione del processo di analisi dei dati in modo chiaro e comprensibile.</p></li>
+<li><p>Le celle di codice, invece, consentono di scrivere e eseguire codice Python. Il codice può essere eseguito facendo clic sul triangolo presente a sinistra di ogni cella. Diverse celle possono contenere istruzioni diverse e possono essere eseguite in sequenza. Una funzione definita in una cella precedente può essere utilizzata successivamente solo se la cella precedente è stata eseguita.</p></li>
+</ul>
+<p>I Jupyter Notebook possono essere eseguiti sia localmente sul proprio computer che su un server remoto, come Google Colab. Ciò consente agli utenti di accedere ai propri notebook da qualsiasi dispositivo connesso a Internet e di condividere facilmente il proprio lavoro con altre persone.</p>
+<section id="markdown">
+<h3>Markdown<a class="headerlink" href="#markdown" title="Permalink to this heading">#</a></h3>
+<p>Nelle celle di testo di un Jupyter Notebook è possibile formattare il testo in modo semplice ed efficiente usando il linguaggio di markup Markdown.</p>
+<p>Il Markdown si basa su una serie di simboli e convenzioni di formattazione che consentono di creare titoli, elenchi, tabelle, citazioni, testo in grassetto, corsivo e altro ancora. Ecco alcuni esempi di formattazione del testo in Markdown:</p>
+<ul class="simple">
+<li><p>Per creare un titolo, è sufficiente utilizzare il simbolo “#” seguito dal testo del titolo. Ad esempio, <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Titolo</span> <span class="pre">del</span> <span class="pre">documento</span></code> genererà un titolo di primo livello.</p></li>
+<li><p>Per creare una lista puntata, è possibile utilizzare il simbolo “-” seguito dal testo dell’elemento della lista. Ad esempio, <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">Elemento</span> <span class="pre">1</span></code> genererà un elemento di lista puntata.</p></li>
+<li><p>Per creare un collegamento ipertestuale, basta utilizzare il simbolo “[” seguito dal testo del collegamento e dal simbolo “]” seguito dall’URL del collegamento. Ad esempio, <code class="docutils literal notranslate"><span class="pre">[Link</span> <span class="pre">a</span> <span class="pre">Google](https://www.google.com/)</span></code> creerà un collegamento con il testo “Link a Google” che reindirizza alla homepage di Google.</p></li>
+<li><p>Per formattare il testo in grassetto, è possibile utilizzare il simbolo “**” prima e dopo il testo da formattare. Ad esempio, <code class="docutils literal notranslate"><span class="pre">**Testo</span> <span class="pre">in</span> <span class="pre">grassetto**</span></code> renderà il testo in grassetto.</p></li>
+<li><p>Per formattare il testo in corsivo, è possibile utilizzare il simbolo “*” prima e dopo il testo da formattare. Ad esempio, <code class="docutils literal notranslate"><span class="pre">*Testo</span> <span class="pre">in</span> <span class="pre">corsivo*</span></code> renderà il testo in corsivo.</p></li>
+</ul>
+</section>
+<section id="kernel">
+<h3>Kernel<a class="headerlink" href="#kernel" title="Permalink to this heading">#</a></h3>
+<p>Il kernel è la componente essenziale di un Jupyter Notebook responsabile dell’esecuzione del codice Python all’interno delle celle di codice. Quando un utente esegue una cella, il contenuto viene inviato al kernel per l’esecuzione. Il kernel è in grado di mantenere lo stato delle variabili e delle funzioni Python tra le diverse celle, consentendo l’utilizzo di variabili e funzioni definite in celle precedenti nelle celle successive. Questo aspetto interattivo permette agli utenti di eseguire il codice in modo iterativo ed esplorare i dati in maniera flessibile.</p>
+<p>Il Jupyter Notebook supporta diversi kernel, inclusi quelli per Python, ma anche per altri linguaggi di programmazione come R, Julia e Matlab. Ciò consente agli utenti di utilizzare il Jupyter Notebook per l’analisi dei dati in vari linguaggi di programmazione.</p>
+<p>Quando si installa Jupyter Notebook, viene tipicamente incluso IPython, un kernel progettato specificamente per l’esecuzione di codice Python. Per ampliare la versatilità di Jupyter Notebook con altri linguaggi di programmazione, è spesso necessario installare kernel aggiuntivi. Questo processo può richiedere la configurazione di ambienti di sviluppo specifici, conosciuti come <code class="docutils literal notranslate"><span class="pre">environments</span></code>. Questi ambienti servono a isolare le librerie e le dipendenze necessarie per ciascun kernel, evitando possibili conflitti tra differenti configurazioni e assicurando che il codice esegua correttamente nel contesto desiderato.</p>
+<p>L’uso di ambienti dedicati è particolarmente vantaggioso in progetti che richiedono versioni specifiche di librerie, o quando si lavora con più linguaggi di programmazione che possono avere requisiti di sistema differenti. Strumenti come <code class="docutils literal notranslate"><span class="pre">conda</span></code> o <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> sono ampiamente utilizzati per gestire questi ambienti. Essi forniscono funzionalità per creare, mantenere e attivare ambienti separati, ognuno con le sue specifiche configurazioni e dipendenze. In questo modo, è possibile passare facilmente da un ambiente all’altro, assicurando che ogni progetto o kernel abbia esattamente ciò di cui ha bisogno per funzionare senza interferenze.</p>
+</section>
+<section id="command-magic">
+<h3>Command magic<a class="headerlink" href="#command-magic" title="Permalink to this heading">#</a></h3>
+<p>I “command magic” sono una serie di comandi speciali che possono essere utilizzati all’interno di Jupyter Notebook per eseguire varie azioni. Di seguito viene fornita una breve spiegazione dei command magic più comuni:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%run</span></code>: questo comando consente di eseguire un file Python come programma.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%timeit</span></code>: questo comando esegue una riga di codice più volte e calcola il tempo medio di esecuzione.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%matplotlib</span></code>: questo comando abilita l’integrazione di Matplotlib per la visualizzazione dei grafici all’interno del notebook.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%load</span></code>: questo comando permette di caricare il codice da un file esterno all’interno di una cella del notebook.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%reset</span></code>: questo comando rimuove tutte le variabili presenti nella sessione corrente del notebook.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%pwd</span></code>: questo comando restituisce il percorso della directory corrente.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%cd</span></code>: questo comando cambia la directory di lavoro corrente.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%%time</span></code>: questo comando calcola il tempo di esecuzione di un’intera cella di codice.</p></li>
+</ul>
+<p>In Jupyter Notebook sono disponibili numerosi altri comandi magic che consentono di eseguire diverse operazioni. Per visualizzare l’elenco completo di questi comandi, è possibile digitare <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> all’interno di una cella del notebook.</p>
+</section>
+</section>
+<section id="google-drive">
+<h2>Google Drive<a class="headerlink" href="#google-drive" title="Permalink to this heading">#</a></h2>
+<p>Google Drive è un servizio di archiviazione cloud fornito da Google che consente di memorizzare e condividere file online, rendendoli accessibili da qualsiasi dispositivo connesso a Internet. Ogni membro della comunità UniFi ha a disposizione un account Google Drive. È consigliabile creare una cartella dedicata nel proprio account Google Drive per salvare i notebook utilizzati in questo corso. Per accedere al proprio Drive, basta effettuare l’accesso all’account e-mail UniFi e fare clic sull’icona a forma di griglia di 9 puntini nell’angolo in alto a destra (App Google). Dalla lista delle applicazioni disponibili, selezionare Google Drive per accedere all’archivio online personale. Una volta all’interno di Google Drive, è possibile creare una nuova cartella (ad esempio <code class="docutils literal notranslate"><span class="pre">psicometria</span></code>) e salvare tutti i notebook creati durante il corso. Questo consentirà di mantenere organizzati i propri file e di averli facilmente accessibili per future consultazioni.</p>
+<section id="collegare-google-drive-a-colab">
+<h3>Collegare Google Drive a Colab<a class="headerlink" href="#collegare-google-drive-a-colab" title="Permalink to this heading">#</a></h3>
+<p>Per accedere alla propria cartella di Google Drive durante l’utilizzo di Colab, è possibile seguire i seguenti passaggi:</p>
+<ol class="arabic simple">
+<li><p>Dalla <a class="reference external" href="https://colab.research.google.com/">pagina iniziale</a>, fare clic sull’icona a forma di cartella (Files) situata nel menu in alto a sinistra.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/colab_1.png"><img alt="../_images/colab_1.png" class="align-center" src="../_images/colab_1.png" style="height: 300px;" /></a>
+<br>
+<ol class="arabic simple" start="2">
+<li><p>Si aprirà un menu con diverse opzioni.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/colab_2.png"><img alt="../_images/colab_2.png" class="align-center" src="../_images/colab_2.png" style="height: 300px;" /></a>
+<br>
+<ol class="arabic simple" start="3">
+<li><p>Selezionare la terza icona tra le quattro disposte orizzontalmente. Apparirà l’istruzione “Run this cell to mount your Google Drive”. Fare clic sull’icona del triangolo contenuta in un cerchio grigio.</p></li>
+<li><p>A questo punto, fare clic sull’icona “drive” e successivamente su “MyDrive” per accedere alle cartelle e ai file salvati sul proprio Google Drive.</p></li>
+</ol>
+<p>È importante tenere presente che la versione gratuita del runtime di Google Colaboratory non salva le informazioni in modo permanente, il che significa che tutto il lavoro svolto verrà eliminato una volta terminata la sessione. Pertanto, è necessario reinstallare le librerie utilizzate in precedenza ogni volta che ci si connette a Colab. Al contrario, i Jupyter Notebook possono essere salvati nella propria cartella di Google Drive.</p>
+<p>Per salvare un Jupyter Notebook su Google Drive utilizzando Colab, è possibile seguire i seguenti passaggi:</p>
+<ol class="arabic simple">
+<li><p>Fare clic su <code class="docutils literal notranslate"><span class="pre">File</span></code> nella barra del menu di Colab.</p></li>
+<li><p>Selezionare <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">a</span> <span class="pre">copy</span> <span class="pre">in</span> <span class="pre">Drive</span></code>. Di default, Colab salverà il Notebook nella cartella <code class="docutils literal notranslate"><span class="pre">Colab</span> <span class="pre">Notebooks/.ipynb_checkpoints</span></code> con un nome simile a <code class="docutils literal notranslate"><span class="pre">Untitled7.ipynb</span></code>.</p></li>
+<li><p>Dopo aver salvato il Notebook, è consigliabile rinominarlo facendo clic con il pulsante destro del mouse sul file nella cartella di Google Drive e selezionando <code class="docutils literal notranslate"><span class="pre">Rename</span></code>. In questo modo sarà possibile assegnare un nome più significativo al Notebook.</p></li>
+<li><p>Per organizzare i file, è possibile trascinare il Notebook nella cartella desiderata all’interno di Google Drive.</p></li>
+</ol>
+<p>Seguendo questi passaggi, sarà possibile salvare e organizzare i Jupyter Notebook nella propria cartella di Google Drive, consentendo di accedervi facilmente e mantenerli in modo permanente anche dopo la sessione di Colab.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>È possibile accedere a un breve tutorial video su come utilizzare Colab e come leggere i dati da un file esterno in un Notebook di Jupyter in Colab. Il video tutorial può essere trovato seguendo il <a class="reference external" href="https://drive.google.com/file/d/1s3whYnq_rLXeLT4yKiOyEQjzk6d55Ct4/view?usp=share_link">link</a> fornito.</p>
+</div>
+</section>
+</section>
+<section id="installazione-sul-proprio-computer">
+<h2>Installazione sul proprio computer<a class="headerlink" href="#installazione-sul-proprio-computer" title="Permalink to this heading">#</a></h2>
+<p>Per il corso di Psicometria, avrete due modi per lavorare con i Jupyter notebook:</p>
+<ol class="arabic">
+<li><p><strong>Usare Google Colab</strong>: Colab consente di scrivere e eseguire codice Python direttamente nel vostro browser, senza dover installare nulla sul vostro computer. È molto semplice da usare, ma durante gli esami potreste avere problemi di connessione internet, specialmente se ci sono molti studenti collegati contemporaneamente.</p></li>
+<li><p><strong>Configurare il vostro computer</strong>: Questa è l’opzione che consiglio, soprattutto per gli esami. Vi spiego come fare passo dopo passo:</p>
+<p>a. <strong>Installare Python con Anaconda</strong>: Anaconda è un programma che include Python e molte librerie utili. È facile da installare e potete scaricarlo da <a class="reference external" href="https://www.anaconda.com/products/distribution">questo sito web</a>. Seguite le istruzioni sul sito per installarlo sul vostro computer.</p>
+<p>b. <strong>Scegliere un ambiente dove scrivere il codice (IDE)</strong>: Un IDE (Integrated Development Environment) è come un quaderno dove scrivete e eseguite il vostro codice. Un buon IDE gratuito è Visual Studio Code (VS Code), che potete scaricare da <a class="reference external" href="https://code.visualstudio.com">questo link</a>. Dopo averlo installato, dovrete aggiungere un componente per lavorare con Python. Per farlo, andate nella scheda “Extensions” (l’icona con quattro quadrati sovrapposti), cercate “Python” e installatelo. Se volete usare i notebook Jupyter in VS Code, vi verrà chiesto di installare la libreria <code class="docutils literal notranslate"><span class="pre">ipython</span></code>. Accettate questa richiesta per completare la configurazione.</p>
+</li>
+</ol>
+<p>Dopo aver seguito questi passi, sarete pronti per scrivere e eseguire codice Python sul vostro computer. Potrete usare VS Code per scrivere il codice, eseguirlo, trovare e correggere errori (debugging), e molto altro.</p>
+<p>Una cosa importante da ricordare è che, una volta installato Python con Anaconda, è necessario configurare un ambiente virtuale. Questo è uno spazio sul vostro computer dove potete installare e gestire le librerie di Python che useremo nel corso, come quelle per l’analisi statistica. Creare un ambiente virtuale è utile perché rende il lavoro più ordinato e previene problemi con le librerie. Le istruzioni su come farlo saranno fornite più in basso.</p>
+<section id="installazione-di-anaconda-per-principianti">
+<h3>Installazione di Anaconda per Principianti<a class="headerlink" href="#installazione-di-anaconda-per-principianti" title="Permalink to this heading">#</a></h3>
+<p>Anaconda è un programma che facilita l’uso di Python. L’installazione passo dopo passo può essere descritta nel modo seguente:</p>
+<ol class="arabic simple">
+<li><p><strong>Scaricare Anaconda</strong>:</p>
+<ul class="simple">
+<li><p>Andate sul sito di Anaconda: <a class="reference external" href="https://www.anaconda.com/">https://www.anaconda.com/</a>.</p></li>
+<li><p>Scegliete la versione per il vostro sistema operativo (Windows, macOS o Linux).</p></li>
+<li><p>Scaricate la versione più recente, che include l’ultima versione di Python.</p></li>
+</ul>
+</li>
+<li><p><strong>Installare Anaconda</strong>:</p>
+<ul class="simple">
+<li><p>Una volta scaricato, avviate il file di installazione.</p></li>
+<li><p>Seguite le istruzioni a schermo. È meglio lasciare le impostazioni come sono, a meno che non abbiate esigenze particolari.</p></li>
+</ul>
+</li>
+<li><p><strong>Aggiungere Anaconda al ‘Percorso’</strong>:</p>
+<ul class="simple">
+<li><p>Durante l’installazione, vi verrà chiesto se volete aggiungere Anaconda al ‘Percorso’ del vostro sistema. Questo è importante perché permette di usare Python da qualsiasi parte del vostro computer.</p></li>
+<li><p><em>Assicuratevi di selezionare questa opzione</em>.</p></li>
+</ul>
+</li>
+<li><p><strong>Verificare l’Installazione</strong>:</p>
+<ul class="simple">
+<li><p>Dopo l’installazione, potete controllare se tutto funziona aprendo il prompt dei comandi (su Windows) o il terminale (su macOS/Linux) e digitando <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>. Se vedete la versione di Python, significa che tutto è a posto.</p></li>
+</ul>
+</li>
+</ol>
+<p>Anaconda include anche Anaconda Navigator, una sorta di ‘punto di partenza’ facile da usare per gestire gli ambienti di sviluppo, installare librerie aggiuntive e avviare strumenti come Jupyter Notebook, che useremo per scrivere e eseguire codice Python.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Istruzioni specifiche per Windows:</p>
+<ol class="arabic simple">
+<li><p><strong>Scaricare Anaconda</strong>:</p>
+<ul class="simple">
+<li><p>Scaricate il “64-Bit Graphical Installer” per Windows dal sito di Anaconda.</p></li>
+</ul>
+</li>
+<li><p><strong>Installare Anaconda</strong>:</p>
+<ul class="simple">
+<li><p>Avviate il file scaricato e seguite le istruzioni.</p></li>
+<li><p>Scegliete l’opzione “Just Me” (solo per voi) durante l’installazione.</p></li>
+<li><p>Lasciate invariato il percorso di installazione.</p></li>
+</ul>
+</li>
+<li><p><strong>Aggiungere Anaconda al ‘Percorso’</strong>:</p>
+<ul class="simple">
+<li><p>Durante l’installazione, selezionate l’opzione per aggiungere Anaconda al PATH e registrarlo come installazione di Python di sistema.</p></li>
+</ul>
+</li>
+<li><p><strong>Verificare l’Installazione</strong>:</p>
+<ul class="simple">
+<li><p>Cercate “Anaconda Navigator” nel menu Start di Windows. Se si avvia, è tutto a posto.</p></li>
+<li><p>Aprire “Anaconda Prompt” dal menu Start e digitare <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code> per verificare che <code class="docutils literal notranslate"><span class="pre">conda</span></code> sia installato correttamente.</p></li>
+</ul>
+</li>
+</ol>
+<p>Seguite attentamente queste istruzioni per assicurarvi un’installazione senza problemi.</p>
+<p>Per maggiori dettagli, consultate il tutorial su come installare Anaconda su Windows: <a class="reference external" href="https://www.datacamp.com/tutorial/installing-anaconda-windows">Tutorial Installazione di Anaconda su Windows</a>. Questo tutorial vi guiderà passo dopo passo, con spiegazioni e immagini chiare.</p>
+</div>
+<p>Una volta installato Anaconda, potrete usare Anaconda Navigator per gestire i vostri progetti di Python, installare le librerie necessarie e avviare strumenti come Jupyter Notebook.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Quando parliamo di software e programmi per computer, è utile capire la differenza tra un’applicazione (spesso chiamata semplicemente “app”) e un installer. Questo vi aiuterà a navigare meglio nel mondo dell’informatica, specialmente quando iniziate a installare e usare nuovi programmi.</p>
+<p class="rubric">Cosa è un’Applicazione (App)</p>
+<p>Un’applicazione, o “app”, è un tipo di software che eseguite sul vostro computer o su un dispositivo mobile. Ha uno scopo specifico, come aiutarvi a navigare su internet, inviare messaggi agli amici, elaborare testi, o fare calcoli. Ad esempio, un browser web come Google Chrome è un’applicazione; lo stesso vale per un programma come Microsoft Word o il sistema Anaconda di cui abbiamo parlato.</p>
+<p class="rubric">Cosa è un Installer</p>
+<p>Un installer, invece, è un programma che installa un’applicazione sul vostro computer. Quando scaricate un’applicazione da internet, spesso scaricate in realtà l’installer di quell’applicazione. L’installer è come una guida che vi accompagna passo dopo passo nell’installare il software sul vostro computer. Fa cose come:</p>
+<ul class="simple">
+<li><p>Copiare i file dell’applicazione nella giusta cartella sul vostro computer.</p></li>
+<li><p>Creare scorciatoie per l’applicazione, come icone sul desktop o voci nel menu Start.</p></li>
+<li><p>Configurare le impostazioni iniziali necessarie perché l’applicazione funzioni correttamente.</p></li>
+</ul>
+<p class="rubric">Dopo l’Installazione</p>
+<p>Una volta che l’installer ha finito il suo lavoro e l’applicazione è pronta all’uso, potete solitamente eliminare l’installer. Questo perché l’installer serve solo per mettere in moto l’applicazione; una volta completata questa operazione, non ha più una funzione attiva.</p>
+<p class="rubric">Riassumendo</p>
+<p>In conclusione, l’applicazione è il programma che userete effettivamente per fare qualcosa, come navigare sul web o scrivere un documento. L’installer, d’altra parte, è uno strumento temporaneo utilizzato per mettere l’applicazione sul vostro computer. Capire questa differenza è un primo passo fondamentale nel mondo dell’informatica.</p>
+</div>
+</section>
+</section>
+<section id="l-ambiente-virtuale-in-python">
+<h2>L’Ambiente Virtuale in Python<a class="headerlink" href="#l-ambiente-virtuale-in-python" title="Permalink to this heading">#</a></h2>
+<p>Una volta installato Python, un passaggio cruciale è quello di configurare un “ambiente virtuale”.</p>
+<section id="cosa-e-un-ambiente-virtuale">
+<h3>Cosa è un Ambiente Virtuale?<a class="headerlink" href="#cosa-e-un-ambiente-virtuale" title="Permalink to this heading">#</a></h3>
+<p>Immaginate un ambiente virtuale come un’area di lavoro privata sul vostro computer dove potete installare e utilizzare le librerie Python (che sono come strumenti o componenti aggiuntivi per Python) senza influenzare il resto del computer. Questo ambiente è separato dal sistema principale, quindi ciò che fate all’interno non interferisce con altri programmi.</p>
+</section>
+<section id="perche-usare-un-ambiente-virtuale">
+<h3>Perché Usare un Ambiente Virtuale?<a class="headerlink" href="#perche-usare-un-ambiente-virtuale" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Riproducibilità del Codice</strong>: Se condividete il vostro codice con altre persone, l’ambiente virtuale aiuta a garantire che funzioni anche sui loro computer come funziona sul vostro.</p></li>
+<li><p><strong>Isolamento</strong>: Dato che Python si aggiorna spesso e le librerie cambiano, usare un ambiente virtuale significa che potete scegliere e mantenere le versioni specifiche di Python e delle librerie che funzionano meglio per il vostro progetto.</p></li>
+<li><p><strong>Organizzazione e Sicurezza</strong>: Mantiene il vostro computer ordinato e sicuro, poiché le modifiche fatte all’interno dell’ambiente virtuale non influenzano il resto del sistema.</p></li>
+</ol>
+</section>
+<section id="come-creare-un-ambiente-virtuale">
+<h3>Come Creare un Ambiente Virtuale<a class="headerlink" href="#come-creare-un-ambiente-virtuale" title="Permalink to this heading">#</a></h3>
+<p>Per creare un ambiente virtuale, di solito si utilizza uno strumento chiamato <code class="docutils literal notranslate"><span class="pre">conda</span></code>, che dovrebbe essere già installato se avete seguito le istruzioni per installare Anaconda.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Per imparare a creare un ambiente virtuale, potete guardare un tutorial video al seguente <a class="reference external" href="https://drive.google.com/file/d/1eGvX1gDPVHv41oB9pgcTsJ13DYGbgr_6/view?usp=share_link">link</a>. Questo video presume che abbiate già <code class="docutils literal notranslate"><span class="pre">conda</span></code> sul vostro computer e vi guiderà passo dopo passo nel processo. Ricordate, è importante che Anaconda sia installato correttamente per poter utilizzare <code class="docutils literal notranslate"><span class="pre">conda</span></code>.</p>
+</div>
+</section>
+<section id="gestione-dell-ambiente-virtuale-con-conda">
+<h3>Gestione dell’Ambiente Virtuale con Conda<a class="headerlink" href="#gestione-dell-ambiente-virtuale-con-conda" title="Permalink to this heading">#</a></h3>
+<p>Useremo <code class="docutils literal notranslate"><span class="pre">conda</span></code>, uno strumento incluso in Anaconda, per creare e gestire gli ambienti virtuali. Per seguire queste istruzioni, dovrete utilizzare il <em>terminale</em> su macOS/Linux o il <em>Prompt dei comandi</em> su Windows.</p>
+<section id="attenzione-importante">
+<h4>Attenzione Importante:<a class="headerlink" href="#attenzione-importante" title="Permalink to this heading">#</a></h4>
+<p>Prima di iniziare, è cruciale che <strong>non</strong> installiate pacchetti nell’ambiente <code class="docutils literal notranslate"><span class="pre">base</span></code> di Conda. È necessario creare un nuovo ambiente virtuale e attivarlo prima di installare qualsiasi cosa. Potete vedere in quale ambiente vi trovate osservando il nome all’inizio del prompt nel terminale.</p>
+</section>
+</section>
+<section id="passaggi-per-gestire-gli-ambienti-virtuali">
+<h3>Passaggi per Gestire gli Ambienti Virtuali<a class="headerlink" href="#passaggi-per-gestire-gli-ambienti-virtuali" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Uscire dall’Ambiente Virtuale Corrente</strong>:
+Se siete già in un ambiente virtuale, uscitene digitando:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>deactivate
+</pre></div>
+</div>
+<p>Se ricevete un messaggio che dice che non c’è nessun ambiente da disattivare, significa che siete già pronti per il passaggio successivo.</p>
+</li>
+<li><p><strong>Creare un Nuovo Ambiente Virtuale</strong>:
+Creiamo un ambiente chiamato <code class="docutils literal notranslate"><span class="pre">pymc_env</span></code>. Eseguite:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-n<span class="w"> </span>pymc_env<span class="w"> </span><span class="s2">&quot;pymc==5.10.0&quot;</span>
+</pre></div>
+</div>
+<p>Quando vi viene chiesto di procedere, digitate <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+</li>
+<li><p><strong>Attivare il Nuovo Ambiente</strong>:
+Ora attivate l’ambiente appena creato con:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>pymc_env
+</pre></div>
+</div>
+</li>
+<li><p><strong>Installare le Librerie Necessarie</strong>:
+Nel nuovo ambiente, installate le seguenti librerie:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>jax<span class="w"> </span>numpyro<span class="w"> </span>bambi<span class="w"> </span>seaborn<span class="w"> </span>pingouin<span class="w"> </span>watermark<span class="w"> </span>-y<span class="w"> </span>
+</pre></div>
+</div>
+<p>Per gli utenti Windows, invece di <code class="docutils literal notranslate"><span class="pre">numpyro</span></code>, installate <code class="docutils literal notranslate"><span class="pre">nutpie</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>nutpie
+</pre></div>
+</div>
+</li>
+<li><p><strong>Aggiornare PyMC e Altre Librerie</strong>:</p>
+<p>Per aggiornare PyMC e le altre librerie, utilizzate:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>update<span class="w"> </span>--all
+</pre></div>
+</div>
+</li>
+<li><p><strong>Comandi Utili per Gestire Ambienti e Librerie</strong>:</p></li>
+</ol>
+<ul>
+<li><p>Per vedere l’indirizzo dell’ambiente virtuale:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>info<span class="w"> </span>-e
+</pre></div>
+</div>
+</li>
+<li><p>Per rimuovere un ambiente virtuale (ad esempio <code class="docutils literal notranslate"><span class="pre">my_env</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>remove<span class="w"> </span>-n<span class="w"> </span>my_env
+</pre></div>
+</div>
+</li>
+<li><p>Per rimuovere una libreria dall’ambiente (ad esempio <code class="docutils literal notranslate"><span class="pre">package_name</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>remove<span class="w"> </span>package_name
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="lavorare-con-vscode">
+<h3>Lavorare con VSCode<a class="headerlink" href="#lavorare-con-vscode" title="Permalink to this heading">#</a></h3>
+<p>Una volta arrivati a questo punto, siete pronti per iniziare a lavorare su VSCode. Quando aprite un file con estensione <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>, <strong>ricordate</strong> di selezionare l’ambiente virtuale che desiderate utilizzare. Potete farlo tramite la “Command Palette” (⇧⌘P), utilizzando l’istruzione <code class="docutils literal notranslate"><span class="pre">Python:</span> <span class="pre">Select</span> <span class="pre">Interpreter</span></code>. In alternativa, potete fare clic sull’icona <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">kernel</span></code> di VSCode, che si trova nell’angolo in alto a destra, sotto l’icona degli ingranaggi (⚙️).</p>
+<a class="reference internal image-reference" href="../_images/select_kernel.png"><img alt="../_images/select_kernel.png" class="align-center" src="../_images/select_kernel.png" style="height: 300px;" /></a>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapter_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chapter_7/introduction_appendix.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Appendici</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../chapter_7/a01_math_symbols.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Simbologia di base</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandi-speciali">Comandi speciali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel">Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-magic">Command magic</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-drive">Google Drive</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collegare-google-drive-a-colab">Collegare Google Drive a Colab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installazione-sul-proprio-computer">Installazione sul proprio computer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installazione-di-anaconda-per-principianti">Installazione di Anaconda per Principianti</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-ambiente-virtuale-in-python">L’Ambiente Virtuale in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosa-e-un-ambiente-virtuale">Cosa è un Ambiente Virtuale?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perche-usare-un-ambiente-virtuale">Perché Usare un Ambiente Virtuale?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#come-creare-un-ambiente-virtuale">Come Creare un Ambiente Virtuale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gestione-dell-ambiente-virtuale-con-conda">Gestione dell’Ambiente Virtuale con Conda</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#attenzione-importante">Attenzione Importante:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#passaggi-per-gestire-gli-ambienti-virtuali">Passaggi per Gestire gli Ambienti Virtuali</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lavorare-con-vscode">Lavorare con VSCode</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

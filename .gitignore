@@ -3,12 +3,6 @@ Digraph.gv
 .DS_Store
 */.DS_Store
 
-# The _build directory
-_build/*
-
-# The images directory
-# images/*
-
 .vscode/*
 
 scratch/*

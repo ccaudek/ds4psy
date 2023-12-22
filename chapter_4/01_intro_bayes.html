@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -42,9 +42,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -155,6 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -465,6 +466,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -474,6 +476,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -510,8 +513,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dalla-generazione-dei-dati-alla-modellizzazione-bayesiana">Dalla Generazione dei Dati alla Modellizzazione Bayesiana</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riallocazione-della-credibilita-e-aggiornamento-sequenziale-delle-informazioni">Riallocazione della Credibilità e Aggiornamento Sequenziale delle Informazioni</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-modellizzazione-statistica-un-ponte-tra-teoria-e-dati">La Modellizzazione Statistica: Un Ponte tra Teoria e Dati</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementi-distintivi-dei-modelli-bayesiani">Elementi distintivi dei modelli bayesiani</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fasi-dell-elaborazione-di-un-modello-bayesiano">Fasi dell’elaborazione di un modello bayesiano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caratteristiche-fondamentali-dei-modelli-bayesiani">Caratteristiche Fondamentali dei Modelli Bayesiani</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-processo-di-sviluppo-di-un-modello-bayesiano">Il Processo di Sviluppo di un Modello Bayesiano</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riesame-del-teorema-di-bayes">Riesame del Teorema di Bayes</a></li>
@@ -564,7 +567,12 @@ document.write(`
 </div>
 </details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">8927</span>
@@ -573,71 +581,72 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="esplorazione-dei-fondamenti-dei-metodi-bayesiani-in-psicologia">
 <h2>Esplorazione dei Fondamenti dei Metodi Bayesiani in Psicologia<a class="headerlink" href="#esplorazione-dei-fondamenti-dei-metodi-bayesiani-in-psicologia" title="Permalink to this heading">#</a></h2>
-<p>Nel corso degli ultimi decenni, la psicologia ha visto un crescente utilizzo dei metodi bayesiani, un cambiamento significativo che ha portato a una più ampia integrazione dei modelli bayesiani nell’analisi e nell’interpretazione dei dati nel campo. Questa evoluzione è stata sostenuta da una vasta gamma di risorse formative, tra cui pubblicazioni e libri di testo specificamente rivolti agli psicologi (<span id="id1">Brooks [<a class="reference internal" href="../references/bibliography.html#id26" title="Stephen P Brooks. Bayesian computation: a statistical revolution. Philosophical Transactions of the Royal Society of London. Series A: Mathematical, Physical and Engineering Sciences, 361(1813):2681–2697, 2003.">Bro03</a>]</span>; <span id="id2">Van De Schoot <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id25" title="Rens Van De Schoot, Sonja D Winter, Oisín Ryan, Mariëlle Zondervan-Zwijnenburg, and Sarah Depaoli. A systematic review of bayesian articles in psychology: the last 25 years. Psychological Methods, 22(2):217–239, 2017.">VDSWR+17</a>]</span>; <span id="id3">Kruschke [<a class="reference internal" href="../references/bibliography.html#id133" title="John Kruschke. Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan. Academic Press, 2014.">Kru14</a>]</span>; <span id="id4">McElreath [<a class="reference internal" href="../references/bibliography.html#id106" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span>; <span id="id5">Johnson <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id85" title="Alicia A. Johnson, Miles Ott, and Mine Dogucu. Bayes Rules! An Introduction to Bayesian Modeling with R. CRC Press, 2022.">JOD22</a>]</span>).</p>
+<p>Spesso ci affidiamo alle probabilità in modo informale per esprimere le nostre conoscenze e convinzioni riguardo a quantità sconosciute. Tuttavia, è possibile formalizzare l’uso delle probabilità per rappresentare queste informazioni: dal punto di vista matematico, si può dimostrare che le probabilità possono rappresentare numericamente un insieme di convinzioni razionali. Inoltre, esiste una connessione tra probabilità e informazione, e la regola di Bayes fornisce un metodo logico per aggiornare le nostre convinzioni in base a nuove informazioni. Questo processo di apprendimento induttivo attraverso la regola di Bayes è noto come <em>inferenza bayesiana</em>.</p>
+<p>Negli ultimi anni, il campo della psicologia ha assistito a un crescente interesse e impiego dei metodi bayesiani. Questo cambiamento paradigmatico ha facilitato l’integrazione più ampia dei modelli bayesiani nell’analisi e interpretazione dei dati psicologici. La transizione è stata supportata da una vasta gamma di risorse educative, tra cui pubblicazioni e manuali specificatamente orientati agli psicologi, , come dimostrato dalle opere di <span id="id1">Brooks [<a class="reference internal" href="../references/bibliography.html#id27" title="Stephen P Brooks. Bayesian computation: a statistical revolution. Philosophical Transactions of the Royal Society of London. Series A: Mathematical, Physical and Engineering Sciences, 361(1813):2681–2697, 2003.">Bro03</a>]</span>, <span id="id2">Van De Schoot <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id26" title="Rens Van De Schoot, Sonja D Winter, Oisín Ryan, Mariëlle Zondervan-Zwijnenburg, and Sarah Depaoli. A systematic review of bayesian articles in psychology: the last 25 years. Psychological Methods, 22(2):217–239, 2017.">VDSWR+17</a>]</span>, <span id="id3">Kruschke [<a class="reference internal" href="../references/bibliography.html#id134" title="John Kruschke. Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan. Academic Press, 2014.">Kru14</a>]</span>, <span id="id4">McElreath [<a class="reference internal" href="../references/bibliography.html#id107" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span>, <span id="id5">Johnson <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id86" title="Alicia A. Johnson, Miles Ott, and Mine Dogucu. Bayes Rules! An Introduction to Bayesian Modeling with R. CRC Press, 2022.">JOD22</a>]</span>), e altri autori rilevanti nel settore.</p>
 <section id="il-ciclo-continuo-dell-apprendimento-bayesiano">
 <h3>Il Ciclo Continuo dell’Apprendimento Bayesiano<a class="headerlink" href="#il-ciclo-continuo-dell-apprendimento-bayesiano" title="Permalink to this heading">#</a></h3>
-<p>Il framework bayesiano può essere visto come un modello matematico del processo di apprendimento continuo, un fenomeno intrinseco a tutti gli esseri viventi. Questo ciclo iterativo di aggiornamento delle conoscenze si basa sul teorema di Bayes. In questo contesto, ogni nuovo set di dati osservati serve a raffinare la nostra comprensione o le nostre ipotesi su un determinato fenomeno. La distribuzione a posteriori ottenuta da un ciclo di apprendimento diventa la distribuzione a priori per il ciclo successivo, consentendo un aggiornamento sequenziale e indefinito delle informazioni, come enfatizzato da <span id="id6">[<a class="reference internal" href="../references/bibliography.html#id15" title="Eric-Jan Wagenmakers, Gilles Dutilh, and Alexandra Sarafoglou. The creativity-verification cycle in psychological science: new methods to combat old idols. Perspectives on Psychological Science, 13(4):418–427, 2018.">WDS18</a>]</span>.</p>
+<p>Il framework bayesiano può essere visto come un modello matematico del processo di apprendimento continuo, un fenomeno intrinseco a tutti gli esseri viventi. Questo ciclo iterativo di aggiornamento delle conoscenze si basa sul teorema di Bayes. In questo contesto, ogni nuovo set di dati osservati serve a raffinare la nostra comprensione o le nostre ipotesi su un determinato fenomeno. La distribuzione a posteriori ottenuta da un ciclo di apprendimento diventa la distribuzione a priori per il ciclo successivo, consentendo un aggiornamento sequenziale e indefinito delle informazioni, come enfatizzato da <span id="id6">[<a class="reference internal" href="../references/bibliography.html#id16" title="Eric-Jan Wagenmakers, Gilles Dutilh, and Alexandra Sarafoglou. The creativity-verification cycle in psychological science: new methods to combat old idols. Perspectives on Psychological Science, 13(4):418–427, 2018.">WDS18</a>]</span>.</p>
 </section>
 <section id="dalla-generazione-dei-dati-alla-modellizzazione-bayesiana">
 <h3>Dalla Generazione dei Dati alla Modellizzazione Bayesiana<a class="headerlink" href="#dalla-generazione-dei-dati-alla-modellizzazione-bayesiana" title="Permalink to this heading">#</a></h3>
-<p>Un elemento cruciale del framework bayesiano è la sua capacità di svelare i processi generativi che danno origine ai dati osservati, noti come Data-Generating Processes (DGP). In altre parole, l’inferenza statistica bayesiana mira a identificare i meccanismi non direttamente osservabili che sono responsabili dei dati raccolti. Questi DGP possono fungere da modelli statistici che incarnano specifiche ipotesi sul mondo reale. Per esempio, se l’ipotesi è che “le donne siano migliori degli uomini a scacchi”, un modello statistico pertinente potrebbe prevedere che la media dei punteggi Elo delle donne sia superiore a quella degli uomini, una volta controllate le differenze di base nella frequenza di partecipazione. È fondamentale riconoscere che un singolo modello statistico può incorporare diversi DGP. Inoltre, che si parli di “ipotesi” o “modelli” è in gran parte una questione di terminologia; ciò che è realmente importante è che il framework bayesiano regola la modifica della plausibilità di queste ipotesi in risposta ai dati disponibili.</p>
+<p>Un aspetto fondamentale dell’approccio bayesiano è la sua capacità di svelare i processi generativi che stanno alla base dei dati osservat, noti come Data-Generating Processes (DGP). In sostanza, l’inferenza statistica bayesiana si propone di identificare i meccanismi sottostanti, non direttamente osservabili, che generano i dati raccolti. Questi processi possono essere rappresentati attraverso modelli statistici che incarnano specifiche ipotesi sulla realtà. Per esempio, se l’ipotesi è che “le donne siano migliori degli uomini a scacchi”, un modello statistico pertinente potrebbe prevedere che la media dei punteggi Elo delle donne sia superiore a quella degli uomini, una volta controllate le differenze di base nella frequenza di partecipazione.</p>
 </section>
 <section id="riallocazione-della-credibilita-e-aggiornamento-sequenziale-delle-informazioni">
 <h3>Riallocazione della Credibilità e Aggiornamento Sequenziale delle Informazioni<a class="headerlink" href="#riallocazione-della-credibilita-e-aggiornamento-sequenziale-delle-informazioni" title="Permalink to this heading">#</a></h3>
-<p>Un esempio intuitivo spesso citato per illustrare i principi della riallocazione della credibilità e dell’aggiornamento sequenziale delle informazioni nel contesto bayesiano è il metodo investigativo di Sherlock Holmes. <span id="id7">Kruschke [<a class="reference internal" href="../references/bibliography.html#id133" title="John Kruschke. Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan. Academic Press, 2014.">Kru14</a>]</span> utilizza l’iconico detective per mostrare come, in un’indagine su un crimine con quattro possibili cause (A, B, C e D), l’acquisizione di nuove prove possa portare all’esclusione di una di esse, ridistribuendo così la probabilità tra le rimanenti. In pratica, se Holmes raccoglie dati sufficienti per escludere la causa A, la probabilità associata a essa viene annullata e riallocata tra le cause B, C e D, rendendole tutte egualmente probabili come cause reali del crimine.</p>
-<p>Tuttavia, è importante notare che nell’ambito della ricerca psicologica, dove i dati sono spesso imprecisi e le conclusioni di natura probabilistica, l’esclusione totale di un’ipotesi è rara. Invece, la sua credibilità potrebbe essere semplicemente ridotta, aumentando così la credibilità delle alternative.</p>
-<p>Dal punto di vista statistico, le ipotesi in esame sono rappresentate dai valori dei parametri nei modelli matematici. All’interno del framework bayesiano, è possibile esplorare un’ampia gamma di scenari plausibili, tra i quali la credibilità viene continuamente riallocata. <span id="id8">Kruschke [<a class="reference internal" href="../references/bibliography.html#id133" title="John Kruschke. Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan. Academic Press, 2014.">Kru14</a>]</span> enfatizza l’importanza di questo aggiornamento sequenziale delle informazioni, sottolineando la massima di Dennis Lindley secondo cui “il posterior di oggi diventa il prior di domani”.</p>
+<p>Un esempio intuitivo per illustrare la riallocazione della credibilità e l’aggiornamento sequenziale delle informazioni nel contesto bayesiano è l’approccio investigativo di Sherlock Holmes. <span id="id7">Kruschke [<a class="reference internal" href="../references/bibliography.html#id134" title="John Kruschke. Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan. Academic Press, 2014.">Kru14</a>]</span> utilizza l’iconico detective per mostrare come, in un’indagine su un crimine con quattro possibili cause (A, B, C e D), l’acquisizione di nuove prove possa portare all’esclusione di una di esse, ridistribuendo così la probabilità tra le rimanenti. In pratica, se Holmes raccoglie dati sufficienti per escludere la causa A, la probabilità associata a essa viene annullata e riallocata tra le cause B, C e D, rendendole tutte egualmente probabili come cause reali del crimine. Tuttavia, nella ricerca psicologica, dove i dati sono spesso meno definitivi, raramente un’ipotesi viene completamente esclusa; piuttosto, la sua credibilità può essere ridimensionata, aumentando la plausibilità delle alternative.</p>
+<p>Nell’ambito statistico, le ipotesi in esame sono rappresentate da valori parametrici nei modelli matematici. Il framework bayesiano permette di esplorare un ampio spettro di scenari plausibili, tra i quali la credibilità viene costantemente riallocata. Questo aggiornamento continuo delle informazioni, come enfatizzato da <span id="id8">Kruschke [<a class="reference internal" href="../references/bibliography.html#id134" title="John Kruschke. Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan. Academic Press, 2014.">Kru14</a>]</span>, sottolinea il principio che “il posterior di oggi diventa il prior di domani” (Dennis Lindley).</p>
 </section>
 <section id="la-modellizzazione-statistica-un-ponte-tra-teoria-e-dati">
 <h3>La Modellizzazione Statistica: Un Ponte tra Teoria e Dati<a class="headerlink" href="#la-modellizzazione-statistica-un-ponte-tra-teoria-e-dati" title="Permalink to this heading">#</a></h3>
-<p>Si potrebbe dire che la modellizzazione statistica bayesiana funge da ponte tra la teoria psicologica e i dati empirici. La modellizzazione statistica serve come strumento essenziale per decomporre la complessità dei fenomeni in questione in elementi più gestibili. Questa scomposizione facilita sia la comprensione che la simulazione del comportamento o dei processi studiati. Il successo di questa attività richiede un equilibrio tra competenza disciplinare e acume statistico, con l’obiettivo di tradurre teorie e dati empirici in modelli computazionali.</p>
-<p>Questa pratica di modellizzazione si avvale di due componenti fondamentali:</p>
+<p>La modellizzazione statistica bayesiana può essere vista come un collegamento cruciale tra la teoria psicologica e i dati empirici. Essa agisce come uno strumento fondamentale per scomporre la complessità dei fenomeni psicologici in elementi più semplici e maneggevoli. Questo processo di scomposizione non solo facilita una migliore comprensione, ma permette anche la simulazione dei comportamenti o processi in esame. Per realizzare con successo questa modellizzazione, è necessario un’attenta sinergia tra la conoscenza specifica del settore e le competenze statistiche, al fine di convertire efficacemente teorie e dati empirici in modelli computazionali funzionali.</p>
+<p>Nel corso di questo e dei capitoli successivi, esploreremo come la modellizzazione statistica si avvalga di due elementi chiave:</p>
 <ul class="simple">
-<li><p>Variabili casuali: Utilizzate per rappresentare le quantità sconosciute e per modellare le relazioni tra le variabili che compongono il fenomeno di interesse.</p></li>
-<li><p>Distribuzioni statistiche: Queste fungono da meccanismi matematici per organizzare e quantificare l’incertezza relativa ai parametri del modello, fornendo così una base solida per l’inferenza.</p></li>
+<li><p><strong>Variabili Casuali</strong>: Queste sono impiegate per rappresentare le quantità incognite e per modellare le relazioni tra le diverse variabili che costituiscono il fenomeno di interesse.</p></li>
+<li><p><strong>Distribuzioni Statistiche</strong>: Servono come strumenti matematici per strutturare e quantificare l’incertezza associata ai parametri del modello, fornendo così una base solida per l’inferenza.</p></li>
 </ul>
 </section>
-<section id="elementi-distintivi-dei-modelli-bayesiani">
-<h3>Elementi distintivi dei modelli bayesiani<a class="headerlink" href="#elementi-distintivi-dei-modelli-bayesiani" title="Permalink to this heading">#</a></h3>
-<p>Nello specifico, la modellizzazione statistica bayesiana è caratterizzata da due particolarità:</p>
+<section id="caratteristiche-fondamentali-dei-modelli-bayesiani">
+<h3>Caratteristiche Fondamentali dei Modelli Bayesiani<a class="headerlink" href="#caratteristiche-fondamentali-dei-modelli-bayesiani" title="Permalink to this heading">#</a></h3>
+<p>La modellizzazione statistica bayesiana si distingue per due aspetti cruciali:</p>
 <ul class="simple">
-<li><p><strong>Distribuzioni a priori</strong>: attraverso le quali si esprimono le credenze iniziali sulle quantità sconosciute, definendo in questo modo i parametri del modello.</p></li>
-<li><p><strong>Aggiornamento bayesiano</strong>: un processo durante il quale il teorema di Bayes viene utilizzato per modificare le distribuzioni a priori in base ai dati osservati, contribuendo a ridurre l’incertezza sui parametri del modello.</p></li>
+<li><p><strong>Distribuzioni Priori</strong>: Queste rappresentano le credenze iniziali riguardanti le quantità non note e sono utilizzate per definire i parametri del modello. Le distribuzioni priori riflettono le informazioni o le convinzioni preesistenti prima dell’analisi dei dati.</p></li>
+<li><p><strong>Aggiornamento Bayesiano</strong>: Questo è il processo attraverso cui le distribuzioni priori vengono aggiornate utilizzando il teorema di Bayes in risposta ai dati osservati. L’aggiornamento bayesiano permette di affinare e ridurre l’incertezza sui parametri del modello.</p></li>
 </ul>
 </section>
-<section id="fasi-dell-elaborazione-di-un-modello-bayesiano">
-<h3>Fasi dell’elaborazione di un modello bayesiano<a class="headerlink" href="#fasi-dell-elaborazione-di-un-modello-bayesiano" title="Permalink to this heading">#</a></h3>
-<p>La creazione di un modello bayesiano si sviluppa attraverso tre fasi essenziali:</p>
+<section id="il-processo-di-sviluppo-di-un-modello-bayesiano">
+<h3>Il Processo di Sviluppo di un Modello Bayesiano<a class="headerlink" href="#il-processo-di-sviluppo-di-un-modello-bayesiano" title="Permalink to this heading">#</a></h3>
+<p>La costruzione di un modello bayesiano si articola in tre fasi principali:</p>
 <ol class="arabic simple">
-<li><p><strong>Formulazione del modello</strong>: in questa fase, si progetta il modello a partire da informazioni preliminari e ipotesi sul processo generativo dei dati.</p></li>
-<li><p><strong>Inferenza bayesiana</strong>: durante questa fase, si applica il teorema di Bayes per aggiornare le credenze a priori basandosi sui dati osservati, giungendo a una distribuzione a posteriori.</p></li>
-<li><p><strong>Valutazione e confronto dei modelli</strong>: qui, si valuta la qualità del modello, verificandone la coerenza attraverso vari criteri e, se necessario, confrontandolo con altri modelli per identificare il più adatto.</p></li>
+<li><p><strong>Progettazione del Modello</strong>: In questa fase iniziale, il modello viene progettato sulla base delle conoscenze preliminari e delle ipotesi relative al meccanismo generativo dei dati.</p></li>
+<li><p><strong>Esecuzione dell’Inferenza Bayesiana</strong>: In questo stadio, si applica il teorema di Bayes per rivedere e aggiornare le credenze priori alla luce dei dati osservati, portando alla formulazione di una distribuzione a posteriori.</p></li>
+<li><p><strong>Analisi e Confronto dei Modelli</strong>: In questa fase finale, si valuta l’adeguatezza del modello, esaminando la sua coerenza e affidabilità attraverso diversi criteri. Se necessario, si confronta il modello con altre alternative per determinare quale sia il più appropriato.</p></li>
 </ol>
-<p>Nel proseguimento di questo capitolo, esploreremo in profondità ciascuna delle fasi delineate sopra, delineando il percorso standard nel flusso di lavoro bayesiano. Per ulteriori dettagli, si invita a consultare <span id="id9">Baribault and Collins [<a class="reference internal" href="../references/bibliography.html#id29" title="Beth Baribault and Anne GE Collins. Troubleshooting bayesian cognitive models. Psychological Methods, 2023.">BC23</a>]</span>.</p>
+<p>Nei successivi capitoli, approfondiremo ciascuna di queste fasi, delineando il processo standard adottato nel flusso di lavoro bayesiano <span id="id9">[<a class="reference internal" href="../references/bibliography.html#id30" title="Beth Baribault and Anne GE Collins. Troubleshooting bayesian cognitive models. Psychological Methods, 2023.">BC23</a>]</span>.</p>
 </section>
 </section>
 <section id="riesame-del-teorema-di-bayes">
 <h2>Riesame del Teorema di Bayes<a class="headerlink" href="#riesame-del-teorema-di-bayes" title="Permalink to this heading">#</a></h2>
-<p>Per cominciare, denotiamo con <span class="math notranslate nohighlight">\( Y \)</span> una variabile casuale che assume un valore realizzato <span class="math notranslate nohighlight">\( y \)</span>. Ad esempio, il punteggio di uno studente in un esame di Psicometria potrebbe essere considerato una variabile casuale <span class="math notranslate nohighlight">\( Y \)</span> che assume un ampio insieme di valori possibili. Una volta che lo studente riceve un voto nell’esame di Psicometria, la variabile casuale <span class="math notranslate nohighlight">\( Y \)</span> è ora realizzata come <span class="math notranslate nohighlight">\( y \)</span>. Poiché <span class="math notranslate nohighlight">\( Y \)</span> è una variabile casuale non osservata, dobbiamo specificare un modello di probabilità per spiegare come abbiamo ottenuto i valori effettivi dei dati <span class="math notranslate nohighlight">\( y \)</span>. Ci riferiamo a questo modello come il processo generatore di dati o DGP.</p>
+<p>Per cominciare, denotiamo con <span class="math notranslate nohighlight">\( Y \)</span> una variabile casuale che assume un valore realizzato <span class="math notranslate nohighlight">\( y \)</span>. Ad esempio, il punteggio di uno studente in un esame di Psicometria potrebbe essere considerato una variabile casuale <span class="math notranslate nohighlight">\( Y \)</span> che assume un ampio insieme di valori possibili. Una volta che lo studente riceve un voto nell’esame di Psicometria, la variabile casuale <span class="math notranslate nohighlight">\( Y \)</span> è ora realizzata come <span class="math notranslate nohighlight">\( y \)</span>. Poiché <span class="math notranslate nohighlight">\( Y \)</span> è una variabile casuale non osservata, dobbiamo specificare un modello di probabilità per spiegare come abbiamo ottenuto i valori effettivi dei dati <span class="math notranslate nohighlight">\( y \)</span>. Ci riferiamo a questo modello come il processo generatore di dati (o <em>Data Generating Process</em>, DGP).</p>
 <p>Successivamente, denotiamo con <span class="math notranslate nohighlight">\( \theta \)</span> un parametro che riteniamo caratterizzi il modello di probabilità di interesse. Il parametro <span class="math notranslate nohighlight">\( \theta \)</span> può essere uno scalare, come la media o la varianza di una distribuzione, o può essere un vettore, come un insieme di coefficienti di regressione nell’analisi di regressione. Per evitare troppa confusione notazionale, per ora useremo <span class="math notranslate nohighlight">\( \theta \)</span> per rappresentare sia parametri scalari che vettoriali dove la differenza sarà rivelata dal contesto.</p>
 <p>Nell’inferenza statistica, l’obiettivo è ottenere stime dei parametri sconosciuti dati i dati. La differenza chiave tra l’inferenza statistica bayesiana e l’inferenza statistica frequentista riguarda la natura dei parametri sconosciuti <span class="math notranslate nohighlight">\( \theta \)</span>. Nella tradizione frequentista, si assume che <span class="math notranslate nohighlight">\( \theta \)</span> sia sconosciuto, ma abbia un valore fisso che desideriamo stimare. Nell’inferenza statistica bayesiana, <span class="math notranslate nohighlight">\( \theta \)</span> è considerato anch’esso sconosciuto, ma invece di essere fisso, si suppone, come <span class="math notranslate nohighlight">\( Y \)</span>, di essere una variabile casuale che possiede una distribuzione di probabilità a priori che riflette la nostra incertezza sul vero valore di <span class="math notranslate nohighlight">\( \theta \)</span> prima di aver visto i dati. Poiché sia i dati osservati <span class="math notranslate nohighlight">\( y \)</span> che i parametri <span class="math notranslate nohighlight">\( \theta \)</span> sono considerati variabili casuali, il calcolo delle probabilità ci consente di modellare la probabilità congiunta dei parametri e dei dati come una funzione della distribuzione condizionale dei dati dati i parametri, e la distribuzione a priori dei parametri. Più formalmente,</p>
 <div class="math notranslate nohighlight" id="equation-eq-prob-congiunta-bayes">
-<span class="eqno">(57)<a class="headerlink" href="#equation-eq-prob-congiunta-bayes" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(56)<a class="headerlink" href="#equation-eq-prob-congiunta-bayes" title="Permalink to this equation">#</a></span>\[ 
 \begin{equation}
 p(\theta, y) = p(y \mid \theta)p(\theta), 
 \end{equation}
 \]</div>
 <p>dove <span class="math notranslate nohighlight">\( p(\theta, y) \)</span> è la distribuzione congiunta dei parametri e dei dati. Usando il teorema di Bayes dell’Eq. <a class="reference internal" href="../chapter_3/03_bayes_theorem.html#equation-eq-bayes-cont">(16)</a>, otteniamo il seguente:</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-revisited">
-<span class="eqno">(58)<a class="headerlink" href="#equation-eq-bayes-revisited" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(57)<a class="headerlink" href="#equation-eq-bayes-revisited" title="Permalink to this equation">#</a></span>\[ 
 \begin{equation}
 p(\theta \mid y) = \frac{p(\theta, y)}{p(y)} = \frac{p(y \mid \theta)p(\theta)}{p(y)},
 \end{equation}
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\( p(\theta \mid y) \)</span> rappresenta la distribuzione a posteriori dei parametri <span class="math notranslate nohighlight">\( \theta \)</span> dati i dati osservati <span class="math notranslate nohighlight">\( y \)</span>. Quindi, dall’Eq. <a class="reference internal" href="#equation-eq-bayes-revisited">(58)</a>, la distribuzione a posteriori di <span class="math notranslate nohighlight">\( \theta \)</span> dato <span class="math notranslate nohighlight">\( y \)</span> è uguale alla distribuzione dei dati <span class="math notranslate nohighlight">\( p(y \mid \theta) \)</span> moltiplicata per la distribuzione a priori dei parametri <span class="math notranslate nohighlight">\( p(\theta) \)</span> normalizzata per <span class="math notranslate nohighlight">\( p(y) \)</span> in modo che la distribuzione a posteriori  integri a 1. Per variabili discrete,</p>
+<p>dove <span class="math notranslate nohighlight">\( p(\theta \mid y) \)</span> rappresenta la distribuzione a posteriori dei parametri <span class="math notranslate nohighlight">\( \theta \)</span> dati i dati osservati <span class="math notranslate nohighlight">\( y \)</span>. Quindi, dall’Eq. <a class="reference internal" href="#equation-eq-bayes-revisited">(57)</a>, la distribuzione a posteriori di <span class="math notranslate nohighlight">\( \theta \)</span> dato <span class="math notranslate nohighlight">\( y \)</span> è uguale alla distribuzione dei dati <span class="math notranslate nohighlight">\( p(y \mid \theta) \)</span> moltiplicata per la distribuzione a priori dei parametri <span class="math notranslate nohighlight">\( p(\theta) \)</span> normalizzata per <span class="math notranslate nohighlight">\( p(y) \)</span> in modo che la distribuzione a posteriori  integri a 1. Per variabili discrete,</p>
 <div class="math notranslate nohighlight">
 \[ 
 p(y) = \sum_\theta p(y \mid \theta)p(\theta)  
@@ -647,22 +656,25 @@ p(y) = \sum_\theta p(y \mid \theta)p(\theta)
 \[ 
 p(y) = \int p(y \mid \theta)p(\theta)d\theta.
 \]</div>
-<p>Come osservazione a margine, per modelli complessi con molti parametri, l’Eq. <a class="reference internal" href="#equation-eq-bayes-revisited">(58)</a> sarà molto difficile da valutare, ed è per questa ragione che abbiamo bisogno dei metodi computazionali che verranno discussi in seguito.</p>
-<p>Il denominatore dell’Eq. <a class="reference internal" href="#equation-eq-bayes-revisited">(58)</a> non coinvolge i parametri del modello, quindi possiamo omettere il termine <span class="math notranslate nohighlight">\(p(y)\)</span> e ottenere la distribuzione a posteriori non normalizzata:</p>
+<p>Come osservazione a margine, per modelli complessi con molti parametri, l’Eq. <a class="reference internal" href="#equation-eq-bayes-revisited">(57)</a> sarà molto difficile da valutare, ed è per questa ragione che abbiamo bisogno dei metodi computazionali che verranno discussi in seguito.</p>
+<p>Il denominatore dell’Eq. <a class="reference internal" href="#equation-eq-bayes-revisited">(57)</a> non coinvolge i parametri del modello, quindi possiamo omettere il termine <span class="math notranslate nohighlight">\(p(y)\)</span> e ottenere la distribuzione a posteriori non normalizzata:</p>
 <div class="math notranslate nohighlight" id="equation-eq-not-normalized-posterior">
-<span class="eqno">(59)<a class="headerlink" href="#equation-eq-not-normalized-posterior" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(58)<a class="headerlink" href="#equation-eq-not-normalized-posterior" title="Permalink to this equation">#</a></span>\[ 
 \begin{equation}
 p(\theta \mid y) \propto p(y \mid \theta)p(\theta).
 \end{equation}
 \]</div>
-<p>Consideriamo la densità dei dati <span class="math notranslate nohighlight">\( p(y \mid \theta) \)</span> sul lato destro dell’Eq. <a class="reference internal" href="#equation-eq-not-normalized-posterior">(59)</a>. Quando è espresso in termini dei parametri sconosciuti <span class="math notranslate nohighlight">\( \theta \)</span> per valori fissi di <span class="math notranslate nohighlight">\( y \)</span>, questo termine è la verosimiglianza <span class="math notranslate nohighlight">\( L(\theta \mid y) \)</span>, che abbiamo discusso in dettaglio nel capitolo <a class="reference internal" href="../chapter_3/09_likelihood.html#notebook-likelihood"><span class="std std-ref">La verosimiglianza</span></a>. Quindi, l’Eq. <a class="reference internal" href="#equation-eq-not-normalized-posterior">(59)</a> può essere riscritta come</p>
+<p>Consideriamo la densità dei dati <span class="math notranslate nohighlight">\( p(y \mid \theta) \)</span> sul lato destro dell’Eq. <a class="reference internal" href="#equation-eq-not-normalized-posterior">(58)</a>. Quando è espresso in termini dei parametri sconosciuti <span class="math notranslate nohighlight">\( \theta \)</span> per valori fissi di <span class="math notranslate nohighlight">\( y \)</span>, questo termine è la verosimiglianza <span class="math notranslate nohighlight">\( L(\theta \mid y) \)</span>, che abbiamo discusso in dettaglio nel capitolo <a class="reference internal" href="../chapter_3/09_likelihood.html#notebook-likelihood"><span class="std std-ref">La verosimiglianza</span></a>. Quindi, l’Eq. <a class="reference internal" href="#equation-eq-not-normalized-posterior">(58)</a> può essere riscritta come</p>
 <div class="math notranslate nohighlight" id="equation-eq-not-normalized-posterior-like">
-<span class="eqno">(60)<a class="headerlink" href="#equation-eq-not-normalized-posterior-like" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(59)<a class="headerlink" href="#equation-eq-not-normalized-posterior-like" title="Permalink to this equation">#</a></span>\[ 
 \begin{equation}
 p(\theta \mid y) \propto L(\theta \mid y)p(\theta).
 \end{equation}
 \]</div>
-<p>Le Eq. <a class="reference internal" href="#equation-eq-not-normalized-posterior">(59)</a> o <a class="reference internal" href="#equation-eq-not-normalized-posterior-like">(60)</a> rappresentano il nucleo dell’inferenza statistica bayesiana ed è ciò che separa la statistica bayesiana dalla statistica frequentista.</p>
+<p>Le Eq. <a class="reference internal" href="#equation-eq-not-normalized-posterior">(58)</a> o <a class="reference internal" href="#equation-eq-not-normalized-posterior-like">(59)</a> rappresentano il nucleo dell’inferenza statistica bayesiana ed è ciò che separa la statistica bayesiana dalla statistica frequentista.</p>
+<p>La validità dell’approccio bayesiano è supportata dai lavori di Cox e Savage, che dimostrano come, se p(θ) e p(y|θ) rappresentano le convinzioni razionali di una persona, la regola di Bayes sia il metodo ottimale per aggiornarle alla luce di nuove informazioni. Questo fornisce una base teorica solida per il suo utilizzo nell’apprendimento quantitativo. Tuttavia, nella pratica, può essere difficile esprimere matematicamente le convinzioni a priori con precisione, portando a una scelta di p(θ) talvolta ad hoc o dettata dalla convenienza computazionale.</p>
+<p>Secondo Box e Draper, “tutti i modelli sono sbagliati, ma alcuni sono utili”. Allo stesso modo, una distribuzione a priori p(θ) potrebbe non rappresentare perfettamente le nostre convinzioni iniziali, ma ciò non ne sminuisce l’utilità. Se p(θ) approssima le nostre convinzioni, allora la distribuzione a posteriori p(θ|y) sarà un’utile approssimazione di quelle che dovrebbero essere le nostre convinzioni aggiornate. Inoltre, la regola di Bayes può essere usata per esplorare come i dati influenzerebbero le convinzioni di persone con opinioni a priori diverse. Di particolare interesse potrebbero essere le convinzioni a posteriori di qualcuno con informazioni a priori deboli. Ciò ha motivato l’uso di distribuzioni a priori “diffuse”, che assegnano la probabilità più o meno uniformemente su ampie regioni dello spazio dei parametri.</p>
+<p>Infine, in molti problemi statistici complessi non esistono metodi non bayesiani di stima o inferenza. In queste situazioni,  la regola di Bayes offre un mezzo per generare procedure di stima, la cui efficacia può essere valutata secondo criteri non bayesiani. Spesso, si è constatato che le procedure bayesiane o quasi-bayesiane sono efficaci anche per scopi non bayesiani.</p>
 </section>
 <section id="l-aggiornamento-bayesiano">
 <h2>L’aggiornamento bayesiano<a class="headerlink" href="#l-aggiornamento-bayesiano" title="Permalink to this heading">#</a></h2>
@@ -703,7 +715,7 @@ p(\theta \mid y) \propto L(\theta \mid y)p(\theta).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/12b1f670f332ffb31dabeae4add43ba2a0ce17f9e6d2928b4fbbaae8456bff94.png" src="../_images/12b1f670f332ffb31dabeae4add43ba2a0ce17f9e6d2928b4fbbaae8456bff94.png" />
+<img alt="../_images/7c847ae2620c36eb07e8000518ab46c04d16bb76c051cdcdf6219d4d5edef81d.png" src="../_images/7c847ae2620c36eb07e8000518ab46c04d16bb76c051cdcdf6219d4d5edef81d.png" />
 </div>
 </div>
 <p>Nel contesto bayesiano, una distribuzione di probabilità assume il compito di rappresentare l’incertezza o le convinzioni che nutriamo riguardo ai molteplici valori possibili che un parametro può assumere. Nel caso attuale, il parametro <span class="math notranslate nohighlight">\(\theta\)</span> indica la longitudine associata alla posizione dell’aereo disperso nell’oceano Pacifico. La posizione esatta dell’aereo rimane sconosciuta. Tuttavia, formuliamo delle ipotesi iniziali sulle possibili localizzazioni. Per ogni valore possibile di <span class="math notranslate nohighlight">\(\theta\)</span>, la distribuzione di probabilità attribuisce un livello di fiducia che rispecchia quanto riteniamo probabile che quel valore specifico rappresenti il vero valore del parametro. I valori di <span class="math notranslate nohighlight">\(\theta\)</span> associati a ordinate più elevate nella funzione indicano un grado superiore di fiducia, in quanto riteniamo che tali valori siano più propensi a rappresentare il vero valore del parametro. In contrasto, i valori di <span class="math notranslate nohighlight">\(\theta\)</span> associati a ordinate più basse denotano convinzioni più deboli.</p>
@@ -755,7 +767,7 @@ p(\theta \mid y) \propto L(\theta \mid y)p(\theta).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/1b4d3078f13556f26fafce63ec157fd0b81b3f0a23cfdcef555404307f74baf8.png" src="../_images/1b4d3078f13556f26fafce63ec157fd0b81b3f0a23cfdcef555404307f74baf8.png" />
+<img alt="../_images/2deb23f512ccfef7be2a8ab85cd94575508cfe621c7d98b66b41abb67afec577.png" src="../_images/2deb23f512ccfef7be2a8ab85cd94575508cfe621c7d98b66b41abb67afec577.png" />
 </div>
 </div>
 <p>Dal Teorema di Bayes, è possibile derivare la distribuzione a posteriori attraverso il seguente procedimento:</p>
@@ -792,10 +804,10 @@ p(\theta \mid y) \propto L(\theta \mid y)p(\theta).
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">lik_x</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">posterior_probs</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Posterior&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dat_x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">dat_x</span><span class="p">)</span><span class="o">+</span><span class="mf">.1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;West&quot;</span><span class="p">,</span> <span class="s2">&quot;East&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;West&quot;</span><span class="p">,</span> <span class="s2">&quot;East&quot;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -803,7 +815,7 @@ p(\theta \mid y) \propto L(\theta \mid y)p(\theta).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/5d3b1f21e0bdcc2c5eef1bfd4aa067a417bef7e9438f6ac890c0a573f93265f6.png" src="../_images/5d3b1f21e0bdcc2c5eef1bfd4aa067a417bef7e9438f6ac890c0a573f93265f6.png" />
+<img alt="../_images/d3f10a8110b7f2c8da50ffce0104b11a4e5c38be3fe5f3e175c811ec497a17e6.png" src="../_images/d3f10a8110b7f2c8da50ffce0104b11a4e5c38be3fe5f3e175c811ec497a17e6.png" />
 </div>
 </div>
 <p>In questa situazione, è evidente che una distribuzione a priori come quella descritta in precedenza, che definiremo “debolmente informativa”, ha un impatto trascurabile e la distribuzione a posteriori risulta quasi indistinguibile dalla verosimiglianza (che è stata normalizzata).</p>
@@ -831,7 +843,7 @@ p(\theta \mid y) \propto L(\theta \mid y)p(\theta).
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">lik_x</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">posterior_probs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Posterior&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dat_x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">dat_x</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;West&quot;</span><span class="p">,</span> <span class="s2">&quot;East&quot;</span><span class="p">])</span>
@@ -842,7 +854,7 @@ p(\theta \mid y) \propto L(\theta \mid y)p(\theta).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/b84bdfe6f67b1e6bcd66b36569c4ca52679b68352a912c6574bb33d5c7b41bf8.png" src="../_images/b84bdfe6f67b1e6bcd66b36569c4ca52679b68352a912c6574bb33d5c7b41bf8.png" />
+<img alt="../_images/f316c79753b285c7e4b8caba7343bf668fd5d96e45160db5270106b7679898dd.png" src="../_images/f316c79753b285c7e4b8caba7343bf668fd5d96e45160db5270106b7679898dd.png" />
 </div>
 </div>
 <p>Il grafico illustra le tre distribuzioni coinvolte nell’aggiornamento bayesiano.</p>
@@ -903,11 +915,11 @@ p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{\int_{\Theta}p(y \mid \thet
 </section>
 <section id="il-flusso-di-lavoro-bayesiano">
 <h2>Il flusso di lavoro bayesiano<a class="headerlink" href="#il-flusso-di-lavoro-bayesiano" title="Permalink to this heading">#</a></h2>
-<p>Dopo aver analizzato l’esempio introduttivo delineato nelle sezioni precedenti, esploriamo ora con maggiore attenzione il cosiddetto flusso di lavoro bayesiano. Metaforicamente definito come il processo di “girare la manovella Bayesiana”, il flusso di lavoro bayesiano enfatizza un approccio iterativo e adattabile nel contesto della ricerca scientifica. Questo procedimento, ben delineato nella figura tratta dall’articolo di <span id="id10">Baribault and Collins [<a class="reference internal" href="../references/bibliography.html#id29" title="Beth Baribault and Anne GE Collins. Troubleshooting bayesian cognitive models. Psychological Methods, 2023.">BC23</a>]</span>, è caratterizzato da diverse fasi cruciali che vanno dalla definizione delle priori all’inferenza basata sui dati a posteriori.</p>
+<p>Dopo aver analizzato l’esempio introduttivo delineato nelle sezioni precedenti, esploriamo ora con maggiore attenzione il cosiddetto flusso di lavoro bayesiano. Metaforicamente definito come il processo di “girare la manovella Bayesiana”, il flusso di lavoro bayesiano enfatizza un approccio iterativo e adattabile nel contesto della ricerca scientifica. Questo procedimento, ben delineato nella figura tratta dall’articolo di <span id="id10">Baribault and Collins [<a class="reference internal" href="../references/bibliography.html#id30" title="Beth Baribault and Anne GE Collins. Troubleshooting bayesian cognitive models. Psychological Methods, 2023.">BC23</a>]</span>, è caratterizzato da diverse fasi cruciali che vanno dalla definizione delle priori all’inferenza basata sui dati a posteriori.</p>
 <figure class="align-default" id="bayes-workflow-fig">
 <a class="reference internal image-reference" href="../_images/bayesian_workflow.png"><img alt="../_images/bayesian_workflow.png" src="../_images/bayesian_workflow.png" style="height: 550px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Una rappresentazione abbreviata del flusso di lavoro bayesiano. L’output del modello che non supera il filtro (che rappresenta i necessari controlli computazionali e di coerenza) deve essere respinto. È necessario migliorare la specifica del modello in modo che l’output possa  superare tutti i controlli. Solo allora il modello bayesiano può essere utilizzato come base per l’inferenza. (Figura tratta da <span id="id11">Baribault and Collins [<a class="reference internal" href="../references/bibliography.html#id29" title="Beth Baribault and Anne GE Collins. Troubleshooting bayesian cognitive models. Psychological Methods, 2023.">BC23</a>]</span>).</span><a class="headerlink" href="#bayes-workflow-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Una rappresentazione abbreviata del flusso di lavoro bayesiano. L’output del modello che non supera il filtro (che rappresenta i necessari controlli computazionali e di coerenza) deve essere respinto. È necessario migliorare la specifica del modello in modo che l’output possa  superare tutti i controlli. Solo allora il modello bayesiano può essere utilizzato come base per l’inferenza. (Figura tratta da <span id="id11">Baribault and Collins [<a class="reference internal" href="../references/bibliography.html#id30" title="Beth Baribault and Anne GE Collins. Troubleshooting bayesian cognitive models. Psychological Methods, 2023.">BC23</a>]</span>).</span><a class="headerlink" href="#bayes-workflow-fig" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="fasi-del-flusso-di-lavoro">
@@ -961,7 +973,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{\int_{\Theta}p(y \mid \thet
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="introduction_part_4.html"
@@ -1001,8 +1013,8 @@ p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{\int_{\Theta}p(y \mid \thet
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dalla-generazione-dei-dati-alla-modellizzazione-bayesiana">Dalla Generazione dei Dati alla Modellizzazione Bayesiana</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riallocazione-della-credibilita-e-aggiornamento-sequenziale-delle-informazioni">Riallocazione della Credibilità e Aggiornamento Sequenziale delle Informazioni</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-modellizzazione-statistica-un-ponte-tra-teoria-e-dati">La Modellizzazione Statistica: Un Ponte tra Teoria e Dati</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementi-distintivi-dei-modelli-bayesiani">Elementi distintivi dei modelli bayesiani</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fasi-dell-elaborazione-di-un-modello-bayesiano">Fasi dell’elaborazione di un modello bayesiano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caratteristiche-fondamentali-dei-modelli-bayesiani">Caratteristiche Fondamentali dei Modelli Bayesiani</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-processo-di-sviluppo-di-un-modello-bayesiano">Il Processo di Sviluppo di un Modello Bayesiano</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riesame-del-teorema-di-bayes">Riesame del Teorema di Bayes</a></li>
@@ -1043,6 +1055,7 @@ By Corrado Caudek
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1069,8 +1082,8 @@ By Corrado Caudek
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

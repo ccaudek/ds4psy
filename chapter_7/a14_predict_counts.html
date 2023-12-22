@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -42,9 +42,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -155,6 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -465,6 +466,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -474,6 +476,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -562,7 +565,7 @@ document.write(`
 </section>
 <section id="la-distribuzione-a-priori">
 <h2>La distribuzione a priori<a class="headerlink" href="#la-distribuzione-a-priori" title="Permalink to this heading">#</a></h2>
-<p>In una ricerca sui pazienti che avevano recentemente iniziato un programma di trattamento per l’abuso o la dipendenza da alcol, <span id="id1">Gagnon <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id44" title="David R Gagnon, Susan Doron-LaMarca, Margret Bell, Timothy J O'Farrell, and Casey T Taft. Poisson regression for modeling count and frequency outcomes in trauma research. Journal of Traumatic Stress, 21(5):448–454, 2008.">GDLB+08</a>]</span> hanno trovato che, in un periodo di 6 mesi, il numero di assalti fisici da parte dei pazienti di genere maschile nei confronti del loro partner femminile è uguale, in media, a 11.46 (<span class="math notranslate nohighlight">\(SD\)</span> = 25.79; <span class="math notranslate nohighlight">\(n\)</span> = 114).</p>
+<p>In una ricerca sui pazienti che avevano recentemente iniziato un programma di trattamento per l’abuso o la dipendenza da alcol, <span id="id1">Gagnon <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id45" title="David R Gagnon, Susan Doron-LaMarca, Margret Bell, Timothy J O'Farrell, and Casey T Taft. Poisson regression for modeling count and frequency outcomes in trauma research. Journal of Traumatic Stress, 21(5):448–454, 2008.">GDLB+08</a>]</span> hanno trovato che, in un periodo di 6 mesi, il numero di assalti fisici da parte dei pazienti di genere maschile nei confronti del loro partner femminile è uguale, in media, a 11.46 (<span class="math notranslate nohighlight">\(SD\)</span> = 25.79; <span class="math notranslate nohighlight">\(n\)</span> = 114).</p>
 <p>Per questi dati, è dunque sensato pensare che la distribuzione del numero di episodi di aggressione fisica può essere rappresentata dalla distribuzione esponenziale.</p>
 <p>Dal punto di vista statistico, ricordiamo che la distribuzione esponenziale modella il numero di eventi che si verificano in un intervallo di tempo quando questi eventi si verificano raramente e indipendentemente l’uno dall’altro.</p>
 <p>La funzione di densità di probabilità della distribuzione esponenziale è data da:</p>
@@ -572,7 +575,7 @@ f(x) = λe^{(-λx)}
 \]</div>
 <p>dove λ è il parametro della distribuzione e rappresenta il <em>tasso</em> medio di occorrenza degli eventi. La media e la varianza della distribuzione esponenziale sono entrambe uguali a 1/λ.</p>
 <p>Poniamoci dunque il problema di rappresentare le nostre credenze a priori relative al numero di episodi di aggressione fisica mediante una distribuzione esponenziale.</p>
-<p>Dalla ricerca di <span id="id2">Gagnon <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id44" title="David R Gagnon, Susan Doron-LaMarca, Margret Bell, Timothy J O'Farrell, and Casey T Taft. Poisson regression for modeling count and frequency outcomes in trauma research. Journal of Traumatic Stress, 21(5):448–454, 2008.">GDLB+08</a>]</span> sappiamo che, in un periodo di 6 mesi, il numero di assalti fisici nei confronti del partner femminile, in questa popolazione, è uguale a 11.46.</p>
+<p>Dalla ricerca di <span id="id2">Gagnon <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id45" title="David R Gagnon, Susan Doron-LaMarca, Margret Bell, Timothy J O'Farrell, and Casey T Taft. Poisson regression for modeling count and frequency outcomes in trauma research. Journal of Traumatic Stress, 21(5):448–454, 2008.">GDLB+08</a>]</span> sappiamo che, in un periodo di 6 mesi, il numero di assalti fisici nei confronti del partner femminile, in questa popolazione, è uguale a 11.46.</p>
 <p>Considereremo una distribuzione esponenziale per rappresentare le nostre credenze a priori circa la frequenza media <span class="math notranslate nohighlight">\(\mu\)</span> degli episodi di aggressione nei confronti del partner per questa popolazione, in un periodo di 6 mesi. In Python, <code class="docutils literal notranslate"><span class="pre">scipy.stats.expon</span></code> è un modulo che fornisce funzioni per lavorare con la distribuzione esponenziale. In particolare, la funzione <code class="docutils literal notranslate"><span class="pre">pdf</span></code> (probability density function) calcola la funzione di densità di probabilità della distribuzione esponenziale per un dato valore di x.</p>
 <p>La sintassi per utilizzare questa funzione è la seguente:</p>
 <p><code class="docutils literal notranslate"><span class="pre">scipy.stats.expon.pdf(x,</span> <span class="pre">loc=0,</span> <span class="pre">scale=1)</span></code></p>
@@ -2522,7 +2525,7 @@ Watermark: 2.4.3
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="a12_rng.html"
@@ -2585,6 +2588,7 @@ By Corrado Caudek
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -2611,8 +2615,8 @@ By Corrado Caudek
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

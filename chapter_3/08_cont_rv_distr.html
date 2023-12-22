@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -42,9 +42,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -155,6 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -465,6 +466,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -474,6 +476,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -804,12 +807,14 @@ V(X)={\frac {1}{12}}(b-a)^{2}.
 </section>
 <section id="distribuzione-esponenziale">
 <h2>Distribuzione esponenziale<a class="headerlink" href="#distribuzione-esponenziale" title="Permalink to this heading">#</a></h2>
-<p>Un’altra distribuzione di densità molto semplice è la distribuzione esponenziale. La distribuzione esponenziale viene spesso utilizzata per modellare il tempo trascorso prima che un evento si verifichi (tempo di attesa). Chiamiamo <span class="math notranslate nohighlight">\(X\)</span> il tempo di attesa. Sia <span class="math notranslate nohighlight">\(\mu = \mathbb{E}(X)\)</span> il tempo di attesa medio. La funzione di densità esponenziale è</p>
+<p>Un’altra distribuzione di densità molto semplice è la distribuzione esponenziale. La distribuzione esponenziale viene spesso utilizzata per modellare il tempo trascorso prima che un evento si verifichi (tempo di attesa).</p>
+<p>La distribuzione esponenziale è l’unica distribuzione di probabilità continua che possiede la proprietà di assenza di memoria. Ad esempio, ipotizziamo che il tempo necessario affinché un bicchiere da vino si rompa dopo il primo utilizzo segua una distribuzione esponenziale. Supponiamo inoltre che ci sia un bicchiere da vino che non si è rotto dopo 3 anni dal primo utilizzo. L’assenza di memoria significa che la probabilità che questo bicchiere da vino non si rompa nel prossimo anno è la stessa della probabilità che un altro bicchiere da vino nuovo non si rompa nel primo anno di utilizzo.</p>
+<p>Chiamiamo <span class="math notranslate nohighlight">\(X\)</span> il tempo di attesa. Sia <span class="math notranslate nohighlight">\(\mu = \mathbb{E}(X)\)</span> il tempo di attesa medio. La funzione di densità esponenziale è</p>
 <div class="math notranslate nohighlight" id="equation-eq-exponential-pdf">
-<span class="eqno">(42)<a class="headerlink" href="#equation-eq-exponential-pdf" title="Permalink to this equation">#</a></span>\[
-f(x) = \lambda {\rm e}^{-\lambda x}, \quad \text{con} \; \lambda = 1/\mu,\, \lambda &gt; 0,\, x &gt; 0
+<span class="eqno">(41)<a class="headerlink" href="#equation-eq-exponential-pdf" title="Permalink to this equation">#</a></span>\[
+f(x) = \lambda {\rm e}^{-\lambda x}, \quad \text{con} \; \lambda = 1/\mu,\, \lambda &gt; 0,\, x &gt; 0,
 \]</div>
-<p>Possiamo anche scrivere l’eq. <a class="reference internal" href="#equation-eq-exponential-pdf">(42)</a> come</p>
+<p>ovvero</p>
 <div class="math notranslate nohighlight">
 \[
 f(x) = \frac{1}{\mu} {\rm e}^{-x/\mu}.
@@ -999,7 +1004,7 @@ f(x) = \frac{1}{4} \exp^{-x/4}.
 </section>
 <section id="la-normale-prodotta-con-una-simulazione">
 <h2>La Normale prodotta con una simulazione<a class="headerlink" href="#la-normale-prodotta-con-una-simulazione" title="Permalink to this heading">#</a></h2>
-<p>Il libro “Rethinking Statistics” di <span id="id1">McElreath [<a class="reference internal" href="../references/bibliography.html#id106" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span> spiega come sia possibile ottenere la distribuzione normale attraverso una simulazione. Immaginiamo di avere duemila persone che si trovano allineate su una linea di partenza. Quando viene dato il segnale di partenza, ogni persona lancia una moneta e compie un passo avanti o indietro a seconda del risultato del lancio. La lunghezza di ogni passo può variare da 0 a 1 metro. Ogni persona lancia la moneta 16 volte e quindi compie 16 passi.</p>
+<p>Il libro “Rethinking Statistics” di <span id="id1">McElreath [<a class="reference internal" href="../references/bibliography.html#id107" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span> spiega come sia possibile ottenere la distribuzione normale attraverso una simulazione. Immaginiamo di avere duemila persone che si trovano allineate su una linea di partenza. Quando viene dato il segnale di partenza, ogni persona lancia una moneta e compie un passo avanti o indietro a seconda del risultato del lancio. La lunghezza di ogni passo può variare da 0 a 1 metro. Ogni persona lancia la moneta 16 volte e quindi compie 16 passi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">randomwalk</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -1079,12 +1084,12 @@ f(x) = \frac{1}{4} \exp^{-x/4}.
 <p>Questa simulazione dimostra che qualsiasi processo che prevede la somma di un certo numero di valori casuali, tutti provenienti dalla stessa distribuzione, alla fine converge ad una distribuzione normale. Non importa quale sia la forma della distribuzione di partenza, che può essere uniforme come nell’esempio mostrato o di qualsiasi altro tipo. La forma della distribuzione da cui viene realizzato il campionamento determina la velocità di convergenza alla distribuzione normale. In alcuni casi, la convergenza può essere lenta, mentre in altri casi, come nell’esempio mostrato, la convergenza può essere molto rapida. È possibile osservare lo stesso principio tramite la <a class="reference external" href="https://en.wikipedia.org/wiki/Galton_board">Galton box</a>.</p>
 <p>Dal punto di vista formale, possiamo definire una variabile casuale continua <span class="math notranslate nohighlight">\(Y\)</span> come avente una distribuzione normale se la sua densità di probabilità è distribuita secondo la seguente equazione</p>
 <div class="math notranslate nohighlight" id="equation-eq-normal-formula">
-<span class="eqno">(43)<a class="headerlink" href="#equation-eq-normal-formula" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(42)<a class="headerlink" href="#equation-eq-normal-formula" title="Permalink to this equation">#</a></span>\[
 f(y; \mu, \sigma) = {1 \over {\sigma\sqrt{2\pi} }} \exp \left\{-\frac{(y -  \mu)^2}{2 \sigma^2} \right\},
 \]</div>
 <p>dove <span class="math notranslate nohighlight">\(\mu \in \mathbb{R}\)</span> e <span class="math notranslate nohighlight">\(\sigma &gt; 0\)</span> sono i parametri della distribuzione.</p>
 <p>La densità normale è unimodale e simmetrica con una caratteristica forma a campana e con il punto di massima densità in corrispondenza di <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-<p>Il significato dei parametri <span class="math notranslate nohighlight">\(\mu\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span> che appaiono nell’eq. <a class="reference internal" href="#equation-eq-normal-formula">(43)</a> viene chiarito dalla dimostrazione che</p>
+<p>Il significato dei parametri <span class="math notranslate nohighlight">\(\mu\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span> che appaiono nell’eq. <a class="reference internal" href="#equation-eq-normal-formula">(42)</a> viene chiarito dalla dimostrazione che</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbb{E}(Y) = \mu, \qquad \mathbb{V}(Y) = \sigma^2.
@@ -1130,7 +1135,7 @@ P(\mu - 3\sigma &lt; Y &lt; \mu + 3\sigma) &amp;= P (-3 &lt; Z &lt; 3) \simeq 0.
 <h3>Funzione di ripartizione<a class="headerlink" href="#funzione-di-ripartizione" title="Permalink to this heading">#</a></h3>
 <p>Il valore della funzione di ripartizione di <span class="math notranslate nohighlight">\(Y\)</span> nel punto <span class="math notranslate nohighlight">\(y\)</span> è l’area sottesa alla curva di densità <span class="math notranslate nohighlight">\(f(y)\)</span> nella semiretta <span class="math notranslate nohighlight">\((-\infty, y]\)</span>. Non esiste alcuna funzione elementare per la funzione di ripartizione</p>
 <div class="math notranslate nohighlight" id="equation-eq-gaussian-rip-formula">
-<span class="eqno">(44)<a class="headerlink" href="#equation-eq-gaussian-rip-formula" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43)<a class="headerlink" href="#equation-eq-gaussian-rip-formula" title="Permalink to this equation">#</a></span>\[
 F(y) = \int_{-\infty}^y {1 \over {\sigma\sqrt{2\pi} }} \exp \left\{-\frac{(y - \mu)^2}{2\sigma^2} \right\} dy, 
 \]</div>
 <p>pertanto le probabilità <span class="math notranslate nohighlight">\(P(Y &lt; y)\)</span> vengono calcolate mediante integrazione numerica approssimata. I valori della funzione di ripartizione di una variabile casuale Normale sono dunque forniti da un software.</p>
@@ -1445,7 +1450,7 @@ f(x) = C_{\nu} x^{\nu/2-1} \exp (-x/2), \qquad \text{se } x &gt; 0,
 <h2>Distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student<a class="headerlink" href="#distribuzione-t-di-student" title="Permalink to this heading">#</a></h2>
 <p>Dalle distribuzioni Normale e Chi-quadrato deriva un’altra distribuzione molto nota, la <span class="math notranslate nohighlight">\(t\)</span> di Student. Se <span class="math notranslate nohighlight">\(Z \sim \mathcal{N}\)</span> e <span class="math notranslate nohighlight">\(W \sim \chi^2_{~\nu}\)</span> sono due variabili casuali indipendenti, allora il rapporto</p>
 <div class="math notranslate nohighlight" id="equation-eq-student-t-distr">
-<span class="eqno">(45)<a class="headerlink" href="#equation-eq-student-t-distr" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(44)<a class="headerlink" href="#equation-eq-student-t-distr" title="Permalink to this equation">#</a></span>\[
 T = \frac{Z}{\Big( \frac{W}{\nu}\Big)^{\frac{1}{2}}}
 \]</div>
 <p>definisce la distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student con <span class="math notranslate nohighlight">\(\nu\)</span> gradi di libertà. Si usa scrivere <span class="math notranslate nohighlight">\(T \sim t_{\nu}\)</span>. L’andamento della distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student è simile a quello della distribuzione Normale, ma ha una dispersione maggiore (ha le code più pesanti di una Normale, ovvero ha una varianza maggiore di 1).</p>
@@ -1525,7 +1530,7 @@ T = \frac{Z}{\Big( \frac{W}{\nu}\Big)^{\frac{1}{2}}}
 <h2>Funzione beta di Eulero<a class="headerlink" href="#funzione-beta-di-eulero" title="Permalink to this heading">#</a></h2>
 <p>La funzione beta di Eulero è una funzione matematica, <em>non</em> una densità di probabilità. La menzioniamo qui perché viene utilizzata nella distribuzione Beta. La funzione beta di Eulero si può scrivere in molti modi diversi; per i nostri scopi la presentiamo così:</p>
 <div class="math notranslate nohighlight" id="equation-eq-eulero-function">
-<span class="eqno">(46)<a class="headerlink" href="#equation-eq-eulero-function" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(45)<a class="headerlink" href="#equation-eq-eulero-function" title="Permalink to this equation">#</a></span>\[
 B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}\,,
 \]</div>
 <p>dove <span class="math notranslate nohighlight">\(\Gamma(x)\)</span> è la funzione Gamma, ovvero il fattoriale discendente, cioè</p>
@@ -1584,7 +1589,7 @@ B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}\,,
 <p class="admonition-title">Definizione</p>
 <p>Sia <span class="math notranslate nohighlight">\(\pi\)</span> una variabile casuale che può assumere qualsiasi valore compreso tra 0 e 1, cioè <span class="math notranslate nohighlight">\(\pi \in (0, 1)\)</span>. Diremo che <span class="math notranslate nohighlight">\(\pi\)</span> segue la distribuzione Beta di parametri <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\beta\)</span>, <span class="math notranslate nohighlight">\(\pi \sim \text{Beta}(\alpha, \beta)\)</span>, se la sua densità è</p>
 <div class="math notranslate nohighlight" id="equation-eq-beta-distr-formula">
-<span class="eqno">(47)<a class="headerlink" href="#equation-eq-beta-distr-formula" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(46)<a class="headerlink" href="#equation-eq-beta-distr-formula" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align}
 \text{Beta}(\pi \mid \alpha, \beta) &amp;= \frac{1}{B(\alpha, \beta)}\pi^{\alpha-1} (1-\pi)^{\beta-1}\notag\\ 
 &amp;=  \frac{\Gamma(\alpha+ \beta)}{\Gamma(\alpha)\Gamma(\beta)}\pi^{\alpha-1} (1-\pi)^{\beta-1} \quad \text{per } \pi \in (0, 1)\,,
@@ -1656,15 +1661,15 @@ B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}\,,
 </div>
 <p>Il valore atteso, la moda e la varianza di una distribuzione Beta sono dati dalle seguenti equazioni:</p>
 <div class="math notranslate nohighlight" id="equation-eq-beta-mean">
-<span class="eqno">(48)<a class="headerlink" href="#equation-eq-beta-mean" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(47)<a class="headerlink" href="#equation-eq-beta-mean" title="Permalink to this equation">#</a></span>\[
 \mathbb{E}(\pi) = \frac{\alpha}{\alpha+\beta}\,,
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eq-beta-mode">
-<span class="eqno">(49)<a class="headerlink" href="#equation-eq-beta-mode" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(48)<a class="headerlink" href="#equation-eq-beta-mode" title="Permalink to this equation">#</a></span>\[
 Mo(\pi) = \frac{\alpha-1}{\alpha+\beta-2}\,,
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eq-beta-var">
-<span class="eqno">(50)<a class="headerlink" href="#equation-eq-beta-var" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(49)<a class="headerlink" href="#equation-eq-beta-var" title="Permalink to this equation">#</a></span>\[
 \mathbb{V}(\pi) = \frac{\alpha \beta}{(\alpha+\beta)^2 (\alpha+\beta+1)}\,.
 \]</div>
 <p>Al variare di <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\beta\)</span> si ottengono molte distribuzioni di forma diversa; un’illustrazione è fornita dalla seguente <a class="reference external" href="https://en.wikipedia.org/wiki/File:PDF_of_the_Beta_distribution.gif">GIF animata</a>.</p>
@@ -1732,7 +1737,7 @@ Mo(\pi) = \frac{\alpha-1}{\alpha+\beta-2}\,,
 <h2>Distribuzione di Cauchy<a class="headerlink" href="#distribuzione-di-cauchy" title="Permalink to this heading">#</a></h2>
 <p>La distribuzione di Cauchy è un caso speciale della distribuzione di <span class="math notranslate nohighlight">\(t\)</span> di Student con 1 grado di libertà. È definita da una densità di probabilità che corrisponde alla seguente funzione, dipendente da due parametri <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\beta\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-eq-cauchy-formula">
-<span class="eqno">(51)<a class="headerlink" href="#equation-eq-cauchy-formula" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(50)<a class="headerlink" href="#equation-eq-cauchy-formula" title="Permalink to this equation">#</a></span>\[
 f(x \mid \alpha, \beta) = \frac{1}{\pi \beta \left[1 + \left( \frac{x - \alpha}{\beta} \right)^2\right]}.
 \]</div>
 <p>Il grafico mostra alcune distribuzioni di Cauchy con <span class="math notranslate nohighlight">\(\alpha\)</span> = 0., 0., 0., -2.0 e <span class="math notranslate nohighlight">\(\beta\)</span> = .5, 1., 2., 1.0.</p>
@@ -1871,7 +1876,7 @@ x = e^y \quad \Longleftrightarrow \quad y = \log x.
 \]</div>
 <p>Il dominio di definizione della <span class="math notranslate nohighlight">\(x\)</span> è il semiasse <span class="math notranslate nohighlight">\(x &gt; 0\)</span> e la densità di probabilità <span class="math notranslate nohighlight">\(f(x)\)</span> è data da</p>
 <div class="math notranslate nohighlight" id="equation-eq-lognormal-formula">
-<span class="eqno">(52)<a class="headerlink" href="#equation-eq-lognormal-formula" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(51)<a class="headerlink" href="#equation-eq-lognormal-formula" title="Permalink to this equation">#</a></span>\[
 f(x) = \frac{1}{\sigma \sqrt{2 \pi}} \frac{1}{x} \exp \left\{-\frac{(\log x -  \mu)^2}{2 \sigma^2} \right\}.
 \]</div>
 <p>Questa funzione di densità è chiamata log-normale.</p>
@@ -2087,7 +2092,7 @@ Watermark: 2.4.3
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="E_binomial.html"
@@ -2175,6 +2180,7 @@ By Corrado Caudek
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -2201,8 +2207,8 @@ By Corrado Caudek
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

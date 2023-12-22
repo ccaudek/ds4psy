@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -42,9 +42,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -155,6 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -465,6 +466,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -474,6 +476,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -659,7 +662,7 @@ P(X_{n+1} = j | X_n = i, X_{n-1} = i_{n-1}, \ldots, X_0 = i_0) = P(X_{n+1} = j |
 </section>
 <section id="catene-di-markov-monte-carlo">
 <h2>Catene di Markov Monte Carlo<a class="headerlink" href="#catene-di-markov-monte-carlo" title="Permalink to this heading">#</a></h2>
-<p>Nei capitoli precedenti della dispensa abbiamo sottolineato l’importanza della simulazione come strumento efficace nel campo della probabilità. A titolo di esempio, consideriamo il problema di Monty Hall: simulando il gioco numerosissime volte, è facile accorgersi che la probabilità di vittoria sale a circa 2/3 se si decide di cambiare porta. Allo stesso modo, quando non è chiaro come calcolare statistiche come la media e la varianza di una variabile casuale <span class="math notranslate nohighlight">\(X\)</span>, ma si è in grado di generare campioni indipendenti e identicamente distribuiti <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> da tale distribuzione, è possibile ricorrere alla media e alla varianza campionaria come approssimazioni valide:</p>
+<p>Nei capitoli precedenti, abbiamo esplorato l’efficacia della simulazione come strumento nel campo della teoria delle probabilità, con particolare enfasi su esempi come il problema di Monty Hall. Attraverso la simulazione ripetuta di questo gioco, abbiamo scoperto che la probabilità di vincita aumenta a circa 2/3 quando si sceglie di cambiare porta. Questo esempio illustra come, anche quando non possiamo calcolare direttamente certe statistiche come la media e la varianza di una variabile casuale <span class="math notranslate nohighlight">\(X\)</span>, possiamo ottenere stime affidabili di queste attraverso la simulazione. Generando campioni indipendenti e identicamente distribuiti <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> da una distribuzione data, le stime campionarie per la media e la varianza si possono approssimare come segue:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{E}(X) \approx \frac{1}{n} (X_1 + \ldots + X_n) = \bar{X}_n
@@ -668,9 +671,10 @@ P(X_{n+1} = j | X_n = i, X_{n-1} = i_{n-1}, \ldots, X_0 = i_0) = P(X_{n+1} = j |
 \[
 \text{Var}(X) \approx \frac{1}{n - 1} \sum_{j=1}^{n} (X_j - \bar{X}_n)^2
 \]</div>
-<p>La legge dei grandi numeri ci assicura che tali stime diventeranno sempre più accurate man mano che <span class="math notranslate nohighlight">\(n\)</span> aumenta. Questo significa che, incrementando il numero delle simulazioni, possiamo ottenere stime più precise senza dover affrontare il calcolo di somme o integrali complicati. Questa metodologia è parte di quella che è conosciuta come metodo Monte Carlo.</p>
-<p>Tuttavia, un limite rilevante dei metodi Monte Carlo tradizionali è la necessità di sapere come generare in modo efficiente i campioni <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span>, soprattutto se si mira a un <span class="math notranslate nohighlight">\(n\)</span> elevato.</p>
-<p>In questo contesto, i metodi di Monte Carlo basati su catene di Markov (MCMC) rappresentano un insieme di algoritmi potenti che ci consentono di effettuare simulazioni da distribuzioni complesse utilizzando catene di Markov. L’evoluzione degli algoritmi MCMC ha rivoluzionato la statistica e il calcolo scientifico, ampliando enormemente il ventaglio delle distribuzioni simulabili, inclusi gli spazi di alta dimensionalità. In questo capitolo, ci concentreremo su uno degli algoritmi MCMC più importanti e comunemente usati: l’algoritmo di Metropolis.</p>
+<p>Con l’applicazione della legge dei grandi numeri, queste stime diventano sempre più accurate all’aumentare di <span class="math notranslate nohighlight">\(n\)</span>. Ciò significa che possiamo ottenere stime più precise incrementando il numero di simulazioni, evitando la necessità di calcolare somme o integrali complessi. Questa metodologia rientra nei metodi Monte Carlo.</p>
+<p>I metodi di Monte Carlo, sviluppati da Stanislaw Ulam e John von Neumann al Los Alamos nel 1946, sono ampiamente impiegati in ottimizzazione, campionamento e stima. Ulam concepì l’idea durante la convalescenza dalla tubercolosi, cercando un modo pratico per risolvere un calcolo combinatorio complesso. Von Neumann adottò per primo questo approccio con applicazioni dirette alla diffusione dei neutroni, e il metodo fu poi denominato Monte Carlo da Nicholas Metropolis in riferimento alla propensione al gioco d’azzardo dello zio di Ulam.</p>
+<p>Nonostante la loro efficacia, un limite dei metodi Monte Carlo tradizionali risiede nella generazione efficiente di un elevato numero di campioni <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span>. In risposta a questa sfida, i metodi di Monte Carlo basati su catene di Markov (MCMC) offrono una soluzione potente per simulare da distribuzioni complesse attraverso catene di Markov. L’evoluzione di questi algoritmi ha trasformato radicalmente la statistica e il calcolo scientifico, permettendo la simulazione da una vasta gamma di distribuzioni, anche in spazi di alta dimensionalità.</p>
+<p>In questo capitolo, ci concentreremo sull’algoritmo di Metropolis, uno degli algoritmi MCMC più importanti e comunemente impiegati, esplorando come possa essere utilizzato per superare alcune delle limitazioni dei metodi Monte Carlo tradizionali e come possa ampliare ulteriormente le possibilità di simulazione e stima in contesti statistici complessi.</p>
 </section>
 <section id="estrazione-di-campioni-dalla-distribuzione-a-posteriori">
 <h2>Estrazione di campioni dalla distribuzione a posteriori<a class="headerlink" href="#estrazione-di-campioni-dalla-distribuzione-a-posteriori" title="Permalink to this heading">#</a></h2>
@@ -1250,7 +1254,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 <p>In sintesi, <code class="docutils literal notranslate"><span class="pre">metropolis_v2</span></code> è una versione più robusta dell’algoritmo che tiene conto sia del supporto della distribuzione target sia di eventuali valori zero nella densità di probabilità.</p>
 <p>Si osservi un punto importante: nel calcolo di <code class="docutils literal notranslate"><span class="pre">pdfratio</span></code>, il rapporto tra la densità a posteriori del parametro proposto <code class="docutils literal notranslate"><span class="pre">x_star</span></code> e quella del parametro corrente <code class="docutils literal notranslate"><span class="pre">x_prev</span></code>, la costante di normalizzazione si annulla grazie alla regola di Bayes. Questo lascia nel rapporto solamente le componenti relative alla verosimiglianza e alla distribuzione a priori, che sono entrambe facilmente calcolabili. Matematicamente, questo si esprime come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-ratio-metropolis">
-<span class="eqno">(63)<a class="headerlink" href="#equation-eq-ratio-metropolis" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(62)<a class="headerlink" href="#equation-eq-ratio-metropolis" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 \text{pdfratio} = \frac{p(\theta^* \mid y)}{p(\theta^{\text{prev}} \mid y)} = \frac{\frac{p(y \mid \theta^*) p(\theta^*)}{p(y)}}{\frac{p(y \mid \theta^{\text{prev}}) p(\theta^{\text{prev}})}{p(y)}}
 = \frac{p(y \mid \theta^*) p(\theta^*)}{p(y \mid \theta^{\text{prev}}) p(\theta^{\text{prev}})}
@@ -1435,7 +1439,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 <p>Informazioni sul “mixing” della catena di Markov sono fornite dall’autocorrelazione. L’autocorrelazione misura la correlazione tra i valori successivi di una catena di Markov. Il valore <span class="math notranslate nohighlight">\(m\)</span>-esimo della serie ordinata viene confrontato con un altro valore ritardato di una quantità <span class="math notranslate nohighlight">\(k\)</span> (dove <span class="math notranslate nohighlight">\(k\)</span> è l’entità del ritardo) per verificare quanto si correli al variare di <span class="math notranslate nohighlight">\(k\)</span>. L’autocorrelazione di ordine 1 (<em>lag 1</em>) misura la correlazione tra valori successivi della catena di Markow (cioè, la correlazione tra <span class="math notranslate nohighlight">\(\theta^{(m)}\)</span> e <span class="math notranslate nohighlight">\(\theta^{(m-1)}\)</span>); l’autocorrelazione di ordine 2 (<em>lag 2</em>) misura la correlazione tra valori della catena di Markow separati da due “passi” (cioè, la correlazione tra <span class="math notranslate nohighlight">\(\theta^{(m)}\)</span> e <span class="math notranslate nohighlight">\(\theta^{(m-2)}\)</span>); e così via.</p>
 <p>L’autocorrelazione di ordine <span class="math notranslate nohighlight">\(k\)</span> è data da <span class="math notranslate nohighlight">\(\rho_k\)</span> e può essere stimata come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-autocor">
-<span class="eqno">(64)<a class="headerlink" href="#equation-eq-autocor" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(63)<a class="headerlink" href="#equation-eq-autocor" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align}
 \rho_k &amp;= \frac{Cov(\theta_m, \theta_{m+k})}{Var(\theta_m)}\notag\\
 &amp;= \frac{\sum_{m=1}^{n-k}(\theta_m - \bar{\theta})(\theta_{m-k} - \bar{\theta})}{\sum_{m=1}^{n-k}(\theta_m - \bar{\theta})^2} \qquad\text{con }\quad \bar{\theta} = \frac{1}{n}\sum_{m=1}^{n}\theta_m.
@@ -1612,7 +1616,7 @@ Watermark: 2.4.3
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="06_balance-prior-post.html"
@@ -1709,6 +1713,7 @@ By Corrado Caudek
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1735,8 +1740,8 @@ By Corrado Caudek
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

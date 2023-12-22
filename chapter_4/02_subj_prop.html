@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -42,9 +42,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -155,6 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -465,6 +466,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -474,6 +476,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -527,7 +530,7 @@ document.write(`
 <span id="cap-subj-prop"></span><h1>Pensare ad una proporzione in termini soggettivi<a class="headerlink" href="#pensare-ad-una-proporzione-in-termini-soggettivi" title="Permalink to this heading">#</a></h1>
 <p>L’obiettivo di questo capitolo è chiarire il concetto di aggiornamento bayesiano, introdotto nel capitolo precedente. In particolare, esamineremo come sia possibile rappresentare le nostre credenze riguardo alla probabilità (<span class="math notranslate nohighlight">\(\theta\)</span>) di un determinato evento.</p>
 <p>Affronteremo l’argomento della rappresentazione delle credenze iniziali, ovvero le opinioni che possediamo prima di osservare i dati, attraverso l’impiego di una distribuzione a priori. Successivamente, procederemo con la spiegazione dei calcoli necessari per ottenere la distribuzione a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span>. Tale distribuzione riflette la nostra credenza aggiornata su <span class="math notranslate nohighlight">\(\theta\)</span> dopo aver effettuato l’osservazione dei dati. La distribuzione a posteriori si genera tramite il prodotto tra la distribuzione a priori e la verosimiglianza, seguita dalla normalizzazione del risultato attraverso una costante.</p>
-<p>In questo capitolo, ci concentreremo sul caso più semplice, ovvero il modello binomiale. Inizieremo esaminando il contesto in cui la distribuzione a priori è discreta e successivamente esploreremo il caso in cui questa assuma una forma continua. Per ulteriori approfondimenti, è possibile consultare il settimo capitolo del libro di <span id="id1">Albert and Hu [<a class="reference internal" href="../references/bibliography.html#id57" title="Jim Albert and Jingchen Hu. Probability and Bayesian Modeling. Chapman and Hall/CRC, 2019.">AH19</a>]</span>.</p>
+<p>In questo capitolo, ci concentreremo sul caso più semplice, ovvero il modello binomiale. Inizieremo esaminando il contesto in cui la distribuzione a priori è discreta e successivamente esploreremo il caso in cui questa assuma una forma continua. Per ulteriori approfondimenti, è possibile consultare il settimo capitolo del libro di <span id="id1">Albert and Hu [<a class="reference internal" href="../references/bibliography.html#id58" title="Jim Albert and Jingchen Hu. Probability and Bayesian Modeling. Chapman and Hall/CRC, 2019.">AH19</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -553,7 +556,7 @@ document.write(`
 <section id="aggiornamento-bayesiano-con-una-distribuzione-a-priori-discreta">
 <h2>Aggiornamento bayesiano con una distribuzione a priori discreta<a class="headerlink" href="#aggiornamento-bayesiano-con-una-distribuzione-a-priori-discreta" title="Permalink to this heading">#</a></h2>
 <p>Secondo la visione soggettivista della probabilità, l’incertezza riguardo a un evento, rappresentato dalla variabile sconosciuta <span class="math notranslate nohighlight">\(\theta\)</span>, può essere assimilata a un’opinione di natura soggettiva. Questa opinione si basa sia sulle nostre convinzioni iniziali sia sulle nuove informazioni derivanti dall’osservazione dei dati. Il processo di aggiornamento bayesiano ci consente di combinare le credenze iniziali riguardo a <span class="math notranslate nohighlight">\(\theta\)</span> con le prove offerte dai dati per ottenere una nuova opinione a posteriori relativa a <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
-<p>Nell’esempio discusso da <span id="id2">Albert and Hu [<a class="reference internal" href="../references/bibliography.html#id57" title="Jim Albert and Jingchen Hu. Probability and Bayesian Modeling. Chapman and Hall/CRC, 2019.">AH19</a>]</span>, ci chiediamo quale sia la probabilità che una pallina estratta da un’urna sia di colore rosso. Poiché <span class="math notranslate nohighlight">\(\theta\)</span> rappresenta una probabilità, può assumere solo valori compresi tra 0 e 1. Se non disponiamo di ulteriori informazioni su <span class="math notranslate nohighlight">\(\theta\)</span>, potremmo essere tentati di assegnargli un valore specifico, come ad esempio 0.5. Tuttavia, questa posizione è troppo estrema: poiché non abbiamo informazioni certe su <span class="math notranslate nohighlight">\(\theta\)</span> risulta poco sensato assegnargli un valore specifico. Invece, è più ragionevole esprimere la nostra incertezza su <span class="math notranslate nohighlight">\(\theta\)</span> considerando la possibilità che possa assumere una gamma di valori possibili e associando livelli di certezza soggettiva a ciascuno di essi.</p>
+<p>Nell’esempio discusso da <span id="id2">Albert and Hu [<a class="reference internal" href="../references/bibliography.html#id58" title="Jim Albert and Jingchen Hu. Probability and Bayesian Modeling. Chapman and Hall/CRC, 2019.">AH19</a>]</span>, ci chiediamo quale sia la probabilità che una pallina estratta da un’urna sia di colore rosso. Poiché <span class="math notranslate nohighlight">\(\theta\)</span> rappresenta una probabilità, può assumere solo valori compresi tra 0 e 1. Se non disponiamo di ulteriori informazioni su <span class="math notranslate nohighlight">\(\theta\)</span>, potremmo essere tentati di assegnargli un valore specifico, come ad esempio 0.5. Tuttavia, questa posizione è troppo estrema: poiché non abbiamo informazioni certe su <span class="math notranslate nohighlight">\(\theta\)</span> risulta poco sensato assegnargli un valore specifico. Invece, è più ragionevole esprimere la nostra incertezza su <span class="math notranslate nohighlight">\(\theta\)</span> considerando la possibilità che possa assumere una gamma di valori possibili e associando livelli di certezza soggettiva a ciascuno di essi.</p>
 <p>Ad esempio, possiamo considerare undici valori potenziali per <span class="math notranslate nohighlight">\(\theta\)</span> e assegnare a ciascuno di essi un determinato grado di certezza soggettiva. Attraverso l’utilizzo di una distribuzione di probabilità discreta, saremo in grado di manifestare in maniera precisa e completa la nostra opinione soggettiva su <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 <p>Consideriamo ora i seguenti valori plausibili per <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 <div class="cell docutils container">
@@ -1111,7 +1114,7 @@ Watermark: 2.4.3
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="01_intro_bayes.html"
@@ -1173,6 +1176,7 @@ By Corrado Caudek
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1199,8 +1203,8 @@ By Corrado Caudek
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

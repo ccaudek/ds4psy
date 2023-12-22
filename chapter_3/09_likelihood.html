@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -42,9 +42,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -155,6 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -465,6 +466,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -474,6 +476,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -574,7 +577,7 @@ document.write(`
 <h2>Concetto di Verosimiglianza e Sua Formalizzazione Matematica<a class="headerlink" href="#concetto-di-verosimiglianza-e-sua-formalizzazione-matematica" title="Permalink to this heading">#</a></h2>
 <p>La funzione di verosimiglianza è una struttura matematica utilizzata per quantificare la congruenza tra un insieme di dati osservati <span class="math notranslate nohighlight">\( y \)</span> e un modello statistico parametrizzato da <span class="math notranslate nohighlight">\( \theta \)</span>. Essa è formalmente definita come proporzionale alla probabilità condizionale dei dati <span class="math notranslate nohighlight">\( y \)</span> dato il vettore dei parametri <span class="math notranslate nohighlight">\( \theta \)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-likelihood-def">
-<span class="eqno">(53)<a class="headerlink" href="#equation-eq-likelihood-def" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(52)<a class="headerlink" href="#equation-eq-likelihood-def" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 L(\theta | y) \propto p(y | \theta).
 \end{equation}
@@ -614,9 +617,9 @@ P(Y = y) = \binom{n}{y} \theta^y (1 - \theta)^{n - y},
 \[
 \mathcal{L}(\theta \mid y) = \theta^y (1 - \theta)^{n - y}.
 \]</div>
-<p>Per illustrare con un esempio applicativo, facciamo riferimento allo studio di <span id="id1">Zetsche <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id56" title="Ulrike Zetsche, Paul-Christian Buerkner, and Babette Renneberg. Future expectations in clinical depression: biased or realistic? Journal of Abnormal Psychology, 128(7):678, 2019.">ZBR19</a>]</span>. In questo studio, su un campione di 30 pazienti affetti da depressione clinica, 23 mostravano aspettative negativamente distorte riguardo al loro futuro stato d’animo. Pertanto, nel contesto di questi dati, la funzione di verosimiglianza è definita dalla distribuzione binomiale con un parametro <span class="math notranslate nohighlight">\( \theta \)</span> ignoto nell’intervallo [0, 1]. Avendo osservato <span class="math notranslate nohighlight">\( y = 23 \)</span> successi in <span class="math notranslate nohighlight">\( n = 30 \)</span> prove, la funzione di verosimiglianza assume la forma:</p>
+<p>Per illustrare con un esempio applicativo, facciamo riferimento allo studio di <span id="id1">Zetsche <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id57" title="Ulrike Zetsche, Paul-Christian Buerkner, and Babette Renneberg. Future expectations in clinical depression: biased or realistic? Journal of Abnormal Psychology, 128(7):678, 2019.">ZBR19</a>]</span>. In questo studio, su un campione di 30 pazienti affetti da depressione clinica, 23 mostravano aspettative negativamente distorte riguardo al loro futuro stato d’animo. Pertanto, nel contesto di questi dati, la funzione di verosimiglianza è definita dalla distribuzione binomiale con un parametro <span class="math notranslate nohighlight">\( \theta \)</span> ignoto nell’intervallo [0, 1]. Avendo osservato <span class="math notranslate nohighlight">\( y = 23 \)</span> successi in <span class="math notranslate nohighlight">\( n = 30 \)</span> prove, la funzione di verosimiglianza assume la forma:</p>
 <div class="math notranslate nohighlight" id="equation-eq-likebino23">
-<span class="eqno">(54)<a class="headerlink" href="#equation-eq-likebino23" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(53)<a class="headerlink" href="#equation-eq-likebino23" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 \mathcal{L}(\theta \mid y) = \frac{(23 + 7)!}{23!7!} \theta^{23} (1 - \theta)^7.
 \end{equation}
@@ -769,7 +772,7 @@ P(Y = y) = \binom{n}{y} \theta^y (1 - \theta)^{n - y},
 <h3>La Funzione di Log-Verosimiglianza<a class="headerlink" href="#la-funzione-di-log-verosimiglianza" title="Permalink to this heading">#</a></h3>
 <p>Nelle applicazioni pratiche, si preferisce frequentemente lavorare con il logaritmo naturale della funzione di verosimiglianza, noto come funzione di log-verosimiglianza. Questa è definita come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-loglike-definition">
-<span class="eqno">(55)<a class="headerlink" href="#equation-eq-loglike-definition" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(54)<a class="headerlink" href="#equation-eq-loglike-definition" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 \ell(\theta) = \log \mathcal{L}(\theta).
 \end{equation}
@@ -858,7 +861,7 @@ p(y_1, y_2, \ldots, y_n \mid \theta) &amp;= p(y_1 \mid \theta) \times p(y_2 \mid
 <p>Ampliamo ora la nostra analisi al caso della distribuzione gaussiana. Inizieremo con la verosimiglianza associata a una singola osservazione <span class="math notranslate nohighlight">\( Y \)</span>, per poi estendere la discussione a un insieme di osservazioni gaussiane indipendenti e identicamente distribuite (IID).</p>
 <p>Per una distribuzione gaussiana con media <span class="math notranslate nohighlight">\( \mu \)</span> e varianza <span class="math notranslate nohighlight">\( \sigma^2 \)</span>, la funzione di verosimiglianza <span class="math notranslate nohighlight">\( L \)</span> si può esprimere come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-gaussian-likelihood">
-<span class="eqno">(56)<a class="headerlink" href="#equation-eq-gaussian-likelihood" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(55)<a class="headerlink" href="#equation-eq-gaussian-likelihood" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{aligned}
 L(\theta \mid Y) &amp;= \prod_{i=1}^{n} f(y_i \mid \mu, \sigma^2) \\
 &amp;= (2\pi\sigma^2)^{-\frac{n}{2}} \exp \left( -\frac{1}{2\sigma^2} \sum_{i=1}^{n} (y_i - \mu)^2 \right).
@@ -954,7 +957,7 @@ f(y \mid \theta) = \prod_{i=1}^{n} f(y_i \mid \theta),
 \]</div>
 <p>dove <span class="math notranslate nohighlight">\( f(\cdot) \)</span> rappresenta la funzione di densità di probabilità gaussiana parametrizzata da <span class="math notranslate nohighlight">\( \mu \)</span> e <span class="math notranslate nohighlight">\( \sigma \)</span>.</p>
 <p>Mantenendo i dati osservati <span class="math notranslate nohighlight">\( y \)</span> costanti, la funzione di verosimiglianza per il campione diventa equivalente all’equazione (eq-gaussian-sim-like).</p>
-<p>Per illustrare questo concetto concretamente, prendiamo in esame un esempio che utilizza i punteggi BDI-II (Beck Depression Inventory II) di trenta partecipanti in uno studio clinico, come descritto in <span id="id2">Zetsche <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id56" title="Ulrike Zetsche, Paul-Christian Buerkner, and Babette Renneberg. Future expectations in clinical depression: biased or realistic? Journal of Abnormal Psychology, 128(7):678, 2019.">ZBR19</a>]</span>.</p>
+<p>Per illustrare questo concetto concretamente, prendiamo in esame un esempio che utilizza i punteggi BDI-II (Beck Depression Inventory II) di trenta partecipanti in uno studio clinico, come descritto in <span id="id2">Zetsche <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id57" title="Ulrike Zetsche, Paul-Christian Buerkner, and Babette Renneberg. Future expectations in clinical depression: biased or realistic? Journal of Abnormal Psychology, 128(7):678, 2019.">ZBR19</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span>
@@ -1209,7 +1212,7 @@ Watermark: 2.4.3
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="E_beta_distr.html"
@@ -1282,6 +1285,7 @@ By Corrado Caudek
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1308,8 +1312,8 @@ By Corrado Caudek
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

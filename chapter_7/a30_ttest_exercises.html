@@ -565,11 +565,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running on PyMC v5.6.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running on PyMC v5.10.3
 </pre></div>
 </div>
 </div>
@@ -730,7 +726,7 @@ T = \frac{\bar{X} - \mathbb{E}(\bar{X})}{s / \sqrt{n}} = \frac{\bar{X} - \mu_0}{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e7b76cb57bd939b35f58f3e8ebbe1d39ba0408995cd876a213d006470cbe448a.svg" src="../_images/e7b76cb57bd939b35f58f3e8ebbe1d39ba0408995cd876a213d006470cbe448a.svg" /></div>
+<img alt="../_images/c673eac016b7014e27b58de79e451d4cbc00ae927a94dc46e49fb155d9bdd241.svg" src="../_images/c673eac016b7014e27b58de79e451d4cbc00ae927a94dc46e49fb155d9bdd241.svg" /></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1113,7 +1109,7 @@ s = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}},
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;x&#39;, ylabel=&#39;y&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/9a78854a4511c100f18bcdcd9394e797e04f7d6312b9a4f3363834b8171f1f27.svg" src="../_images/9a78854a4511c100f18bcdcd9394e797e04f7d6312b9a4f3363834b8171f1f27.svg" /></div>
+<img alt="../_images/d83e4a8b3d947f829f8f50e0668f57e22fcf8321392856c6f23706a56c1caeed.svg" src="../_images/d83e4a8b3d947f829f8f50e0668f57e22fcf8321392856c6f23706a56c1caeed.svg" /></div>
 </div>
 <p>Creaimo il modello statistico corrispondente ad un modello di regressione con un predittore dicotomico codificato con 0 per il primo gruppo e con 1 per il secondo gruppo. Iniziamo con l’analisi predittiva a priori per determinare se le distribuzioni a priori sono adeguate.</p>
 <div class="cell docutils container">
@@ -1160,7 +1156,7 @@ s = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}},
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/62fe51f021485da8ae79c3a55bd752e142ebdeaf12801b34be6208d3150f4d53.svg" src="../_images/62fe51f021485da8ae79c3a55bd752e142ebdeaf12801b34be6208d3150f4d53.svg" /></div>
+<img alt="../_images/a5f8b86712f940610ba360625bcc3445d39cc8fe40aec3120920582a194703a6.svg" src="../_images/a5f8b86712f940610ba360625bcc3445d39cc8fe40aec3120920582a194703a6.svg" /></div>
 </div>
 <p>Si noti che <code class="docutils literal notranslate"><span class="pre">prior[&quot;alpha&quot;]</span></code> è un array che contiene 50 valori generati casualmente dal modello per il parametro <code class="docutils literal notranslate"><span class="pre">alpha</span></code>.</p>
 <div class="cell docutils container">
@@ -1534,39 +1530,39 @@ dl.xr-attrs {
   fill: currentColor;
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;alpha&#x27; (chain: 1, draw: 50)&gt;
-array([[  8.90302968, -51.10369516,  20.8414735 , -16.0282912 ,
-         51.96260868,  41.26246683, -57.88017743,  44.14903266,
-        -51.72177652, -28.11022252,  34.52780661,  33.74005485,
-         49.58726414, -66.58502461, -27.77019046,  91.37899503,
-        110.38855703,  40.22164412,  17.70981786, -53.10316548,
-         20.8204563 ,  10.82473022, -27.50791999,  50.3866515 ,
-         11.58909758,  22.69663109, -54.37368218,  23.90763723,
-         35.23891608, -42.57422991, -43.94522491,  19.97944453,
-         -7.24608828,  12.61281172,  47.20651752,  75.12346046,
-         21.79353107,   3.35630473, -80.02416852, 117.62704188,
-        -42.3234531 , -43.543989  ,  52.4245467 , -30.67182483,
-          7.59755152,  63.96524661,  -0.90894046,  72.80200197,
-         84.16407919,  23.3197523 ]])
+array([[ -37.28348794,   31.72318578,  -23.36055457,   -0.88676013,
+          34.47871712,   35.57949493,   15.44547644,    2.05374547,
+          16.25462438,   85.55813   ,   45.19928578,   34.50676132,
+         -36.51485074,  -50.88880103,   71.31252906,  -42.62510831,
+          27.66042136,  -26.57546555,   49.33949959,  -71.59417854,
+         -48.77675689,    3.99867177,   -2.20183454,  -95.65654175,
+         -19.60728003,  -37.77075701,   30.93890959,   18.93346965,
+         -15.09328508,   34.84922537,  -30.98609506,   28.43509448,
+          80.36675073,   16.02493609,    9.13446507,   10.41445025,
+          73.29213549,  -19.08050098,  -41.39529023,   -2.17477082,
+           4.73703244,  -55.12756308,   36.97485557,  -14.09717336,
+         -71.1945255 ,  108.04429863,   27.50210919,  130.42362165,
+        -101.39257496,  -51.28525369]])
 Coordinates:
   * chain    (chain) int64 0
-  * draw     (draw) int64 0 1 2 3 4 5 6 7 8 9 ... 40 41 42 43 44 45 46 47 48 49</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'alpha'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 1</li><li><span class='xr-has-index'>draw</span>: 50</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-d11fa0a0-2a69-4cff-8f69-58f87bda808f' class='xr-array-in' type='checkbox' checked><label for='section-d11fa0a0-2a69-4cff-8f69-58f87bda808f' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>8.903 -51.1 20.84 -16.03 51.96 ... 63.97 -0.9089 72.8 84.16 23.32</span></div><div class='xr-array-data'><pre>array([[  8.90302968, -51.10369516,  20.8414735 , -16.0282912 ,
-         51.96260868,  41.26246683, -57.88017743,  44.14903266,
-        -51.72177652, -28.11022252,  34.52780661,  33.74005485,
-         49.58726414, -66.58502461, -27.77019046,  91.37899503,
-        110.38855703,  40.22164412,  17.70981786, -53.10316548,
-         20.8204563 ,  10.82473022, -27.50791999,  50.3866515 ,
-         11.58909758,  22.69663109, -54.37368218,  23.90763723,
-         35.23891608, -42.57422991, -43.94522491,  19.97944453,
-         -7.24608828,  12.61281172,  47.20651752,  75.12346046,
-         21.79353107,   3.35630473, -80.02416852, 117.62704188,
-        -42.3234531 , -43.543989  ,  52.4245467 , -30.67182483,
-          7.59755152,  63.96524661,  -0.90894046,  72.80200197,
-         84.16407919,  23.3197523 ]])</pre></div></div></li><li class='xr-section-item'><input id='section-3f8c1987-5254-4a63-9d19-9f50b831c61d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3f8c1987-5254-4a63-9d19-9f50b831c61d' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-5e02aa8c-6f28-4d36-afad-5efbb625fa3d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5e02aa8c-6f28-4d36-afad-5efbb625fa3d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-325e401e-69ea-4c19-93c8-74b1838ba27d' class='xr-var-data-in' type='checkbox'><label for='data-325e401e-69ea-4c19-93c8-74b1838ba27d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 6 ... 44 45 46 47 48 49</div><input id='attrs-53eade28-f29f-441e-94bf-66ee66517949' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-53eade28-f29f-441e-94bf-66ee66517949' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-43c48484-c37b-4282-83ee-08bfdac65aab' class='xr-var-data-in' type='checkbox'><label for='data-43c48484-c37b-4282-83ee-08bfdac65aab' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+  * draw     (draw) int64 0 1 2 3 4 5 6 7 8 9 ... 40 41 42 43 44 45 46 47 48 49</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'alpha'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 1</li><li><span class='xr-has-index'>draw</span>: 50</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-ce8977b6-c87f-42a7-a383-11d30f7aa41e' class='xr-array-in' type='checkbox' checked><label for='section-ce8977b6-c87f-42a7-a383-11d30f7aa41e' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-37.28 31.72 -23.36 -0.8868 34.48 ... 108.0 27.5 130.4 -101.4 -51.29</span></div><div class='xr-array-data'><pre>array([[ -37.28348794,   31.72318578,  -23.36055457,   -0.88676013,
+          34.47871712,   35.57949493,   15.44547644,    2.05374547,
+          16.25462438,   85.55813   ,   45.19928578,   34.50676132,
+         -36.51485074,  -50.88880103,   71.31252906,  -42.62510831,
+          27.66042136,  -26.57546555,   49.33949959,  -71.59417854,
+         -48.77675689,    3.99867177,   -2.20183454,  -95.65654175,
+         -19.60728003,  -37.77075701,   30.93890959,   18.93346965,
+         -15.09328508,   34.84922537,  -30.98609506,   28.43509448,
+          80.36675073,   16.02493609,    9.13446507,   10.41445025,
+          73.29213549,  -19.08050098,  -41.39529023,   -2.17477082,
+           4.73703244,  -55.12756308,   36.97485557,  -14.09717336,
+         -71.1945255 ,  108.04429863,   27.50210919,  130.42362165,
+        -101.39257496,  -51.28525369]])</pre></div></div></li><li class='xr-section-item'><input id='section-fe09292a-1391-4e30-b0e0-d1d4c72ac5fe' class='xr-section-summary-in' type='checkbox'  checked><label for='section-fe09292a-1391-4e30-b0e0-d1d4c72ac5fe' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-e3dba7b6-00fa-42aa-b148-8ee0bd7fea24' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e3dba7b6-00fa-42aa-b148-8ee0bd7fea24' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0ab3d2fd-d792-4a0c-874b-86c153ff3945' class='xr-var-data-in' type='checkbox'><label for='data-0ab3d2fd-d792-4a0c-874b-86c153ff3945' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 6 ... 44 45 46 47 48 49</div><input id='attrs-6b578d86-7879-42c3-a418-37becbcf076b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6b578d86-7879-42c3-a418-37becbcf076b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-79048594-fce3-4823-bd55-a6ca9ab77689' class='xr-var-data-in' type='checkbox'><label for='data-79048594-fce3-4823-bd55-a6ca9ab77689' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
        18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
-       36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-957f5ab6-0ca5-4eff-869b-7f47c38dcab5' class='xr-section-summary-in' type='checkbox'  ><label for='section-957f5ab6-0ca5-4eff-869b-7f47c38dcab5' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-bb62e117-4b5c-4456-b9f9-76bd44ca4dca' class='xr-index-data-in' type='checkbox'/><label for='index-bb62e117-4b5c-4456-b9f9-76bd44ca4dca' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-7a5747fb-e138-412f-8281-ba38e757b601' class='xr-index-data-in' type='checkbox'/><label for='index-7a5747fb-e138-412f-8281-ba38e757b601' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+       36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f74a1743-1fc9-4f2b-9a8a-ba5675a6f3c1' class='xr-section-summary-in' type='checkbox'  ><label for='section-f74a1743-1fc9-4f2b-9a8a-ba5675a6f3c1' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f00e7cb8-bf5b-4c89-b551-069184005457' class='xr-index-data-in' type='checkbox'/><label for='index-f00e7cb8-bf5b-4c89-b551-069184005457' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8cd2902c-6c82-4d61-84ef-b04b66f2a03f' class='xr-index-data-in' type='checkbox'/><label for='index-8cd2902c-6c82-4d61-84ef-b04b66f2a03f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
        18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
        36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
-      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-704312fa-7aec-4397-87e7-38dc988afb5e' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-704312fa-7aec-4397-87e7-38dc988afb5e' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-90b227ab-ba67-45b9-8fd1-154b16f8dc64' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-90b227ab-ba67-45b9-8fd1-154b16f8dc64' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Lo stesso si può dire per <code class="docutils literal notranslate"><span class="pre">beta</span></code>.</p>
 <div class="cell docutils container">
@@ -1940,39 +1936,39 @@ dl.xr-attrs {
   fill: currentColor;
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;beta&#x27; (chain: 1, draw: 50)&gt;
-array([[ -73.23964861,   -9.0325059 ,   53.06353544,  112.85603609,
-           5.04639761, -106.59945563,  -24.42799416,  -50.25277972,
-          -2.3352762 ,  164.7884399 ,  160.27310322,  134.32271178,
-          89.33504122,    2.35398913, -105.0600896 ,  -87.69869773,
-          47.33332974,  -35.93030991,  -56.73934955,    7.23364238,
-         -43.80488269,   -3.79837767,  -44.8523227 ,  -67.29451051,
-         143.1177315 ,   96.59621951,  -48.07001942,   70.57027756,
-         -60.68552615,  126.46527187,  166.88247437,  106.04140498,
-         -37.30334767,  -87.88998313,   24.88015005,   83.93604293,
-        -144.71097117, -107.92634583,  -33.53450344,   96.42248141,
-        -112.55316364,  -34.05252277,  135.76028895,  -13.51874136,
-           7.10557778,    4.09567605,    6.69066034,  -87.63512785,
-         141.29444371,  -22.10746451]])
+array([[ -21.55085611,  -35.63170573,   39.70378324,  -37.45837551,
+           9.90597708, -154.5812626 ,  -69.57705632,  -17.16695286,
+        -260.82185262,   95.70625761,   59.50461575,   85.65275632,
+         -17.86685586,  -57.61023312,  -13.39273698,   -8.73154072,
+        -107.41389332,   94.88202419,  118.34022851,  157.88970305,
+          17.6908859 , -192.56029657,  -67.17352363, -140.97266311,
+        -156.52559482,   21.77542113,   -2.11599255, -144.20385122,
+         103.09341031,  252.06540505, -134.28952279,   -9.84539505,
+          37.5366705 ,   10.91284459, -213.33611025,   82.28007035,
+          14.65336278, -135.68109103,  105.87417979, -179.59696285,
+         -64.13092861,   45.35537003,  -31.17149149, -139.89599794,
+         104.00156011,  -93.82525055,  -54.832396  ,   23.14798553,
+          25.26692572,  -69.3473053 ]])
 Coordinates:
   * chain    (chain) int64 0
-  * draw     (draw) int64 0 1 2 3 4 5 6 7 8 9 ... 40 41 42 43 44 45 46 47 48 49</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'beta'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 1</li><li><span class='xr-has-index'>draw</span>: 50</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-aeb83438-2db9-4535-8790-aa00a9ab6746' class='xr-array-in' type='checkbox' checked><label for='section-aeb83438-2db9-4535-8790-aa00a9ab6746' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-73.24 -9.033 53.06 112.9 5.046 ... 4.096 6.691 -87.64 141.3 -22.11</span></div><div class='xr-array-data'><pre>array([[ -73.23964861,   -9.0325059 ,   53.06353544,  112.85603609,
-           5.04639761, -106.59945563,  -24.42799416,  -50.25277972,
-          -2.3352762 ,  164.7884399 ,  160.27310322,  134.32271178,
-          89.33504122,    2.35398913, -105.0600896 ,  -87.69869773,
-          47.33332974,  -35.93030991,  -56.73934955,    7.23364238,
-         -43.80488269,   -3.79837767,  -44.8523227 ,  -67.29451051,
-         143.1177315 ,   96.59621951,  -48.07001942,   70.57027756,
-         -60.68552615,  126.46527187,  166.88247437,  106.04140498,
-         -37.30334767,  -87.88998313,   24.88015005,   83.93604293,
-        -144.71097117, -107.92634583,  -33.53450344,   96.42248141,
-        -112.55316364,  -34.05252277,  135.76028895,  -13.51874136,
-           7.10557778,    4.09567605,    6.69066034,  -87.63512785,
-         141.29444371,  -22.10746451]])</pre></div></div></li><li class='xr-section-item'><input id='section-d7619c5a-4d45-4ffe-a99a-6d5b8518a04f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d7619c5a-4d45-4ffe-a99a-6d5b8518a04f' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-5d825f49-55fe-4fb8-ab7e-e3af8a510e1b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5d825f49-55fe-4fb8-ab7e-e3af8a510e1b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a72fff39-bcd2-439e-a94a-433f718b6c2e' class='xr-var-data-in' type='checkbox'><label for='data-a72fff39-bcd2-439e-a94a-433f718b6c2e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 6 ... 44 45 46 47 48 49</div><input id='attrs-05feaf9d-924a-4642-aeb6-84102f7f4199' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-05feaf9d-924a-4642-aeb6-84102f7f4199' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-59b337e6-f768-4296-b6bd-920e6837f2aa' class='xr-var-data-in' type='checkbox'><label for='data-59b337e6-f768-4296-b6bd-920e6837f2aa' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+  * draw     (draw) int64 0 1 2 3 4 5 6 7 8 9 ... 40 41 42 43 44 45 46 47 48 49</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'beta'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 1</li><li><span class='xr-has-index'>draw</span>: 50</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-44ea4ce1-2e89-422c-88b6-abe78a56a905' class='xr-array-in' type='checkbox' checked><label for='section-44ea4ce1-2e89-422c-88b6-abe78a56a905' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-21.55 -35.63 39.7 -37.46 9.906 ... -93.83 -54.83 23.15 25.27 -69.35</span></div><div class='xr-array-data'><pre>array([[ -21.55085611,  -35.63170573,   39.70378324,  -37.45837551,
+           9.90597708, -154.5812626 ,  -69.57705632,  -17.16695286,
+        -260.82185262,   95.70625761,   59.50461575,   85.65275632,
+         -17.86685586,  -57.61023312,  -13.39273698,   -8.73154072,
+        -107.41389332,   94.88202419,  118.34022851,  157.88970305,
+          17.6908859 , -192.56029657,  -67.17352363, -140.97266311,
+        -156.52559482,   21.77542113,   -2.11599255, -144.20385122,
+         103.09341031,  252.06540505, -134.28952279,   -9.84539505,
+          37.5366705 ,   10.91284459, -213.33611025,   82.28007035,
+          14.65336278, -135.68109103,  105.87417979, -179.59696285,
+         -64.13092861,   45.35537003,  -31.17149149, -139.89599794,
+         104.00156011,  -93.82525055,  -54.832396  ,   23.14798553,
+          25.26692572,  -69.3473053 ]])</pre></div></div></li><li class='xr-section-item'><input id='section-11def344-7121-4c94-a45b-ab28cc05389c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-11def344-7121-4c94-a45b-ab28cc05389c' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-2256aef2-73f9-4d69-a9be-c09830e59775' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2256aef2-73f9-4d69-a9be-c09830e59775' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-43d824ee-f568-42b4-b754-92763df4bc4c' class='xr-var-data-in' type='checkbox'><label for='data-43d824ee-f568-42b4-b754-92763df4bc4c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 6 ... 44 45 46 47 48 49</div><input id='attrs-35b9af00-ce2f-4511-8b95-73f509dd6c89' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-35b9af00-ce2f-4511-8b95-73f509dd6c89' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-eba6819f-2a59-44f3-a73e-3f1cd16404c6' class='xr-var-data-in' type='checkbox'><label for='data-eba6819f-2a59-44f3-a73e-3f1cd16404c6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
        18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
-       36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d46a9928-f9cd-42c0-8c4b-a5e47dad79bc' class='xr-section-summary-in' type='checkbox'  ><label for='section-d46a9928-f9cd-42c0-8c4b-a5e47dad79bc' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-6bf45c32-e50b-4ef2-8e3b-af8e178d4c5a' class='xr-index-data-in' type='checkbox'/><label for='index-6bf45c32-e50b-4ef2-8e3b-af8e178d4c5a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-5baeecec-8251-4b65-972d-665a685013f9' class='xr-index-data-in' type='checkbox'/><label for='index-5baeecec-8251-4b65-972d-665a685013f9' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+       36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-544d5644-9c41-42e8-8948-1326f56792c5' class='xr-section-summary-in' type='checkbox'  ><label for='section-544d5644-9c41-42e8-8948-1326f56792c5' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-162b16b5-f937-4165-b7be-fd23b0546af9' class='xr-index-data-in' type='checkbox'/><label for='index-162b16b5-f937-4165-b7be-fd23b0546af9' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2df3659b-97b2-4b65-bc6b-0dd402fc32c8' class='xr-index-data-in' type='checkbox'/><label for='index-2df3659b-97b2-4b65-bc6b-0dd402fc32c8' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
        18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
        36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
-      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d9426f93-b045-4366-ac6a-d51ac9f4c85b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-d9426f93-b045-4366-ac6a-d51ac9f4c85b' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-483896ee-afb9-424a-a59b-750853a617c1' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-483896ee-afb9-424a-a59b-750853a617c1' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>L’array <code class="docutils literal notranslate"><span class="pre">xp</span></code> è un vettore unidimensionale di 11 elementi compresi tra 0 e 1.</p>
 <div class="cell docutils container">
@@ -2359,7 +2355,7 @@ dl.xr-attrs {
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (plot_dim: 11)&gt;
 array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])
-Dimensions without coordinates: plot_dim</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span>plot_dim</span>: 11</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-250cc381-d736-4819-b1ce-1a9edf34838d' class='xr-array-in' type='checkbox' checked><label for='section-250cc381-d736-4819-b1ce-1a9edf34838d' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</span></div><div class='xr-array-data'><pre>array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])</pre></div></div></li><li class='xr-section-item'><input id='section-81742b93-a738-48c5-8aa8-b5e3c42ef45a' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-81742b93-a738-48c5-8aa8-b5e3c42ef45a' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-a2cc9cb6-5a89-4963-899d-3618b141a01b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a2cc9cb6-5a89-4963-899d-3618b141a01b' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-4cb73327-aee5-4ece-b682-18c5b71657ed' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4cb73327-aee5-4ece-b682-18c5b71657ed' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+Dimensions without coordinates: plot_dim</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span>plot_dim</span>: 11</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-933c8ff2-e57a-4c00-8a9d-648d1029482d' class='xr-array-in' type='checkbox' checked><label for='section-933c8ff2-e57a-4c00-8a9d-648d1029482d' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</span></div><div class='xr-array-data'><pre>array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])</pre></div></div></li><li class='xr-section-item'><input id='section-b87d3708-fc01-4059-9c5e-cf58283224f9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-b87d3708-fc01-4059-9c5e-cf58283224f9' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-d9af88e5-17f4-44a9-8d46-408497031bbd' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-d9af88e5-17f4-44a9-8d46-408497031bbd' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-9ca68cd2-a726-4b12-8b81-2690fdf63391' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9ca68cd2-a726-4b12-8b81-2690fdf63391' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Si noti che l’xarray <code class="docutils literal notranslate"><span class="pre">yp</span></code> ha coordinate <code class="docutils literal notranslate"><span class="pre">chain</span></code> e <code class="docutils literal notranslate"><span class="pre">draw</span></code>.</p>
 <div class="cell docutils container">
@@ -2733,96 +2729,96 @@ dl.xr-attrs {
   fill: currentColor;
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (chain: 1, draw: 50, plot_dim: 11)&gt;
-array([[[   8.90302968,    1.57906482,   -5.74490004,  -13.0688649 ,
-          -20.39282976,  -27.71679462,  -35.04075948,  -42.36472434,
-          -49.68868921,  -57.01265407,  -64.33661893],
-        [ -51.10369516,  -52.00694575,  -52.91019634,  -53.81344693,
-          -54.71669752,  -55.61994811,  -56.5231987 ,  -57.42644929,
-          -58.32969988,  -59.23295047,  -60.13620107],
-        [  20.8414735 ,   26.14782704,   31.45418059,   36.76053413,
-           42.06688768,   47.37324122,   52.67959477,   57.98594831,
-           63.29230185,   68.5986554 ,   73.90500894],
-        [ -16.0282912 ,   -4.74268759,    6.54291602,   17.82851963,
-           29.11412324,   40.39972685,   51.68533046,   62.97093407,
-           74.25653767,   85.54214128,   96.82774489],
-        [  51.96260868,   52.46724844,   52.9718882 ,   53.47652796,
-           53.98116772,   54.48580749,   54.99044725,   55.49508701,
-           55.99972677,   56.50436653,   57.00900629],
-        [  41.26246683,   30.60252127,   19.94257571,    9.28263014,
-           -1.37731542,  -12.03726098,  -22.69720654,  -33.35715211,
-          -44.01709767,  -54.67704323,  -65.3369888 ],
-        [ -57.88017743,  -60.32297685,  -62.76577626,  -65.20857568,
-          -67.65137509,  -70.09417451,  -72.53697393,  -74.97977334,
+array([[[-3.72834879e+01, -3.94385735e+01, -4.15936592e+01,
+         -4.37487448e+01, -4.59038304e+01, -4.80589160e+01,
+         -5.02140016e+01, -5.23690872e+01, -5.45241728e+01,
+         -5.66792584e+01, -5.88343440e+01],
+        [ 3.17231858e+01,  2.81600152e+01,  2.45968446e+01,
+          2.10336741e+01,  1.74705035e+01,  1.39073329e+01,
+          1.03441623e+01,  6.78099176e+00,  3.21782119e+00,
+         -3.45349384e-01, -3.90851996e+00],
+        [-2.33605546e+01, -1.93901762e+01, -1.54197979e+01,
+         -1.14494196e+01, -7.47904127e+00, -3.50866295e+00,
+          4.61715377e-01,  4.43209370e+00,  8.40247203e+00,
+          1.23728504e+01,  1.63432287e+01],
+        [-8.86760125e-01, -4.63259768e+00, -8.37843523e+00,
+         -1.21242728e+01, -1.58701103e+01, -1.96159479e+01,
+         -2.33617854e+01, -2.71076230e+01, -3.08534605e+01,
+         -3.45992981e+01, -3.83451356e+01],
+        [ 3.44787171e+01,  3.54693148e+01,  3.64599125e+01,
+          3.74505102e+01,  3.84411080e+01,  3.94317057e+01,
+          4.04223034e+01,  4.14129011e+01,  4.24034988e+01,
+          4.33940965e+01,  4.43846942e+01],
 ...
-          -36.07932138,  -37.43119551,  -38.78306965,  -40.13494379,
-          -41.48681792,  -42.83869206,  -44.19056619],
-        [   7.59755152,    8.3081093 ,    9.01866708,    9.72922486,
-           10.43978264,   11.15034041,   11.86089819,   12.57145597,
-           13.28201375,   13.99257153,   14.7031293 ],
-        [  63.96524661,   64.37481422,   64.78438182,   65.19394943,
-           65.60351703,   66.01308464,   66.42265224,   66.83221984,
-           67.24178745,   67.65135505,   68.06092266],
-        [  -0.90894046,   -0.23987442,    0.42919161,    1.09825764,
-            1.76732368,    2.43638971,    3.10545575,    3.77452178,
-            4.44358781,    5.11265385,    5.78171988],
-        [  72.80200197,   64.03848919,   55.2749764 ,   46.51146362,
-           37.74795083,   28.98443805,   20.22092526,   11.45741248,
-            2.69389969,   -6.06961309,  -14.83312588],
-        [  84.16407919,   98.29352357,  112.42296794,  126.55241231,
-          140.68185668,  154.81130105,  168.94074542,  183.07018979,
-          197.19963416,  211.32907854,  225.45852291],
-        [  23.3197523 ,   21.10900585,   18.89825939,   16.68751294,
-           14.47676649,   12.26602004,   10.05527359,    7.84452714,
-            5.63378069,    3.42303424,    1.21228779]]])
+        [ 1.08044299e+02,  9.86617736e+01,  8.92792485e+01,
+          7.98967235e+01,  7.05141984e+01,  6.11316734e+01,
+          5.17491483e+01,  4.23666232e+01,  3.29840982e+01,
+          2.36015731e+01,  1.42190481e+01],
+        [ 2.75021092e+01,  2.20188696e+01,  1.65356300e+01,
+          1.10523904e+01,  5.56915079e+00,  8.59111865e-02,
+         -5.39732841e+00, -1.08805680e+01, -1.63638076e+01,
+         -2.18470472e+01, -2.73302868e+01],
+        [ 1.30423622e+02,  1.32738420e+02,  1.35053219e+02,
+          1.37368017e+02,  1.39682816e+02,  1.41997614e+02,
+          1.44312413e+02,  1.46627212e+02,  1.48942010e+02,
+          1.51256809e+02,  1.53571607e+02],
+        [-1.01392575e+02, -9.88658824e+01, -9.63391898e+01,
+         -9.38124972e+01, -9.12858047e+01, -8.87591121e+01,
+         -8.62324195e+01, -8.37057270e+01, -8.11790344e+01,
+         -7.86523418e+01, -7.61256492e+01],
+        [-5.12852537e+01, -5.82199842e+01, -6.51547148e+01,
+         -7.20894453e+01, -7.90241758e+01, -8.59589063e+01,
+         -9.28936369e+01, -9.98283674e+01, -1.06763098e+02,
+         -1.13697828e+02, -1.20632559e+02]]])
 Coordinates:
   * chain    (chain) int64 0
   * draw     (draw) int64 0 1 2 3 4 5 6 7 8 9 ... 40 41 42 43 44 45 46 47 48 49
-Dimensions without coordinates: plot_dim</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 1</li><li><span class='xr-has-index'>draw</span>: 50</li><li><span>plot_dim</span>: 11</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-dddd2d63-5ead-4401-928a-52d3c88dc243' class='xr-array-in' type='checkbox' checked><label for='section-dddd2d63-5ead-4401-928a-52d3c88dc243' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>8.903 1.579 -5.745 -13.07 -20.39 ... 10.06 7.845 5.634 3.423 1.212</span></div><div class='xr-array-data'><pre>array([[[   8.90302968,    1.57906482,   -5.74490004,  -13.0688649 ,
-          -20.39282976,  -27.71679462,  -35.04075948,  -42.36472434,
-          -49.68868921,  -57.01265407,  -64.33661893],
-        [ -51.10369516,  -52.00694575,  -52.91019634,  -53.81344693,
-          -54.71669752,  -55.61994811,  -56.5231987 ,  -57.42644929,
-          -58.32969988,  -59.23295047,  -60.13620107],
-        [  20.8414735 ,   26.14782704,   31.45418059,   36.76053413,
-           42.06688768,   47.37324122,   52.67959477,   57.98594831,
-           63.29230185,   68.5986554 ,   73.90500894],
-        [ -16.0282912 ,   -4.74268759,    6.54291602,   17.82851963,
-           29.11412324,   40.39972685,   51.68533046,   62.97093407,
-           74.25653767,   85.54214128,   96.82774489],
-        [  51.96260868,   52.46724844,   52.9718882 ,   53.47652796,
-           53.98116772,   54.48580749,   54.99044725,   55.49508701,
-           55.99972677,   56.50436653,   57.00900629],
-        [  41.26246683,   30.60252127,   19.94257571,    9.28263014,
-           -1.37731542,  -12.03726098,  -22.69720654,  -33.35715211,
-          -44.01709767,  -54.67704323,  -65.3369888 ],
-        [ -57.88017743,  -60.32297685,  -62.76577626,  -65.20857568,
-          -67.65137509,  -70.09417451,  -72.53697393,  -74.97977334,
+Dimensions without coordinates: plot_dim</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 1</li><li><span class='xr-has-index'>draw</span>: 50</li><li><span>plot_dim</span>: 11</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-f442ea95-1885-4a8a-ab93-a9bae2654960' class='xr-array-in' type='checkbox' checked><label for='section-f442ea95-1885-4a8a-ab93-a9bae2654960' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-37.28 -39.44 -41.59 -43.75 -45.9 ... -99.83 -106.8 -113.7 -120.6</span></div><div class='xr-array-data'><pre>array([[[-3.72834879e+01, -3.94385735e+01, -4.15936592e+01,
+         -4.37487448e+01, -4.59038304e+01, -4.80589160e+01,
+         -5.02140016e+01, -5.23690872e+01, -5.45241728e+01,
+         -5.66792584e+01, -5.88343440e+01],
+        [ 3.17231858e+01,  2.81600152e+01,  2.45968446e+01,
+          2.10336741e+01,  1.74705035e+01,  1.39073329e+01,
+          1.03441623e+01,  6.78099176e+00,  3.21782119e+00,
+         -3.45349384e-01, -3.90851996e+00],
+        [-2.33605546e+01, -1.93901762e+01, -1.54197979e+01,
+         -1.14494196e+01, -7.47904127e+00, -3.50866295e+00,
+          4.61715377e-01,  4.43209370e+00,  8.40247203e+00,
+          1.23728504e+01,  1.63432287e+01],
+        [-8.86760125e-01, -4.63259768e+00, -8.37843523e+00,
+         -1.21242728e+01, -1.58701103e+01, -1.96159479e+01,
+         -2.33617854e+01, -2.71076230e+01, -3.08534605e+01,
+         -3.45992981e+01, -3.83451356e+01],
+        [ 3.44787171e+01,  3.54693148e+01,  3.64599125e+01,
+          3.74505102e+01,  3.84411080e+01,  3.94317057e+01,
+          4.04223034e+01,  4.14129011e+01,  4.24034988e+01,
+          4.33940965e+01,  4.43846942e+01],
 ...
-          -36.07932138,  -37.43119551,  -38.78306965,  -40.13494379,
-          -41.48681792,  -42.83869206,  -44.19056619],
-        [   7.59755152,    8.3081093 ,    9.01866708,    9.72922486,
-           10.43978264,   11.15034041,   11.86089819,   12.57145597,
-           13.28201375,   13.99257153,   14.7031293 ],
-        [  63.96524661,   64.37481422,   64.78438182,   65.19394943,
-           65.60351703,   66.01308464,   66.42265224,   66.83221984,
-           67.24178745,   67.65135505,   68.06092266],
-        [  -0.90894046,   -0.23987442,    0.42919161,    1.09825764,
-            1.76732368,    2.43638971,    3.10545575,    3.77452178,
-            4.44358781,    5.11265385,    5.78171988],
-        [  72.80200197,   64.03848919,   55.2749764 ,   46.51146362,
-           37.74795083,   28.98443805,   20.22092526,   11.45741248,
-            2.69389969,   -6.06961309,  -14.83312588],
-        [  84.16407919,   98.29352357,  112.42296794,  126.55241231,
-          140.68185668,  154.81130105,  168.94074542,  183.07018979,
-          197.19963416,  211.32907854,  225.45852291],
-        [  23.3197523 ,   21.10900585,   18.89825939,   16.68751294,
-           14.47676649,   12.26602004,   10.05527359,    7.84452714,
-            5.63378069,    3.42303424,    1.21228779]]])</pre></div></div></li><li class='xr-section-item'><input id='section-a4a1d7be-c6fb-4ea2-90a6-2c0020b5940a' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a4a1d7be-c6fb-4ea2-90a6-2c0020b5940a' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-46ffa170-0ed3-40ad-8879-30c828b81979' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-46ffa170-0ed3-40ad-8879-30c828b81979' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9e8a4b33-8766-4d71-90ec-ded5f81c0e82' class='xr-var-data-in' type='checkbox'><label for='data-9e8a4b33-8766-4d71-90ec-ded5f81c0e82' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 6 ... 44 45 46 47 48 49</div><input id='attrs-71799215-4f7f-4ead-a16e-f6fc55e8c6fb' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-71799215-4f7f-4ead-a16e-f6fc55e8c6fb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9b3bd34b-bd6e-4ca8-a69f-344f3e33b6da' class='xr-var-data-in' type='checkbox'><label for='data-9b3bd34b-bd6e-4ca8-a69f-344f3e33b6da' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+        [ 1.08044299e+02,  9.86617736e+01,  8.92792485e+01,
+          7.98967235e+01,  7.05141984e+01,  6.11316734e+01,
+          5.17491483e+01,  4.23666232e+01,  3.29840982e+01,
+          2.36015731e+01,  1.42190481e+01],
+        [ 2.75021092e+01,  2.20188696e+01,  1.65356300e+01,
+          1.10523904e+01,  5.56915079e+00,  8.59111865e-02,
+         -5.39732841e+00, -1.08805680e+01, -1.63638076e+01,
+         -2.18470472e+01, -2.73302868e+01],
+        [ 1.30423622e+02,  1.32738420e+02,  1.35053219e+02,
+          1.37368017e+02,  1.39682816e+02,  1.41997614e+02,
+          1.44312413e+02,  1.46627212e+02,  1.48942010e+02,
+          1.51256809e+02,  1.53571607e+02],
+        [-1.01392575e+02, -9.88658824e+01, -9.63391898e+01,
+         -9.38124972e+01, -9.12858047e+01, -8.87591121e+01,
+         -8.62324195e+01, -8.37057270e+01, -8.11790344e+01,
+         -7.86523418e+01, -7.61256492e+01],
+        [-5.12852537e+01, -5.82199842e+01, -6.51547148e+01,
+         -7.20894453e+01, -7.90241758e+01, -8.59589063e+01,
+         -9.28936369e+01, -9.98283674e+01, -1.06763098e+02,
+         -1.13697828e+02, -1.20632559e+02]]])</pre></div></div></li><li class='xr-section-item'><input id='section-809afe12-2a25-4574-8e08-62bd986aa390' class='xr-section-summary-in' type='checkbox'  checked><label for='section-809afe12-2a25-4574-8e08-62bd986aa390' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-c5820bd2-5590-464a-a41c-b63f75b3eebc' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c5820bd2-5590-464a-a41c-b63f75b3eebc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3ac656ce-057e-4721-ba79-5b1efd8c176b' class='xr-var-data-in' type='checkbox'><label for='data-3ac656ce-057e-4721-ba79-5b1efd8c176b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 6 ... 44 45 46 47 48 49</div><input id='attrs-614fbec3-0374-44a8-aee7-d27a4519983a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-614fbec3-0374-44a8-aee7-d27a4519983a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9b9406ef-f6a1-4a81-bffb-3e6e75ac4f62' class='xr-var-data-in' type='checkbox'><label for='data-9b9406ef-f6a1-4a81-bffb-3e6e75ac4f62' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
        18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
-       36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e2590fd7-bc9f-445e-94c7-177163e9037c' class='xr-section-summary-in' type='checkbox'  ><label for='section-e2590fd7-bc9f-445e-94c7-177163e9037c' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2491d789-a393-487b-9a85-151dcf64a044' class='xr-index-data-in' type='checkbox'/><label for='index-2491d789-a393-487b-9a85-151dcf64a044' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-63141f1c-639f-444f-9789-e5119238aa8f' class='xr-index-data-in' type='checkbox'/><label for='index-63141f1c-639f-444f-9789-e5119238aa8f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+       36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-02e2c16b-fc48-4cb6-88fe-5e183203f7ac' class='xr-section-summary-in' type='checkbox'  ><label for='section-02e2c16b-fc48-4cb6-88fe-5e183203f7ac' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e7ab815a-ef73-4102-9dba-e62c6e3e0d76' class='xr-index-data-in' type='checkbox'/><label for='index-e7ab815a-ef73-4102-9dba-e62c6e3e0d76' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-dd41f855-d9ed-4258-9671-c7804990ed64' class='xr-index-data-in' type='checkbox'/><label for='index-dd41f855-d9ed-4258-9671-c7804990ed64' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
        18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
        36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
-      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a25b7305-948e-40a8-bd41-aadb6ead182f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a25b7305-948e-40a8-bd41-aadb6ead182f' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1413f71b-2fc4-4da3-9c3e-b0f693fa096d' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-1413f71b-2fc4-4da3-9c3e-b0f693fa096d' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>L’istruzione <code class="docutils literal notranslate"><span class="pre">yp</span> <span class="pre">=</span> <span class="pre">prior[&quot;alpha&quot;]</span> <span class="pre">+</span> <span class="pre">prior[&quot;beta&quot;]</span> <span class="pre">*</span> <span class="pre">xp</span></code> genera i valori <code class="docutils literal notranslate"><span class="pre">y</span></code> per una serie di rette con coefficienti <code class="docutils literal notranslate"><span class="pre">prior[&quot;alpha&quot;]</span></code> e <code class="docutils literal notranslate"><span class="pre">prior[&quot;beta&quot;]</span></code>. Nel nostro caso, stiamo generando 50 rette perché abbiamo selezionato 50 valori di <code class="docutils literal notranslate"><span class="pre">alpha</span></code> e 50 valori di <code class="docutils literal notranslate"><span class="pre">beta</span></code> dalle distribuzioni a posteriori.</p>
 <p>Nel contesto della modellazione bayesiana, il termine “chain” si riferisce alla catena di campionamento di Markov Monte Carlo (MCMC). Durante il processo di campionamento, vengono eseguiti diversi passaggi successivi per ottenere campioni indipendenti dalla distribuzione a posteriori. Ogni passaggio viene chiamato “draw” o “sample”. Pertanto, “chain” rappresenta le catene di campionamento e “draw” rappresenta i singoli campioni all’interno di ciascuna catena.</p>
@@ -2862,42 +2858,6 @@ Dimensions without coordinates: plot_dim</pre><div class='xr-wrap' style='displa
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NUTS: [alpha, beta, sigma]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<div class="output text_html">
-    <div>
-        <style>
-            /* Turns off some styling */
-            progress {
-                /* gets rid of default border in Firefox and Opera. */
-                border: none;
-                /* Needs to be in here for Safari polyfill so background images work as expected. */
-                background-size: auto;
-            }
-            .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-                background: #F44336;
-            }
-        </style>
-      <progress value='44000' class='' max='44000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      100.00% [44000/44000 00:09<00:00 Sampling 4 chains, 0 divergences]
-    </div>
-    </div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 10_000 draw iterations (4_000 + 40_000 draws total) took 23 seconds.
-</pre></div>
-</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">32</span><span class="p">],</span> <span class="n">line</span> <span class="mi">15</span>
@@ -2905,107 +2865,112 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># Sampling</span>
 <span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">idata</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/mcmc.py:791,</span> in <span class="ni">sample</span><span class="nt">(draws, tune, chains, cores, random_seed, progressbar, step, nuts_sampler, initvals, init, jitter_max_retries, n_init, trace, discard_tuned_samples, compute_convergence_checks, keep_warning_stat, return_inferencedata, idata_kwargs, nuts_sampler_kwargs, callback, mp_ctx, model, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">787</span> <span class="n">t_sampling</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t_start</span>
-<span class="g g-Whitespace">    </span><span class="mi">789</span> <span class="c1"># Packaging, validating and returning the result was extracted</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span> <span class="c1"># into a function to make it easier to test and refactor.</span>
-<span class="ne">--&gt; </span><span class="mi">791</span> <span class="k">return</span> <span class="n">_sample_return</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>     <span class="n">run</span><span class="o">=</span><span class="n">run</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>     <span class="n">traces</span><span class="o">=</span><span class="n">traces</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span>     <span class="n">tune</span><span class="o">=</span><span class="n">tune</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span>     <span class="n">t_sampling</span><span class="o">=</span><span class="n">t_sampling</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="n">discard_tuned_samples</span><span class="o">=</span><span class="n">discard_tuned_samples</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span>     <span class="n">compute_convergence_checks</span><span class="o">=</span><span class="n">compute_convergence_checks</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span>     <span class="n">return_inferencedata</span><span class="o">=</span><span class="n">return_inferencedata</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">799</span>     <span class="n">keep_warning_stat</span><span class="o">=</span><span class="n">keep_warning_stat</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">800</span>     <span class="n">idata_kwargs</span><span class="o">=</span><span class="n">idata_kwargs</span> <span class="ow">or</span> <span class="p">{},</span>
-<span class="g g-Whitespace">    </span><span class="mi">801</span>     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">802</span> <span class="p">)</span>
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/mcmc.py:802,</span> in <span class="ni">sample</span><span class="nt">(draws, tune, chains, cores, random_seed, progressbar, step, nuts_sampler, initvals, init, jitter_max_retries, n_init, trace, discard_tuned_samples, compute_convergence_checks, keep_warning_stat, return_inferencedata, idata_kwargs, nuts_sampler_kwargs, callback, mp_ctx, model, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">800</span> <span class="n">_print_step_hierarchy</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">801</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">802</span>     <span class="n">_mp_sample</span><span class="p">(</span><span class="o">**</span><span class="n">sample_args</span><span class="p">,</span> <span class="o">**</span><span class="n">parallel_args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">803</span> <span class="k">except</span> <span class="n">pickle</span><span class="o">.</span><span class="n">PickleError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">804</span>     <span class="n">_log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Could not pickle model, sampling singlethreaded.&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/mcmc.py:862,</span> in <span class="ni">_sample_return</span><span class="nt">(run, traces, tune, t_sampling, discard_tuned_samples, compute_convergence_checks, return_inferencedata, keep_warning_stat, idata_kwargs, model)</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span> <span class="n">idata</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">to_inference_data</span><span class="p">(</span><span class="n">mtrace</span><span class="p">,</span> <span class="o">**</span><span class="n">ikwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span> <span class="k">if</span> <span class="n">compute_convergence_checks</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">862</span>     <span class="n">warns</span> <span class="o">=</span> <span class="n">run_convergence_checks</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">863</span>     <span class="n">mtrace</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">_add_warnings</span><span class="p">(</span><span class="n">warns</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>     <span class="n">log_warnings</span><span class="p">(</span><span class="n">warns</span><span class="p">)</span>
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/mcmc.py:1177,</span> in <span class="ni">_mp_sample</span><span class="nt">(draws, tune, step, chains, cores, random_seed, start, progressbar, traces, model, callback, mp_ctx, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1174</span> <span class="c1"># We did draws += tune in pm.sample</span>
+<span class="g g-Whitespace">   </span><span class="mi">1175</span> <span class="n">draws</span> <span class="o">-=</span> <span class="n">tune</span>
+<span class="ne">-&gt; </span><span class="mi">1177</span> <span class="n">sampler</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">ParallelSampler</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1178</span>     <span class="n">draws</span><span class="o">=</span><span class="n">draws</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1179</span>     <span class="n">tune</span><span class="o">=</span><span class="n">tune</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1180</span>     <span class="n">chains</span><span class="o">=</span><span class="n">chains</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1181</span>     <span class="n">cores</span><span class="o">=</span><span class="n">cores</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1182</span>     <span class="n">seeds</span><span class="o">=</span><span class="n">random_seed</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1183</span>     <span class="n">start_points</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1184</span>     <span class="n">step_method</span><span class="o">=</span><span class="n">step</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1185</span>     <span class="n">progressbar</span><span class="o">=</span><span class="n">progressbar</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1186</span>     <span class="n">mp_ctx</span><span class="o">=</span><span class="n">mp_ctx</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1187</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1188</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1189</span>     <span class="k">try</span><span class="p">:</span>
 
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/stats/convergence.py:124,</span> in <span class="ni">run_convergence_checks</span><span class="nt">(idata, model)</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">warn</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="n">warnings</span> <span class="o">+=</span> <span class="n">warn_divergences</span><span class="p">(</span><span class="n">idata</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">124</span> <span class="n">warnings</span> <span class="o">+=</span> <span class="n">warn_treedepth</span><span class="p">(</span><span class="n">idata</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span> <span class="k">return</span> <span class="n">warnings</span>
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/parallel.py:402,</span> in <span class="ni">ParallelSampler.__init__</span><span class="nt">(self, draws, tune, chains, cores, seeds, start_points, step_method, progressbar, mp_ctx)</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="n">mp_ctx</span><span class="o">.</span><span class="n">get_start_method</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;fork&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">step_method_pickled</span> <span class="o">=</span> <span class="n">cloudpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">step_method</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">402</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samplers</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="n">ProcessAdapter</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>         <span class="n">draws</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>         <span class="n">tune</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>         <span class="n">step_method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>         <span class="n">step_method_pickled</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="n">chain</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="n">seed</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="n">start</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="n">mp_ctx</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span>     <span class="p">)</span>
+<span class="nn">    413     for chain, seed, start</span> in <span class="ni">zip(range</span><span class="nt">(chains), seeds, start_points)</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inactive</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samplers</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finished</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ProcessAdapter</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/stats/convergence.py:163,</span> in <span class="ni">warn_treedepth</span><span class="nt">(idata)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">rmtd</span><span class="o">.</span><span class="n">chain</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">163</span>     <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rmtd</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">chain</span><span class="o">=</span><span class="n">c</span><span class="p">))</span> <span class="o">/</span> <span class="n">rmtd</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;draw&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span>         <span class="n">warnings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span>             <span class="n">SamplerWarning</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>                 <span class="n">WarningType</span><span class="o">.</span><span class="n">TREEDEPTH</span><span class="p">,</span>
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/parallel.py:403,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="n">mp_ctx</span><span class="o">.</span><span class="n">get_start_method</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;fork&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">step_method_pickled</span> <span class="o">=</span> <span class="n">cloudpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">step_method</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samplers</span> <span class="o">=</span> <span class="p">[</span>
+<span class="ne">--&gt; </span><span class="mi">403</span>     <span class="n">ProcessAdapter</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>         <span class="n">draws</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>         <span class="n">tune</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>         <span class="n">step_method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>         <span class="n">step_method_pickled</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="n">chain</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="n">seed</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="n">start</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="n">mp_ctx</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span>     <span class="p">)</span>
+<span class="nn">    413     for chain, seed, start</span> in <span class="ni">zip(range</span><span class="nt">(chains), seeds, start_points)</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inactive</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samplers</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finished</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ProcessAdapter</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/parallel.py:259,</span> in <span class="ni">ProcessAdapter.__init__</span><span class="nt">(self, draws, tune, step_method, step_method_pickled, chain, seed, start, mp_ctx)</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>     <span class="n">step_method_send</span> <span class="o">=</span> <span class="n">step_method</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process</span> <span class="o">=</span> <span class="n">mp_ctx</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span>     <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="n">name</span><span class="o">=</span><span class="n">process_name</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span>             <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="k">return</span> <span class="n">warnings</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">259</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span> <span class="c1"># Close the remote pipe, so that we get notified if the other</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span> <span class="c1"># end is closed.</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span> <span class="n">remote_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/xarray/core/common.py:194,</span> in <span class="ni">AbstractArray._iter</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="k">def</span> <span class="nf">_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span>     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
-<span class="ne">--&gt; </span><span class="mi">194</span>         <span class="k">yield</span> <span class="bp">self</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/process.py:121,</span> in <span class="ni">BaseProcess.start</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span> <span class="k">assert</span> <span class="ow">not</span> <span class="n">_current_process</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;daemon&#39;</span><span class="p">),</span> \
+<span class="g g-Whitespace">    </span><span class="mi">119</span>        <span class="s1">&#39;daemonic processes are not allowed to have children&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="n">_cleanup</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">121</span> <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Popen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sentinel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span><span class="o">.</span><span class="n">sentinel</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="c1"># Avoid a refcycle if the target function holds an indirect</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span> <span class="c1"># reference to the process object (see bpo-30775)</span>
 
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/xarray/core/dataarray.py:823,</span> in <span class="ni">DataArray.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">    </span><span class="mi">820</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_coord</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">821</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">822</span>     <span class="c1"># xarray-style array indexing</span>
-<span class="ne">--&gt; </span><span class="mi">823</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">indexers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_item_key_to_dict</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/context.py:300,</span> in <span class="ni">ForkServerProcess._Popen</span><span class="nt">(process_obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span> <span class="nd">@staticmethod</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span> <span class="k">def</span> <span class="nf">_Popen</span><span class="p">(</span><span class="n">process_obj</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>     <span class="kn">from</span> <span class="nn">.popen_forkserver</span> <span class="kn">import</span> <span class="n">Popen</span>
+<span class="ne">--&gt; </span><span class="mi">300</span>     <span class="k">return</span> <span class="n">Popen</span><span class="p">(</span><span class="n">process_obj</span><span class="p">)</span>
 
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/xarray/core/dataarray.py:1421,</span> in <span class="ni">DataArray.isel</span><span class="nt">(self, indexers, drop, missing_dims, **indexers_kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1416</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from_temp_dataset</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1418</span> <span class="c1"># Much faster algorithm for when all indexers are ints, slices, one-dimensional</span>
-<span class="g g-Whitespace">   </span><span class="mi">1419</span> <span class="c1"># lists, or zero or one-dimensional np.ndarray&#39;s</span>
-<span class="ne">-&gt; </span><span class="mi">1421</span> <span class="n">variable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variable</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">indexers</span><span class="p">,</span> <span class="n">missing_dims</span><span class="o">=</span><span class="n">missing_dims</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1422</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">index_variables</span> <span class="o">=</span> <span class="n">isel_indexes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xindexes</span><span class="p">,</span> <span class="n">indexers</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1424</span> <span class="n">coords</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/popen_forkserver.py:35,</span> in <span class="ni">Popen.__init__</span><span class="nt">(self, process_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_obj</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_fds</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">---&gt; </span><span class="mi">35</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">process_obj</span><span class="p">)</span>
 
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/xarray/core/variable.py:1378,</span> in <span class="ni">Variable.isel</span><span class="nt">(self, indexers, missing_dims, **indexers_kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1375</span> <span class="n">indexers</span> <span class="o">=</span> <span class="n">drop_dims_from_indexers</span><span class="p">(</span><span class="n">indexers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">missing_dims</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1377</span> <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">indexers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1378</span> <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/popen_fork.py:19,</span> in <span class="ni">Popen.__init__</span><span class="nt">(self, process_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalizer</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="bp">self</span><span class="o">.</span><span class="n">_launch</span><span class="p">(</span><span class="n">process_obj</span><span class="p">)</span>
 
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/xarray/core/variable.py:899,</span> in <span class="ni">Variable.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">    </span><span class="mi">886</span> <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">T_Variable</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T_Variable</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">887</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return a new Variable object whose contents are consistent with</span>
-<span class="g g-Whitespace">    </span><span class="mi">888</span><span class="sd">     getting the provided key from the underlying data.</span>
-<span class="g g-Whitespace">    </span><span class="mi">889</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">897</span><span class="sd">     array `x.values` directly.</span>
-<span class="g g-Whitespace">    </span><span class="mi">898</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">899</span>     <span class="n">dims</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_broadcast_indexes</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">900</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">as_indexable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)[</span><span class="n">indexer</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">901</span>     <span class="k">if</span> <span class="n">new_order</span><span class="p">:</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/xarray/core/variable.py:720,</span> in <span class="ni">Variable._broadcast_indexes</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">    </span><span class="mi">718</span> <span class="n">key</span> <span class="o">=</span> <span class="n">indexing</span><span class="o">.</span><span class="n">expanded_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span> <span class="c1"># Convert a scalar Variable to a 0d-array</span>
-<span class="ne">--&gt; </span><span class="mi">720</span> <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">721</span>     <span class="n">k</span><span class="o">.</span><span class="n">data</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">Variable</span><span class="p">)</span> <span class="ow">and</span> <span class="n">k</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span>
-<span class="g g-Whitespace">    </span><span class="mi">722</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">723</span> <span class="c1"># Convert a 0d numpy arrays to an integer</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="c1"># dask 0d arrays are passed through</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span> <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">726</span>     <span class="n">k</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">k</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span>
-<span class="g g-Whitespace">    </span><span class="mi">727</span> <span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/xarray/core/variable.py:720,</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">718</span> <span class="n">key</span> <span class="o">=</span> <span class="n">indexing</span><span class="o">.</span><span class="n">expanded_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span> <span class="c1"># Convert a scalar Variable to a 0d-array</span>
-<span class="ne">--&gt; </span><span class="mi">720</span> <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">721</span>     <span class="n">k</span><span class="o">.</span><span class="n">data</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">Variable</span><span class="p">)</span> <span class="ow">and</span> <span class="n">k</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span>
-<span class="g g-Whitespace">    </span><span class="mi">722</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">723</span> <span class="c1"># Convert a 0d numpy arrays to an integer</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="c1"># dask 0d arrays are passed through</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span> <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">726</span>     <span class="n">k</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">k</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span>
-<span class="g g-Whitespace">    </span><span class="mi">727</span> <span class="p">)</span>
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/popen_forkserver.py:58,</span> in <span class="ni">Popen._launch</span><span class="nt">(self, process_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalizer</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">Finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="o">.</span><span class="n">close_fds</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span>                                <span class="p">(</span><span class="n">_parent_w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentinel</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">closefd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">58</span>     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">getbuffer</span><span class="p">())</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="n">forkserver</span><span class="o">.</span><span class="n">read_signed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sentinel</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

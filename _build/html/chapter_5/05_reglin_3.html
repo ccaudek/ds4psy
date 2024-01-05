@@ -583,10 +583,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/34da403dbd9c91fef9fe58e9d3214de54ed0e70cd66cab9c80aa6933261c9a21.png" src="../_images/34da403dbd9c91fef9fe58e9d3214de54ed0e70cd66cab9c80aa6933261c9a21.png" />
+<img alt="../_images/20d410f226bed5fc7b01c8a5e9dd5c61221cdb3917f84a9734200ec37a48690f.png" src="../_images/20d410f226bed5fc7b01c8a5e9dd5c61221cdb3917f84a9734200ec37a48690f.png" />
 </div>
 </div>
-<p>Per replicare il modello descritto nel capitolo <a class="reference internal" href="05_reglin_2.html#reglin-pymc-notebook"><span class="std std-ref">Analisi bayesiana del modello di regressione lineare</span></a>, possiamo utilizzare la seguente istruzione. La specificazione del modello è facilitata dall’adozione della notazione di Wilkinson <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id36" title="GN Wilkinson and CE Rogers. Symbolic description of factorial models for analysis of variance. Journal of the Royal Statistical Society Series C: Applied Statistics, 22(3):392–399, 1973.">WR73</a>]</span>. Inoltre, <code class="docutils literal notranslate"><span class="pre">bambi</span></code> implementa delle distribuzioni a priori ottimizzate, eliminando così la necessità di definirle esplicitamente. Tuttavia, se si preferisce un maggiore controllo sulle distribuzioni a priori, è possibile specificarle manualmente.</p>
+<p>Per replicare il modello descritto nel capitolo <a class="reference internal" href="05_reglin_2.html#reglin-pymc-notebook"><span class="std std-ref">Analisi bayesiana del modello di regressione lineare</span></a>, possiamo utilizzare la seguente istruzione. La specificazione del modello è facilitata dall’adozione della notazione di Wilkinson <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id37" title="GN Wilkinson and CE Rogers. Symbolic description of factorial models for analysis of variance. Journal of the Royal Statistical Society Series C: Applied Statistics, 22(3):392–399, 1973.">WR73</a>]</span>. Inoltre, <code class="docutils literal notranslate"><span class="pre">bambi</span></code> implementa delle distribuzioni a priori ottimizzate, eliminando così la necessità di definirle esplicitamente. Tuttavia, se si preferisce un maggiore controllo sulle distribuzioni a priori, è possibile specificarle manualmente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">bmb</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s2">&quot;y ~ x&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
@@ -607,7 +607,130 @@ document.write(`
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:16.714043
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1334.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1336.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1338.57it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1340.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.142154
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.069204
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Log Likelihood...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:01.275833
 </pre></div>
 </div>
 </div>
@@ -622,7 +745,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/43bdc2f1145d660e3258604c0dae08506e5875ff69144b9b48e2540f3a11bb2e.png" src="../_images/43bdc2f1145d660e3258604c0dae08506e5875ff69144b9b48e2540f3a11bb2e.png" />
+<img alt="../_images/50bf2cd3d36a226c944ef6ceb2e3c0db09ab114d9cfa5fe9d8816af6af240053.png" src="../_images/50bf2cd3d36a226c944ef6ceb2e3c0db09ab114d9cfa5fe9d8816af6af240053.png" />
 </div>
 </div>
 <p>Un sommario numerico delle distribuzioni a posteriori dei parametri si ottiene con <code class="docutils literal notranslate"><span class="pre">az.summary</span></code>.</p>
@@ -665,38 +788,38 @@ document.write(`
   <tbody>
     <tr>
       <th>Intercept</th>
-      <td>0.98</td>
-      <td>0.06</td>
-      <td>0.87</td>
-      <td>1.10</td>
+      <td>1.05</td>
+      <td>0.07</td>
+      <td>0.91</td>
+      <td>1.19</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>3931.38</td>
-      <td>2752.78</td>
+      <td>4225.53</td>
+      <td>3095.41</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>x</th>
-      <td>2.01</td>
-      <td>0.11</td>
-      <td>1.80</td>
-      <td>2.20</td>
+      <td>2.06</td>
+      <td>0.13</td>
+      <td>1.82</td>
+      <td>2.30</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>4094.37</td>
-      <td>2839.21</td>
+      <td>4086.49</td>
+      <td>2871.04</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>y_sigma</th>
-      <td>0.44</td>
-      <td>0.02</td>
-      <td>0.40</td>
-      <td>0.49</td>
+      <td>0.52</td>
+      <td>0.03</td>
+      <td>0.48</td>
+      <td>0.57</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>4654.19</td>
-      <td>2790.18</td>
+      <td>3674.48</td>
+      <td>2861.20</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -721,7 +844,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/677c6a5eacdcefa59efde4f5afcb9dbd09411d26b84b8fc40f7e847746ec16f6.png" src="../_images/677c6a5eacdcefa59efde4f5afcb9dbd09411d26b84b8fc40f7e847746ec16f6.png" />
+<img alt="../_images/4385b4699db769dff3348678ee5b8cec0f7756259d2af2a711d95b9874ca3014.png" src="../_images/4385b4699db769dff3348678ee5b8cec0f7756259d2af2a711d95b9874ca3014.png" />
 </div>
 </div>
 <p>Come abbiamo già osservato in precedenza, le rette di regressione stimate si avvicinano notevolmente alla vera retta di regressione. Tuttavia, dato che stiamo lavorando con un campione di dati e non con l’intera popolazione, le stime dei parametri della retta di regressione, quali intercetta e pendenza, sono soggette a un certo grado di incertezza. Questa incertezza non è un difetto, ma una rappresentazione naturale dell’informazione limitata che abbiamo a disposizione, e nel grafico è visualizzata attraverso la variabilità delle rette di regressione.</p>
@@ -735,21 +858,21 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Wed Nov 08 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Fri Jan 05 2024
 
 Python implementation: CPython
-Python version       : 3.11.6
-IPython version      : 8.16.1
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-pytensor: 2.13.1
+pytensor: 2.18.4
 
-pandas    : 2.1.1
-matplotlib: 3.8.0
-arviz     : 0.16.1
+bambi     : 0.13.0
 seaborn   : 0.13.0
-numpy     : 1.25.2
-xarray    : 2023.10.1
-bambi     : 0.12.0
+xarray    : 2023.12.0
+numpy     : 1.26.2
+arviz     : 0.17.0
+matplotlib: 3.8.2
+pandas    : 2.1.4
 
 Watermark: 2.4.3
 </pre></div>

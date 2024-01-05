@@ -546,19 +546,92 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">pymc</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>  
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">pymc</span> <span class="k">as</span> <span class="nn">pm</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">pymc.sampling_jax</span>
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">hssm</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">ssms.basic_simulators</span> <span class="kn">import</span> <span class="n">simulator</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">hssm</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;hssm&#39;
+<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pymc</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">47</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="n">augmented</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">augmented</span><span class="si">}</span><span class="s2"> -fno-unwind-tables -fno-asynchronous-unwind-tables&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="n">pytensor</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gcc__cxxflags</span> <span class="o">=</span> <span class="n">augmented</span>
+<span class="ne">---&gt; </span><span class="mi">47</span> <span class="n">__set_compiler_flags</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="kn">from</span> <span class="nn">pymc</span> <span class="kn">import</span> <span class="n">_version</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">sampling</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="kn">from</span> <span class="nn">pymc.backends</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/__init__.py:30,</span> in <span class="ni">__set_compiler_flags</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="k">def</span> <span class="nf">__set_compiler_flags</span><span class="p">():</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="c1"># Workarounds for PyTensor compiler problems on various platforms</span>
+<span class="ne">---&gt; </span><span class="mi">30</span>     <span class="kn">import</span> <span class="nn">pytensor</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="n">current</span> <span class="o">=</span> <span class="n">pytensor</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gcc__cxxflags</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span>     <span class="n">augmented</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">current</span><span class="si">}</span><span class="s2"> -Wno-c++11-narrowing&quot;</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pytensor</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">62</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span>         <span class="k">continue</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;You have the pytensor directory in your Python path.&quot;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">62</span> <span class="kn">from</span> <span class="nn">pytensor.configdefaults</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="c1"># This is the api version for ops that generate C code.  External ops</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="c1"># might need manual changes if this number goes up.  An undefined</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="c1"># __api_version__ can be understood to mean api version 0.</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="c1">#</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="c1"># This number is not tied to the release version and should change</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="c1"># very rarely.</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="n">__api_version__</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pytensor</span><span class="o">/</span><span class="n">configdefaults</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1419</span>
+<span class="g g-Whitespace">   </span><span class="mi">1417</span> <span class="c1"># The functions below register config variables into the config instance above.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1418</span> <span class="n">add_basic_configvars</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1419</span> <span class="n">add_compile_configvars</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1420</span> <span class="n">add_tensor_configvars</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1421</span> <span class="n">add_traceback_configvars</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/configdefaults.py:401,</span> in <span class="ni">add_compile_configvars</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="c1"># Test whether or not g++ is present: disable C code if it is not.</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">401</span>     <span class="n">rc</span> <span class="o">=</span> <span class="n">call_subprocess_Popen</span><span class="p">([</span><span class="s2">&quot;g++&quot;</span><span class="p">,</span> <span class="s2">&quot;-v&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span> <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="n">rc</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/utils.py:196,</span> in <span class="ni">call_subprocess_Popen</span><span class="nt">(command, **params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span>     <span class="n">params</span><span class="p">[</span><span class="s2">&quot;stderr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">null</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess_Popen</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">196</span>     <span class="n">returncode</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span> <span class="k">return</span> <span class="n">returncode</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/subprocess.py:1264,</span> in <span class="ni">Popen.wait</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1262</span>     <span class="n">endtime</span> <span class="o">=</span> <span class="n">_time</span><span class="p">()</span> <span class="o">+</span> <span class="n">timeout</span>
+<span class="g g-Whitespace">   </span><span class="mi">1263</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1264</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span> <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1266</span>     <span class="c1"># https://bugs.python.org/issue25942</span>
+<span class="g g-Whitespace">   </span><span class="mi">1267</span>     <span class="c1"># The first keyboard interrupt waits briefly for the child to</span>
+<span class="g g-Whitespace">   </span><span class="mi">1268</span>     <span class="c1"># exit under the common assumption that it also received the ^C</span>
+<span class="g g-Whitespace">   </span><span class="mi">1269</span>     <span class="c1"># generated SIGINT and will exit rapidly.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1270</span>     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/subprocess.py:2046,</span> in <span class="ni">Popen._wait</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2044</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2045</span>     <span class="k">break</span>  <span class="c1"># Another thread waited.</span>
+<span class="ne">-&gt; </span><span class="mi">2046</span> <span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">sts</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_try_wait</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2047</span> <span class="c1"># Check the pid and loop as waitpid has been known to</span>
+<span class="g g-Whitespace">   </span><span class="mi">2048</span> <span class="c1"># return 0 even without WNOHANG in odd situations.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2049</span> <span class="c1"># http://bugs.python.org/issue14396.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2050</span> <span class="k">if</span> <span class="n">pid</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/subprocess.py:2004,</span> in <span class="ni">Popen._try_wait</span><span class="nt">(self, wait_flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2002</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;All callers to this function MUST hold self._waitpid_lock.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">2003</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2004</span>     <span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">sts</span><span class="p">)</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">waitpid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">wait_flags</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2005</span> <span class="k">except</span> <span class="ne">ChildProcessError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2006</span>     <span class="c1"># This happens if SIGCLD is set to be ignored or waiting</span>
+<span class="g g-Whitespace">   </span><span class="mi">2007</span>     <span class="c1"># for child processes has otherwise been disabled for our</span>
+<span class="g g-Whitespace">   </span><span class="mi">2008</span>     <span class="c1"># process.  This child is dead, we can&#39;t get the status.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2009</span>     <span class="n">pid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

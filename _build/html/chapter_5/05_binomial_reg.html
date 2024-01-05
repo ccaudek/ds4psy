@@ -546,12 +546,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -641,17 +635,17 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
     <tr>
       <th>0</th>
       <td>-10.000000</td>
-      <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>-8.965517</td>
-      <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>-7.931034</td>
-      <td>3</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>3</th>
@@ -661,32 +655,32 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
     <tr>
       <th>4</th>
       <td>-5.862069</td>
-      <td>1</td>
+      <td>3</td>
     </tr>
     <tr>
       <th>5</th>
       <td>-4.827586</td>
-      <td>8</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>6</th>
       <td>-3.793103</td>
-      <td>8</td>
+      <td>7</td>
     </tr>
     <tr>
       <th>7</th>
       <td>-2.758621</td>
-      <td>10</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>8</th>
       <td>-1.724138</td>
-      <td>13</td>
+      <td>9</td>
     </tr>
     <tr>
       <th>9</th>
       <td>-0.689655</td>
-      <td>12</td>
+      <td>9</td>
     </tr>
     <tr>
       <th>10</th>
@@ -696,7 +690,7 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
     <tr>
       <th>11</th>
       <td>1.379310</td>
-      <td>13</td>
+      <td>12</td>
     </tr>
     <tr>
       <th>12</th>
@@ -706,7 +700,7 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
     <tr>
       <th>13</th>
       <td>3.448276</td>
-      <td>17</td>
+      <td>19</td>
     </tr>
     <tr>
       <th>14</th>
@@ -716,7 +710,7 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
     <tr>
       <th>15</th>
       <td>5.517241</td>
-      <td>20</td>
+      <td>18</td>
     </tr>
     <tr>
       <th>16</th>
@@ -751,7 +745,7 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
     <tr>
       <th>22</th>
       <td>12.758621</td>
-      <td>19</td>
+      <td>20</td>
     </tr>
     <tr>
       <th>23</th>
@@ -837,7 +831,7 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 </pre></div>
 </div>
-<img alt="../_images/6b925d06c9380dbdd2fb76846c312bc6be81fdb5a268351d2b8033dd95a5daa6.png" src="../_images/6b925d06c9380dbdd2fb76846c312bc6be81fdb5a268351d2b8033dd95a5daa6.png" />
+<img alt="../_images/865e1155cc7030bdd1e01fe501e30719cfc6ce29836886398d5569591fa92a29.png" src="../_images/865e1155cc7030bdd1e01fe501e30719cfc6ce29836886398d5569591fa92a29.png" />
 </div>
 </div>
 <p>Il pannello superiore mostra il modello lineare nella sua forma non trasformata. Come si può osservare, questo modello lineare genera valori che escono dall’intervallo [0, 1], sottolineando quindi la necessità di una funzione di collegamento inversa. Questa funzione ha il compito di mappare i valori dal dominio dei numeri reali all’intervallo [0, 1]. Come abbiamo visto, questa trasformazione è realizzata mediante la funzione logistica inversa, anche conosciuta come funzione sigmoide logistica.</p>
@@ -913,7 +907,7 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fcb8a4b9c904b5f9a9dc06f94c499b1270228047a2dda1580f1f99bb343bf666.svg" src="../_images/fcb8a4b9c904b5f9a9dc06f94c499b1270228047a2dda1580f1f99bb343bf666.svg" /></div>
+<img alt="../_images/368790e9f2e03c40214ce928a91fc405e9c365a57c69b9c30728580c19b99873.svg" src="../_images/368790e9f2e03c40214ce928a91fc405e9c365a57c69b9c30728580c19b99873.svg" /></div>
 </div>
 <p>Eseguiamo il campionamento.</p>
 <div class="cell tag_hide-output docutils container">
@@ -929,130 +923,31 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
+Compilation time =  0:00:03.193653
+Sampling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:04.592764
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|          | 0/2000 [00:00&lt;?, ?it/s]
+
+
+
+
+
+
+Running chain 0:   0%|          | 0/2000 [00:03&lt;?, ?it/s]
+
+Running chain 0: 100%|██████████| 2000/2000 [00:03&lt;00:00, 638.40it/s]
+Running chain 1: 100%|██████████| 2000/2000 [00:03&lt;00:00, 638.90it/s]
+Running chain 2: 100%|██████████| 2000/2000 [00:03&lt;00:00, 639.36it/s]
+Running chain 3: 100%|██████████| 2000/2000 [00:03&lt;00:00, 639.75it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                 | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                   | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                 | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                   | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                 | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                   | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                 | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                   | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|███████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1127.25it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|███████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1128.40it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|███████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1129.10it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|███████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1129.87it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.149876
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.100560
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Log Likelihood...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.184928
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time =  0:00:03.317585
+Transforming variables...
+Transformation time =  0:00:00.108526
+Computing Log Likelihood...
+Log Likelihood time =  0:00:00.828905
 </pre></div>
 </div>
 </div>
@@ -1077,7 +972,7 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/95bf2e7c3647bdf079eaaa17743ed393520c2d74fc1c71bd1351fa6afdd74c21.png" src="../_images/95bf2e7c3647bdf079eaaa17743ed393520c2d74fc1c71bd1351fa6afdd74c21.png" />
+<img alt="../_images/cb0d4ba3ae715634e170648ed58090c26c3212d7822df1228e789fe21f652bfe.png" src="../_images/cb0d4ba3ae715634e170648ed58090c26c3212d7822df1228e789fe21f652bfe.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1119,26 +1014,26 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
   <tbody>
     <tr>
       <th>beta0</th>
+      <td>0.503</td>
+      <td>0.148</td>
+      <td>0.220</td>
       <td>0.786</td>
-      <td>0.147</td>
-      <td>0.505</td>
-      <td>1.056</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>2123.0</td>
-      <td>2296.0</td>
+      <td>2754.0</td>
+      <td>2359.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>beta1</th>
-      <td>0.360</td>
-      <td>0.032</td>
-      <td>0.301</td>
-      <td>0.419</td>
+      <td>0.411</td>
+      <td>0.036</td>
+      <td>0.349</td>
+      <td>0.483</td>
       <td>0.001</td>
-      <td>0.000</td>
-      <td>2148.0</td>
-      <td>2359.0</td>
+      <td>0.001</td>
+      <td>2388.0</td>
+      <td>2585.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1202,7 +1097,7 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/7902dd677f984dad73de7f3f189066722fe83ff36c6908ec89f68c0cc6c10a05.png" src="../_images/7902dd677f984dad73de7f3f189066722fe83ff36c6908ec89f68c0cc6c10a05.png" />
+<img alt="../_images/c5154a8d8253543224546fcb94ff7049f5562cbc29b58197d24796eb9558626a.png" src="../_images/c5154a8d8253543224546fcb94ff7049f5562cbc29b58197d24796eb9558626a.png" />
 </div>
 </div>
 <p>Il pannello di sinistra mostra la media posteriore (rappresentata dalla linea continua) e gli intervalli di credibilità al 95% (rappresentati dalla regione ombreggiata). Poiché stiamo lavorando con dati simulati, conosciamo il vero modello generativo dei dati. Pertanto, possiamo notare che la media posteriore si confronta favorevolmente con il modello vero e proprio che ha generato i dati.</p>
@@ -1247,19 +1142,19 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
     <tr>
       <th>0</th>
       <td>-10.000000</td>
-      <td>1</td>
+      <td>0</td>
       <td>20</td>
     </tr>
     <tr>
       <th>1</th>
       <td>-8.965517</td>
-      <td>1</td>
+      <td>0</td>
       <td>20</td>
     </tr>
     <tr>
       <th>2</th>
       <td>-7.931034</td>
-      <td>3</td>
+      <td>2</td>
       <td>20</td>
     </tr>
     <tr>
@@ -1271,7 +1166,7 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
     <tr>
       <th>4</th>
       <td>-5.862069</td>
-      <td>1</td>
+      <td>3</td>
       <td>20</td>
     </tr>
   </tbody>
@@ -1300,91 +1195,11 @@ p_i = \text{InverseLogit}(\beta_0 + \beta_1 \cdot x_i)
 </div>
 <p>Eseguiamo il campionamento. Si noti che abbiamo specificato la famiglia distributiva</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_logit</span> <span class="o">=</span> <span class="n">bmb</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;binomial&quot;</span><span class="p">,</span> <span class="n">priors</span><span class="o">=</span><span class="n">priors</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">model_logit</span> <span class="o">=</span> <span class="n">bmb</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;binomial&quot;</span><span class="p">,</span> <span class="n">priors</span><span class="o">=</span><span class="n">priors</span><span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/bambi/models.py:168,</span> in <span class="ni">Model.__init__</span><span class="nt">(self, formula, data, family, priors, link, categorical, potentials, dropna, auto_scale, noncentered, center_predictors, extra_namespace)</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>     <span class="n">design</span> <span class="o">=</span> <span class="n">remove_common_intercept</span><span class="p">(</span><span class="n">design</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">168</span>     <span class="n">design</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">design_matrices</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="bp">self</span><span class="o">.</span><span class="n">formula</span><span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">na_action</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">additional_namespace</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="k">if</span> <span class="n">design</span><span class="o">.</span><span class="n">response</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">173</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span>         <span class="s2">&quot;No outcome variable is set! &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="s2">&quot;Please specify an outcome variable using the formula interface.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">176</span>     <span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/formulae/matrices.py:556,</span> in <span class="ni">design_matrices</span><span class="nt">(formula, data, na_action, env, extra_namespace)</span>
-<span class="g g-Whitespace">    </span><span class="mi">553</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">554</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;data&#39; contains </span><span class="si">{</span><span class="n">incomplete_rows_n</span><span class="si">}</span><span class="s2"> incomplete rows.&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">556</span> <span class="n">design</span> <span class="o">=</span> <span class="n">DesignMatrices</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">557</span> <span class="k">return</span> <span class="n">design</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/formulae/matrices.py:58,</span> in <span class="ni">DesignMatrices.__init__</span><span class="nt">(self, model, data, env)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">response</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">ResponseMatrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">response</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">58</span>     <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">common_terms</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="bp">self</span><span class="o">.</span><span class="n">common</span> <span class="o">=</span> <span class="n">CommonEffectsMatrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">common_terms</span><span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/formulae/matrices.py:137,</span> in <span class="ni">ResponseMatrix.evaluate</span><span class="nt">(self, data, env)</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
-<span class="ne">--&gt; </span><span class="mi">137</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">set_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">139</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">kind</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/formulae/terms/terms.py:820,</span> in <span class="ni">Response.set_type</span><span class="nt">(self, data, env)</span>
-<span class="g g-Whitespace">    </span><span class="mi">818</span> <span class="k">def</span> <span class="nf">set_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">819</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Set type of the response term.&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">820</span>     <span class="bp">self</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/formulae/terms/terms.py:433,</span> in <span class="ni">Term.set_type</span><span class="nt">(self, data, env)</span>
-<span class="g g-Whitespace">    </span><span class="mi">431</span>     <span class="n">component</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">432</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Call</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">433</span>     <span class="n">component</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">434</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">435</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">436</span>         <span class="s2">&quot;Can&#39;t set type on Term because at least one of the components &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">437</span>         <span class="sa">f</span><span class="s2">&quot;is of the unexpected type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">component</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">438</span>     <span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/formulae/terms/call.py:104,</span> in <span class="ni">Call.set_type</span><span class="nt">(self, data_mask, env)</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Evaluates function and determines the type of the result of the call.</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span><span class="sd"> Evaluates the function call and sets the ``.kind`` property to ``&quot;numeric&quot;`` or</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span><span class="sd">     The environment where values and functions are taken from.</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">with_outer_namespace</span><span class="p">({</span><span class="o">**</span><span class="n">TRANSFORMS</span><span class="p">,</span> <span class="o">**</span><span class="n">ENCODINGS</span><span class="p">})</span>
-<span class="ne">--&gt; </span><span class="mi">104</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">data_mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="k">if</span> <span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span>     <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;numeric&quot;</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/formulae/terms/call_resolver.py:272,</span> in <span class="ni">LazyCall.eval</span><span class="nt">(self, data_mask, env)</span>
-<span class="g g-Whitespace">    </span><span class="mi">269</span> <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">arg</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">data_mask</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">270</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">arg</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">data_mask</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">arg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-<span class="ne">--&gt; </span><span class="mi">272</span> <span class="k">return</span> <span class="n">callee</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: &#39;TensorVariable&#39; object is not callable
-</pre></div>
-</div>
-</div>
-</details>
 </div>
 <p>Nell’istruzione precedente creiamo un modello di regressione utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">Model</span></code> dalla libreria Bambi (<code class="docutils literal notranslate"><span class="pre">bmb</span></code>). Vediamo in dettaglio cosa fa ogni argomento:</p>
 <ol class="arabic simple">

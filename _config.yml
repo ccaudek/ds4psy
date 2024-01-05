@@ -52,3 +52,6 @@ sphinx:
   extra_extensions:
     - sphinx_proof
     - sphinx_exercise
+
+exclude_patterns:
+  - "sandbox/*"

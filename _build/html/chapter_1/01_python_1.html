@@ -569,11 +569,11 @@ document.write(`
 <p>In un’era dominata dall’intelligenza artificiale e da strumenti come ChatGPT, la competenza più preziosa è la capacità di pensare in un modo algoritmico. Questa competenza transcende la mera programmazione, fornendo gli strumenti per affrontare problemi complessi in modo strutturato. E sebbene gli algoritmi di intelligenza artificiale siano spesso utili, la comprensione profonda dei principi di programmazione rimane fondamentale per interpretare, adattare o correggere le soluzioni proposte da tali sistemi. In sostanza, il pensiero algoritmico e una solida comprensione dei fondamenti della programmazione rimangono centrali anche nell’era dell’IA.</p>
 <section id="iniziare-ad-usare-python">
 <h2>Iniziare ad usare Python 🐍<a class="headerlink" href="#iniziare-ad-usare-python" title="Permalink to this heading">#</a></h2>
-<p>È possibile verificare la versione di Python in due modi.</p>
-<ul class="simple">
-<li><p>Si può aprire il prompt dei comandi o il terminale ed eseguire <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>.</p></li>
-<li><p>Si può utilizzare il modulo <code class="docutils literal notranslate"><span class="pre">sys</span></code> incorporato di Python.</p></li>
-</ul>
+<p>Esistono due metodi per verificare la versione di Python:</p>
+<ol class="arabic simple">
+<li><p>Apertura del prompt dei comandi o del terminale e l’esecuzione del comando <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>.</p></li>
+<li><p>Utilizzo del modulo <code class="docutils literal notranslate"><span class="pre">sys</span></code> incorporato di Python direttamente in un Jupyter Notebook.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -583,7 +583,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.11.5 | packaged by conda-forge | (main, Aug 27 2023, 03:35:23) [Clang 15.0.7 ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.11.7 | packaged by conda-forge | (main, Dec 23 2023, 14:38:52) [Clang 16.0.6 ]
 </pre></div>
 </div>
 </div>
@@ -647,20 +647,8 @@ SyntaxError:<span class="w"> </span>invalid<span class="w"> </span>syntax
 </tr>
 </tbody>
 </table>
-<p>Le due operazioni che potrebbero essere meno familiari sono <code class="docutils literal notranslate"><span class="pre">%</span></code> (trova il resto di una divisione) e <code class="docutils literal notranslate"><span class="pre">//</span></code> (esegui una divisione scartando il resto). Per esempio, il resto di 3/2 è 1.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">%</span> <span class="mi">2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-</pre></div>
-</div>
-</div>
-</div>
-<p>La divisione intera (scartando il resto) di 11/2 produce 5.</p>
+<p>Le due operazioni che potrebbero essere meno familiari sono <code class="docutils literal notranslate"><span class="pre">%</span></code> (trova il resto di una divisione) e <code class="docutils literal notranslate"><span class="pre">//</span></code> (esegui una divisione scartando il resto).</p>
+<p>Per esempio, la divisione intera (scartando il resto) di 11/2 produce 5.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">11</span> <span class="o">//</span> <span class="mi">2</span>
@@ -669,6 +657,19 @@ SyntaxError:<span class="w"> </span>invalid<span class="w"> </span>syntax
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il resto di 11/2 è 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">11</span> <span class="o">%</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 </pre></div>
 </div>
 </div>
@@ -1828,7 +1829,7 @@ Number of vegetables: 5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;banana&#39;, &#39;onion&#39;, &#39;lemon&#39;, &#39;orange&#39;, &#39;carrot&#39;, &#39;potato&#39;, &#39;cabbage&#39;, &#39;mango&#39;, &#39;tomato&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;lemon&#39;, &#39;potato&#39;, &#39;mango&#39;, &#39;tomato&#39;, &#39;carrot&#39;, &#39;orange&#39;, &#39;cabbage&#39;, &#39;onion&#39;, &#39;banana&#39;}
 </pre></div>
 </div>
 </div>
@@ -1970,6 +1971,310 @@ Per verificare se un insieme è un sovrainsieme di un altro, si utilizza il meto
 </section>
 <section id="watermark">
 <h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -p pytensor
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NoSectionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/configparser.py:202,</span> in <span class="ni">PyTensorConfigParser.fetch_val_for_key</span><span class="nt">(self, key, delete_key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">202</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pytensor_cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span> <span class="k">except</span> <span class="n">InterpolationError</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/configparser.py:797,</span> in <span class="ni">RawConfigParser.get</span><span class="nt">(self, section, option, raw, vars, fallback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">796</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">797</span>     <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unify_values</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="nb">vars</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">798</span> <span class="k">except</span> <span class="n">NoSectionError</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/configparser.py:1168,</span> in <span class="ni">RawConfigParser._unify_values</span><span class="nt">(self, section, vars)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1167</span>     <span class="k">if</span> <span class="n">section</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_section</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1168</span>         <span class="k">raise</span> <span class="n">NoSectionError</span><span class="p">(</span><span class="n">section</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1169</span> <span class="c1"># Update with the entry specific variables</span>
+
+<span class="ne">NoSectionError</span>: No section: &#39;blas&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/configparser.py:318,</span> in <span class="ni">ConfigParam.__get__</span><span class="nt">(self, cls, type_, delete_key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">318</span>     <span class="n">val_str</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">fetch_val_for_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">delete_key</span><span class="o">=</span><span class="n">delete_key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="bp">self</span><span class="o">.</span><span class="n">is_default</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/configparser.py:206,</span> in <span class="ni">PyTensorConfigParser.fetch_val_for_key</span><span class="nt">(self, key, delete_key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span> <span class="k">except</span> <span class="p">(</span><span class="n">NoOptionError</span><span class="p">,</span> <span class="n">NoSectionError</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">206</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &#39;blas__ldflags&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">75</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;load_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;watermark&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;watermark&#39;</span><span class="p">,</span> <span class="s1">&#39;-n -u -v -iv -w -p pytensor&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/IPython/core/interactiveshell.py:2456,</span> in <span class="ni">InteractiveShell.run_line_magic</span><span class="nt">(self, magic_name, line, _stack_depth)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2454</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;local_ns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_scope</span><span class="p">(</span><span class="n">stack_depth</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2455</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2456</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2458</span> <span class="c1"># The code below prevents the output from being displayed</span>
+<span class="g g-Whitespace">   </span><span class="mi">2459</span> <span class="c1"># when using magics with decorator @output_can_be_silenced</span>
+<span class="g g-Whitespace">   </span><span class="mi">2460</span> <span class="c1"># when the last Python token in the expression is a &#39;;&#39;.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2461</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">magic</span><span class="o">.</span><span class="n">MAGIC_OUTPUT_CAN_BE_SILENCED</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/watermark/magic.py:90,</span> in <span class="ni">WaterMark.watermark</span><span class="nt">(self, line)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;current_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;watermark_self&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span>
+<span class="ne">---&gt; </span><span class="mi">90</span> <span class="n">formatted_text</span> <span class="o">=</span> <span class="n">watermark</span><span class="o">.</span><span class="n">watermark</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="nb">print</span><span class="p">(</span><span class="n">formatted_text</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/watermark/watermark.py:188,</span> in <span class="ni">watermark</span><span class="nt">(author, email, github_username, website, current_date, datename, current_time, iso8601, timezone, updated, custom_time, python, packages, conda, hostname, machine, githash, gitrepo, gitbranch, watermark, iversions, gpu, watermark_self, globals_)</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_get_pyversions</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span> <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;packages&#39;</span><span class="p">]:</span>
+<span class="ne">--&gt; </span><span class="mi">188</span>     <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_get_packages</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;packages&#39;</span><span class="p">]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span> <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;conda&#39;</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span>     <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_get_conda_env</span><span class="p">())</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/watermark/watermark.py:243,</span> in <span class="ni">_get_packages</span><span class="nt">(pkgs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">241</span> <span class="k">def</span> <span class="nf">_get_packages</span><span class="p">(</span><span class="n">pkgs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>     <span class="n">packages</span> <span class="o">=</span> <span class="n">pkgs</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">243</span>     <span class="k">return</span> <span class="p">{</span><span class="n">package</span><span class="p">:</span> <span class="n">_get_package_version</span><span class="p">(</span><span class="n">package</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span>             <span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">}</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/watermark/watermark.py:243,</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">241</span> <span class="k">def</span> <span class="nf">_get_packages</span><span class="p">(</span><span class="n">pkgs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>     <span class="n">packages</span> <span class="o">=</span> <span class="n">pkgs</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">243</span>     <span class="k">return</span> <span class="p">{</span><span class="n">package</span><span class="p">:</span> <span class="n">_get_package_version</span><span class="p">(</span><span class="n">package</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span>             <span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">}</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/watermark/watermark.py:252,</span> in <span class="ni">_get_package_version</span><span class="nt">(pkg_name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span>     <span class="n">pkg_name</span> <span class="o">=</span> <span class="s2">&quot;sklearn&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">251</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">252</span>     <span class="n">imported</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">pkg_name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span> <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;not installed&quot;</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/importlib/__init__.py:126,</span> in <span class="ni">import_module</span><span class="nt">(name, package)</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>             <span class="k">break</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span>         <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">--&gt; </span><span class="mi">126</span> <span class="k">return</span> <span class="n">_bootstrap</span><span class="o">.</span><span class="n">_gcd_import</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">level</span><span class="p">:],</span> <span class="n">package</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1204,</span> in <span class="ni">_gcd_import</span><span class="nt">(name, package, level)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1176,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1147,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:690,</span> in <span class="ni">_load_unlocked</span><span class="nt">(spec)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap_external&gt;:940,</span> in <span class="ni">exec_module</span><span class="nt">(self, module)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:241,</span> in <span class="ni">_call_with_frames_removed</span><span class="nt">(f, *args, **kwds)</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pytensor</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">119</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span>     <span class="k">return</span> <span class="n">as_tensor_variable</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span> <span class="c1"># isort: off</span>
+<span class="ne">--&gt; </span><span class="mi">119</span> <span class="kn">from</span> <span class="nn">pytensor</span> <span class="kn">import</span> <span class="n">scalar</span><span class="p">,</span> <span class="n">tensor</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="kn">from</span> <span class="nn">pytensor.compile</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="n">In</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span>     <span class="n">Mode</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span>     <span class="n">shared</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">129</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span> <span class="kn">from</span> <span class="nn">pytensor.compile.function</span> <span class="kn">import</span> <span class="n">function</span><span class="p">,</span> <span class="n">function_dump</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pytensor</span><span class="o">/</span><span class="n">tensor</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">107</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span> <span class="c1"># adds shared-variable constructors</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="kn">from</span> <span class="nn">pytensor.tensor</span> <span class="kn">import</span> <span class="n">sharedvar</span>  <span class="c1"># noqa</span>
+<span class="ne">--&gt; </span><span class="mi">107</span> <span class="kn">from</span> <span class="nn">pytensor.tensor</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># noqa</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span>     <span class="n">blas</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span>     <span class="n">blas_c</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">blas_scipy</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="n">xlogx</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="kn">import</span> <span class="nn">pytensor.tensor.rewriting</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="c1"># isort: off</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pytensor</span><span class="o">/</span><span class="n">tensor</span><span class="o">/</span><span class="n">blas</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">102</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="kn">from</span> <span class="nn">pytensor.tensor</span> <span class="kn">import</span> <span class="n">basic</span> <span class="k">as</span> <span class="n">ptb</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="kn">from</span> <span class="nn">pytensor.tensor.basic</span> <span class="kn">import</span> <span class="n">expand_dims</span>
+<span class="ne">--&gt; </span><span class="mi">102</span> <span class="kn">from</span> <span class="nn">pytensor.tensor.blas_headers</span> <span class="kn">import</span> <span class="n">blas_header_text</span><span class="p">,</span> <span class="n">blas_header_version</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="kn">from</span> <span class="nn">pytensor.tensor.elemwise</span> <span class="kn">import</span> <span class="n">DimShuffle</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span> <span class="kn">from</span> <span class="nn">pytensor.tensor.math</span> <span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">mul</span><span class="p">,</span> <span class="n">neg</span><span class="p">,</span> <span class="n">sub</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pytensor</span><span class="o">/</span><span class="n">tensor</span><span class="o">/</span><span class="n">blas_headers</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1015</span>
+<span class="g g-Whitespace">    </span><span class="mi">997</span>             <span class="n">header</span> <span class="o">+=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">998</span><span class="w">                 </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="g g-Whitespace">    </span><span class="mi">999</span><span class="sd">                     static float sdot_(int* Nx, float* x, int* Sx, float* y, int* Sy)</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1009</span><span class="sd">                     &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1010</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1012</span>     <span class="k">return</span> <span class="n">header</span> <span class="o">+</span> <span class="n">blas_code</span>
+<span class="ne">-&gt; </span><span class="mi">1015</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">blas__ldflags</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1016</span>     <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Using NumPy C-API based implementation for BLAS functions.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1019</span> <span class="k">def</span> <span class="nf">mkl_threads_text</span><span class="p">():</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/configparser.py:322,</span> in <span class="ni">ConfigParam.__get__</span><span class="nt">(self, cls, type_, delete_key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span> <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>     <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">322</span>         <span class="n">val_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span>         <span class="n">val_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:2861,</span> in <span class="ni">default_blas_ldflags</span><span class="nt">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2859</span>     <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Checking Lapack + blas&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2860</span>     <span class="c1"># 3. Try to use LAPACK + BLAS</span>
+<span class="ne">-&gt; </span><span class="mi">2861</span>     <span class="k">return</span> <span class="n">check_libs</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2862</span>         <span class="n">all_libs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2863</span>         <span class="n">required_libs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lapack&quot;</span><span class="p">,</span> <span class="s2">&quot;blas&quot;</span><span class="p">,</span> <span class="s2">&quot;cblas&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">2864</span>         <span class="n">extra_compile_flags</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;-Wl,-rpath,</span><span class="si">{</span><span class="n">rpath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">rpath</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[],</span>
+<span class="g g-Whitespace">   </span><span class="mi">2865</span>         <span class="n">cxx_library_dirs</span><span class="o">=</span><span class="n">cxx_library_dirs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2866</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2867</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2868</span>     <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:2780,</span> in <span class="ni">default_blas_ldflags.&lt;locals&gt;.check_libs</span><span class="nt">(all_libs, required_libs, extra_compile_flags, cxx_library_dirs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2765</span> <span class="n">libdir_ldflags</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2766</span>     <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2767</span>         <span class="p">[</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2772</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2773</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2775</span> <span class="n">flags</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2776</span>     <span class="n">libdir_ldflags</span>
+<span class="g g-Whitespace">   </span><span class="mi">2777</span>     <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;-l</span><span class="si">{</span><span class="n">lib_name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">lib_name</span> <span class="ow">in</span> <span class="n">found_libs</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">2778</span>     <span class="o">+</span> <span class="n">extra_compile_flags</span>
+<span class="g g-Whitespace">   </span><span class="mi">2779</span> <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2780</span> <span class="n">res</span> <span class="o">=</span> <span class="n">try_blas_flag</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2781</span> <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2782</span>     <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="s2">&quot;mkl&quot;</span> <span class="ow">in</span> <span class="n">flag</span> <span class="k">for</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">flags</span><span class="p">):</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:1997,</span> in <span class="ni">try_blas_flag</span><span class="nt">(flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1994</span> <span class="n">path_wrapper</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;nt&quot;</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+<span class="nn">   1995 cflags.extend([f&quot;-L{path_wrapper}{d}{path_wrapper}&quot; for d</span> in <span class="ni">std_lib_dirs</span><span class="nt">()])</span>
+<span class="ne">-&gt; </span><span class="mi">1997</span> <span class="n">res</span> <span class="o">=</span> <span class="n">GCC_compiler</span><span class="o">.</span><span class="n">try_compile_tmp</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1998</span>     <span class="n">test_code</span><span class="p">,</span> <span class="n">tmp_prefix</span><span class="o">=</span><span class="s2">&quot;try_blas_&quot;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">cflags</span><span class="p">,</span> <span class="n">try_run</span><span class="o">=</span><span class="kc">True</span>
+<span class="g g-Whitespace">   </span><span class="mi">1999</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2000</span> <span class="c1"># res[0]: shows successful compilation</span>
+<span class="g g-Whitespace">   </span><span class="mi">2001</span> <span class="c1"># res[1]: shows successful execution</span>
+<span class="g g-Whitespace">   </span><span class="mi">2002</span> <span class="k">if</span> <span class="n">res</span> <span class="ow">and</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:2393,</span> in <span class="ni">GCC_compiler.try_compile_tmp</span><span class="nt">(cls, src_code, tmp_prefix, flags, try_run, output, comp_args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2383</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">   </span><span class="mi">2384</span> <span class="k">def</span> <span class="nf">try_compile_tmp</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2385</span>     <span class="bp">cls</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2391</span>     <span class="n">comp_args</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2392</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">2393</span>     <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_try_compile_tmp</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2394</span>         <span class="n">src_code</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2395</span>         <span class="n">tmp_prefix</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2396</span>         <span class="bp">cls</span><span class="o">.</span><span class="n">patch_ldflags</span><span class="p">(</span><span class="n">flags</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">2397</span>         <span class="n">try_run</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2398</span>         <span class="n">output</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2399</span>         <span class="n">config</span><span class="o">.</span><span class="n">cxx</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2400</span>         <span class="n">comp_args</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2401</span>     <span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:1872,</span> in <span class="ni">Compiler._try_compile_tmp</span><span class="nt">(cls, src_code, tmp_prefix, flags, try_run, output, compiler, comp_args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1870</span> <span class="c1"># Get compile arguments from compiler method if required</span>
+<span class="g g-Whitespace">   </span><span class="mi">1871</span> <span class="k">if</span> <span class="n">comp_args</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1872</span>     <span class="n">args</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">compile_args</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1873</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1874</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:2301,</span> in <span class="ni">GCC_compiler.compile_args</span><span class="nt">(march_flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2298</span> <span class="k">if</span> <span class="n">mtune_ind</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2299</span>     <span class="n">GCC_compiler</span><span class="o">.</span><span class="n">march_flags</span><span class="p">[</span><span class="n">mtune_ind</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;-mtune=&quot;</span> <span class="o">+</span> <span class="n">march_flag</span>
+<span class="ne">-&gt; </span><span class="mi">2301</span> <span class="n">compilation_result</span><span class="p">,</span> <span class="n">execution_result</span> <span class="o">=</span> <span class="n">try_march_flag</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2302</span>     <span class="n">GCC_compiler</span><span class="o">.</span><span class="n">march_flags</span>
+<span class="g g-Whitespace">   </span><span class="mi">2303</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2305</span> <span class="k">if</span> <span class="n">compilation_result</span> <span class="ow">and</span> <span class="n">execution_result</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2306</span>     <span class="n">march_success</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:2032,</span> in <span class="ni">try_march_flag</span><span class="nt">(flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2013</span> <span class="n">test_code</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2014</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="g g-Whitespace">   </span><span class="mi">2015</span><span class="sd">         #include &lt;cmath&gt;</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2028</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">2029</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2031</span> <span class="n">cflags</span> <span class="o">=</span> <span class="n">flags</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;-L&quot;</span> <span class="o">+</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">std_lib_dirs</span><span class="p">()]</span>
+<span class="ne">-&gt; </span><span class="mi">2032</span> <span class="n">compilation_result</span><span class="p">,</span> <span class="n">execution_result</span> <span class="o">=</span> <span class="n">GCC_compiler</span><span class="o">.</span><span class="n">try_compile_tmp</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2033</span>     <span class="n">test_code</span><span class="p">,</span> <span class="n">tmp_prefix</span><span class="o">=</span><span class="s2">&quot;try_march_&quot;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">cflags</span><span class="p">,</span> <span class="n">try_run</span><span class="o">=</span><span class="kc">True</span>
+<span class="g g-Whitespace">   </span><span class="mi">2034</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2035</span> <span class="k">return</span> <span class="n">compilation_result</span><span class="p">,</span> <span class="n">execution_result</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:2393,</span> in <span class="ni">GCC_compiler.try_compile_tmp</span><span class="nt">(cls, src_code, tmp_prefix, flags, try_run, output, comp_args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2383</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">   </span><span class="mi">2384</span> <span class="k">def</span> <span class="nf">try_compile_tmp</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2385</span>     <span class="bp">cls</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2391</span>     <span class="n">comp_args</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2392</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">2393</span>     <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_try_compile_tmp</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2394</span>         <span class="n">src_code</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2395</span>         <span class="n">tmp_prefix</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2396</span>         <span class="bp">cls</span><span class="o">.</span><span class="n">patch_ldflags</span><span class="p">(</span><span class="n">flags</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">2397</span>         <span class="n">try_run</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2398</span>         <span class="n">output</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2399</span>         <span class="n">config</span><span class="o">.</span><span class="n">cxx</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2400</span>         <span class="n">comp_args</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2401</span>     <span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:1898,</span> in <span class="ni">Compiler._try_compile_tmp</span><span class="nt">(cls, src_code, tmp_prefix, flags, try_run, output, compiler, comp_args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1896</span>         <span class="n">compilation_ok</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">1897</span>     <span class="k">elif</span> <span class="n">try_run</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1898</span>         <span class="n">out</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">p_ret</span> <span class="o">=</span> <span class="n">output_subprocess_Popen</span><span class="p">([</span><span class="n">exe_path</span><span class="p">])</span>
+<span class="g g-Whitespace">   </span><span class="mi">1899</span>         <span class="n">run_ok</span> <span class="o">=</span> <span class="n">p_ret</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="g g-Whitespace">   </span><span class="mi">1900</span> <span class="k">finally</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pytensor/utils.py:212,</span> in <span class="ni">output_subprocess_Popen</span><span class="nt">(command, **params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span> <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess_Popen</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="c1"># we need to use communicate to make sure we don&#39;t deadlock around</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span> <span class="c1"># the stdout/stderr pipe.</span>
+<span class="ne">--&gt; </span><span class="mi">212</span> <span class="n">out</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span> <span class="k">return</span> <span class="n">out</span> <span class="o">+</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/subprocess.py:1209,</span> in <span class="ni">Popen.communicate</span><span class="nt">(self, input, timeout)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1206</span>     <span class="n">endtime</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1208</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1209</span>     <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_communicate</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">endtime</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1210</span> <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1211</span>     <span class="c1"># https://bugs.python.org/issue25942</span>
+<span class="g g-Whitespace">   </span><span class="mi">1212</span>     <span class="c1"># See the detailed comment in .wait().</span>
+<span class="g g-Whitespace">   </span><span class="mi">1213</span>     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/subprocess.py:2108,</span> in <span class="ni">Popen._communicate</span><span class="nt">(self, input, endtime, orig_timeout)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2101</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_timeout</span><span class="p">(</span><span class="n">endtime</span><span class="p">,</span> <span class="n">orig_timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2102</span>                         <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2103</span>                         <span class="n">skip_check_and_raise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2104</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>  <span class="c1"># Impossible :)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2105</span>         <span class="s1">&#39;_check_timeout(..., skip_check_and_raise=True) &#39;</span>
+<span class="g g-Whitespace">   </span><span class="mi">2106</span>         <span class="s1">&#39;failed to raise TimeoutExpired.&#39;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2108</span> <span class="n">ready</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2109</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_timeout</span><span class="p">(</span><span class="n">endtime</span><span class="p">,</span> <span class="n">orig_timeout</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2111</span> <span class="c1"># XXX Rewrite these to use non-blocking I/O on the file</span>
+<span class="g g-Whitespace">   </span><span class="mi">2112</span> <span class="c1"># objects; they are no longer using C stdio!</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/selectors.py:415,</span> in <span class="ni">_PollLikeSelector.select</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">413</span> <span class="n">ready</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">415</span>     <span class="n">fd_event_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selector</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> <span class="k">except</span> <span class="ne">InterruptedError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span>     <span class="k">return</span> <span class="n">ready</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 

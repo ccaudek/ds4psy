@@ -62,5 +62,12 @@ Un esempio di report, analogo a quelli che saranno necessari per i progetti di g
 
 ## 🎫 License for this book
 
-<a rel="license" target="_blank" rel="noopener noreferrer" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
-Content in this book (i.e., any .md or .ipynb files in the content/ folder) is licensed under a <a rel="license" target="_blank" rel="noopener noreferrer" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">
+    <img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" />
+</a>
+<br />
+
+Il contenuto di questo libro (ossia tutti i file .md o .ipynb nella cartella content/) è concesso in licenza secondo i termini della
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">
+Creative Commons Attribution-ShareAlike 4.0 International License
+</a>.

@@ -510,10 +510,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-nei-jupyter-notebook">Kernel nei Jupyter Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formattazione-del-testo-con-markdown">Formattazione del Testo con Markdown</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandi-magici-in-jupyter-notebook">Comandi Magici in Jupyter Notebook</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configurazione-locale-per-jupyter-notebook">Configurazione Locale per Jupyter Notebook</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guida-all-installazione-di-anaconda">Guida all’Installazione di Anaconda</a></li>
 </ul>
@@ -546,10 +542,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ambiente-di-lavoro">
 <span id="working-env-notebook"></span><h1>Ambiente di lavoro<a class="headerlink" href="#ambiente-di-lavoro" title="Permalink to this heading">#</a></h1>
-<p>Ci sono due approcci possibili per gestire le attività di questo insegnamento:</p>
+<p>Le procedure di inferenza statistica di questo insegnamento sono basate su calcoli che potrebbero richiedere notevoli risorse computazionali. Ci sono due approcci possibili per gestire tali attività.</p>
 <ol class="arabic simple">
 <li><p><strong>Installazione Locale</strong>: Potete optare per l’installazione delle componenti necessarie direttamente sul vostro computer. Questo significa configurare Python e tutti i pacchetti richiesti in un ambiente virtuale locale. Questo approccio offre un alto livello di controllo e indipendenza dalla connessione internet durante le tue attività. Inoltre, è particolarmente consigliato per evitare eventuali problemi tecnici durante gli esami, dove la stabilità e la fluidità dell’esecuzione sono essenziali.</p></li>
-<li><p><strong>Utilizzo di Google Colab</strong>: Un’altra opzione è utilizzare <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, una piattaforma che consente di eseguire codice Python direttamente nel browser, senza la necessità di installare software aggiuntivi sul vostro computer. Tuttavia, è importante notare che, nonostante la sua comodità e accessibilità, l’uso di Google Colab potrebbe presentare alcune sfide in un contesto di esame. Ad esempio, la connessione a Internet può diventare lenta o instabile se molti studenti cercano di accedere simultaneamente in aula, creando potenziali interruzioni e ostacoli.</p></li>
+<li><p><strong>Utilizzo di Google Colab</strong>: Un’altra opzione è utilizzare <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, una piattaforma che consente di eseguire codice Python direttamente nel browser, senza la necessità di installare software aggiuntivi sul vostro computer. Tuttavia, è importante notare che, nonostante la sua comodità e facilità d’uso, l’utilizzo di Google Colab potrebbe comportare alcune sfide durante un esame. Per esempio, potrebbe verificarsi una situazione in cui la connessione internet diventa lenta o instabile se numerosi studenti cercano di accedere contemporaneamente a Google Colab in aula, creando così possibili interruzioni e ostacoli.</p></li>
 </ol>
 <p>Per garantire la massima efficienza e ridurre il rischio di inconvenienti tecnici durante le attività del corso, è vivamente consigliato seguire le indicazioni fornite su questa pagina web per l’installazione locale. In questo modo, avrete il controllo completo sulle vostre risorse di programmazione e sarete pronti a gestire le attività in modo fluido, indipendentemente dalla connessione internet. Questo approccio sarà particolarmente vantaggioso durante gli esami, dove la stabilità è essenziale per il successo delle vostre prestazioni.</p>
 <section id="jupyter-notebook">
@@ -569,33 +565,6 @@ document.write(`
 <p>Il kernel rappresenta un elemento fondamentale all’interno dei Jupyter Notebook ed è responsabile dell’esecuzione del codice Python contenuto nelle celle di codice. Quando un utente esegue una cella, il suo contenuto viene inviato al kernel per l’esecuzione. Ciò che rende il kernel così importante è la sua capacità di mantenere lo stato delle variabili e delle funzioni Python tra le diverse celle. Questo significa che le variabili e le funzioni definite in celle precedenti possono essere utilizzate nelle celle successive. Questa interattività consente agli utenti di eseguire il codice in modo iterativo e di esplorare i dati in modo flessibile.</p>
 <p>Quando installate Jupyter Notebook, di solito ottienete anche IPython, che è un kernel specificamente progettato per l’esecuzione di codice Python. Tuttavia, se desiderate utilizzare altri linguaggi di programmazione all’interno dei Jupyter Notebook, potrebbe essere necessario installare kernel aggiuntivi. Questo processo potrebbe comportare la configurazione di ambienti di sviluppo specifici, noti come “environments”. Questi environments servono a isolare le librerie e le dipendenze necessarie per ciascun kernel, evitando possibili conflitti tra diverse configurazioni e assicurando che il codice funzioni correttamente nel contesto desiderato.</p>
 <p>L’utilizzo di ambienti dedicati è particolarmente vantaggioso in progetti che richiedono versioni specifiche di librerie o quando si lavora con più linguaggi di programmazione che possono avere requisiti di sistema diversi. Strumenti come <code class="docutils literal notranslate"><span class="pre">conda</span></code> o <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> sono comunemente utilizzati per gestire questi ambienti. Essi offrono funzionalità per la creazione, la gestione e l’attivazione di ambienti separati, ognuno con le sue configurazioni e dipendenze specifiche. In questo modo, è possibile passare agevolmente da un ambiente all’altro, garantendo che ciascun progetto o kernel abbia tutte le risorse necessarie per funzionare in modo ottimale e senza interferenze.</p>
-</section>
-<section id="formattazione-del-testo-con-markdown">
-<h2>Formattazione del Testo con Markdown<a class="headerlink" href="#formattazione-del-testo-con-markdown" title="Permalink to this heading">#</a></h2>
-<p>All’interno delle celle di testo di un Jupyter Notebook, è possibile formattare il testo in modo semplice ed efficiente utilizzando il linguaggio di markup Markdown.</p>
-<p>Markdown si basa su una serie di simboli e convenzioni di formattazione che consentono di creare titoli, elenchi, tabelle, citazioni, testo in grassetto, corsivo e altro ancora. Di seguito sono riportati alcuni esempi di formattazione del testo in Markdown:</p>
-<ul class="simple">
-<li><p><strong>Titoli</strong>: Per creare un titolo, è sufficiente utilizzare il simbolo “#” seguito dal testo del titolo. Ad esempio, <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Titolo</span> <span class="pre">del</span> <span class="pre">documento</span></code> genererà un titolo di primo livello.</p></li>
-<li><p><strong>Elenchi puntati</strong>: Per creare una lista puntata, è possibile utilizzare il simbolo “-” seguito dal testo dell’elemento della lista. Ad esempio, <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">Elemento</span> <span class="pre">1</span></code> genererà un elemento di lista puntata.</p></li>
-<li><p><strong>Collegamenti ipertestuali</strong>: Per creare un collegamento ipertestuale, basta utilizzare il simbolo “[” seguito dal testo del collegamento e dal simbolo “]” seguito dall’URL del collegamento. Ad esempio, <code class="docutils literal notranslate"><span class="pre">[Link</span> <span class="pre">a</span> <span class="pre">Google](https://www.google.com/)</span></code> creerà un collegamento con il testo “Link a Google” che reindirizza alla homepage di Google.</p></li>
-<li><p><strong>Testo in grassetto</strong>: Per formattare il testo in grassetto, è possibile utilizzare il simbolo “**” prima e dopo il testo da formattare. Ad esempio, <code class="docutils literal notranslate"><span class="pre">**Testo</span> <span class="pre">in</span> <span class="pre">grassetto**</span></code> renderà il testo in grassetto.</p></li>
-<li><p><strong>Testo in corsivo</strong>: Per formattare il testo in corsivo, è possibile utilizzare il simbolo “*” prima e dopo il testo da formattare. Ad esempio, <code class="docutils literal notranslate"><span class="pre">*Testo</span> <span class="pre">in</span> <span class="pre">corsivo*</span></code> renderà il testo in corsivo.</p></li>
-</ul>
-<section id="comandi-magici-in-jupyter-notebook">
-<h3>Comandi Magici in Jupyter Notebook<a class="headerlink" href="#comandi-magici-in-jupyter-notebook" title="Permalink to this heading">#</a></h3>
-<p>I “command magic” rappresentano una serie di comandi speciali che possono essere utilizzati all’interno dei Jupyter Notebook per eseguire varie azioni. Ecco una breve spiegazione dei comandi magici più comuni:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">%run</span></code>: Questo comando consente di eseguire un file Python come programma direttamente all’interno del notebook.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">%timeit</span></code>: Utilizzando questo comando, è possibile eseguire una riga di codice più volte e calcolare il tempo medio di esecuzione. Questo è utile per valutare le prestazioni del codice.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">%matplotlib</span></code>: Questo comando abilita l’integrazione di Matplotlib per la visualizzazione dei grafici direttamente all’interno del notebook, semplificando la creazione di grafici e visualizzazioni.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">%load</span></code>: Con questo comando è possibile caricare il codice da un file esterno direttamente in una cella del notebook, facilitando l’importazione di codice da altre fonti.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">%reset</span></code>: Questo comando rimuove tutte le variabili presenti nella sessione corrente del notebook, consentendo una pulizia rapida delle variabili non desiderate.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">%pwd</span></code>: Restituisce il percorso della directory corrente, utile per tenere traccia della posizione dei file e delle risorse all’interno del notebook.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">%cd</span></code>: Cambia la directory di lavoro corrente direttamente all’interno del notebook, semplificando la gestione dei file e delle directory.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">%%time</span></code>: Questo comando calcola il tempo di esecuzione di un’intera cella di codice, utile per valutare le prestazioni di blocchi di codice più ampi.</p></li>
-</ul>
-<p>I Jupyter Notebook offrono una vasta gamma di altri “command magic” che consentono di eseguire una varietà di operazioni speciali. Per visualizzare l’elenco completo di questi comandi, è possibile digitare <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> all’interno di una cella del notebook.</p>
-</section>
 </section>
 <section id="configurazione-locale-per-jupyter-notebook">
 <h2>Configurazione Locale per Jupyter Notebook<a class="headerlink" href="#configurazione-locale-per-jupyter-notebook" title="Permalink to this heading">#</a></h2>
@@ -900,10 +869,6 @@ Nel nuovo ambiente, installate le seguenti librerie:</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-nei-jupyter-notebook">Kernel nei Jupyter Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formattazione-del-testo-con-markdown">Formattazione del Testo con Markdown</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandi-magici-in-jupyter-notebook">Comandi Magici in Jupyter Notebook</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configurazione-locale-per-jupyter-notebook">Configurazione Locale per Jupyter Notebook</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guida-all-installazione-di-anaconda">Guida all’Installazione di Anaconda</a></li>
 </ul>

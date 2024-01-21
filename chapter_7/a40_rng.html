@@ -278,7 +278,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
@@ -311,8 +310,10 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="introduction_appendix.html">Appendici</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="a00_installation.html">Ambiente di lavoro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="a01_markdown.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="a02_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="a03_virtual_env.html">Ambiente virtuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="a10_math_symbols.html">Simbologia di base</a></li>
 <li class="toctree-l2"><a class="reference internal" href="a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
@@ -515,8 +516,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-binomiale">Distribuzione binomiale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-t-di-student">Distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-arbitraria-di-una-variabile-casuale-distreta">Distribuzione arbitraria di una variabile casuale distreta</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e Considerazioni Finali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-di-calcolo">Ambiente di Calcolo</a></li>
 </ul>
             </nav>
         </div>
@@ -530,8 +531,8 @@ document.write(`
                   
   <p><a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/ccaudek/ds4psy_2023/blob/main/215_rng.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="generazione-di-numeri-casuali">
-<span id="rng-appendix"></span><h1>Generazione di numeri casuali<a class="headerlink" href="#generazione-di-numeri-casuali" title="Permalink to this heading">#</a></h1>
-<p>In questo insegnamento introdurremo molti concetti tramite la simulazione. Pertanto deve essere ben chiaro come sia possibile generare numeri casuali da varie distribuzioni di probabilità. In questo capitolo esamineremo <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.default_rng">NumPy</a> dato che questo modulo offre generatori di numeri casuali per tutte le principali distribuzioni di probabilità.</p>
+<span id="appendix-rng"></span><h1>Generazione di numeri casuali<a class="headerlink" href="#generazione-di-numeri-casuali" title="Permalink to this heading">#</a></h1>
+<p>In questo insegnamento vengono introdotti molti concetti tramite la simulazione. Pertanto deve essere ben chiaro come sia possibile generare numeri casuali da varie distribuzioni di probabilità. In questo capitolo esamineremo <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.default_rng">NumPy</a> dato che questo modulo offre generatori di numeri casuali per tutte le principali distribuzioni di probabilità.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -544,17 +545,10 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-<span class="o">%</span><span class="k">load_ext</span> watermark
 
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
@@ -565,11 +559,14 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 </div>
-<p>Tutto ciò che succede sul nostro computer è generato da un algoritmo. L’algoritmo che genera i numeri “casuali” su computer è necessariamente deterministico. Questo diventa chiaro quando notiamo che otteniamo sempre lo stesso insieme di numeri casuali quando usiamo lo stesso seme (punto di partenza), su qualsiasi macchina o per diverse ripetizioni sulla stessa macchina. Per generare un numero veramente casuale sui nostri computer è necessario  ottenere dei dati casuali da una fonte esterna; questa fonte esterna può essere la nostra sequenza di tasti, i movimenti del mouse, i dati sulla rete, ecc. La necessità di ottenere dei numeri <em>veramente</em> casuali nasce solo in contesti specifici, per esempio nei contesti legati alla sicurezza (crittografia, ecc.). Per gli scopi della <em>data science</em>, invece, sono sufficienti i numeri pseudo-casuali generati dal computer. In Python, il principale generatore di numeri (pseudo)casuali è NumPy.</p>
-<p>Il generatore <code class="docutils literal notranslate"><span class="pre">rng</span></code> può usare una serie di metodi per generare numeri casuali estratti da una varietà di distribuzioni di probabilità. Oltre agli argomenti specifici della distribuzione, ogni metodo prende un argomento <code class="docutils literal notranslate"><span class="pre">size</span></code> il cui valore predefinito è <code class="docutils literal notranslate"><span class="pre">None</span></code>. Se <code class="docutils literal notranslate"><span class="pre">size</span></code> è <code class="docutils literal notranslate"><span class="pre">None</span></code>, viene generato e restituito un singolo valore. Se <code class="docutils literal notranslate"><span class="pre">size</span></code> è un numero intero, viene restituito un array 1-D riempito con i valori generati.</p>
+<p>La generazione di numeri casuali (RNG) è il processo mediante il quale si estrae una sequenza di numeri che, in realtà, non sono completamente casuali per varie ragioni.</p>
+<p>Essi vengono estratti da una distribuzione di probabilità, con la più comune che è la distribuzione uniforme nel dominio 0≤𝑥&lt;1, ovvero numeri casuali compresi tra zero e uno.</p>
+<p>Nella maggior parte delle applicazioni informatiche, comprese quelle utilizzate in questo insegnamento, i numeri casuali sono in realtà pseudocasuali. Questo significa che dipendono completamente da un valore iniziale chiamato “seed” e vengono generati da un algoritmo deterministico basato su quel seed. Questo diventa evidente quando notiamo che otteniamo sempre la stessa sequenza di numeri casuali quando utilizziamo lo stesso seme, sia su diverse macchine che in diverse ripetizioni sulla stessa macchina.</p>
+<p>Per ottenere numeri veramente casuali sui nostri computer, sarebbe necessario acquisire dati casuali da una fonte esterna, come sequenze di tasti, movimenti del mouse, dati di rete, e così via. La necessità di numeri veramente casuali sorge principalmente in contesti legati alla sicurezza, come la crittografia. Tuttavia, per gli scopi della data science, i numeri pseudocasuali generati dal computer tramite algoritmi come quelli offerti da NumPy in Python sono sufficienti.</p>
+<p>Il generatore <code class="docutils literal notranslate"><span class="pre">rng</span></code> fornito da NumPy offre una serie di metodi per generare numeri casuali estratti da diverse distribuzioni di probabilità. Oltre agli argomenti specifici della distribuzione, ciascun metodo accetta un argomento <code class="docutils literal notranslate"><span class="pre">size</span></code>, il cui valore predefinito è <code class="docutils literal notranslate"><span class="pre">None</span></code>. Se <code class="docutils literal notranslate"><span class="pre">size</span></code> è impostato su <code class="docutils literal notranslate"><span class="pre">None</span></code>, verrà generato e restituito un singolo valore casuale. Se, invece, <code class="docutils literal notranslate"><span class="pre">size</span></code> è un numero intero, verrà restituito un array 1-D contenente i valori generati.</p>
 <section id="distribuzione-uniforme">
 <h2>Distribuzione uniforme<a class="headerlink" href="#distribuzione-uniforme" title="Permalink to this heading">#</a></h2>
-<p>Consideriamo la distribuzione uniforme: <code class="docutils literal notranslate"><span class="pre">uniform([low,</span> <span class="pre">high,</span> <span class="pre">size])</span></code>. Genero un singolo valore:</p>
+<p>Consideriamo la distribuzione uniforme: <code class="docutils literal notranslate"><span class="pre">rng.uniform([low,</span> <span class="pre">high,</span> <span class="pre">size])</span></code>. Genero un singolo valore:</p>
 <p>Lo genero una seconda volta:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -602,18 +599,19 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <p>Creo un istogramma.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100000</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/063d80baca9821fb4dfa85e33e6d9262a91e157ab20b2116d18149b7f37ba11b.png" src="../_images/063d80baca9821fb4dfa85e33e6d9262a91e157ab20b2116d18149b7f37ba11b.png" />
+<img alt="../_images/670ca6b63fae09d2a50b34348eb38ef0426026baa3e4295fd4942185a2e3824c.png" src="../_images/670ca6b63fae09d2a50b34348eb38ef0426026baa3e4295fd4942185a2e3824c.png" />
 </div>
 </div>
 </section>
 <section id="distribuzione-normale">
 <h2>Distribuzione normale<a class="headerlink" href="#distribuzione-normale" title="Permalink to this heading">#</a></h2>
-<p>Estraiamo ora dei campioni casuali dalla distribuzione Gaussiana, <code class="docutils literal notranslate"><span class="pre">normal([loc,</span> <span class="pre">scale,</span> <span class="pre">size])</span></code>. Per esempio, generiamo 10 valori dalla distribuzione <span class="math notranslate nohighlight">\(\mathcal{N}(\mu = 100, \sigma = 15)\)</span>:</p>
+<p>Estraiamo ora dei campioni casuali dalla distribuzione Gaussiana, <code class="docutils literal notranslate"><span class="pre">rng.normal([loc,</span> <span class="pre">scale,</span> <span class="pre">size])</span></code>. Per esempio, generiamo 10 valori dalla distribuzione <span class="math notranslate nohighlight">\(\mathcal{N}(\mu = 100, \sigma = 15)\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -622,79 +620,83 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 94.43605826 111.7309541   81.26336296  81.17729066 100.84159754
-  83.32674644 119.49706508  95.16799064  79.23341602  97.77136425]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 88.39130723 106.85972149 112.68284617  98.40757644  59.28402571
+  83.63194152 127.29102032  91.32585446 109.21359401 103.23261596]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Ora genero un grande numero (1000000) di valori casuali dalla <span class="math notranslate nohighlight">\(\mathcal{N}(\mu = 100, \sigma = 15)\)</span>. Con questi valori creo un istogramma e a tale istogramma sovrappongo la funzione di densità <span class="math notranslate nohighlight">\(\mathcal{N}(\mu = 100, \sigma = 15)\)</span>. In questo modo posso accertarmi che i numeri casuali  che ho ottenuto si riferiscano veramente alla densità desiderata. Per trovare la densità della distribuzione normale, uso <code class="docutils literal notranslate"><span class="pre">norm.pdf</span></code> da <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>. Si noti <code class="docutils literal notranslate"><span class="pre">rng.normal()</span></code> per la generazione dei numeri casuali.</p>
+<p>Ora generiamo un grande numero (1000000) di valori casuali dalla <span class="math notranslate nohighlight">\(\mathcal{N}(\mu = 100, \sigma = 15)\)</span>. Con questi valori creiamo un istogramma e a tale istogramma sovrapponiamo la funzione di densità <span class="math notranslate nohighlight">\(\mathcal{N}(\mu = 100, \sigma = 15)\)</span>. In questo modo possiamo accertarci che i numeri casuali  che abbiamo ottenuto si riferiscano veramente alla densità desiderata. Per trovare la densità della distribuzione normale, uso <code class="docutils literal notranslate"><span class="pre">norm.pdf</span></code> da <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000000</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="mi">15</span>
 <span class="c1"># create x&#39;s</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">100001</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
 <span class="n">y_pdf</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 <span class="c1"># create random samples</span>
-<span class="n">samps</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">samps</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
 <span class="c1"># plot them</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y_pdf</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y_pdf</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samps</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribuzione Normale $\mathcal</span><span class="si">{N}</span><span class="s2">(\mu=100, \sigma=15)$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$f(X)$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valore della variabile casuale $X$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">160</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">160</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(40.0, 160.0)
-</pre></div>
-</div>
-<img alt="../_images/41b862805376d526c3ad164faab7f540efc3169b9b6978a2a86d4638fc087a69.png" src="../_images/41b862805376d526c3ad164faab7f540efc3169b9b6978a2a86d4638fc087a69.png" />
+<img alt="../_images/6ffb6a5cdb68184fed1ba750041e485fe62fdb719690ead9dcf244361da3b757.png" src="../_images/6ffb6a5cdb68184fed1ba750041e485fe62fdb719690ead9dcf244361da3b757.png" />
 </div>
 </div>
-<p>La stessa procedura può essere usata per tutte le <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.default_rng">distribuzioni</a> implementate da NumPy. Presento alcuni esempi qui sotto.</p>
+<p>La stessa procedura può essere usata per tutte le <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.default_rng">distribuzioni</a> implementate da NumPy. Esaminiamo alcuni esempi qui sotto.</p>
 </section>
 <section id="distribuzione-beta">
 <h2>Distribuzione Beta<a class="headerlink" href="#distribuzione-beta" title="Permalink to this heading">#</a></h2>
-<p>Per estrarre dei campioni casuali dalla distribuzione Beta uso il generatore <code class="docutils literal notranslate"><span class="pre">rng</span></code> con <code class="docutils literal notranslate"><span class="pre">beta(a,</span> <span class="pre">b[,</span> <span class="pre">size])</span></code>; per la densità Beta uso <code class="docutils literal notranslate"><span class="pre">beta.pdf</span></code> da <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.</p>
+<p>Per estrarre dei campioni casuali dalla distribuzione Beta usiamo il generatore <code class="docutils literal notranslate"><span class="pre">rng.beta(a,</span> <span class="pre">b[,</span> <span class="pre">size])</span></code>; per la densità Beta usiamo <code class="docutils literal notranslate"><span class="pre">stats.beta.pdf(x,</span> <span class="pre">a,</span> <span class="pre">b)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definisci il numero di campioni</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="c1"># create x&#39;s</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100001</span><span class="p">)</span>
+
+<span class="c1"># Crea un array di valori x</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+
+<span class="c1"># Calcola la densità di probabilità (PDF) della distribuzione Beta</span>
 <span class="n">y_pdf</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-<span class="c1"># create random samples</span>
-<span class="n">samps</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-<span class="c1"># plot them</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y_pdf</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samps</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribuzione Beta(3,9)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$f(X)$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valore della variabile casuale $X$&quot;</span><span class="p">)</span>
+
+<span class="c1"># Genera i campioni casuali</span>
+<span class="n">samps</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+
+<span class="c1"># Traccia il grafico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y_pdf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Densità Beta(3,9)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samps</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Campioni&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confronto tra la Distribuzione Beta(3,9) e Campioni Casuali&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Densità&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valore&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Valore della variabile casuale $X$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/ae1aac44964e4de39878fa1bc829eb5c79e017a12af6cbc9ad8f1b59ef5590b1.png" src="../_images/ae1aac44964e4de39878fa1bc829eb5c79e017a12af6cbc9ad8f1b59ef5590b1.png" />
+<img alt="../_images/6e911c63484fb6910ec8f7595ea6cb636d5556cc890b33ea41824214a198b976.png" src="../_images/6e911c63484fb6910ec8f7595ea6cb636d5556cc890b33ea41824214a198b976.png" />
 </div>
 </div>
 </section>
 <section id="distribuzione-binomiale">
 <h2>Distribuzione binomiale<a class="headerlink" href="#distribuzione-binomiale" title="Permalink to this heading">#</a></h2>
-<p>Per estrarre dei campioni casuali dalla distribuzione Binomiale uso il generatore <code class="docutils literal notranslate"><span class="pre">rng</span></code> con <code class="docutils literal notranslate"><span class="pre">binomial(n,</span> <span class="pre">p[,</span> <span class="pre">size])</span></code>; per la distribuzione di massa Binomiale uso <code class="docutils literal notranslate"><span class="pre">binom.pmf</span></code> da <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.</p>
+<p>Per estrarre dei campioni casuali dalla distribuzione Binomiale usiamo <code class="docutils literal notranslate"><span class="pre">rng.binomial(n,</span> <span class="pre">p[,</span> <span class="pre">size])</span></code>; per la distribuzione di massa Binomiale usiamo <code class="docutils literal notranslate"><span class="pre">stats.binom.pmf(r,</span> <span class="pre">n,</span> <span class="pre">p)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000000</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100001</span>
 <span class="c1"># create r values</span>
 <span class="n">r_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 <span class="c1"># pmf</span>
@@ -705,15 +707,12 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">r_samps</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">11.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribuzione Binomiale($n$=10, $p$=0.3)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$f(X)$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valore della variabile casuale $X$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valore della variabile casuale $X$&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Valore della variabile casuale $X$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/107d69a0da2b3161333370cc8891a441bf2d69ebfe2b002e687c725a8e6688a3.png" src="../_images/107d69a0da2b3161333370cc8891a441bf2d69ebfe2b002e687c725a8e6688a3.png" />
+<img alt="../_images/430b7b1aede7a0a72ed74aa4a79ed9dfab2accf5ee022b555f5c23cabbf232b2.png" src="../_images/430b7b1aede7a0a72ed74aa4a79ed9dfab2accf5ee022b555f5c23cabbf232b2.png" />
 </div>
 </div>
 </section>
@@ -722,29 +721,26 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <p>Per estrarre dei campioni casuali dalla distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student uso il generatore <code class="docutils literal notranslate"><span class="pre">rng</span></code> con <code class="docutils literal notranslate"><span class="pre">standard_t(df,</span> <span class="pre">size=None)</span></code>; per la densità <span class="math notranslate nohighlight">\(t\)</span> di Student uso <code class="docutils literal notranslate"><span class="pre">t.pdf</span></code> da <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">size</span> <span class="o">=</span> <span class="mi">100001</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">df</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="c1"># create x&#39;s</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">100001</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
 <span class="n">y_pdf</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 <span class="c1"># create random samples</span>
-<span class="n">samps</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_t</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="n">samps</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_t</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
 <span class="c1"># plot them</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y_pdf</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samps</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y_pdf</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samps</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribuzione $t(</span><span class="se">\\</span><span class="s2">nu=4)$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$f(X)$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valore della variabile casuale $X$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.0, 4.0)
-</pre></div>
-</div>
-<img alt="../_images/d6725ab72625448c187381dfb00d9c674bd115c212cf7818241031d4898a318f.png" src="../_images/d6725ab72625448c187381dfb00d9c674bd115c212cf7818241031d4898a318f.png" />
+<img alt="../_images/a17206199e74fa1c36f3b990573ca3032f46da16248baa6a5a0d23022453ba56.png" src="../_images/a17206199e74fa1c36f3b990573ca3032f46da16248baa6a5a0d23022453ba56.png" />
 </div>
 </div>
 </section>
@@ -758,13 +754,15 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <span class="c1"># Define the weights for each value</span>
 <span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
 
-<span class="n">x_sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">x_rv</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+<span class="n">x_sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">x_rv</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Random Sample: </span><span class="si">{</span><span class="n">x_sample</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random Sample: [3 1 1 4 4 4 3 4 4 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random Sample: [1 1 4 3 1 4 1 4 3 3 4 4 1 4 4 4 4 2 4 2 1 4 4 2 1 3 2 4 1 4 4 3 4 2 4 4 1
+ 4 3 4 4 4 4 3 1 4 3 3 2 4 3 4 4 3 3 4 4 1 3 4 4 4 3 2 1 4 4 4 4 4 3 4 3 2
+ 3 4 4 3 3 4 4 3 4 2 4 3 4 3 1 2 4 4 1 1 4 3 1 4 4 4]
 </pre></div>
 </div>
 </div>
@@ -773,63 +771,59 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <p>Se aggiungiamo l’argomento <code class="docutils literal notranslate"><span class="pre">k</span></code> possiamo definire i pesi (indirettamente, le probabilità) dei diversi valori della variabile casuale che sono stati specificati. Nell’esempio, i pesi <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">3,</span> <span class="pre">6]</span></code> indicano che, nella distribuzione, il valore <code class="docutils literal notranslate"><span class="pre">4</span></code> è presente con una frequenza di sei volte maggiore dei valori <code class="docutils literal notranslate"><span class="pre">1</span></code> e <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">x_rv</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">x_rv</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
 <span class="n">bins</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribuzione arbitraria di massa di probabilità&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$f(X)$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valore della variabile casuale $X$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x_rv</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x_rv</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&lt;matplotlib.axis.XTick at 0x144390c10&gt;,
-  &lt;matplotlib.axis.XTick at 0x144a46fd0&gt;,
-  &lt;matplotlib.axis.XTick at 0x1448481d0&gt;,
-  &lt;matplotlib.axis.XTick at 0x144a9b610&gt;],
- [Text(1, 0, &#39;1&#39;), Text(2, 0, &#39;2&#39;), Text(3, 0, &#39;3&#39;), Text(4, 0, &#39;4&#39;)])
-</pre></div>
-</div>
-<img alt="../_images/56d0eecf882889541180d2a0d862bafde71667c4715fd5df737d7e6081d2834c.png" src="../_images/56d0eecf882889541180d2a0d862bafde71667c4715fd5df737d7e6081d2834c.png" />
+<img alt="../_images/29edf7e62ad01a63f50156f642e6e57ca662daf2ce2bd9558610d9883633efb6.png" src="../_images/29edf7e62ad01a63f50156f642e6e57ca662daf2ce2bd9558610d9883633efb6.png" />
 </div>
 </div>
 </section>
 <section id="commenti-e-considerazioni-finali">
-<h2>Commenti e considerazioni finali<a class="headerlink" href="#commenti-e-considerazioni-finali" title="Permalink to this heading">#</a></h2>
-<p>Dalla libreria <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> utilizzo</p>
+<h2>Commenti e Considerazioni Finali<a class="headerlink" href="#commenti-e-considerazioni-finali" title="Permalink to this heading">#</a></h2>
+<p>In questo capitolo, abbiamo esaminato l’utilizzo della funzione <code class="docutils literal notranslate"><span class="pre">rng</span> <span class="pre">=</span> <span class="pre">np.random.default_rng()</span></code> per generare un campione di numeri pseudo-casuali da una distribuzione.</p>
+<p>Nei capitoli precedenti, specificamente nei notebook <a class="reference internal" href="../chapter_3/07_discr_rv_distr.html#discr-distr-notebook"><span class="std std-ref">Distribuzioni di v.c. discrete</span></a> e <a class="reference internal" href="../chapter_3/08_cont_rv_distr.html#cont-rv-distr-notebook"><span class="std std-ref">Distribuzioni di v.c. continue</span></a>, abbiamo approfondito l’utilizzo di varie funzioni della libreria <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> per manipolare le distribuzioni di probabilità. In particolare, abbiamo illustrato come sia possibile utilizzare:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">.pdf</span></code> per ottenere i valori della funzione di densità di probabilità oppure <code class="docutils literal notranslate"><span class="pre">.pmf</span></code> per ottenere i valori della distribuzione di massa di probabilità;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.ppf</span></code> per ottenere i quantili della distribuzione;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.cdf</span></code> per ottenere la probabilità – nel caso di una variabile casuale continua, il valore della funzione di ripartizione, ovvero l’area sottesa alla curva di densità nella coda di sinistra; nel caso di una variabile casuale discreta, la somma delle probabilità della distribuzione di massa di probabilità dal valore minimo fino al valore indicato (incluso).</p></li>
-</ul>
-<p>Dalla libreria <code class="docutils literal notranslate"><span class="pre">numpy</span></code> utilizzo</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">.random</span></code> per ottenere un campione di numeri casuali da una distribuzione.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.pdf</span></code> per ottenere i valori della funzione di densità di probabilità o <code class="docutils literal notranslate"><span class="pre">.pmf</span></code> per ottenere i valori della distribuzione di massa di probabilità.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ppf</span></code> per calcolare i quantili della distribuzione.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.cdf</span></code> per calcolare la probabilità associata a un valore specifico. Nel caso di una variabile casuale continua, questo corrisponde al valore della funzione di ripartizione, che rappresenta l’area sotto la curva di densità nella coda sinistra. Nel caso di una variabile casuale discreta, corrisponde alla somma delle probabilità dalla distribuzione di massa di probabilità dal valore minimo fino al valore specificato (incluso).</p></li>
 </ul>
 </section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
+<section id="ambiente-di-calcolo">
+<h2>Ambiente di Calcolo<a class="headerlink" href="#ambiente-di-calcolo" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -p pytensor
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w 
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Sep 17 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Jan 21 2024
 
 Python implementation: CPython
-Python version       : 3.11.5
-IPython version      : 8.15.0
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-pytensor: 2.12.3
-
-numpy     : 1.25.2
-scipy     : 1.10.1
-matplotlib: 3.7.2
-arviz     : 0.16.0
-seaborn   : 0.12.2
-pandas    : 2.0.3
+arviz     : 0.17.0
+pandas    : 2.1.4
+numpy     : 1.26.2
+matplotlib: 3.8.2
+scipy     : 1.11.4
+seaborn   : 0.13.0
 
 Watermark: 2.4.3
 </pre></div>
@@ -908,8 +902,8 @@ Watermark: 2.4.3
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-binomiale">Distribuzione binomiale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-t-di-student">Distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-arbitraria-di-una-variabile-casuale-distreta">Distribuzione arbitraria di una variabile casuale distreta</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e Considerazioni Finali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-di-calcolo">Ambiente di Calcolo</a></li>
 </ul>
   </nav></div>
 

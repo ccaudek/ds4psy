@@ -98,7 +98,6 @@ chapters:
       - file: chapter_5/05_reglin_3
       - file: chapter_5/05_reglin_4
       - file: chapter_5/05_reglin_5
-      - file: chapter_5/05_multilevel_modeling
       - file: chapter_5/05_reglin_7
       - file: chapter_5/05_simpson
       - file: chapter_5/E_reglin_1
@@ -132,20 +131,21 @@ chapters:
 
   - file: chapter_7/introduction_appendix
     sections:
-      - file: chapter_1/00_installation
-      - file: chapter_7/a01_math_symbols
-      - file: chapter_7/a02_numbers
-      - file: chapter_7/a04_summation_notation
-      - file: chapter_7/a05_sets
-      - file: chapter_7/a06_combinatorics
-      - file: chapter_7/a07_calculus
-      - file: chapter_7/a08_kde_plot
-      - file: chapter_7/a09_prob_tutorial
-      - file: chapter_7/a10_rescorla_wagner
-      - file: chapter_7/a12_rng
-      - file: chapter_7/a14_predict_counts
-      - file: chapter_7/a15_lin_fun
-      - file: chapter_7/a20_reglin_1
-      - file: chapter_7/a21_reglin_2
-      - file: chapter_7/a23_reglin_4
-      - file: chapter_7/a30_ttest_exercises
+      - file: chapter_7/a00_installation
+      - file: chapter_7/a01_markdown
+      - file: chapter_7/a02_virtual_env
+      - file: chapter_7/a10_math_symbols
+      - file: chapter_7/a11_numbers
+      - file: chapter_7/a12_sum_notation
+      - file: chapter_7/a13_sets
+      - file: chapter_7/a14_combinatorics
+      - file: chapter_7/a15_calculus
+      - file: chapter_7/a20_kde_plot
+      - file: chapter_7/a30_prob_tutorial
+      - file: chapter_7/a40_rng
+      - file: chapter_7/a50_lin_fun
+      - file: chapter_7/a51_reglin_1
+      - file: chapter_7/a52_reglin_2
+      - file: chapter_7/a53_reglin_4
+      - file: chapter_7/a60_ttest_exercises
+      - file: chapter_7/a70_predict_counts

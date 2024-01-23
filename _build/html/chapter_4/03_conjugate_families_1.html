@@ -312,7 +312,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
@@ -322,6 +323,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
@@ -554,6 +557,7 @@ document.write(`
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -640,7 +644,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/63421a232e206cef08ec5dfa4b2e788a88d02d5d4d674f1dc58f9ea0b9307d0f.png" src="../_images/63421a232e206cef08ec5dfa4b2e788a88d02d5d4d674f1dc58f9ea0b9307d0f.png" />
+<img alt="../_images/cc5b58f314252ebaa7f1720716fa971b063f07146fd7265f5a2ed4749c24e2a7.png" src="../_images/cc5b58f314252ebaa7f1720716fa971b063f07146fd7265f5a2ed4749c24e2a7.png" />
 </div>
 </div>
 </section>
@@ -695,7 +699,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/62b0ad555f2cccd396908759b2d95ccfd9ebb6b1bd64497652d7acd0d5363f2d.png" src="../_images/62b0ad555f2cccd396908759b2d95ccfd9ebb6b1bd64497652d7acd0d5363f2d.png" />
+<img alt="../_images/f96abd7317797b4b1bab054340c9aa6ea6fa607c8accb75cac37d4055af8b5e9.png" src="../_images/f96abd7317797b4b1bab054340c9aa6ea6fa607c8accb75cac37d4055af8b5e9.png" />
 </div>
 </div>
 </section>
@@ -783,7 +787,7 @@ dtype: float64
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/7da56a0d382483a9a9ff89d3caa7f2a4a47aa18c5872a8dd5d9e2fdd2ffbfd5c.png" src="../_images/7da56a0d382483a9a9ff89d3caa7f2a4a47aa18c5872a8dd5d9e2fdd2ffbfd5c.png" />
+<img alt="../_images/f4cd9e83467147bee14f4a56549cf0e789a8a60891889db64480d430c040547f.png" src="../_images/f4cd9e83467147bee14f4a56549cf0e789a8a60891889db64480d430c040547f.png" />
 </div>
 </div>
 <p>Tuttavia, in questo caso la nostra incertezza a priori sul valore del parametro è minore, come indicato dall’intervallo di credibilità ordine 0.94.</p>
@@ -808,7 +812,7 @@ dtype: float64
 <p>Una volta scelta una distribuzione a priori <span class="math notranslate nohighlight">\(Beta(2, 2)\)</span>, i cui parametri rispecchiano le nostre credenze iniziali su <span class="math notranslate nohighlight">\(\theta\)</span>, la distribuzione a posteriori diventa una Beta di parametri <span class="math notranslate nohighlight">\(\alpha + y\)</span> e <span class="math notranslate nohighlight">\(\beta + n - y\)</span>. Per i dati dell’esempio sulla sopravvivenza dei pazienti con AIDS, otteniamo la distribuzione a posteriori <span class="math notranslate nohighlight">\(p(\theta \mid n, y) \sim Beta(1763, 1084)\)</span>.</p>
 <p>Essendo <span class="math notranslate nohighlight">\(\mathbb{E}[Beta(\alpha, \beta)] = \frac{\alpha}{\alpha + \beta}\)</span>, il valore atteso a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span> può essere calcolato come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-ev-post-beta-bin-1">
-<span class="eqno">(59)<a class="headerlink" href="#equation-eq-ev-post-beta-bin-1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(58)<a class="headerlink" href="#equation-eq-ev-post-beta-bin-1" title="Permalink to this equation">#</a></span>\[
 \mathbb{E}_{\text{post}} [\mathrm{Beta}(\alpha + y, \beta + n - y)] = \frac{\alpha + y}{\alpha + \beta +n}.
 \]</div>
 <p>Nel caso in cui la distribuzione a priori è debolmente informativa e il campione è molto grande, la distribuzione a priori esercita un effetto trascurabile sulla distribuzione a posteriori.</p>
@@ -896,11 +900,11 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_89943/1990880785.py:16: RuntimeWarning: divide by zero encountered in log
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_15036/1990880785.py:16: RuntimeWarning: divide by zero encountered in log
   log_likelihood = y * np.log(theta) + (n - y) * np.log(1 - theta)
 </pre></div>
 </div>
-<img alt="../_images/affa03052bdc5a51f659c49bd29b7beb72b5aca6873fbb050c1d25d773040736.png" src="../_images/affa03052bdc5a51f659c49bd29b7beb72b5aca6873fbb050c1d25d773040736.png" />
+<img alt="../_images/aafec70549b2ab019494ca84e4074fed3abcadc80c022e5532ba1f8c9f0e0559.png" src="../_images/aafec70549b2ab019494ca84e4074fed3abcadc80c022e5532ba1f8c9f0e0559.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -968,17 +972,16 @@ y \mid \theta &amp; \sim \text{Bin}(n = 40, \theta) \notag\\
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Densità di probabilità&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribuzioni Beta e Verosimiglianza&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_89943/2806277110.py:16: RuntimeWarning: divide by zero encountered in log
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_15036/431063134.py:16: RuntimeWarning: divide by zero encountered in log
   log_likelihood = y * np.log(theta) + (n - y) * np.log(1 - theta)
 </pre></div>
 </div>
-<img alt="../_images/afe39bc244a7f507cb2d775aec2fdced6b7ba5c0c88d08fa818df316bf37c1c0.png" src="../_images/afe39bc244a7f507cb2d775aec2fdced6b7ba5c0c88d08fa818df316bf37c1c0.png" />
+<img alt="../_images/d249371ac5de98f7df47fee09bc0772f29cc7469542ee86ac99033985ebfebc3.png" src="../_images/d249371ac5de98f7df47fee09bc0772f29cc7469542ee86ac99033985ebfebc3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1023,18 +1026,18 @@ y \mid \theta &amp; \sim \text{Bin}(n = 40, \theta) \notag\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Jan 21 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Tue Jan 23 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
 IPython version      : 8.19.0
 
+seaborn   : 0.13.0
 matplotlib: 3.8.2
+pandas    : 2.1.4
 numpy     : 1.26.2
 arviz     : 0.17.0
-pandas    : 2.1.4
 scipy     : 1.11.4
-seaborn   : 0.13.0
 </pre></div>
 </div>
 </div>

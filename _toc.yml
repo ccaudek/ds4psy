@@ -144,6 +144,8 @@ chapters:
       - file: chapter_7/a20_kde_plot
       - file: chapter_7/a30_prob_tutorial
       - file: chapter_7/a40_rng
+      - file: chapter_7/a44_montecarlo
+      - file: chapter_7/a45_mcmc
       - file: chapter_7/a50_lin_fun
       - file: chapter_7/a51_reglin_1
       - file: chapter_7/a52_reglin_2

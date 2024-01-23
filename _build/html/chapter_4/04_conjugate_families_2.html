@@ -312,7 +312,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
@@ -322,6 +323,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
@@ -549,6 +552,7 @@ document.write(`
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">12345</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -574,11 +578,11 @@ p(\mu \mid y) = \frac{1}{{\sigma_p \sqrt {2\pi}}}\exp\left(-\frac{(\mu - \mu_p)^
 \]</div>
 <p>dove la media a posteriori <span class="math notranslate nohighlight">\( \mu_p \)</span> e la varianza a posteriori <span class="math notranslate nohighlight">\( \sigma_p^2 \)</span> sono calcolate come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-post-norm-mup">
-<span class="eqno">(60)<a class="headerlink" href="#equation-eq-post-norm-mup" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(59)<a class="headerlink" href="#equation-eq-post-norm-mup" title="Permalink to this equation">#</a></span>\[
 \mu_p = \frac{\frac{1}{\sigma_0^2}\mu_0 + \frac{n}{\sigma^2}\bar{y}}{\frac {1}{\sigma_0^2} + \frac{n}{\sigma^2}}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-eq-post-norm-taup2">
-<span class="eqno">(61)<a class="headerlink" href="#equation-eq-post-norm-taup2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(60)<a class="headerlink" href="#equation-eq-post-norm-taup2" title="Permalink to this equation">#</a></span>\[
 \sigma_p^2 = \frac{1}{\frac {1}{\sigma_0^2}+ \frac{n}{\sigma^2}}.
 \]</div>
 <section id="considerazioni-finali">
@@ -660,7 +664,7 @@ p(\mu \mid y) = \frac{1}{{\sigma_p \sqrt {2\pi}}}\exp\left(-\frac{(\mu - \mu_p)^
 </div>
 </div>
 </div>
-<p>Per fare un esempio, imponiamo su <span class="math notranslate nohighlight">\(\mu\)</span> una distribuzione a priori <span class="math notranslate nohighlight">\(\mathcal{N}(30, 5)\)</span>. In tali circostanze, la distribuzione a posteriori del parametro <span class="math notranslate nohighlight">\(\mu\)</span> può essere determinata per via analitica e corrisponde ad una Normale di media definita dall’eq. <a class="reference internal" href="#equation-eq-post-norm-mup">(60)</a> e varianza definita dall’eq. <a class="reference internal" href="#equation-eq-post-norm-taup2">(61)</a>. La figura seguente mostra un grafico della distribuzione a priori, della verosimiglianza e della distribuzione a posteriori di <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<p>Per fare un esempio, imponiamo su <span class="math notranslate nohighlight">\(\mu\)</span> una distribuzione a priori <span class="math notranslate nohighlight">\(\mathcal{N}(30, 5)\)</span>. In tali circostanze, la distribuzione a posteriori del parametro <span class="math notranslate nohighlight">\(\mu\)</span> può essere determinata per via analitica e corrisponde ad una Normale di media definita dall’eq. <a class="reference internal" href="#equation-eq-post-norm-mup">(59)</a> e varianza definita dall’eq. <a class="reference internal" href="#equation-eq-post-norm-taup2">(60)</a>. La figura seguente mostra un grafico della distribuzione a priori, della verosimiglianza e della distribuzione a posteriori di <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <p>Iniziamo con la verosimiglianza.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -681,7 +685,7 @@ p(\mu \mid y) = \frac{1}{{\sigma_p \sqrt {2\pi}}}\exp\left(-\frac{(\mu - \mu_p)^
 </div>
 </div>
 </div>
-<p>Usando l’eq. <a class="reference internal" href="#equation-eq-post-norm-mup">(60)</a>, definiamo una funzione che ritorna la media della distribuzione a posteriori di <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<p>Usando l’eq. <a class="reference internal" href="#equation-eq-post-norm-mup">(59)</a>, definiamo una funzione che ritorna la media della distribuzione a posteriori di <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mu_post</span><span class="p">(</span><span class="n">sigma_0</span><span class="p">,</span> <span class="n">mu_0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">ybar</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
@@ -751,7 +755,7 @@ p(\mu \mid y) = \frac{1}{{\sigma_p \sqrt {2\pi}}}\exp\left(-\frac{(\mu - \mu_p)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/aa188bfb8239ebbff4852f1c115bca4370440b38f196abe0a19cff1d54a25cb4.png" src="../_images/aa188bfb8239ebbff4852f1c115bca4370440b38f196abe0a19cff1d54a25cb4.png" />
+<img alt="../_images/ecc0ba97161933486f68af4c7b65fd787aef4bc737db1c7544cf0c07bac6318e.png" src="../_images/ecc0ba97161933486f68af4c7b65fd787aef4bc737db1c7544cf0c07bac6318e.png" />
 </div>
 </div>
 </section>
@@ -772,20 +776,20 @@ p(\mu \mid y) = \frac{1}{{\sigma_p \sqrt {2\pi}}}\exp\left(-\frac{(\mu - \mu_p)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Nov 13 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Tue Jan 23 2024
 
 Python implementation: CPython
-Python version       : 3.11.6
-IPython version      : 8.16.1
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-pytensor: 2.13.1
+pytensor: 2.18.4
 
-scipy     : 1.11.3
-pandas    : 2.1.1
 seaborn   : 0.13.0
-arviz     : 0.16.1
-numpy     : 1.25.2
-matplotlib: 3.8.0
+scipy     : 1.11.4
+pandas    : 2.1.4
+matplotlib: 3.8.2
+numpy     : 1.26.2
+arviz     : 0.17.0
 
 Watermark: 2.4.3
 </pre></div>

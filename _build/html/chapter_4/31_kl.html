@@ -312,7 +312,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
@@ -322,6 +323,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
@@ -821,7 +824,7 @@ p(\tilde{y} \mid y) = \int_\Theta p(\tilde{y} \mid \theta) p(\theta \mid y) \, \
 <h3>Confronto tra Modelli Multipli<a class="headerlink" href="#confronto-tra-modelli-multipli" title="Permalink to this heading">#</a></h3>
 <p>Immaginiamo di avere <span class="math notranslate nohighlight">\(k\)</span> modelli distinti <span class="math notranslate nohighlight">\( \{q_{\mathcal{M}_1}, q_{\mathcal{M}_2}, \ldots, q_{\mathcal{M}_k}\} \)</span>. Se conoscessimo <span class="math notranslate nohighlight">\(p_t\)</span>, potremmo calcolare la divergenza di Kullback-Leibler per ogni modello come segue:</p>
 <div class="math notranslate nohighlight" id="equation-eq-kl-mod-comp">
-<span class="eqno">(66)<a class="headerlink" href="#equation-eq-kl-mod-comp" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(65)<a class="headerlink" href="#equation-eq-kl-mod-comp" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \mathbb{KL} (p_t \mid\mid q_{\mathcal{M}_1}) &amp;= \mathbb{E} (\log p_{t}) - \mathbb{E} (\log q_{\mathcal{M}_1}) \\
 \mathbb{KL} (p_t \mid\mid q_{\mathcal{M}_2}) &amp;= \mathbb{E} (\log p_{t}) - \mathbb{E} (\log q_{\mathcal{M}_2}) \\
@@ -831,34 +834,34 @@ p(\tilde{y} \mid y) = \int_\Theta p(\tilde{y} \mid \theta) p(\theta \mid y) \, \
 \end{split}\]</div>
 <p>Anche se nella pratica <span class="math notranslate nohighlight">\(p_t\)</span> è sconosciuta, notiamo che essa è costante in tutti i termini della divergenza. Di conseguenza, possiamo confrontare i modelli focalizzandoci sul secondo termine della divergenza di Kullback-Leibler, che è indipendente da <span class="math notranslate nohighlight">\(p_t\)</span>. Per un modello generico <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, questo termine può essere espresso come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-kl-div-cont-t2">
-<span class="eqno">(67)<a class="headerlink" href="#equation-eq-kl-div-cont-t2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(66)<a class="headerlink" href="#equation-eq-kl-div-cont-t2" title="Permalink to this equation">#</a></span>\[
 \mathbb{E} \log p_{\mathcal{M}}(y) = \int_{-\infty}^{+\infty} p_{t}(y) \log p_{\mathcal{M}}(y) \, \mathrm{d}y .
 \]</div>
 <p>In questo modo, siamo in grado di costruire un criterio di confronto tra modelli che non richiede la conoscenza del modello generatore reale dei dati.</p>
-<p>In conclusione, l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(67)</a> esprime la densità logaritmica media della distribuzione <span class="math notranslate nohighlight">\(p_{\mathcal{M}}(y)\)</span> secondo la distribuzione vera <span class="math notranslate nohighlight">\(p_t(y)\)</span>. In altre parole, questa equazione ci dice quanto bene il modello <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> può rappresentare i dati veri generati da <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
+<p>In conclusione, l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a> esprime la densità logaritmica media della distribuzione <span class="math notranslate nohighlight">\(p_{\mathcal{M}}(y)\)</span> secondo la distribuzione vera <span class="math notranslate nohighlight">\(p_t(y)\)</span>. In altre parole, questa equazione ci dice quanto bene il modello <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> può rappresentare i dati veri generati da <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
 </section>
 </section>
 <section id="expected-log-predictive-density">
 <h2>Expected Log Predictive Density<a class="headerlink" href="#expected-log-predictive-density" title="Permalink to this heading">#</a></h2>
-<p>Dopo aver discusso l’equazione <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(67)</a>, possiamo riformularla come segue:</p>
+<p>Dopo aver discusso l’equazione <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a>, possiamo riformularla come segue:</p>
 <div class="math notranslate nohighlight" id="equation-eq-elpd">
-<span class="eqno">(68)<a class="headerlink" href="#equation-eq-elpd" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(67)<a class="headerlink" href="#equation-eq-elpd" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\tilde{y} .
 \end{equation}
 \]</div>
-<p>L’equazione <a class="reference internal" href="#equation-eq-elpd">(68)</a> è conosciuta come <em>Expected Log Predictive Density</em> (elpd). L’ELPD è una metrica chiave per valutare la capacità di un modello di generare previsioni accurate. È particolarmente utile in contesti dove l’obiettivo è la predizione di nuovi dati, piuttosto che semplicemente l’adattamento ai dati osservati.</p>
-<p>Esaminiamo con attenzione le differenze tra la ELPD e l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(67)</a>.</p>
+<p>L’equazione <a class="reference internal" href="#equation-eq-elpd">(67)</a> è conosciuta come <em>Expected Log Predictive Density</em> (elpd). L’ELPD è una metrica chiave per valutare la capacità di un modello di generare previsioni accurate. È particolarmente utile in contesti dove l’obiettivo è la predizione di nuovi dati, piuttosto che semplicemente l’adattamento ai dati osservati.</p>
+<p>Esaminiamo con attenzione le differenze tra la ELPD e l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a>.</p>
 <ol class="arabic simple">
-<li><p><strong>Variabile di Interesse</strong>: Nell’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(67)</a>, <span class="math notranslate nohighlight">\(y\)</span> rappresenta i dati osservati. Nell’eq. <a class="reference internal" href="#equation-eq-elpd">(68)</a>, invece, <span class="math notranslate nohighlight">\(\tilde{y}\)</span> rappresenta potenziali nuovi dati che potrebbero essere osservati in futuro.</p></li>
-<li><p><strong>Modello di Probabilità</strong>: Nell’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(67)</a>, <span class="math notranslate nohighlight">\(p_{\mathcal{M}}(y) \)</span> rappresenta il modello probabilitico basato sui dati osservati. Nell’eq. <a class="reference internal" href="#equation-eq-elpd">(68)</a>, invece, <span class="math notranslate nohighlight">\(p(\tilde{y} \mid y)\)</span> è la distribuzione predittiva a posteriori, che rappresenta le previsioni del modello per nuovi dati, date le osservazioni precedenti <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p><strong>Variabile di Interesse</strong>: Nell’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a>, <span class="math notranslate nohighlight">\(y\)</span> rappresenta i dati osservati. Nell’eq. <a class="reference internal" href="#equation-eq-elpd">(67)</a>, invece, <span class="math notranslate nohighlight">\(\tilde{y}\)</span> rappresenta potenziali nuovi dati che potrebbero essere osservati in futuro.</p></li>
+<li><p><strong>Modello di Probabilità</strong>: Nell’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a>, <span class="math notranslate nohighlight">\(p_{\mathcal{M}}(y) \)</span> rappresenta il modello probabilitico basato sui dati osservati. Nell’eq. <a class="reference internal" href="#equation-eq-elpd">(67)</a>, invece, <span class="math notranslate nohighlight">\(p(\tilde{y} \mid y)\)</span> è la distribuzione predittiva a posteriori, che rappresenta le previsioni del modello per nuovi dati, date le osservazioni precedenti <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
 <li><p><strong>Ruolo di <span class="math notranslate nohighlight">\(p_t\)</span></strong>: In entrambe le formule, <span class="math notranslate nohighlight">\(p_t\)</span> rappresenta la “vera” distribuzione dei dati. Nella prima formula, essa valuta quanto accuratamente il modello rappresenta i dati effettivamente osservati, mentre nella seconda pesa la qualità delle previsioni del modello per nuovi dati.</p></li>
 </ol>
-<p>Quindi, mentre l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(67)</a> fornisce una misura di quanto bene il modello si adatta ai dati esistenti, l’eq. <a class="reference internal" href="#equation-eq-elpd">(68)</a> valuta la qualità delle previsioni del modello per dati futuri. Entrambe le formule sono collegate al concetto di divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>, ma sono applicate in contesti diversi: la prima per la valutazione dell’adattamento del modello ai dati osservati, la seconda per la sua capacità predittiva.</p>
+<p>Quindi, mentre l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a> fornisce una misura di quanto bene il modello si adatta ai dati esistenti, l’eq. <a class="reference internal" href="#equation-eq-elpd">(67)</a> valuta la qualità delle previsioni del modello per dati futuri. Entrambe le formule sono collegate al concetto di divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>, ma sono applicate in contesti diversi: la prima per la valutazione dell’adattamento del modello ai dati osservati, la seconda per la sua capacità predittiva.</p>
 <section id="approssimazione-e-stima">
 <h3>Approssimazione e Stima<a class="headerlink" href="#approssimazione-e-stima" title="Permalink to this heading">#</a></h3>
 <p>La stima dell’Expected Log Predictive Density (ELPD) si confronta con una sfida fondamentale: la distribuzione di probabilità “vera” dei dati, indicata come <span class="math notranslate nohighlight">\(p_t\)</span>, è generalmente sconosciuta. Questa incognita rende impossibile calcolare l’ELPD in modo esatto. Tuttavia, possiamo avvicinarci a una stima affidabile di questa metrica attraverso l’impiego di specifiche tecniche e metodi.</p>
-<p>Nonostante la mancanza di una formulazione analitica precisa per la distribuzione predittiva a posteriori <span class="math notranslate nohighlight">\(p(\tilde{y} \mid y)\)</span>, è possibile approssimarla efficacemente tramite metodi di simulazione. Tuttavia, è importante notare che l’eq. <a class="reference internal" href="#equation-eq-elpd">(68)</a> include il termine <span class="math notranslate nohighlight">\(p_t(\tilde{y})\)</span>, che rappresenta la distribuzione dei potenziali dati futuri secondo il “vero” modello generatore. Poiché <span class="math notranslate nohighlight">\(p_t\)</span> è in pratica ignoto, l’elpd non può essere calcolata esattamente ma può solo essere stimata. Il prossimo punto di discussione in questo capitolo riguarderà le strategie per stimare efficacemente l’ELPD utilizzando un campione di osservazioni.</p>
+<p>Nonostante la mancanza di una formulazione analitica precisa per la distribuzione predittiva a posteriori <span class="math notranslate nohighlight">\(p(\tilde{y} \mid y)\)</span>, è possibile approssimarla efficacemente tramite metodi di simulazione. Tuttavia, è importante notare che l’eq. <a class="reference internal" href="#equation-eq-elpd">(67)</a> include il termine <span class="math notranslate nohighlight">\(p_t(\tilde{y})\)</span>, che rappresenta la distribuzione dei potenziali dati futuri secondo il “vero” modello generatore. Poiché <span class="math notranslate nohighlight">\(p_t\)</span> è in pratica ignoto, l’elpd non può essere calcolata esattamente ma può solo essere stimata. Il prossimo punto di discussione in questo capitolo riguarderà le strategie per stimare efficacemente l’ELPD utilizzando un campione di osservazioni.</p>
 </section>
 <section id="id1">
 <h3>Un Esempio Empirico<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
@@ -917,18 +920,18 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 </div>
 </div>
-<p>In pratica, non conoscendo <span class="math notranslate nohighlight">\(p_t(y)\)</span>, approssimiamo l’ELPD usando l’eq. <a class="reference internal" href="#equation-eq-elpd">(68)</a>:</p>
+<p>In pratica, non conoscendo <span class="math notranslate nohighlight">\(p_t(y)\)</span>, approssimiamo l’ELPD usando l’eq. <a class="reference internal" href="#equation-eq-elpd">(67)</a>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-empirical-elpd">
-<span class="eqno">(69)<a class="headerlink" href="#equation-eq-empirical-elpd" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(68)<a class="headerlink" href="#equation-eq-empirical-elpd" title="Permalink to this equation">#</a></span>\[
 \frac{1}{n} \sum_{i=1}^n \log p(y_i \mid y).
 \]</div>
 <p>Questo metodo è un’approssimazione Monte Carlo basata sui dati osservati, usando <span class="math notranslate nohighlight">\(\{y_1, y_2, \ldots, y_n\}\)</span> come rappresentazione empirica di possibili futuri dati.</p>
-<p>Esaminiamo in dettaglio le componenti dell’eq. <a class="reference internal" href="#equation-eq-empirical-elpd">(69)</a>:</p>
+<p>Esaminiamo in dettaglio le componenti dell’eq. <a class="reference internal" href="#equation-eq-empirical-elpd">(68)</a>:</p>
 <ol class="arabic simple">
 <li><p><strong>Densità Logaritmica Predittiva <span class="math notranslate nohighlight">\( \log p(y_i \mid y) \)</span> per un dato <span class="math notranslate nohighlight">\( y_i \)</span></strong>: Questa misura valuta quanto efficacemente il modello predice un singolo dato <span class="math notranslate nohighlight">\(y_i\)</span>, data la distribuzione osservata <span class="math notranslate nohighlight">\(y\)</span>. Valori più alti indicano una migliore performance predittiva.</p></li>
 <li><p><strong>Media della Densità Logaritmica Predittiva</strong>: La media di questi valori logaritmici predittivi fornisce una stima complessiva dell’efficacia predittiva del modello sull’intero set di dati.</p></li>
 </ol>
-<p>Nel caso dell’esempio in discussione, usando l’eq. <a class="reference internal" href="#equation-eq-empirical-elpd">(69)</a> otteniamo un valore approssimato a quello trovato in precedenza:</p>
+<p>Nel caso dell’esempio in discussione, usando l’eq. <a class="reference internal" href="#equation-eq-empirical-elpd">(68)</a> otteniamo un valore approssimato a quello trovato in precedenza:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">/</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="n">y_data</span><span class="p">)))</span>

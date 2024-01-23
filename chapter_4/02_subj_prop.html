@@ -312,7 +312,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
@@ -322,6 +323,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
@@ -540,6 +543,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -550,6 +554,7 @@ document.write(`
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -604,7 +609,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/de2938ec0fec5adb56f7e16d314f7f85c826311f6400451760ef76b32e3b6f08.png" src="../_images/de2938ec0fec5adb56f7e16d314f7f85c826311f6400451760ef76b32e3b6f08.png" />
+<img alt="../_images/c226f1323391977e281b6680bb58a14f1b0f794595fc9a673268a99847b2bb65.png" src="../_images/c226f1323391977e281b6680bb58a14f1b0f794595fc9a673268a99847b2bb65.png" />
 </div>
 </div>
 <p>Se, al contrario, riteniamo che i valori centrali nella distribuzione di <span class="math notranslate nohighlight">\(\theta\)</span> siano più credibili rispetto a quelli situati agli estremi, possiamo esprimere questa opinione soggettiva mediante la seguente distribuzione di massa di probabilità.</p>
@@ -619,7 +624,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/573997dbc84f7c26c48805b38cc091870629dc87755954aa6a81448c1d303542.png" src="../_images/573997dbc84f7c26c48805b38cc091870629dc87755954aa6a81448c1d303542.png" />
+<img alt="../_images/4d8f6736c60dbf744d0b67853e9e39f545982bd59ec9de3bbb9ba1cadc5ad2f3.png" src="../_images/4d8f6736c60dbf744d0b67853e9e39f545982bd59ec9de3bbb9ba1cadc5ad2f3.png" />
 </div>
 </div>
 <p>La prima distribuzione di probabilità rappresenta una distribuzione discreta uniforme poiché assegna la stessa probabilità a ciascun elemento dell’insieme discreto su cui è definita, ossia i valori <span class="math notranslate nohighlight">\({0, 0.1, 0.2, \dots, 1.0}\)</span>. La seconda distribuzione di probabilità, pur essendo discreta, segue un andamento non uniforme: si presume che <span class="math notranslate nohighlight">\(\theta\)</span> abbia una probabilità maggiore di assumere un valore dall’insieme <span class="math notranslate nohighlight">\({0.4, 0.5, 0.6, 0.7}\)</span> rispetto all’insieme <span class="math notranslate nohighlight">\({0.1, 0.2, 0.3, 0.8, 0.9, 1.0}\)</span>.</p>
@@ -657,7 +662,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/82ce6a7ddc32f919045894dce9251009b9a13444cbb248b2c9193d0911ec02e2.png" src="../_images/82ce6a7ddc32f919045894dce9251009b9a13444cbb248b2c9193d0911ec02e2.png" />
+<img alt="../_images/ad4cf1a8b86d7ba1b104d3cc292e5b21e595ca21c926ec0a922b5929a0b2e12f.png" src="../_images/ad4cf1a8b86d7ba1b104d3cc292e5b21e595ca21c926ec0a922b5929a0b2e12f.png" />
 </div>
 </div>
 <p>Per calcolare la distribuzione a posteriori, eseguiamo una moltiplicazione elemento per elemento tra il vettore contenente i valori della distribuzione a priori e il vettore contenente i valori della funzione di verosimiglianza. Usando Python, il risultato si trova nel modo seguente.</p>
@@ -743,7 +748,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f1f2a317a66d4c1ae366254f8729964228a9bbb0a2ea8104e12f976179308ad1.png" src="../_images/f1f2a317a66d4c1ae366254f8729964228a9bbb0a2ea8104e12f976179308ad1.png" />
+<img alt="../_images/85937feb04743fe6e38ea4de2bdb5a7e0a0cb5bdd570cb63db554fd24237a827.png" src="../_images/85937feb04743fe6e38ea4de2bdb5a7e0a0cb5bdd570cb63db554fd24237a827.png" />
 </div>
 </div>
 <p>Una volta trovata la distribuzione a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span>, possiamo calcolare altre quantità di interesse. Ad esempio, la moda a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span> può essere individuata direttamente dal grafico precedente e risulta pari a 0.6. Per calcolare invece la media a posteriori, ci avvaliamo della formula del valore atteso delle variabili casuali.</p>
@@ -787,7 +792,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c21588b6572cda58384dcda60ea4fe4a429817bf590fa3d724dc45d1c608b474.png" src="../_images/c21588b6572cda58384dcda60ea4fe4a429817bf590fa3d724dc45d1c608b474.png" />
+<img alt="../_images/2675146f7ce0e486840dda114d2bf16e8a8a29b30619198776fea2dcd4cd6bd6.png" src="../_images/2675146f7ce0e486840dda114d2bf16e8a8a29b30619198776fea2dcd4cd6bd6.png" />
 </div>
 </div>
 <p>Nel seguente esempio useremo la funzione <code class="docutils literal notranslate"><span class="pre">beta.pdf()</span></code> per generare una distribuzione a priori discretizzata. Supponiamo che le nostre credenze a priori siano rappresentate da una Beta(2, 5).</p>
@@ -798,7 +803,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2515e7bc156bfe8038d4463cfa47654dc5da0d81fe4784e6fe9aff82fc3dd705.png" src="../_images/2515e7bc156bfe8038d4463cfa47654dc5da0d81fe4784e6fe9aff82fc3dd705.png" />
+<img alt="../_images/f59cceb2efd1d91e1ed2fc868c0e71607f3f4f835af8d69e60621981a90f7476.png" src="../_images/f59cceb2efd1d91e1ed2fc868c0e71607f3f4f835af8d69e60621981a90f7476.png" />
 </div>
 </div>
 <p>Calcoliamo la distribuzione a priori normalizzata.</p>
@@ -852,7 +857,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/971c0791a392a6bbbf51004af80b990712d42436a7e9ec0ed4509e107d88e831.png" src="../_images/971c0791a392a6bbbf51004af80b990712d42436a7e9ec0ed4509e107d88e831.png" />
+<img alt="../_images/b1e95ea67078d037b480adfa2934c9e058807fb94218efac72a4d885626f7818.png" src="../_images/b1e95ea67078d037b480adfa2934c9e058807fb94218efac72a4d885626f7818.png" />
 </div>
 </div>
 <p>Possiamo calcolare la media e la deviazione standard della distribuzione a posteriori come abbiamo fatto in precedenza.</p>
@@ -913,11 +918,11 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_88061/3061577581.py:12: UserWarning: The figure layout has changed to tight
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_26791/3061577581.py:12: UserWarning: The figure layout has changed to tight
   plt.tight_layout()
 </pre></div>
 </div>
-<img alt="../_images/066178fd6c2138c04404661d91512cc240e728322e1caaa85ac6edf22f9d876f.png" src="../_images/066178fd6c2138c04404661d91512cc240e728322e1caaa85ac6edf22f9d876f.png" />
+<img alt="../_images/1a558958e422f4a60ae0717749e3e77b8a1aed71d72cd3cde9a579ba65613bb8.png" src="../_images/1a558958e422f4a60ae0717749e3e77b8a1aed71d72cd3cde9a579ba65613bb8.png" />
 </div>
 </div>
 <p>Sfruttando il campione estratto dalla distribuzione a posteriori, è possibile calcolare diverse quantità di interesse. Ad esempio, la stima della media a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span> si ottiene semplicemente calcolando la media dei valori così ottenuti.</p>
@@ -928,7 +933,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5188545545545545
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5184149149149149
 </pre></div>
 </div>
 </div>
@@ -941,7 +946,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09310967597203568
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0947143845792592
 </pre></div>
 </div>
 </div>
@@ -967,7 +972,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5065065065065065
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5525525525525525
 </pre></div>
 </div>
 </div>
@@ -980,7 +985,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5175175175175175
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5185185185185185
 </pre></div>
 </div>
 </div>
@@ -1006,7 +1011,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4257
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.425
 </pre></div>
 </div>
 </div>
@@ -1019,7 +1024,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5696
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5694
 </pre></div>
 </div>
 </div>
@@ -1032,7 +1037,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.34534535, 0.69169169])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.34034034, 0.6956957 ])
 </pre></div>
 </div>
 </div>
@@ -1046,7 +1051,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.34434434, 0.69069069])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.34334334, 0.6966967 ])
 </pre></div>
 </div>
 </div>
@@ -1079,18 +1084,18 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Jan 21 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 22 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
 IPython version      : 8.19.0
 
+seaborn   : 0.13.0
 pandas    : 2.1.4
 matplotlib: 3.8.2
-seaborn   : 0.13.0
-scipy     : 1.11.4
 numpy     : 1.26.2
 arviz     : 0.17.0
+scipy     : 1.11.4
 
 Watermark: 2.4.3
 </pre></div>

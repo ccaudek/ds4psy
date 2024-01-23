@@ -312,7 +312,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
@@ -322,6 +323,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
@@ -665,14 +668,14 @@ p(\theta \mid \text{data}) = \frac{p(\text{data} \mid \theta)p(\theta)}{p(\text{
 <p>Nell’inferenza bayesiana, calcoliamo la probabilità congiunta di parametri e dati come funzione della distribuzione condizionale dei dati dati i parametri e della distribuzione a priori dei parametri. La distribuzione posteriore di <span class="math notranslate nohighlight">\( \theta \)</span> dato <span class="math notranslate nohighlight">\( y \)</span> si ottiene moltiplicando la distribuzione dei dati <span class="math notranslate nohighlight">\( p(y \mid \theta) \)</span> per la distribuzione a priori <span class="math notranslate nohighlight">\( p(\theta) \)</span>, normalizzata per <span class="math notranslate nohighlight">\( p(y) \)</span>. In modelli complessi con molti parametri, la distribuzione posteriore è difficile da valutare, richiedendo metodi computazionali avanzati.</p>
 <p>Possiamo esprimere la distribuzione congiunta dei parametri e dei dati come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-prob-congiunta-bayes">
-<span class="eqno">(56)<a class="headerlink" href="#equation-eq-prob-congiunta-bayes" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(55)<a class="headerlink" href="#equation-eq-prob-congiunta-bayes" title="Permalink to this equation">#</a></span>\[ 
 \begin{equation}
 p(\theta, y) = p(y \mid \theta)p(\theta). 
 \end{equation}
 \]</div>
 <p>Utilizzando il teorema di Bayes dell’eq. <a class="reference internal" href="../chapter_3/03_bayes_theorem.html#equation-eq-bayes-cont">(16)</a> otteniamo:</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-revisited">
-<span class="eqno">(57)<a class="headerlink" href="#equation-eq-bayes-revisited" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(56)<a class="headerlink" href="#equation-eq-bayes-revisited" title="Permalink to this equation">#</a></span>\[ 
 \begin{equation}
 p(\theta \mid y) = \frac{p(\theta, y)}{p(y)} = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 \end{equation}
@@ -913,11 +916,11 @@ p(y) = \int p(y \mid \theta)p(\theta)d\theta.
 <h2>La Verosimiglianza Marginale<a class="headerlink" href="#la-verosimiglianza-marginale" title="Permalink to this heading">#</a></h2>
 <p>La formula completa della distribuzione a posteriori può essere espressa nel seguente modo:</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-complete">
-<span class="eqno">(58)<a class="headerlink" href="#equation-eq-bayes-complete" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(57)<a class="headerlink" href="#equation-eq-bayes-complete" title="Permalink to this equation">#</a></span>\[
 p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{\int_{\Theta}p(y \mid \theta) p(\theta) \,d\theta} \quad \text{per} \quad \theta \in \Theta, 
 \]</div>
 <p>dove <span class="math notranslate nohighlight">\(\Theta\)</span> rappresenta l’insieme dei possibili valori del parametro <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
-<p>Per calcolare <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span>, è necessario dividere il prodotto tra la distribuzione a priori e la verosimiglianza per una costante di normalizzazione. Questa costante, nota come <em>verosimiglianza marginale</em>, viene introdotta per assicurare che l’area sotto la curva di <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span> sia unitaria. Tuttavia, l’integrale presente al denominatore della formula <a class="reference internal" href="#equation-eq-bayes-complete">(58)</a> spesso risulta complesso da risolvere analiticamente. Di conseguenza, l’inferenza bayesiana procede generalmente mediante metodi di approssimazione numerica.</p>
+<p>Per calcolare <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span>, è necessario dividere il prodotto tra la distribuzione a priori e la verosimiglianza per una costante di normalizzazione. Questa costante, nota come <em>verosimiglianza marginale</em>, viene introdotta per assicurare che l’area sotto la curva di <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span> sia unitaria. Tuttavia, l’integrale presente al denominatore della formula <a class="reference internal" href="#equation-eq-bayes-complete">(57)</a> spesso risulta complesso da risolvere analiticamente. Di conseguenza, l’inferenza bayesiana procede generalmente mediante metodi di approssimazione numerica.</p>
 </section>
 <section id="metodi-di-estimazione-della-distribuzione-a-posteriori">
 <h2>Metodi di Estimazione della Distribuzione a Posteriori<a class="headerlink" href="#metodi-di-estimazione-della-distribuzione-a-posteriori" title="Permalink to this heading">#</a></h2>
@@ -956,6 +959,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{\int_{\Theta}p(y \mid \thet
 <h2>Commenti e considerazioni finali<a class="headerlink" href="#commenti-e-considerazioni-finali" title="Permalink to this heading">#</a></h2>
 <p>L’approccio bayesiano offre un approccio distintivo per gestire l’incertezza associata ai parametri di interesse, differenziandosi in modo significativo dalla metodologia classica. A differenza dell’idea che i parametri siano valori fissi e sconosciuti, l’approccio bayesiano li tratta come quantità probabilistiche, assegnando loro una distribuzione a priori che rappresenta le nostre credenze e intuizioni iniziali prima dell’esperimento. Attraverso l’applicazione del teorema di Bayes, queste credenze vengono raffinate e aggiornate in base ai dati raccolti, portando alla definizione della distribuzione a posteriori. Quest’ultima rappresenta una visione aggiornata dell’incertezza, incorporando sia l’evidenza empirica che le informazioni preesistenti.</p>
 <p>La forza dell’approccio bayesiano risiede nella sua capacità di integrare le conoscenze pregresse con le nuove osservazioni, fornendo stime dei parametri di interesse che sono non solo più accurate ma anche più significative dal punto di vista interpretativo. Questa metodologia va oltre la mera analisi statistica, guidando il processo decisionale e consentendo di affrontare l’incertezza con una comprensione profonda, unendo conoscenze teoriche ed evidenze empiriche in un quadro coerente. In definitiva, l’approccio bayesiano non è solo un metodo statistico, ma un potente strumento decisionale che promuove l’interazione dinamica tra teoria ed esperienza.</p>
+<p>Un svantaggio dell’approccio Bayesiano è che non è sempre veloce e non scala sempre bene con dataset molto grandi. Questo significa che quando si utilizzano metodi basati sulla teoria Bayesiana per l’analisi dei dati, potrebbero verificarsi problemi di efficienza computazionale quando si affrontano insiemi di dati estremamente grandi.</p>
 </section>
 </section>
 

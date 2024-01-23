@@ -312,7 +312,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
@@ -322,6 +323,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
@@ -510,14 +513,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-denominatore-bayesiano">Il denominatore bayesiano</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-metodo-di-monte-carlo">Il Metodo di Monte Carlo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-catene-di-markov">Le catene di Markov</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-proprieta-di-markov-e-la-dipendenza-a-un-passo">La proprietà di Markov e la dipendenza a un passo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spazio-degli-stati-e-dinamica-del-processo">Spazio degli stati e dinamica del processo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazioni-pratiche-metropolis-e-mcmc">Applicazioni pratiche: Metropolis e MCMC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catene-di-markov-monte-carlo">Catene di Markov Monte Carlo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-metodo-di-monte-carlo">Il Metodo di Monte Carlo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-catene-di-markov">Le Catene di Markov</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catene-di-markov-monte-carlo">Catene di Markov Monte Carlo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrazione-di-campioni-dalla-distribuzione-a-posteriori">Estrazione di campioni dalla distribuzione a posteriori</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione-con-distribuzione-target-nota">Simulazione con distribuzione target nota</a></li>
 </ul>
@@ -564,8 +564,7 @@ document.write(`
   <p><a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/ccaudek/ds4psy_2023/blob/main/325_metropolis.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="monte-carlo-a-catena-di-markov">
 <span id="metropolis-notebook"></span><h1>Monte Carlo a Catena di Markov<a class="headerlink" href="#monte-carlo-a-catena-di-markov" title="Permalink to this heading">#</a></h1>
-<p>In precedenza, abbiamo esplorato diversi esempi di inferenza bayesiana relativi alla distribuzione a posteriori di un singolo parametro, come nel caso del modello bernoulliano. Abbiamo anche discusso l’utilizzo di approcci come l’approssimazione tramite griglia e i metodi dei priori coniugati per ottenere o approssimare la distribuzione a posteriori.</p>
-<p>In questo capitolo, ci concentreremo sul metodo di simulazione e spiegheremo perché sono necessari approcci speciali noti come metodi di Monte Carlo a Catena di Markov (MCMC).</p>
+<p>In precedenza, abbiamo esplorato diversi esempi di inferenza bayesiana relativi alla distribuzione a posteriori di un singolo parametro, come nel caso del modello bernoulliano. Abbiamo anche discusso l’utilizzo di approcci come l’approssimazione tramite griglia e i metodi dei priori coniugati per ottenere o approssimare la distribuzione a posteriori. In questo capitolo, ci concentreremo sul metodo di simulazione e spiegheremo perché sono necessari approcci speciali noti come metodi di Monte Carlo a Catena di Markov (MCMC).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -592,94 +591,49 @@ document.write(`
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="il-denominatore-bayesiano">
 <h2>Il denominatore bayesiano<a class="headerlink" href="#il-denominatore-bayesiano" title="Permalink to this heading">#</a></h2>
-<p>Nel contesto dell’approccio bayesiano, il nostro obiettivo primario è ottenere la distribuzione a posteriori di un parametro <span class="math notranslate nohighlight">\(\theta\)</span>, facendo affidamento sui dati osservati <span class="math notranslate nohighlight">\(y\)</span> e sulla distribuzione a priori <span class="math notranslate nohighlight">\(p(\theta)\)</span>. Tale distribuzione viene derivata applicando il teorema di Bayes:</p>
+<p>Nel campo dell’approccio bayesiano, il nostro obiettivo primario si concentra sulla determinazione della distribuzione a posteriori <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span> di un parametro <span class="math notranslate nohighlight">\(\theta\)</span> (nel caso più semplice), utilizzando come base sia i dati osservati <span class="math notranslate nohighlight">\(y\)</span> che la distribuzione a priori <span class="math notranslate nohighlight">\(p(\theta)\)</span>. Questo processo si avvale del teorema di Bayes per calcolare tale distribuzione.</p>
 <div class="math notranslate nohighlight">
 \[
 p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{p(y)}.
 \]</div>
-<p>Tuttavia, il calcolo dell’evidenza <span class="math notranslate nohighlight">\(p(y)\)</span> può rivelarsi complesso e non sempre ottenibile in modo analitico, specialmente quando si tratta di modelli complessi. Questa sfida può ostacolare l’ottenimento preciso della distribuzione a posteriori.</p>
-<p>Le distribuzioni a priori coniugate offrono un approccio analitico per calcolare la distribuzione a posteriori, ma ciò comporta una limitazione nella scelta delle distribuzioni a priori e di verosimiglianza. Per modelli più intricati, in cui i metodi di campionamento a griglia risultano inapplicabili, entrano in gioco i Metodi di Catena di Markov a Monte Carlo (MCMC), che rappresentano una potente alternativa per ottenere la distribuzione a posteriori. Questi metodi consentono di ricavare la distribuzione a posteriori basandosi su presupposti teorici, senza restrizioni sulla selezione delle distribuzioni a priori o delle verosimiglianze.</p>
-<p>L’approccio Monte Carlo impiega sequenze di numeri casuali opportunamente generati per creare un ampio campione di osservazioni proveniente dalla distribuzione a posteriori. A seguire, le proprietà di interesse possono essere stimate empiricamente basandosi su tale campione.</p>
-<p>Nel complesso, il calcolo della distribuzione a posteriori all’interno di un contesto bayesiano richiede l’uso di metodi computazionalmente intensivi, spesso eseguibili solo tramite software specializzato. Tuttavia, grazie alla crescente potenza di calcolo dei computer negli ultimi anni, i metodi bayesiani per l’analisi dei dati stanno guadagnando popolarità, poiché tali calcoli sono ora accessibili a tutti.</p>
+<p>Tuttavia, ci imbattiamo spesso in una sfida significativa: il calcolo dell’evidenza <span class="math notranslate nohighlight">\(p(y)\)</span> può rivelarsi estremamente complesso, specialmente per modelli più articolati, rendendo difficile ottenere con precisione la distribuzione a posteriori.</p>
+<p>Una soluzione possibile si trova nelle distribuzioni a priori coniugate, che offrono un metodo analitico per determinare la distribuzione a posteriori. Questo però limita la selezione delle distribuzioni a priori e di verosimiglianza. Per superare questa limitazione, soprattutto in modelli dove i metodi di campionamento a griglia non sono applicabili, si utilizzano i Metodi di Catena di Markov a Monte Carlo (MCMC). Questi metodi rappresentano una potente alternativa, consentendo di derivare la distribuzione a posteriori basandosi su presupposti teorici e senza restrizioni nella scelta delle distribuzioni.</p>
+<p>L’approccio Monte Carlo si basa sulla generazione di sequenze di numeri casuali per creare un campione ampio di osservazioni proveniente dalla distribuzione a posteriori. Da questi campioni, possiamo poi stimare empiricamente le proprietà di interesse. Questo approccio richiede l’uso di metodi computazionalmente intensivi, e con la crescente potenza di calcolo dei computer moderni, tali metodi stanno diventando sempre più accessibili e popolari nell’analisi dei dati.</p>
 </section>
+<section id="catene-di-markov-monte-carlo">
+<h2>Catene di Markov Monte Carlo<a class="headerlink" href="#catene-di-markov-monte-carlo" title="Permalink to this heading">#</a></h2>
+<p>Nei capitoli precedenti abbiamo già esplorato l’efficacia della simulazione nel campo della teoria delle probabilità. Un esempio classico è il problema di Monty Hall, che mostra come la simulazione ripetuta possa fornire stime affidabili per la media e la varianza di variabili casuali. Inoltre, applicando la legge dei grandi numeri, queste stime diventano più accurate all’aumentare del numero di simulazioni. Ciò evidenzia la potenza dei metodi Monte Carlo, che evitano la necessità di calcolare somme o integrali complessi.</p>
 <section id="il-metodo-di-monte-carlo">
-<h2>Il Metodo di Monte Carlo<a class="headerlink" href="#il-metodo-di-monte-carlo" title="Permalink to this heading">#</a></h2>
-<p>Il Metodo di Monte Carlo rappresenta un approccio numerico che fa uso di numeri casuali per ottenere approssimazioni a problemi complessi, specialmente quando i calcoli analitici risultano difficili o impossibili. L’idea fondamentale di questo metodo è generare un’ampia serie di punti casuali e utilizzarli per stimare quantità di interesse. Un esempio comune è l’integrazione numerica, in cui si approssimano integrali complessi calcolando la media dei valori di una funzione calcolata su punti casuali all’interno di un dominio specifico.</p>
-<p>Per chiarire questo concetto, possiamo considerare la distribuzione continua <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span> con media <span class="math notranslate nohighlight">\(\mu\)</span>. Se riusciamo ad ottenere una sequenza di campioni casuali <span class="math notranslate nohighlight">\(\theta^{(1)}, \theta^{(2)}, \dots, \theta^{(T)}\)</span> indipendenti e identicamente distribuiti da <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span>, possiamo stimare l’aspettativa teorica di <span class="math notranslate nohighlight">\(\theta\)</span> mediante la media campionaria <span class="math notranslate nohighlight">\(\frac{1}{T} \sum_{i=1}^T \theta^{(t)}\)</span>. Questa approssimazione diventa sempre più accurata all’aumentare del numero di campioni <span class="math notranslate nohighlight">\(T\)</span>, grazie alla Legge Forte dei Grandi Numeri.</p>
-<p>In aggiunta, il Metodo di Monte Carlo può essere impiegato per approssimare la probabilità che una variabile casuale <span class="math notranslate nohighlight">\(\theta\)</span> cada all’interno di un intervallo specifico <span class="math notranslate nohighlight">\((l, u)\)</span>. Ciò è realizzabile calcolando la media campionaria del valore della funzione indicatrice <span class="math notranslate nohighlight">\(I(l &lt; \theta &lt; u)\)</span> per ogni realizzazione <span class="math notranslate nohighlight">\(\theta^{(t)}\)</span>, ovvero <span class="math notranslate nohighlight">\(Pr(l &lt; \theta &lt; u) \approx \frac{\text{numero di realizzazioni } \theta^{(t)} \in (l, u)}{T}\)</span>.</p>
-<p>All’interno dell’analisi bayesiana, il Metodo di Monte Carlo viene impiegato per ottenere un’approssimazione della distribuzione a posteriori <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span>, soprattutto quando tale distribuzione non può essere calcolata mediante metodi analitici. In altre parole, il Metodo di Monte Carlo ci consente di generare un grande insieme di valori per <span class="math notranslate nohighlight">\(\theta\)</span>, che idealmente seguiranno la medesima distribuzione della distribuzione a posteriori <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span>.</p>
-<p>In conclusione, il Metodo di Monte Carlo costituisce una potente risorsa numerica, basata sulla generazione di numeri casuali, che ci permette di ottenere approssimazioni in contesti complessi. Tale metodo risulta particolarmente utile per stimare aspettative e probabilità quando i calcoli analitici risultano difficoltosi o irrealizzabili. L’accuratezza dell’approssimazione migliora in proporzione all’aumento dei campioni utilizzati. Nell’analisi bayesiana, il Metodo di Monte Carlo trova un’ampia applicazione nell’approssimazione della distribuzione a posteriori.</p>
+<h3>Il Metodo di Monte Carlo<a class="headerlink" href="#il-metodo-di-monte-carlo" title="Permalink to this heading">#</a></h3>
+<p>Il Metodo di Monte Carlo, sviluppato durante il Progetto Manhattan negli anni ‘40, utilizza numeri casuali per risolvere problemi matematici complessi. Originariamente ideato da Stanislaw Ulam e successivamente implementato da John von Neumann, il metodo prende il nome dallo zio giocatore d’azzardo di Ulam, come suggerito da Nicholas Metropolis. Da allora, questo metodo è diventato una tecnica fondamentale in diverse discipline, contribuendo significativamente alla risoluzione di problemi complessi.</p>
+<p>La metodologia di Monte Carlo genera un’ampia serie di punti casuali per stimare quantità di interesse, come l’integrazione numerica. Un esempio classico è l’approssimazione dell’integrale di un cerchio in 2D, dove il rapporto tra il numero di punti che cadono all’interno del cerchio e tutti i campioni fornisce un’approssimazione dell’area (per un esempio numerico, si veda <a class="reference internal" href="../chapter_7/a44_montecarlo.html#appendix-montecarlo"><span class="std std-ref">Simulazione Monte Carlo</span></a>).</p>
+<p>Per illustrare ulteriormente questo concetto, consideriamo ora una distribuzione continua <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span> con una media <span class="math notranslate nohighlight">\(\mu\)</span>. Se siamo in grado di generare una sequenza di campioni casuali <span class="math notranslate nohighlight">\(\theta^{(1)}, \theta^{(2)}, \dots, \theta^{(T)}\)</span> indipendenti e identicamente distribuiti secondo <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span>, possiamo stimare il valore atteso teorico di <span class="math notranslate nohighlight">\(\theta\)</span> utilizzando la media campionaria <span class="math notranslate nohighlight">\(\frac{1}{T} \sum_{i=1}^T \theta^{(t)}\)</span>. Questa approssimazione diventa sempre più accurata man mano che aumenta il numero di campioni $T, grazie alla Legge Forte dei Grandi Numeri.</p>
+<p>Un altro vantaggio del Metodo di Monte Carlo è la sua capacità di approssimare la probabilità che una variabile casuale <span class="math notranslate nohighlight">\(\theta\)</span> cada all’interno di un intervallo specifico <span class="math notranslate nohighlight">\((l, u)\)</span>. Questo può essere ottenuto calcolando la media campionaria della funzione indicatrice <span class="math notranslate nohighlight">\(I(l &lt; \theta &lt; u)\)</span> per ogni realizzazione <span class="math notranslate nohighlight">\(\theta^{(t)}\)</span>, cioè <span class="math notranslate nohighlight">\(Pr(l &lt; \theta &lt; u) \approx \frac{\text{numero di realizzazioni } \theta^{(t)} \in (l, u)}{T}\)</span>.</p>
+<p>Nonostante la loro efficacia, un limite dei metodi Monte Carlo tradizionali risiede nella generazione efficiente di un elevato numero di campioni <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span>. In risposta a questa sfida, i metodi di Monte Carlo basati su catene di Markov (MCMC) offrono una soluzione potente per simulare da distribuzioni complesse attraverso catene di Markov. L’evoluzione di questi algoritmi ha trasformato radicalmente la statistica e il calcolo scientifico, permettendo la simulazione da una vasta gamma di distribuzioni, anche in spazi di alta dimensionalità.</p>
 </section>
 <section id="le-catene-di-markov">
-<h2>Le catene di Markov<a class="headerlink" href="#le-catene-di-markov" title="Permalink to this heading">#</a></h2>
-<p>Le catene di Markov furono introdotte per la prima volta nel 1906 da Andrey Markov. L’obiettivo principale era di estendere la legge dei grandi numeri a variabili casuali che non sono indipendenti. Tradizionalmente, in statistica si lavora con sequenze di variabili casuali indipendenti e identicamente distribuite (i.i.d.), denotate come <span class="math notranslate nohighlight">\(X_0, X_1, \ldots, X_n, \ldots\)</span>, dove <span class="math notranslate nohighlight">\(n\)</span> è un indice temporale discreto. Questo approccio è adeguato quando si presume l’indipendenza completa tra le variabili casuali. Tuttavia, tale assunzione spesso non è realistica per modellare fenomeni complessi, rendendo necessario esplorare altre forme di dipendenza.</p>
-<section id="la-proprieta-di-markov-e-la-dipendenza-a-un-passo">
-<h3>La proprietà di Markov e la dipendenza a un passo<a class="headerlink" href="#la-proprieta-di-markov-e-la-dipendenza-a-un-passo" title="Permalink to this heading">#</a></h3>
-<p>Per affrontare queste limitazioni, le catene di Markov introducono una “dipendenza a un passo”, codificata nella “proprietà di Markov”. Secondo questa proprietà, la previsione di una variabile futura <span class="math notranslate nohighlight">\(X_{n+1}\)</span> è condizionata solo dal termine più recente <span class="math notranslate nohighlight">\(X_n\)</span>, indipendentemente dalla storia passata <span class="math notranslate nohighlight">\(X_0, X_1, X_2, \ldots, X_{n-1}\)</span>. Matematicamente, la proprietà di Markov è espressa come:</p>
+<h3>Le Catene di Markov<a class="headerlink" href="#le-catene-di-markov" title="Permalink to this heading">#</a></h3>
+<p>Le catene di Markov, ideate da Andrey Markov nel 1906, rappresentano un tentativo di estendere la legge dei grandi numeri a contesti in cui le variabili casuali non sono indipendenti. Tradizionalmente, la statistica si concentra su sequenze di variabili casuali indipendenti e identicamente distribuite (i.i.d.), simboleggiate come <span class="math notranslate nohighlight">\(X_0, X_1, \ldots, X_n, \ldots\)</span>. In tali sequenze, ogni variabile è indipendente dalle altre e segue la stessa distribuzione, con <span class="math notranslate nohighlight">\(n\)</span> che rappresenta un indice temporale discreto. Tuttavia, questa assunzione di indipendenza non è sempre realistica nei modelli di fenomeni complessi, portando alla necessità di esplorare forme alternative di dipendenza tra variabili.</p>
+<p>Per superare le limitazioni dell’indipendenza, le catene di Markov introducono una cosiddetta “dipendenza a un passo”, incarnata nella “proprietà di Markov”. Questa proprietà stabilisce che la previsione di un evento futuro <span class="math notranslate nohighlight">\(X_{n+1}\)</span> dipende unicamente dall’evento immediatamente precedente <span class="math notranslate nohighlight">\(X_n\)</span>, indipendentemente dagli eventi passati <span class="math notranslate nohighlight">\(X_0, X_1, X_2, \ldots, X_{n-1}\)</span>. La proprietà di Markov è espressa matematicamente come:</p>
 <div class="math notranslate nohighlight">
 \[
 P(X_{n+1} = j | X_n = i, X_{n-1} = i_{n-1}, \ldots, X_0 = i_0) = P(X_{n+1} = j | X_n = i).
 \]</div>
-<p>Questa formalizzazione consente una notevole semplificazione nei calcoli di probabilità condizionale.</p>
+<p>Questa proprietà afferma che la previsione di un evento futuro dipende solo dall’evento immediatamente precedente, semplificando i calcoli relativi alle probabilità condizionali.</p>
+<p>Le catene di Markov rappresentano un framework fondamentale per la modellazione delle dipendenze tra variabili casuali, una nozione cruciale in numerosi campi della statistica e della scienza dei dati, inclusa la metodologia MCMC (Markov Chain Monte Carlo). In particolare, nell’ambito dell’analisi bayesiana, l’uso di MCMC si rivela di estrema importanza, soprattutto quando non è possibile calcolare in modo analitico la distribuzione a posteriori.</p>
+<p>L’algoritmo di Metropolis rappresenta una delle implementazioni più semplici del metodo MCMC. Questo algoritmo sfrutta la natura dipendente delle catene di Markov per navigare in modo efficace attraverso lo spazio della distribuzione a posteriori. Questo aspetto rende il MCMC uno strumento di grande potenza per affrontare problemi complessi in cui i metodi analitici tradizionali non possono essere applicati (per ulteriori dettagli, si veda <a class="reference internal" href="../chapter_7/a45_mcmc.html#appendix-markov"><span class="std std-ref">Catene di Markov</span></a>). In breve, il MCMC consente di generare un vasto insieme di valori per il parametro <span class="math notranslate nohighlight">\(\theta\)</span>. Idealmente, questi valori riflettono la distribuzione a posteriori <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span> quando questa non può essere ottenuta direttamente. Questa caratteristica rende il MCMC uno strumento essenziale per risolvere problemi complessi in cui i metodi analitici convenzionali non sono applicabili.</p>
 </section>
-<section id="spazio-degli-stati-e-dinamica-del-processo">
-<h3>Spazio degli stati e dinamica del processo<a class="headerlink" href="#spazio-degli-stati-e-dinamica-del-processo" title="Permalink to this heading">#</a></h3>
-<p>Le variabili casuali in una catena di Markov vivono in un “spazio degli stati”, che può essere sia discreto che continuo. Nel nostro contesto, ci concentreremo su catene con spazio degli stati discreto e finito, denotato generalmente come <span class="math notranslate nohighlight">\(\{1, 2, \ldots, M\}\)</span>.</p>
-<p>La dinamica delle catene di Markov è descritta attraverso “probabilità di transizione” tra gli stati, che possono essere codificate in una “matrice di transizione”. Ogni elemento <span class="math notranslate nohighlight">\( (i, j) \)</span> di questa matrice rappresenta la probabilità di passare dallo stato <span class="math notranslate nohighlight">\( i \)</span> al stato <span class="math notranslate nohighlight">\( j \)</span> in un passaggio della catena.</p>
-</section>
-<section id="applicazioni-pratiche-metropolis-e-mcmc">
-<h3>Applicazioni pratiche: Metropolis e MCMC<a class="headerlink" href="#applicazioni-pratiche-metropolis-e-mcmc" title="Permalink to this heading">#</a></h3>
-<p>Le catene di Markov trovano applicazione nell’algoritmo di Metropolis attraverso un framework noto come Markov Chain Monte Carlo (MCMC). MCMC sfrutta la natura dipendente delle catene di Markov per navigare efficacemente nello spazio delle soluzioni di una distribuzione a posteriori, soprattutto quando un’analisi analitica è impraticabile. In questo modo, il MCMC si dimostra un potente strumento per risolvere problemi complessi dove metodi analitici tradizionali falliscono.</p>
-<p>In sintesi, le catene di Markov forniscono un framework robusto e flessibile per modellare dipendenze tra variabili casuali, rendendole strumenti fondamentali in diversi ambiti della statistica e della scienza dei dati, inclusa la metodologia MCMC utilizzata in algoritmi come Metropolis.</p>
-<div class="tip admonition">
-<p class="admonition-title">Terminologia</p>
-<p><strong>Catene di Markov omogenee</strong></p>
-<p>Una catena di Markov è detta “omogenea” quando le probabilità di transizione tra gli stati sono indipendenti dal tempo. In termini più semplici, la dinamica della catena è regolata da una matrice di transizione fissa che rimane costante nel tempo. Ciò significa che la probabilità di passare da uno stato all’altro è sempre la stessa, indipendentemente dal momento in cui avviene questa transizione.</p>
-<p><strong>Catene di Markov irriducibili</strong></p>
-<p>Una catena di Markov è “irriducibile” quando è possibile raggiungere qualsiasi stato partendo da qualsiasi altro stato in un numero finito di passaggi. In altre parole, non esistono stati isolati che intrappolano la catena indefinitamente.</p>
-<p><strong>Stati ricorrenti</strong></p>
-<p>In una catena di Markov, uno stato è considerato “ricorrente” se viene rivisitato ripetutamente. Gli stati possono ulteriormente essere classificati come “positivamente ricorrenti” se esiste un tempo limitato per tornare allo stato, e “nullamente ricorrenti” in caso contrario. Gli stati “ricorrenti di Harris” sono quelli che vengono visitati infinite volte mentre il tempo tende all’infinito.</p>
-<p><strong>Aperiodicità</strong></p>
-<p>Gli stati “aperiodici” in una catena di Markov sono quelli senza cicli deterministici, il che significa che la catena non rimane bloccata in un ciclo fisso di stati.</p>
-<p><strong>Stazionarietà</strong></p>
-<p>Nella teoria delle catene di Markov, la “distribuzione marginale” è semplicemente la distribuzione delle probabilità degli stati della catena in un certo momento. In altre parole, è una descrizione delle probabilità di trovarsi in ciascuno degli stati possibili in un determinato istante di tempo. Se stiamo parlando, ad esempio, di una catena di Markov con tre stati (A, B, C), una possibile distribuzione marginale potrebbe essere <span class="math notranslate nohighlight">\([0.4, 0.5, 0.1]\)</span>, indicando che la probabilità di trovarsi nello stato A è del 40%, nello stato B del 50% e nello stato C del 10%.</p>
-<p>Una catena di Markov è definita come “stazionaria” quando questa distribuzione marginale rimane invariata nel tempo. In altre parole, le probabilità di essere in ogni stato possibile non cambiano, anche se la catena passa da uno stato all’altro seguendo le probabilità di transizione.</p>
-<p>La stazionarietà è un concetto cruciale perché rende possibile analizzare il comportamento a lungo termine della catena senza dover tener conto di tutti i dettagli delle transizioni individuali. In pratica, una volta che la catena è stazionaria, sappiamo che la sua distribuzione marginale non cambierà più, e questo è spesso ciò che ci interessa nelle applicazioni reali.</p>
-<p><strong>Ergodicità</strong></p>
-<p>L’ergodicità è un’altra proprietà fondamentale che descrive come una catena di Markov si comporta nel limite quando il numero di passaggi tende all’infinito. Una catena ergodica è una catena che è sia aperiodica (non ha cicli fissi) sia irriducibile (ogni stato è raggiungibile da ogni altro stato) e positivamente ricorrente secondo Harris (ogni stato viene visitato infinite volte in un tempo finito). Ciò significa che mentre il numero di passaggi tende all’infinito, la distribuzione marginale della catena rimane stabile. Pertanto, se campioniamo da una catena di Markov stazionaria a intervalli ampiamente distanziati, questi campioni possono essere considerati indipendenti.</p>
-<p>Nella teoria ergodica, si discute spesso di “burn-in”, che è il periodo di tempo necessario perché la catena si avvicini alla distribuzione stazionaria, e di “thinning”, che è la pratica di prendere campioni a intervalli ampiamente distanziati per minimizzare la correlazione tra i campioni.</p>
-<p><strong>Convergenza</strong></p>
-<p>Nel contesto della convergenza, le proprietà di irriducibilità e aperiodicità garantiscono che la catena di Markov si stabilizzerà in un equilibrio a lungo termine, specificamente convergendo verso una distribuzione stazionaria <span class="math notranslate nohighlight">\( s \)</span>. In questo scenario, “convergenza” implica che con l’incrementare indefinito del numero di passaggi <span class="math notranslate nohighlight">\( n \)</span>, la distribuzione marginale della catena tende sempre più verso la distribuzione stazionaria <span class="math notranslate nohighlight">\( s \)</span>.</p>
-<p>Tale convergenza è di natura probabilistica e avviene a prescindere dalle condizioni iniziali, cioè dall’effettivo stato da cui la catena è partita. Detto in modo più semplice, con un tempo sufficientemente lungo, il comportamento della catena di Markov diventa prevedibile e stabile, in accordo con la distribuzione stazionaria <span class="math notranslate nohighlight">\( s \)</span>.</p>
-<p>Quindi, i concetti di convergenza e stazionarietà sono strettamente correlati: la convergenza rappresenta il percorso che la catena percorre per raggiungere uno stato di equilibrio, mentre la stazionarietà fornisce una descrizione formale di questo stato di equilibrio al quale la catena tenderà nel lungo periodo.</p>
-</div>
-</section>
-</section>
-<section id="catene-di-markov-monte-carlo">
-<h2>Catene di Markov Monte Carlo<a class="headerlink" href="#catene-di-markov-monte-carlo" title="Permalink to this heading">#</a></h2>
-<p>Nei capitoli precedenti, abbiamo esplorato l’efficacia della simulazione come strumento nel campo della teoria delle probabilità, con particolare enfasi su esempi come il problema di Monty Hall. Attraverso la simulazione ripetuta di questo gioco, abbiamo scoperto che la probabilità di vincita aumenta a circa 2/3 quando si sceglie di cambiare porta. Questo esempio illustra come, anche quando non possiamo calcolare direttamente certe statistiche come la media e la varianza di una variabile casuale <span class="math notranslate nohighlight">\(X\)</span>, possiamo ottenere stime affidabili di queste attraverso la simulazione. Generando campioni indipendenti e identicamente distribuiti <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> da una distribuzione data, le stime campionarie per la media e la varianza si possono approssimare come segue:</p>
-<div class="math notranslate nohighlight">
-\[
-\text{E}(X) \approx \frac{1}{n} (X_1 + \ldots + X_n) = \bar{X}_n
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\text{Var}(X) \approx \frac{1}{n - 1} \sum_{j=1}^{n} (X_j - \bar{X}_n)^2
-\]</div>
-<p>Con l’applicazione della legge dei grandi numeri, queste stime diventano sempre più accurate all’aumentare di <span class="math notranslate nohighlight">\(n\)</span>. Ciò significa che possiamo ottenere stime più precise incrementando il numero di simulazioni, evitando la necessità di calcolare somme o integrali complessi. Questa metodologia rientra nei metodi Monte Carlo.</p>
-<p>I metodi di Monte Carlo, sviluppati da Stanislaw Ulam e John von Neumann al Los Alamos nel 1946, sono ampiamente impiegati in ottimizzazione, campionamento e stima. Ulam concepì l’idea durante la convalescenza dalla tubercolosi, cercando un modo pratico per risolvere un calcolo combinatorio complesso. Von Neumann adottò per primo questo approccio con applicazioni dirette alla diffusione dei neutroni, e il metodo fu poi denominato Monte Carlo da Nicholas Metropolis in riferimento alla propensione al gioco d’azzardo dello zio di Ulam.</p>
-<p>Nonostante la loro efficacia, un limite dei metodi Monte Carlo tradizionali risiede nella generazione efficiente di un elevato numero di campioni <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span>. In risposta a questa sfida, i metodi di Monte Carlo basati su catene di Markov (MCMC) offrono una soluzione potente per simulare da distribuzioni complesse attraverso catene di Markov. L’evoluzione di questi algoritmi ha trasformato radicalmente la statistica e il calcolo scientifico, permettendo la simulazione da una vasta gamma di distribuzioni, anche in spazi di alta dimensionalità.</p>
-<p>In questo capitolo, ci concentreremo sull’algoritmo di Metropolis, uno degli algoritmi MCMC più importanti e comunemente impiegati, esplorando come possa essere utilizzato per superare alcune delle limitazioni dei metodi Monte Carlo tradizionali e come possa ampliare ulteriormente le possibilità di simulazione e stima in contesti statistici complessi.</p>
 </section>
 <section id="estrazione-di-campioni-dalla-distribuzione-a-posteriori">
 <h2>Estrazione di campioni dalla distribuzione a posteriori<a class="headerlink" href="#estrazione-di-campioni-dalla-distribuzione-a-posteriori" title="Permalink to this heading">#</a></h2>
-<p>L’obiettivo primario è di comprendere come utilizzare l’algoritmo di Metropolis per approssimare la distribuzione a posteriori <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span>. A questo fine, il capitolo è strutturato in varie sezioni che facilitano la comprensione progressiva del tema.</p>
+<p>Nella discussione seguente ci porremo l’obiettivo di comprendere come utilizzare l’algoritmo di Metropolis per approssimare la distribuzione a posteriori <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span>. A questo fine, il capitolo è strutturato in varie sezioni che facilitano la comprensione progressiva del tema.</p>
 <ul class="simple">
 <li><p>Inizieremo discutendo di come la distribuzione a posteriori possa essere approssimata mediante tecniche di simulazione convenzionali. Questa prima parte presuppone che la distribuzione target, o “a posteriori,” sia già conosciuta o disponibile per l’analisi.</p></li>
 <li><p>In seguito, passeremo a illustrare come l’algoritmo di Metropolis possa essere utilizzato per raggiungere lo stesso scopo—l’approssimazione della distribuzione a posteriori—mantenendo la presupposizione che la distribuzione target sia già nota.</p></li>
@@ -847,7 +801,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e530f1ddb6cf7217fd31adc4b98ca8bc4e2ef80bb9d1f94d376653bf941b7173.png" src="../_images/e530f1ddb6cf7217fd31adc4b98ca8bc4e2ef80bb9d1f94d376653bf941b7173.png" />
+<img alt="../_images/00a603a2c50a9b885aefb6fa1a1103e116e78342865414f221c057bb09234dad.png" src="../_images/00a603a2c50a9b885aefb6fa1a1103e116e78342865414f221c057bb09234dad.png" />
 </div>
 </div>
 <p>Se vogliamo conoscere il valore della media a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span>, il risultato esatto è</p>
@@ -867,7 +821,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.19493378650427373 0.20018872184157438 0.15505016064600155 0.12617206580873055 0.1629034546407364 0.1822700531311704 0.17917777183281108 0.18408680693924714 0.19203957941062205 0.10667073363232665
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.18267015479897203 0.1640199299316822 0.16798630280416024 0.2502064453468693 0.18621441725894658 0.10683641141879015 0.15273141685072195 0.20257133407616038 0.20673876768515861 0.1782986343112751
 </pre></div>
 </div>
 </div>
@@ -879,7 +833,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1683493134387494
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.17982738144827365
 </pre></div>
 </div>
 </div>
@@ -892,7 +846,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1631753790166631
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.16329415024193536
 </pre></div>
 </div>
 </div>
@@ -1113,10 +1067,10 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.47661634 0.44033671 0.44033671 0.45463617 0.45463617 0.44261512
- 0.42591578 0.40658679 0.40198277 0.40198277 0.40198277 0.40266997
- 0.40266997 0.38072726 0.35820542 0.31654056 0.31654056 0.31654056
- 0.31654056 0.31654056]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.47520674 0.47520674 0.46375313 0.46375313 0.41846012 0.38742118
+ 0.38972628 0.37167961 0.37427573 0.37427573 0.37427573 0.36258821
+ 0.36258821 0.31991575 0.33295457 0.29987179 0.29987179 0.29987179
+ 0.29987179 0.30549992]
 </pre></div>
 </div>
 </div>
@@ -1133,7 +1087,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b7a055ab544f52198d7cc80adb27f035e981b40aa6d6b0fe750997af93ed6f22.png" src="../_images/b7a055ab544f52198d7cc80adb27f035e981b40aa6d6b0fe750997af93ed6f22.png" />
+<img alt="../_images/e155b1e408d01d48de896ce9aff9f98b74fcb0c7f5c761710e527dcfe7332173.png" src="../_images/e155b1e408d01d48de896ce9aff9f98b74fcb0c7f5c761710e527dcfe7332173.png" />
 </div>
 </div>
 <p>Si noti che la procedura di Metropolis genera un insieme di campioni che approssima la distribuzione target desiderata. In altre parole, i campioni ottenuti seguono la distribuzione che stiamo cercando di esplorare, fornendo quindi un modo efficace per ottenere un campionamento casuale da questa distribuzione.</p>
@@ -1156,10 +1110,10 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.5        0.5        0.34448535 0.34448535 0.20953103 0.15277657
- 0.15277657 0.15277657 0.15277657 0.15277657 0.15277657 0.21674379
- 0.21674379 0.21674379 0.20300415 0.20300415 0.20300415 0.20300415
- 0.17080912 0.17080912]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.5        0.47147117 0.47147117 0.47147117 0.36838417 0.31689558
+ 0.2603292  0.2603292  0.25605986 0.25605986 0.08506906 0.08506906
+ 0.08506906 0.08506906 0.08506906 0.08506906 0.08506906 0.09847799
+ 0.23086581 0.20751506]
 </pre></div>
 </div>
 </div>
@@ -1176,7 +1130,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/637b0ffe0321e374e8f5c8589704c77a9d2fe797d59356695a57a8aa090ed10b.png" src="../_images/637b0ffe0321e374e8f5c8589704c77a9d2fe797d59356695a57a8aa090ed10b.png" />
+<img alt="../_images/b43c76706c165256fe9b72f85d6b226a14c497e514b672f9df6d9152567163d5.png" src="../_images/b43c76706c165256fe9b72f85d6b226a14c497e514b672f9df6d9152567163d5.png" />
 </div>
 </div>
 </section>
@@ -1255,7 +1209,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 <p>In sintesi, <code class="docutils literal notranslate"><span class="pre">metropolis_v2</span></code> è una versione più robusta dell’algoritmo che tiene conto sia del supporto della distribuzione target sia di eventuali valori zero nella densità di probabilità.</p>
 <p>Si osservi un punto importante: nel calcolo di <code class="docutils literal notranslate"><span class="pre">pdfratio</span></code>, il rapporto tra la densità a posteriori del parametro proposto <code class="docutils literal notranslate"><span class="pre">x_star</span></code> e quella del parametro corrente <code class="docutils literal notranslate"><span class="pre">x_prev</span></code>, la costante di normalizzazione si annulla grazie alla regola di Bayes. Questo lascia nel rapporto solamente le componenti relative alla verosimiglianza e alla distribuzione a priori, che sono entrambe facilmente calcolabili. Matematicamente, questo si esprime come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-ratio-metropolis">
-<span class="eqno">(63)<a class="headerlink" href="#equation-eq-ratio-metropolis" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(62)<a class="headerlink" href="#equation-eq-ratio-metropolis" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 \text{pdfratio} = \frac{p(\theta^* \mid y)}{p(\theta^{\text{prev}} \mid y)} = \frac{\frac{p(y \mid \theta^*) p(\theta^*)}{p(y)}}{\frac{p(y \mid \theta^{\text{prev}}) p(\theta^{\text{prev}})}{p(y)}}
 = \frac{p(y \mid \theta^*) p(\theta^*)}{p(y \mid \theta^{\text{prev}}) p(\theta^{\text{prev}})}
@@ -1304,7 +1258,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.16435768723548017
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.16370053382923697
 </pre></div>
 </div>
 </div>
@@ -1317,7 +1271,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03511223692085333
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03525796985331454
 </pre></div>
 </div>
 </div>
@@ -1333,7 +1287,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c65dc9f91d8d9d90be77039f5c3f9a6a74440e5c62f4b2f58402a3e7b22f2bdd.png" src="../_images/c65dc9f91d8d9d90be77039f5c3f9a6a74440e5c62f4b2f58402a3e7b22f2bdd.png" />
+<img alt="../_images/a0272201630fffce7bcf27bc1e495ec624cb51ccb8c30199e3b5a9bd785be66e.png" src="../_images/a0272201630fffce7bcf27bc1e495ec624cb51ccb8c30199e3b5a9bd785be66e.png" />
 </div>
 </div>
 <p>Il trace plot indica che la catena inizia con un valore casuale per poi spostarsi rapidamente nell’area intorno a 0.16, che è l’area con alta densità a posteriori. Successivamente, oscilla intorno a quel valore per le iterazioni successive.</p>
@@ -1347,7 +1301,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0ed6b5518747f2f77016092e4597000136770c5fecdd3f53bb54e0c2757102d9.png" src="../_images/0ed6b5518747f2f77016092e4597000136770c5fecdd3f53bb54e0c2757102d9.png" />
+<img alt="../_images/7796364833661aa7c7898a9271d5dd2d71c2f418ec6362dda440beeb78a4a9b5.png" src="../_images/7796364833661aa7c7898a9271d5dd2d71c2f418ec6362dda440beeb78a4a9b5.png" />
 </div>
 </div>
 <p>L’istogramma mostrato di seguito, sul quale è stata sovrapposta la distribuzione a posteriori derivata analiticamente – specificamente una <span class="math notranslate nohighlight">\(\text{Beta}(25, 17)\)</span> – dimostra che la catena converge effettivamente alla distribuzione a posteriori desiderata.</p>
@@ -1363,7 +1317,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4a985c2f17fe07492489aac317c82f96be42b6ef61da2c63ca7a8c9eccdc74ac.png" src="../_images/4a985c2f17fe07492489aac317c82f96be42b6ef61da2c63ca7a8c9eccdc74ac.png" />
+<img alt="../_images/ea01458336ebf4ee1d5af87dca2fe8404a1c9b1d30c8bdcd58a0f5bd8e4f259c.png" src="../_images/ea01458336ebf4ee1d5af87dca2fe8404a1c9b1d30c8bdcd58a0f5bd8e4f259c.png" />
 </div>
 </div>
 <p>È possibile usare la funzione <code class="docutils literal notranslate"><span class="pre">summary</span></code> del pacchetto AriviZ per calolare l’intervallo di credibilità, ovvero l’intervallo che contiene la proporzione indicata dei valori estratti a caso dalla distribuzione a posteriori.</p>
@@ -1419,7 +1373,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/89bde6ac071b0eef1cc202317d80cf076b2e27c2d8c4daff0410e28b66489e50.png" src="../_images/89bde6ac071b0eef1cc202317d80cf076b2e27c2d8c4daff0410e28b66489e50.png" />
+<img alt="../_images/23187f0dce7954c55181173a6bcec1ba2e21aca4d73cbd75d5c447134a794a94.png" src="../_images/23187f0dce7954c55181173a6bcec1ba2e21aca4d73cbd75d5c447134a794a94.png" />
 </div>
 </div>
 <p>L’HDI è una scelta comune nelle statistiche bayesiane e valori arrotondati come 50% o 95% sono molto popolari. Ma ArviZ utilizza il 94% come valore predefinito. La ragione di questa scelta è che il 94% è vicino al valore ampiamente utilizzato del 95%, ma è anche diverso da questo, così da servire da “amichevole promemoria” che non c’è niente di speciale nella soglia del 5%. Idealmente sarebbe opportuno scegliere un valore che si adatti alle specifiche esigenze dell’analisi statistica che si sta svolgendo, o almeno riconoscere che si sta usando un valore arbitrario.</p>
@@ -1440,7 +1394,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 <p>Informazioni sul “mixing” della catena di Markov sono fornite dall’autocorrelazione. L’autocorrelazione misura la correlazione tra i valori successivi di una catena di Markov. Il valore <span class="math notranslate nohighlight">\(m\)</span>-esimo della serie ordinata viene confrontato con un altro valore ritardato di una quantità <span class="math notranslate nohighlight">\(k\)</span> (dove <span class="math notranslate nohighlight">\(k\)</span> è l’entità del ritardo) per verificare quanto si correli al variare di <span class="math notranslate nohighlight">\(k\)</span>. L’autocorrelazione di ordine 1 (<em>lag 1</em>) misura la correlazione tra valori successivi della catena di Markow (cioè, la correlazione tra <span class="math notranslate nohighlight">\(\theta^{(m)}\)</span> e <span class="math notranslate nohighlight">\(\theta^{(m-1)}\)</span>); l’autocorrelazione di ordine 2 (<em>lag 2</em>) misura la correlazione tra valori della catena di Markow separati da due “passi” (cioè, la correlazione tra <span class="math notranslate nohighlight">\(\theta^{(m)}\)</span> e <span class="math notranslate nohighlight">\(\theta^{(m-2)}\)</span>); e così via.</p>
 <p>L’autocorrelazione di ordine <span class="math notranslate nohighlight">\(k\)</span> è data da <span class="math notranslate nohighlight">\(\rho_k\)</span> e può essere stimata come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-autocor">
-<span class="eqno">(64)<a class="headerlink" href="#equation-eq-autocor" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(63)<a class="headerlink" href="#equation-eq-autocor" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align}
 \rho_k &amp;= \frac{Cov(\theta_m, \theta_{m+k})}{Var(\theta_m)}\notag\\
 &amp;= \frac{\sum_{m=1}^{n-k}(\theta_m - \bar{\theta})(\theta_{m-k} - \bar{\theta})}{\sum_{m=1}^{n-k}(\theta_m - \bar{\theta})^2} \qquad\text{con }\quad \bar{\theta} = \frac{1}{n}\sum_{m=1}^{n}\theta_m.
@@ -1505,7 +1459,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/176a10783110151ad9322474ff2e03ce52cdc82e03d0ad952d2f990e9acdb693.png" src="../_images/176a10783110151ad9322474ff2e03ce52cdc82e03d0ad952d2f990e9acdb693.png" />
+<img alt="../_images/fe40086037850224a29d6e7d5f324b39208d7861b5054c5113172dfa0179e4a9.png" src="../_images/fe40086037850224a29d6e7d5f324b39208d7861b5054c5113172dfa0179e4a9.png" />
 </div>
 </div>
 <p>Per i dati dell’esempio in discussione otteniamo la situazione seguente.</p>
@@ -1517,7 +1471,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/79328bcbf4b4b980844295991c40c5267f3d8c95611d9b9222f728b4b4cfe780.png" src="../_images/79328bcbf4b4b980844295991c40c5267f3d8c95611d9b9222f728b4b4cfe780.png" />
+<img alt="../_images/92e9759f14ef28cc3afa754852209d9b652e6bfb534853b23486c04f62f963ae.png" src="../_images/92e9759f14ef28cc3afa754852209d9b652e6bfb534853b23486c04f62f963ae.png" />
 </div>
 </div>
 <p>Il correlogramma è uno strumento grafico usato per la valutazione della tendenza di una catena di Markov nel tempo. Il correlogramma si costruisce a partire dall’autocorrelazione <span class="math notranslate nohighlight">\(\rho_k\)</span> di una catena di Markov in funzione del ritardo <span class="math notranslate nohighlight">\(k\)</span> con cui l’autocorrelazione è calcolata: nel grafico ogni barretta verticale riporta il valore dell’autocorrelazione (sull’asse delle ordinate) in funzione del ritardo (sull’asse delle ascisse).</p>
@@ -1533,7 +1487,7 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f7551936d6a08fbf6541202c7bae12b6a128fc4cc8386c0f14d4de21828ca7a0.png" src="../_images/f7551936d6a08fbf6541202c7bae12b6a128fc4cc8386c0f14d4de21828ca7a0.png" />
+<img alt="../_images/483a58999b0629d0ce513f922eacd51ac6794ad2b2dafc11d367654a30fcc4a1.png" src="../_images/483a58999b0629d0ce513f922eacd51ac6794ad2b2dafc11d367654a30fcc4a1.png" />
 </div>
 </div>
 <p>Si può notare come l’autocorrelazione diminuisce molto più rapidamente.</p>
@@ -1567,19 +1521,19 @@ p(\theta \mid y) = \frac{\mathrm{e}^{-(\theta - 1 / 2)^2} \theta^y (1 - \theta)^
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Wed Nov 08 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 22 2024
 
 Python implementation: CPython
-Python version       : 3.11.6
-IPython version      : 8.16.1
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-numpy      : 1.25.2
-scipy      : 1.11.3
-pandas     : 2.1.1
-statsmodels: 0.14.0
+statsmodels: 0.14.1
+matplotlib : 3.8.2
+numpy      : 1.26.2
 seaborn    : 0.13.0
-arviz      : 0.16.1
-matplotlib : 3.8.0
+pandas     : 2.1.4
+arviz      : 0.17.0
+scipy      : 1.11.4
 
 Watermark: 2.4.3
 </pre></div>
@@ -1653,14 +1607,11 @@ Watermark: 2.4.3
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-denominatore-bayesiano">Il denominatore bayesiano</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-metodo-di-monte-carlo">Il Metodo di Monte Carlo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-catene-di-markov">Le catene di Markov</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-proprieta-di-markov-e-la-dipendenza-a-un-passo">La proprietà di Markov e la dipendenza a un passo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spazio-degli-stati-e-dinamica-del-processo">Spazio degli stati e dinamica del processo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazioni-pratiche-metropolis-e-mcmc">Applicazioni pratiche: Metropolis e MCMC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catene-di-markov-monte-carlo">Catene di Markov Monte Carlo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-metodo-di-monte-carlo">Il Metodo di Monte Carlo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-catene-di-markov">Le Catene di Markov</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catene-di-markov-monte-carlo">Catene di Markov Monte Carlo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrazione-di-campioni-dalla-distribuzione-a-posteriori">Estrazione di campioni dalla distribuzione a posteriori</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione-con-distribuzione-target-nota">Simulazione con distribuzione target nota</a></li>
 </ul>

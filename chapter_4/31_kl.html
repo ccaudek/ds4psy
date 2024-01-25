@@ -81,7 +81,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/increasing.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Modello gerarchico beta-binomiale" href="40_hier_beta_binom.html" />
+    <link rel="next" title="Validazione Incrociata Leave-One-Out" href="32_loo.html" />
     <link rel="prev" title="Entropia" href="30_entropy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -512,31 +513,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perdita-di-informazione-e-divergenza-di-kullback-leibler">Perdita di Informazione e Divergenza di Kullback-Leibler</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-empirico">Un Esempio Empirico</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-divergenza-dipende-dalla-direzione">La Divergenza Dipende dalla Direzione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-empirico">Un Esempio Empirico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-divergenza-dipende-dalla-direzione">La Divergenza Dipende dalla Direzione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">La Divergenza Dipende dalla Direzione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-di-modelli-utilizzando-la-divergenza-di-kullback-leibler">Confronto di Modelli Utilizzando la Divergenza di Kullback-Leibler</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-predittiva-posteriori">Distribuzione Predittiva Posteriori</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misurare-la-somiglianza-tra-distribuzioni">Misurare la Somiglianza tra Distribuzioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confrontare-piu-modelli">Confrontare Più Modelli</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-tra-modelli-tramite-la-divergenza-mathbb-kl">Confronto tra Modelli Tramite la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-predittiva-a-posteriori">Distribuzione Predittiva a Posteriori</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valutazione-della-somiglianza-tra-distribuzioni">Valutazione della Somiglianza tra Distribuzioni</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-tra-modelli-multipli">Confronto tra Modelli Multipli</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-log-predictive-density">Expected Log Predictive Density</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approssimazione-e-stima">Approssimazione e Stima</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Un Esempio Empirico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-densita-logaritmica-predittiva-attesa">La Densità Logaritmica Predittiva Attesa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sfide-nella-stima-dell-elpd">Sfide nella Stima dell’ELPD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Un Esempio Empirico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-secondo-esempio-empirico">Un Secondo Esempio Empirico</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#una-singola-osservazione">Una Singola Osservazione</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tutte-le-osservazioni-del-campione">Tutte le Osservazioni del Campione</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estensione-a-tutte-le-osservazioni">Estensione a Tutte le Osservazioni</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leave-one-out-cross-validation-loo-cv">Leave One Out Cross-Validation (LOO-CV)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-diagnostici-pareto-k">Valori Diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruolo-dell-elpd-nella-valutazione-comparativa-dei-modelli">Ruolo dell’ELPD nella Valutazione Comparativa dei Modelli</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione">Simulazione</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e Considerazioni Finali</a></li>
@@ -555,10 +548,26 @@ document.write(`
   <p><a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/ccaudek/ds4psy_2023/blob/main/kl.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="la-divergenza-di-kullback-leibler">
 <span id="kl-notebook"></span><h1>La divergenza di Kullback-Leibler<a class="headerlink" href="#la-divergenza-di-kullback-leibler" title="Permalink to this heading">#</a></h1>
-<p>Nel campo della statistica e del machine learning, ci si trova spesso di fronte alla necessità di utilizzare una distribuzione di probabilità, che indichiamo con <span class="math notranslate nohighlight">\( q \)</span>, come approssimazione di un’altra distribuzione più complessa o sconosciuta, indicata con <span class="math notranslate nohighlight">\( p \)</span>. Questa necessità emerge in modo particolare quando trattare direttamente con la distribuzione <span class="math notranslate nohighlight">\( p \)</span> risulta impraticabile a causa della sua complessità o dell’incertezza sulle sue caratteristiche. Di conseguenza, emerge una domanda fondamentale: quanta informazione perdiamo utilizzando la distribuzione <span class="math notranslate nohighlight">\( q \)</span> in luogo di <span class="math notranslate nohighlight">\( p \)</span>, e come questa scelta influisce sull’incertezza nei nostri risultati analitici?</p>
-<p>Per rispondere a queste domande, ci affidiamo a un indicatore chiave noto come <em>Divergenza di Kullback-Leibler</em> (KL), introdotto nel capitolo precedente. Questa metrica, denotata come <span class="math notranslate nohighlight">\( \mathbb{KL}(p \mid\mid q) \)</span>, misura la discrepanza tra le due distribuzioni di probabilità. Un valore di zero indica che le distribuzioni <span class="math notranslate nohighlight">\( q \)</span> e <span class="math notranslate nohighlight">\( p \)</span> sono identiche, mentre valori maggiori di zero riflettono discrepanze crescenti tra le due. In questo senso, la Divergenza KL funge da misura quantitativa per valutare la “vicinanza” o somiglianza tra distribuzioni.</p>
-<p>Parallelamente, l’<em>Expected Log Predictive Density</em> (elpd) rappresenta un altro strumento fondamentale nell’ambito della valutazione dei modelli statistici. Questa misura valuta l’adeguatezza di un modello statistico rispetto ai dati osservati, fornendo un equilibrio tra la capacità del modello di adattarsi ai dati e la sua complessità. L’elpd si rivela particolarmente efficace nel confrontare diversi modelli statistici, offrendo uno strumento per bilanciare adattamento e complessità.</p>
-<p>Il focus di questo capitolo sarà dunque su queste due metriche fondamentali: la Divergenza di Kullback-Leibler e l’elpd. Approfondiremo la loro rilevanza nella valutazione e nel confronto di modelli statistici, con un’attenzione particolare al contesto bayesiano. Con una conoscenza approfondita di questi strumenti, il lettore sarà in grado di applicare efficacemente queste misure nella selezione e nell’analisi di modelli statistici, adeguandoli a specifici set di dati.</p>
+<div class="admonition-obiettivi-di-apprendimento admonition">
+<p class="admonition-title">Obiettivi di apprendimento</p>
+<p>Dopo aver completato questo capitolo, acquisirete le competenze per:</p>
+<ul class="simple">
+<li><p>comprendere il concetto di divervenza di Kullback-Leibler (KL);</p></li>
+<li><p>calcolare la divergenza KL dall’entropia;</p></li>
+<li><p>comprendere il concetto della Densità Logaritmica Predittiva Prevista (ELPD);</p></li>
+<li><p>mettere in relazione il concetto di entropia con la ELPD;</p></li>
+<li><p>calcolare la ELPD con PyMC.</p></li>
+</ul>
+</div>
+<p><strong>Distribuzioni di Probabilità e la Necessità di Approssimazioni</strong></p>
+<p>Immaginate di avere una ricetta complessa, con molti ingredienti e passaggi. Questa ricetta rappresenta una distribuzione di probabilità complessa, chiamata <span class="math notranslate nohighlight">\(p\)</span>. A volte, questa ricetta è troppo complicata per essere seguita esattamente. Quindi, usiamo una versione più semplice, una ricetta “approssimativa”, chiamata <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>In statistica e machine learning, spesso incontriamo situazioni simili. La distribuzione <span class="math notranslate nohighlight">\(p\)</span> potrebbe essere troppo complessa o sconosciuta, quindi usiamo <span class="math notranslate nohighlight">\(q\)</span> come una versione semplificata. Però, ci chiediamo: quanto è “buona” questa versione semplificata rispetto all’originale?</p>
+<p><strong>La Divergenza di Kullback-Leibler</strong></p>
+<p>Per valutare quanto bene la nostra ricetta approssimativa <span class="math notranslate nohighlight">\(q\)</span> si avvicina alla ricetta originale <span class="math notranslate nohighlight">\(p\)</span>, usiamo qualcosa chiamato <em>Divergenza di Kullback-Leibler</em> (<span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>). Questo è come confrontare il gusto dei piatti preparati con le due ricette diverse.</p>
+<p>Se la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> è zero, significa che le due ricette producono esattamente lo stesso piatto. Valori maggiori di zero indicano differenze maggiori tra i piatti. Quindi, un valore basso di <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> significa che la nostra ricetta approssimativa è molto vicina all’originale.</p>
+<p>Un altro strumento importante è l’<em>Expected Log Predictive Density</em> (elpd), che è come valutare quanto bene una ricetta si adatta ai gusti di diversi ospiti. L’elpd guarda quanto bene una ricetta (modello statistico) si adatta ai dati (gusti degli ospiti), bilanciando la semplicità della ricetta con la sua capacità di soddisfare tutti.</p>
+<p>Un modello che si adatta perfettamente ai dati ma è troppo complicato potrebbe non essere pratico, proprio come una ricetta troppo elaborata. Allo stesso modo, una ricetta troppo semplice potrebbe non soddisfare tutti i gusti. L’elpd ci aiuta a trovare il giusto equilibrio.</p>
+<p>In questo capitolo, ci concentreremo sulla Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> e l’elpd. Esploreremo come questi strumenti ci aiutano a valutare e confrontare modelli statistici, specialmente in contesti bayesiani. Comprendendo bene <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> e elpd, potrete scegliere e analizzare modelli statistici più efficacemente, adattandoli ai dati specifici che avete.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -590,40 +599,50 @@ document.write(`
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="perdita-di-informazione-e-divergenza-di-kullback-leibler">
-<h2>Perdita di Informazione e Divergenza di Kullback-Leibler<a class="headerlink" href="#perdita-di-informazione-e-divergenza-di-kullback-leibler" title="Permalink to this heading">#</a></h2>
-<p>La <em>Divergenza di Kullback-Leibler</em> (KL), conosciuta anche come entropia relativa, è uno strumento statistico fondamentale per quantificare la quantità di informazione che si “perde” quando una distribuzione di probabilità vera, indicata con <span class="math notranslate nohighlight">\( p \)</span>, viene sostituita da una distribuzione approssimata, <span class="math notranslate nohighlight">\( q \)</span>. Matematicamente, la Divergenza KL si definisce come l’aspettativa del logaritmo del rapporto tra le distribuzioni <span class="math notranslate nohighlight">\( p \)</span> e <span class="math notranslate nohighlight">\( q \)</span>, ponderata secondo la distribuzione vera <span class="math notranslate nohighlight">\( p \)</span>. La sua formula è la seguente:</p>
+<p><strong>Cos’è la Divergenza di Kullback-Leibler?</strong></p>
+<p>La Divergenza di Kullback-Leibler (<span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>), chiamata anche entropia relativa, è come un metro di misura che ci dice quanta informazione perdiamo quando sostituiamo una distribuzione di probabilità complessa o sconosciuta (chiamata <span class="math notranslate nohighlight">\(p\)</span>) con una più semplice (chiamata <span class="math notranslate nohighlight">\(q\)</span>).</p>
+<p><strong>Definizione Matematica della Divergenza KL</strong></p>
+<p>Matematicamente, la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> si definisce come la somma di tutte le differenze tra le probabilità logaritmiche di ogni evento in <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span>, moltiplicate per le probabilità di quegli eventi in <span class="math notranslate nohighlight">\(p\)</span>. Ecco la formula:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{KL} (p \mid\mid q) = \sum_i^n p_i (\log p_i - \log q_i),
+\mathbb{KL}(p \mid\mid q) = \sum_{i=1}^n p_i (\log p_i - \log q_i),
 \]</div>
-<p>dove l’indice <span class="math notranslate nohighlight">\(i\)</span> si estende a tutti gli elementi possibili nelle distribuzioni. Questa misura ci offre una valutazione della discrepanza media nelle probabilità logaritmiche quando <span class="math notranslate nohighlight">\( q \)</span> viene usata per approssimare <span class="math notranslate nohighlight">\( p \)</span>.</p>
-<p>La Divergenza di Kullback-Leibler può essere anche vista in termini di entropia, ossia come la differenza tra l’entropia incrociata, denotata con <span class="math notranslate nohighlight">\( h(p, q) \)</span>, e l’entropia della distribuzione vera, <span class="math notranslate nohighlight">\( h(p) \)</span>. Le formule per queste due misure di entropia sono:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-h(p) &amp; = -\sum_i^n p_i \log p_i, \\
-h(p, q) &amp; = -\sum_i^n p_i \log q_i.
-\end{align*}
-\end{split}\]</div>
-<p>In questo contesto, <span class="math notranslate nohighlight">\( h(p) \)</span> rappresenta l’incertezza intrinseca associata alla distribuzione vera <span class="math notranslate nohighlight">\( p \)</span>, mentre <span class="math notranslate nohighlight">\( h(p, q) \)</span> indica l’incertezza che deriva dall’utilizzo delle probabilità logaritmiche di <span class="math notranslate nohighlight">\( q \)</span>, calcolate però usando le probabilità di <span class="math notranslate nohighlight">\( p \)</span>.</p>
-<p>Di conseguenza, la formula della Divergenza KL può essere riformulata come:</p>
+<p>dove <span class="math notranslate nohighlight">\(i\)</span> rappresenta ciascun possibile evento nelle distribuzioni. Questa somma ci dà una valutazione della “distanza” media tra <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span> in termini di probabilità logaritmiche.</p>
+<p><strong>Divergenza KL e Entropia</strong></p>
+<p>Possiamo anche vedere la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> in termini di entropia, che è una misura di incertezza o imprevedibilità. Qui, confrontiamo due cose:</p>
+<ol class="arabic">
+<li><p><strong>Entropia Incrociata (<span class="math notranslate nohighlight">\(h(p, q)\)</span>)</strong>: Rappresenta quanto è “disordinata” o imprevedibile la distribuzione <span class="math notranslate nohighlight">\(q\)</span> quando la valutiamo con le probabilità di <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{KL} (p \mid\mid q) = h(p, q) - h(p).
+   h(p, q) = -\sum_{i=1}^n p_i \log q_i.
+   \]</div>
+</li>
+<li><p><strong>Entropia di <span class="math notranslate nohighlight">\(p\)</span> (<span class="math notranslate nohighlight">\(h(p)\)</span>)</strong>: Questa è l’incertezza intrinseca nella distribuzione vera <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+   h(p) = -\sum_{i=1}^n p_i \log p_i.
+   \]</div>
+</li>
+</ol>
+<p>Allora, la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> è la differenza tra queste due entropie:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{KL}(p \mid\mid q) = h(p, q) - h(p).
 \]</div>
-<p>In sintesi, la Divergenza KL ci permette di misurare la differenza di incertezza tra l’uso di <span class="math notranslate nohighlight">\( q \)</span> come approssimazione di <span class="math notranslate nohighlight">\( p \)</span> e l’incertezza originale di <span class="math notranslate nohighlight">\( p \)</span>. È un indicatore cruciale di quanto accuratamente <span class="math notranslate nohighlight">\( q \)</span> riesca a approssimare <span class="math notranslate nohighlight">\( p \)</span>, quantificando la perdita di informazione associata a questa approssimazione.</p>
+<p><strong>Significato Pratico della Divergenza KL</strong></p>
+<p>In pratica, la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> ci dice quanto siamo “fuori strada” usando <span class="math notranslate nohighlight">\(q\)</span> invece di <span class="math notranslate nohighlight">\(p\)</span>. Se la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> è bassa, significa che <span class="math notranslate nohighlight">\(q\)</span> è una buona approssimazione di <span class="math notranslate nohighlight">\(p\)</span> e perdiamo poca informazione nel processo. Se è alta, significa che stiamo perdendo molte informazioni importanti, e <span class="math notranslate nohighlight">\(q\)</span> potrebbe non essere una buona scelta per approssimare <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <section id="un-esempio-empirico">
-<h3>Un Esempio Empirico<a class="headerlink" href="#un-esempio-empirico" title="Permalink to this heading">#</a></h3>
-<p>Per comprendere meglio questi concetti, esaminiamo ora un esempio pratico in Python, dove definiremo due distribuzioni di probabilità discrete, <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<h2>Un Esempio Empirico<a class="headerlink" href="#un-esempio-empirico" title="Permalink to this heading">#</a></h2>
+<p>Per comprendere meglio questi concetti, esaminiamo ora un esempio numerico, dove definiremo due distribuzioni di probabilità discrete, <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -631,13 +650,13 @@ h(p, q) &amp; = -\sum_i^n p_i \log q_i.
 <p>Calcoliamo l’entropia di <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h_p</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h_p</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entropia di p: &quot;</span><span class="p">,</span> <span class="n">h_p</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entropia di p:  1.4854752972273344
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entropia di p:  1.0296530140645737
 </pre></div>
 </div>
 </div>
@@ -645,13 +664,13 @@ h(p, q) &amp; = -\sum_i^n p_i \log q_i.
 <p>Calcoliamo l’entropia incrociata tra <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h_pq</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h_pq</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entropia incrociata tra p e q: &quot;</span><span class="p">,</span> <span class="n">h_pq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entropia incrociata tra p e q:  1.5539580943104374
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entropia incrociata tra p e q:  1.372238457997479
 </pre></div>
 </div>
 </div>
@@ -665,7 +684,35 @@ h(p, q) &amp; = -\sum_i^n p_i \log q_i.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Divergenza KL da p a q:  0.06848279708310301
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Divergenza KL da p a q:  0.34258544393290524
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lo stesso risultato si ottiene applicando la formula della Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3425854439329054
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se invece <span class="math notranslate nohighlight">\(q\)</span> è molto simile a <span class="math notranslate nohighlight">\(p\)</span>, la differenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> è molto minore.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.007041377136023895
 </pre></div>
 </div>
 </div>
@@ -720,13 +767,13 @@ h(p, q) &amp; = -\sum_i^n p_i \log q_i.
 <p>La divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> di <span class="math notranslate nohighlight">\(q_1\)</span> da <span class="math notranslate nohighlight">\(p\)</span> è</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kl_pq1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">true_py</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">true_py</span> <span class="o">/</span> <span class="n">q1</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Divergenza KL da p a q1: &quot;</span><span class="p">,</span> <span class="n">kl_pq1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kl_pq1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">true_py</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">true_py</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Divergenza KL di q1 da p: &quot;</span><span class="p">,</span> <span class="n">kl_pq1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Divergenza KL da p a q1:  0.029251990333458974
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Divergenza KL di q1 da p:  0.02925199033345885
 </pre></div>
 </div>
 </div>
@@ -734,13 +781,13 @@ h(p, q) &amp; = -\sum_i^n p_i \log q_i.
 <p>La divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> di <span class="math notranslate nohighlight">\(q_2\)</span> da <span class="math notranslate nohighlight">\(p\)</span> è:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kl_pq2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">true_py</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">true_py</span> <span class="o">/</span> <span class="n">q2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Divergenza KL da p a q2: &quot;</span><span class="p">,</span> <span class="n">kl_pq2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kl_pq2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">true_py</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">true_py</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Divergenza KL di q2 da p: &quot;</span><span class="p">,</span> <span class="n">kl_pq2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Divergenza KL da p a q2:  0.4863577787141543
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Divergenza KL di q2 da p:  0.4863577787141543
 </pre></div>
 </div>
 </div>
@@ -748,10 +795,15 @@ h(p, q) &amp; = -\sum_i^n p_i \log q_i.
 <p>È chiaro che perdiamo una quantità maggiore di informazioni se, per descrivere la distribuzione binomiale <span class="math notranslate nohighlight">\(p\)</span>, usiamo la distribuzione uniforme <span class="math notranslate nohighlight">\(q_2\)</span> anziché <span class="math notranslate nohighlight">\(q_1\)</span>.</p>
 </section>
 <section id="la-divergenza-dipende-dalla-direzione">
-<h3>La Divergenza Dipende dalla Direzione<a class="headerlink" href="#la-divergenza-dipende-dalla-direzione" title="Permalink to this heading">#</a></h3>
+<h2>La Divergenza Dipende dalla Direzione<a class="headerlink" href="#la-divergenza-dipende-dalla-direzione" title="Permalink to this heading">#</a></h2>
 <p>La Divergenza <span class="math notranslate nohighlight">\( \mathbb{KL} \)</span> può essere vista come una misura di “distanza” tra due distribuzioni di probabilità, ma è importante sottolineare che non è una vera e propria distanza in senso matematico poiché non è simmetrica. Questa asimmetria riflette il fatto che sostituire <span class="math notranslate nohighlight">\(p\)</span> con <span class="math notranslate nohighlight">\(q\)</span> non è equivalente a sostituire <span class="math notranslate nohighlight">\(q\)</span> con <span class="math notranslate nohighlight">\(p\)</span> in termini di perdita di informazione.</p>
-<p>La relazione tra la Divergenza <span class="math notranslate nohighlight">\( \mathbb{KL} \)</span>, l’entropia <span class="math notranslate nohighlight">\(h(p)\)</span> e l’entropia incrociata <span class="math notranslate nohighlight">\(h(p, q)\)</span> è cruciale per comprendere come la <span class="math notranslate nohighlight">\( \mathbb{KL} \)</span> quantifichi la perdita di informazione. L’entropia di <span class="math notranslate nohighlight">\(p\)</span> rappresenta l’incertezza intrinseca nella distribuzione vera, mentre l’entropia incrociata tra <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span> rappresenta l’incertezza quando si utilizza la distribuzione approssimata <span class="math notranslate nohighlight">\(q\)</span> per rappresentare <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>La relazione tra la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>, l’entropia <span class="math notranslate nohighlight">\(h(p)\)</span> e l’entropia incrociata <span class="math notranslate nohighlight">\(h(p, q)\)</span> è cruciale per comprendere come la <span class="math notranslate nohighlight">\( \mathbb{KL} \)</span> quantifichi la perdita di informazione. L’entropia di <span class="math notranslate nohighlight">\(p\)</span> rappresenta l’incertezza intrinseca nella distribuzione vera, mentre l’entropia incrociata tra <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span> rappresenta l’incertezza quando si utilizza la distribuzione approssimata <span class="math notranslate nohighlight">\(q\)</span> per rappresentare <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p>Illustriamo numericamente questi concetti per due distribuzioni <span class="math notranslate nohighlight">\(p = \{0.01, 0.99\}\)</span> e <span class="math notranslate nohighlight">\(q = \{0.7, 0.3\}\)</span>.</p>
+</section>
+<section id="id1">
+<h2>La Divergenza Dipende dalla Direzione<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>La Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> è spesso paragonata a una “distanza” tra due distribuzioni di probabilità, ma è fondamentale capire che non è simmetrica. Questo significa che la misura di quanto <span class="math notranslate nohighlight">\(p\)</span> è diversa da <span class="math notranslate nohighlight">\(q\)</span> non è la stessa di quanto <span class="math notranslate nohighlight">\(q\)</span> è diversa da <span class="math notranslate nohighlight">\(p\)</span>. Questa asimmetria riflette la differenza nella perdita di informazione quando si sostituisce una distribuzione con l’altra.</p>
+<p>Per comprendere meglio la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>, è utile considerare l’entropia e l’entropia incrociata. Facciamo un esempio numerico.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definire le distribuzioni p e q</span>
@@ -798,73 +850,78 @@ Divergenza KL da q a p: 2.6157699288928207
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p><strong>Entropia di <span class="math notranslate nohighlight">\(p\)</span> (<span class="math notranslate nohighlight">\(h(p)\)</span>)</strong>: Misura l’incertezza o la variabilità all’interno della distribuzione vera <span class="math notranslate nohighlight">\(p\)</span>. Nel nostro esempio, l’entropia di <span class="math notranslate nohighlight">\(p\)</span> è 0.056.</p></li>
+<li><p><strong>Entropia Incrociata da <span class="math notranslate nohighlight">\(p\)</span> a <span class="math notranslate nohighlight">\(q\)</span> (<span class="math notranslate nohighlight">\(h(p, q)\)</span>)</strong>: Misura l’incertezza quando si usa <span class="math notranslate nohighlight">\(q\)</span> per rappresentare <span class="math notranslate nohighlight">\(p\)</span>. Nel nostro esempio, è 1.195.</p></li>
+</ul>
+<p>La Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> da <span class="math notranslate nohighlight">\(p\)</span> a <span class="math notranslate nohighlight">\(q\)</span> si calcola come la differenza tra l’entropia incrociata e l’entropia di <span class="math notranslate nohighlight">\(p\)</span>, che nel nostro caso è 1.139. Questo valore indica la perdita di informazione quando si utilizza <span class="math notranslate nohighlight">\(q\)</span> per approssimare <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>Quando invertiamo le distribuzioni e calcoliamo la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> da <span class="math notranslate nohighlight">\(q\)</span> a <span class="math notranslate nohighlight">\(p\)</span>, otteniamo un risultato diverso. L’entropia di <span class="math notranslate nohighlight">\(q\)</span> è 0.611 e l’entropia incrociata da <span class="math notranslate nohighlight">\(q\)</span> a <span class="math notranslate nohighlight">\(p\)</span> è 3.227. La Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> risultante da <span class="math notranslate nohighlight">\(q\)</span> a <span class="math notranslate nohighlight">\(p\)</span> è 2.616, molto più grande rispetto a quella da <span class="math notranslate nohighlight">\(p\)</span> a <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>Questi risultati dimostrano chiaramente che la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> è asimmetrica. La quantità di informazione che si perde nel sostituire <span class="math notranslate nohighlight">\(p\)</span> con <span class="math notranslate nohighlight">\(q\)</span> non è la stessa che si perde sostituendo <span class="math notranslate nohighlight">\(q\)</span> con <span class="math notranslate nohighlight">\(p\)</span>. Questa asimmetria è una caratteristica cruciale della Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> e sottolinea l’importanza di considerare attentamente quale distribuzione si sta utilizzando come approssimazione dell’altra.</p>
 </section>
-</section>
-<section id="confronto-tra-modelli-tramite-la-divergenza-mathbb-kl">
-<h2>Confronto tra Modelli Tramite la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span><a class="headerlink" href="#confronto-tra-modelli-tramite-la-divergenza-mathbb-kl" title="Permalink to this heading">#</a></h2>
-<p>La divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> è uno strumento utilizzato per confrontare diversi modelli probabilistici. Essa quantifica la discrepanza tra la distribuzione di probabilità generata da un modello ipotetico <span class="math notranslate nohighlight">\(p_{\mathcal{M}}\)</span> e quella del modello che effettivamente ha generato i dati, <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
-<section id="distribuzione-predittiva-a-posteriori">
-<h3>Distribuzione Predittiva a Posteriori<a class="headerlink" href="#distribuzione-predittiva-a-posteriori" title="Permalink to this heading">#</a></h3>
-<p>Abbiamo precedentemente introdotto il concetto di distribuzione predittiva a posteriori, formulata come segue:</p>
+<section id="confronto-di-modelli-utilizzando-la-divergenza-di-kullback-leibler">
+<h2>Confronto di Modelli Utilizzando la Divergenza di Kullback-Leibler<a class="headerlink" href="#confronto-di-modelli-utilizzando-la-divergenza-di-kullback-leibler" title="Permalink to this heading">#</a></h2>
+<p>La Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> è uno strumento essenziale per confrontare diversi modelli statistici. Questo metodo misura la differenza tra la distribuzione di probabilità teorizzata da un modello, che chiamiamo <span class="math notranslate nohighlight">\(p_{\mathcal{M}}\)</span>, e la distribuzione di probabilità che ha effettivamente generato i dati, denominata <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
+<section id="distribuzione-predittiva-posteriori">
+<h3>Distribuzione Predittiva Posteriori<a class="headerlink" href="#distribuzione-predittiva-posteriori" title="Permalink to this heading">#</a></h3>
+<p>Abbiamo introdotto il concetto di distribuzione predittiva posteriori, definita come:</p>
 <div class="math notranslate nohighlight">
 \[
 p(\tilde{y} \mid y) = \int_\Theta p(\tilde{y} \mid \theta) p(\theta \mid y) \, \mathrm{d}\theta .
 \]</div>
-<p>Questa distribuzione riflette il tipo di dati che ci aspettiamo siano generati dal modello <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, considerando sia le nostre credenze a priori <span class="math notranslate nohighlight">\(p(\theta)\)</span> sia i dati effettivamente osservati <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p>Questa formula rappresenta la previsione del tipo di dati che il modello <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> potrebbe generare. Questa previsione è basata sulle nostre conoscenze precedenti, espresse come <span class="math notranslate nohighlight">\(p(\theta)\)</span>, e sui dati osservati, <span class="math notranslate nohighlight">\(y\)</span>.</p>
 </section>
-<section id="valutazione-della-somiglianza-tra-distribuzioni">
-<h3>Valutazione della Somiglianza tra Distribuzioni<a class="headerlink" href="#valutazione-della-somiglianza-tra-distribuzioni" title="Permalink to this heading">#</a></h3>
-<p>L’obiettivo è di valutare quanto bene la distribuzione <span class="math notranslate nohighlight">\(q_{\mathcal{M}} = p(\tilde{y} \mid y)\)</span> approssimi la distribuzione del modello generatore reale <span class="math notranslate nohighlight">\(p_t(\tilde{y})\)</span>. In altre parole, vogliamo quantificare quanto siano “simili” i dati generati dal modello ipotetico <span class="math notranslate nohighlight">\(q_{\mathcal{M}}\)</span> rispetto a quelli generati dal modello reale <span class="math notranslate nohighlight">\(p_t\)</span>. La misura di questa somiglianza è fornita dalla divergenza di Kullback-Leibler:</p>
+<section id="misurare-la-somiglianza-tra-distribuzioni">
+<h3>Misurare la Somiglianza tra Distribuzioni<a class="headerlink" href="#misurare-la-somiglianza-tra-distribuzioni" title="Permalink to this heading">#</a></h3>
+<p>L’obiettivo è valutare quanto la distribuzione <span class="math notranslate nohighlight">\(q_{\mathcal{M}} = p(\tilde{y} \mid y)\)</span> si avvicini alla distribuzione del modello generatore reale <span class="math notranslate nohighlight">\(p_t(\tilde{y})\)</span>. In altre parole, cerchiamo di quantificare la similitudine tra i dati prodotti dal modello teorico <span class="math notranslate nohighlight">\(q_{\mathcal{M}}\)</span> e quelli generati dal modello reale <span class="math notranslate nohighlight">\(p_t\)</span>. Questo viene fatto attraverso la Divergenza di Kullback-Leibler:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbb{KL}(p_t \mid\mid q_{\mathcal{M}}).
 \]</div>
 </section>
-<section id="confronto-tra-modelli-multipli">
-<h3>Confronto tra Modelli Multipli<a class="headerlink" href="#confronto-tra-modelli-multipli" title="Permalink to this heading">#</a></h3>
-<p>Immaginiamo di avere <span class="math notranslate nohighlight">\(k\)</span> modelli distinti <span class="math notranslate nohighlight">\( \{q_{\mathcal{M}_1}, q_{\mathcal{M}_2}, \ldots, q_{\mathcal{M}_k}\} \)</span>. Se conoscessimo <span class="math notranslate nohighlight">\(p_t\)</span>, potremmo calcolare la divergenza di Kullback-Leibler per ogni modello come segue:</p>
+<section id="confrontare-piu-modelli">
+<h3>Confrontare Più Modelli<a class="headerlink" href="#confrontare-piu-modelli" title="Permalink to this heading">#</a></h3>
+<p>Supponiamo di avere una serie di <span class="math notranslate nohighlight">\(k\)</span> modelli distinti <span class="math notranslate nohighlight">\(\{q_{\mathcal{M}_1}, q_{\mathcal{M}_2}, \ldots, q_{\mathcal{M}_k}\}\)</span>. Se conoscessimo <span class="math notranslate nohighlight">\(p_t\)</span>, potremmo calcolare la Divergenza KL per ogni modello in questo modo:</p>
 <div class="math notranslate nohighlight" id="equation-eq-kl-mod-comp">
 <span class="eqno">(65)<a class="headerlink" href="#equation-eq-kl-mod-comp" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
-\mathbb{KL} (p_t \mid\mid q_{\mathcal{M}_1}) &amp;= \mathbb{E} (\log p_{t}) - \mathbb{E} (\log q_{\mathcal{M}_1}) \\
-\mathbb{KL} (p_t \mid\mid q_{\mathcal{M}_2}) &amp;= \mathbb{E} (\log p_{t}) - \mathbb{E} (\log q_{\mathcal{M}_2}) \\
+\mathbb{KL} (p_t \mid\mid q_{\mathcal{M}_1}) &amp;= \mathbb{E} (\log p_t) - \mathbb{E} (\log q_{\mathcal{M}_1}), \\
+\mathbb{KL} (p_t \mid\mid q_{\mathcal{M}_2}) &amp;= \mathbb{E} (\log p_t) - \mathbb{E} (\log q_{\mathcal{M}_2}), \\
 &amp;\vdots \\
-\mathbb{KL} (p_t \mid\mid q_{\mathcal{M}_k}) &amp;= \mathbb{E} (\log p_{t}) - \mathbb{E} (\log q_{\mathcal{M}_k}) .
+\mathbb{KL} (p_t \mid\mid q_{\mathcal{M}_k}) &amp;= \mathbb{E} (\log p_t) - \mathbb{E} (\log q_{\mathcal{M}_k}).
 \end{align*}
 \end{split}\]</div>
-<p>Anche se nella pratica <span class="math notranslate nohighlight">\(p_t\)</span> è sconosciuta, notiamo che essa è costante in tutti i termini della divergenza. Di conseguenza, possiamo confrontare i modelli focalizzandoci sul secondo termine della divergenza di Kullback-Leibler, che è indipendente da <span class="math notranslate nohighlight">\(p_t\)</span>. Per un modello generico <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, questo termine può essere espresso come:</p>
+<p>In pratica, però, <span class="math notranslate nohighlight">\(p_t\)</span> è sconosciuta. Fortunatamente, <span class="math notranslate nohighlight">\(p_t\)</span> rimane costante in tutte le equazioni, permettendoci di confrontare i modelli focalizzandoci sul secondo termine della Divergenza KL, che è indipendente da <span class="math notranslate nohighlight">\(p_t\)</span>. Per un modello generico <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, questo termine è:</p>
 <div class="math notranslate nohighlight" id="equation-eq-kl-div-cont-t2">
 <span class="eqno">(66)<a class="headerlink" href="#equation-eq-kl-div-cont-t2" title="Permalink to this equation">#</a></span>\[
-\mathbb{E} \log p_{\mathcal{M}}(y) = \int_{-\infty}^{+\infty} p_{t}(y) \log p_{\mathcal{M}}(y) \, \mathrm{d}y .
+\mathbb{E} \log p_{\mathcal{M}}(y) = \int_{-\infty}^{+\infty} p_t(y) \log p_{\mathcal{M}}(y) \, \mathrm{d}y .
 \]</div>
-<p>In questo modo, siamo in grado di costruire un criterio di confronto tra modelli che non richiede la conoscenza del modello generatore reale dei dati.</p>
-<p>In conclusione, l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a> esprime la densità logaritmica media della distribuzione <span class="math notranslate nohighlight">\(p_{\mathcal{M}}(y)\)</span> secondo la distribuzione vera <span class="math notranslate nohighlight">\(p_t(y)\)</span>. In altre parole, questa equazione ci dice quanto bene il modello <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> può rappresentare i dati veri generati da <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
+<p>In questo modo, possiamo costruire un metodo per confrontare i modelli senza dover conoscere il modello generatore effettivo dei dati.</p>
+<p>In conclusione, l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a> calcola la densità logaritmica media della distribuzione <span class="math notranslate nohighlight">\(p_{\mathcal{M}}(y)\)</span> basata sulla distribuzione reale <span class="math notranslate nohighlight">\(p_t(y)\)</span>. Ciò indica quanto accuratamente il modello <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> rappresenta i dati reali generati da <span class="math notranslate nohighlight">\(p_t\)</span>.</p>
 </section>
 </section>
-<section id="expected-log-predictive-density">
-<h2>Expected Log Predictive Density<a class="headerlink" href="#expected-log-predictive-density" title="Permalink to this heading">#</a></h2>
-<p>Dopo aver discusso l’equazione <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a>, possiamo riformularla come segue:</p>
+<section id="la-densita-logaritmica-predittiva-attesa">
+<h2>La Densità Logaritmica Predittiva Attesa<a class="headerlink" href="#la-densita-logaritmica-predittiva-attesa" title="Permalink to this heading">#</a></h2>
+<p>La <em>Densità Logaritmica Predittiva Attesa</em> (<em>Expected Log Predictive Density</em>, ELPD) è una misura fondamentale per valutare la capacità di un modello di fare previsioni accurate. L’ELPD si concentra sulle previsioni future piuttosto che sull’adattamento ai dati già osservati. Riformuliamo l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a> per esprimere l’ELPD:</p>
 <div class="math notranslate nohighlight" id="equation-eq-elpd">
 <span class="eqno">(67)<a class="headerlink" href="#equation-eq-elpd" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\tilde{y} .
 \end{equation}
 \]</div>
-<p>L’equazione <a class="reference internal" href="#equation-eq-elpd">(67)</a> è conosciuta come <em>Expected Log Predictive Density</em> (elpd). L’ELPD è una metrica chiave per valutare la capacità di un modello di generare previsioni accurate. È particolarmente utile in contesti dove l’obiettivo è la predizione di nuovi dati, piuttosto che semplicemente l’adattamento ai dati osservati.</p>
-<p>Esaminiamo con attenzione le differenze tra la ELPD e l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a>.</p>
+<p>Questa equazione ci aiuta a capire tre aspetti fondamentali:</p>
 <ol class="arabic simple">
-<li><p><strong>Variabile di Interesse</strong>: Nell’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a>, <span class="math notranslate nohighlight">\(y\)</span> rappresenta i dati osservati. Nell’eq. <a class="reference internal" href="#equation-eq-elpd">(67)</a>, invece, <span class="math notranslate nohighlight">\(\tilde{y}\)</span> rappresenta potenziali nuovi dati che potrebbero essere osservati in futuro.</p></li>
-<li><p><strong>Modello di Probabilità</strong>: Nell’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a>, <span class="math notranslate nohighlight">\(p_{\mathcal{M}}(y) \)</span> rappresenta il modello probabilitico basato sui dati osservati. Nell’eq. <a class="reference internal" href="#equation-eq-elpd">(67)</a>, invece, <span class="math notranslate nohighlight">\(p(\tilde{y} \mid y)\)</span> è la distribuzione predittiva a posteriori, che rappresenta le previsioni del modello per nuovi dati, date le osservazioni precedenti <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
-<li><p><strong>Ruolo di <span class="math notranslate nohighlight">\(p_t\)</span></strong>: In entrambe le formule, <span class="math notranslate nohighlight">\(p_t\)</span> rappresenta la “vera” distribuzione dei dati. Nella prima formula, essa valuta quanto accuratamente il modello rappresenta i dati effettivamente osservati, mentre nella seconda pesa la qualità delle previsioni del modello per nuovi dati.</p></li>
+<li><p><strong>Focalizzazione sui Dati Futuri</strong>: L’ELPD utilizza <span class="math notranslate nohighlight">\(\tilde{y}\)</span> per rappresentare i dati futuri, potenzialmente osservabili. Questo è diverso dall’equazione precedente, dove <span class="math notranslate nohighlight">\(y\)</span> rappresentava i dati già osservati.</p></li>
+<li><p><strong>Uso della Distribuzione Predittiva Posteriori</strong>: Qui, <span class="math notranslate nohighlight">\(p(\tilde{y} \mid y)\)</span> è la distribuzione predittiva posteriori, che stima le previsioni future del modello basandosi sulle osservazioni passate <span class="math notranslate nohighlight">\(y\)</span>. Questo si differenzia dall’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a>, che considerava il modello probabilistico basato sui dati osservati.</p></li>
+<li><p><strong>Rilevanza di <span class="math notranslate nohighlight">\(p_t\)</span></strong>: In entrambe le equazioni, <span class="math notranslate nohighlight">\(p_t\)</span> è la distribuzione “vera” dei dati. Nell’equazione della divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>, <span class="math notranslate nohighlight">\(p_t\)</span> serve a valutare l’adattamento del modello ai dati osservati; nell’ELPD, invece, pesa la qualità delle previsioni future del modello.</p></li>
 </ol>
-<p>Quindi, mentre l’eq. <a class="reference internal" href="#equation-eq-kl-div-cont-t2">(66)</a> fornisce una misura di quanto bene il modello si adatta ai dati esistenti, l’eq. <a class="reference internal" href="#equation-eq-elpd">(67)</a> valuta la qualità delle previsioni del modello per dati futuri. Entrambe le formule sono collegate al concetto di divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>, ma sono applicate in contesti diversi: la prima per la valutazione dell’adattamento del modello ai dati osservati, la seconda per la sua capacità predittiva.</p>
-<section id="approssimazione-e-stima">
-<h3>Approssimazione e Stima<a class="headerlink" href="#approssimazione-e-stima" title="Permalink to this heading">#</a></h3>
-<p>La stima dell’Expected Log Predictive Density (ELPD) si confronta con una sfida fondamentale: la distribuzione di probabilità “vera” dei dati, indicata come <span class="math notranslate nohighlight">\(p_t\)</span>, è generalmente sconosciuta. Questa incognita rende impossibile calcolare l’ELPD in modo esatto. Tuttavia, possiamo avvicinarci a una stima affidabile di questa metrica attraverso l’impiego di specifiche tecniche e metodi.</p>
-<p>Nonostante la mancanza di una formulazione analitica precisa per la distribuzione predittiva a posteriori <span class="math notranslate nohighlight">\(p(\tilde{y} \mid y)\)</span>, è possibile approssimarla efficacemente tramite metodi di simulazione. Tuttavia, è importante notare che l’eq. <a class="reference internal" href="#equation-eq-elpd">(67)</a> include il termine <span class="math notranslate nohighlight">\(p_t(\tilde{y})\)</span>, che rappresenta la distribuzione dei potenziali dati futuri secondo il “vero” modello generatore. Poiché <span class="math notranslate nohighlight">\(p_t\)</span> è in pratica ignoto, l’elpd non può essere calcolata esattamente ma può solo essere stimata. Il prossimo punto di discussione in questo capitolo riguarderà le strategie per stimare efficacemente l’ELPD utilizzando un campione di osservazioni.</p>
+<p>In conclusione, mentre la formula della divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span> misura l’adattamento del modello ai dati attuali, l’ELPD valuta quanto bene il modello può prevedere nuovi dati. Entrambe si collegano al concetto di divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span>, ma in contesti diversi: la prima per l’adattamento ai dati, la seconda per la capacità predittiva.</p>
+<section id="sfide-nella-stima-dell-elpd">
+<h3>Sfide nella Stima dell’ELPD<a class="headerlink" href="#sfide-nella-stima-dell-elpd" title="Permalink to this heading">#</a></h3>
+<p>Una sfida principale nella stima dell’ELPD è che la vera distribuzione di probabilità dei dati, <span class="math notranslate nohighlight">\(p_t\)</span>, è in genere sconosciuta. Questo rende impossibile calcolare l’ELPD esattamente. Tuttavia, possiamo avvicinarci a una stima affidabile utilizzando tecniche specifiche.</p>
+<p>Anche se non possiamo formulare analiticamente in modo preciso la distribuzione predittiva posteriori <span class="math notranslate nohighlight">\(p(\tilde{y} \mid y)\)</span>, possiamo approssimarla con metodi di simulazione. Tuttavia, l’ELPD include il termine <span class="math notranslate nohighlight">\(p_t(\tilde{y})\)</span>, rappresentante la distribuzione dei futuri dati potenziali secondo il modello “vero”. Poiché questa distribuzione è tipicamente ignota, l’ELPD può essere solo stimata, non calcolata direttamente. Il prossimo argomento di discussione sarà come stimare efficacemente l’ELPD basandoci su un campione di osservazioni.</p>
 </section>
-<section id="id1">
-<h3>Un Esempio Empirico<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="id2">
+<h3>Un Esempio Empirico<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>Per comprenderne meglio il funzionamento dell’ELPD, esaminiamo un esempio tratto dal testo <a class="reference external" href="https://vasishth.github.io/bayescogsci/book/expected-log-predictive-density-of-a-model.html">Bayesian Data Analysis for Cognitive Science</a>, in cui questa quantità viene calcolata sia in forma esatta che approssimata.</p>
 <p>Supponiamo di avere un campione di <span class="math notranslate nohighlight">\(n\)</span> osservazioni e di conoscere il vero processo generativo dei dati, rappresentato dalla distribuzione <span class="math notranslate nohighlight">\(p_t(y) = Beta(1, 3).\)</span> Da questo campione, generato in modo artificiale, ad esempio tramite</p>
 <div class="cell docutils container">
@@ -948,22 +1005,40 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </section>
 <section id="un-secondo-esempio-empirico">
 <h3>Un Secondo Esempio Empirico<a class="headerlink" href="#un-secondo-esempio-empirico" title="Permalink to this heading">#</a></h3>
-<p>Generiamo un set di dati artificiali seguendo una distribuzione normale:</p>
+<p>Generiamo un set di dati artificiali seguendo una distribuzione normale con una media (<code class="docutils literal notranslate"><span class="pre">loc</span></code>) di 5 e una deviazione standard (<code class="docutils literal notranslate"><span class="pre">scale</span></code>) di 2. Scegliamo una dimensione (<code class="docutils literal notranslate"><span class="pre">size</span></code>) del campione di 100.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SEED</span> <span class="o">=</span> <span class="mi">42</span>  <span class="c1"># Scegli un valore per il seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.64467434, 7.4467137 , 3.07761966, 7.50059139, 4.2730767 ,
-       4.78830081, 7.12094138, 4.13637857, 6.53285326, 3.34258292])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 5.99342831  4.7234714   6.29537708  8.04605971  4.53169325  4.53172609
+  8.15842563  6.53486946  4.06105123  6.08512009  4.07316461  4.06854049
+  5.48392454  1.17343951  1.55016433  3.87542494  2.97433776  5.62849467
+  3.18395185  2.1753926   7.93129754  4.5484474   5.13505641  2.15050363
+  3.91123455  5.22184518  2.69801285  5.75139604  3.79872262  4.4166125
+  3.79658678  8.70455637  4.97300555  2.88457814  6.64508982  2.5583127
+  5.41772719  1.08065975  2.3436279   5.39372247  6.47693316  5.34273656
+  4.76870344  4.39779261  2.04295602  3.56031158  4.07872246  7.11424445
+  5.68723658  1.47391969  5.64816794  4.22983544  3.646156    6.22335258
+  7.06199904  6.86256024  3.32156495  4.38157525  5.66252686  6.95109025
+  4.04165152  4.62868205  2.78733005  2.60758675  6.62505164  7.71248006
+  4.85597976  7.0070658   5.72327205  3.70976049  5.72279121  8.07607313
+  4.92834792  8.12928731 -0.23949021  6.64380501  5.17409414  4.4019853
+  5.18352155  1.02486217  4.56065622  5.71422514  7.95578809  3.96345956
+  3.38301279  3.99648591  6.83080424  5.65750222  3.94047959  6.02653487
+  5.1941551   6.93728998  3.59589381  4.34467571  4.21578369  2.0729701
+  5.59224055  5.52211054  5.01022691  4.53082573]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Adattiamo un modello normale con media e varianza sconosciute ai dati e generiamo la distribuzione predittiva a posteriori:</p>
+<p>Utilizziamo PyMC per adattare un modello normale ai dati. Stimiamo la media (<code class="docutils literal notranslate"><span class="pre">mu</span></code>) e la deviazione standard (<code class="docutils literal notranslate"><span class="pre">sigma</span></code>) del modello attraverso il campionamento.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
@@ -988,31 +1063,22 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.032192
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.261976
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1021,7 +1087,7 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1030,7 +1096,7 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1039,7 +1105,7 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1048,7 +1114,7 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1057,7 +1123,19 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1066,43 +1144,40 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1636.71it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1638.20it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1464.26it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1639.85it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1465.42it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1642.14it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1466.81it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1468.20it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.757659
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.553419
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.055507
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.059396
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling: [y]
@@ -1134,7 +1209,7 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 <section id="una-singola-osservazione">
 <h4>Una Singola Osservazione<a class="headerlink" href="#una-singola-osservazione" title="Permalink to this heading">#</a></h4>
-<p>Estraiamo la distribuzione predittiva a posteriori per la variabile <code class="docutils literal notranslate"><span class="pre">y</span></code> e rappresentiamo graficamente questa distribuzione per la prima osservazione del campione:</p>
+<p>Generiamo la distribuzione predittiva a posteriori per la variabile <code class="docutils literal notranslate"><span class="pre">y</span></code> e visualizziamo questa distribuzione per la prima osservazione (<code class="docutils literal notranslate"><span class="pre">y_i</span></code>) del campione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post_pred</span> <span class="o">=</span> <span class="n">ppc</span><span class="o">.</span><span class="n">posterior_predictive</span>
@@ -1151,10 +1226,10 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2a46561b23a329570a19e466fac319e1643330be2a6965a6ff9417589c97601a.png" src="../_images/2a46561b23a329570a19e466fac319e1643330be2a6965a6ff9417589c97601a.png" />
+<img alt="../_images/f9360f5afdf09ab304cc64ec5029900acd0fdbac307d90047a10d056d0c516c8.png" src="../_images/f9360f5afdf09ab304cc64ec5029900acd0fdbac307d90047a10d056d0c516c8.png" />
 </div>
 </div>
-<p>Per calcolare il logaritmo della densità predittiva per la prima osservazione, valutiamo la PDF per questa osservazione utilizzando ogni coppia di parametri <span class="math notranslate nohighlight">\(\mu\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span> dalla distribuzione posteriore.</p>
+<p>Per la prima osservazione, calcoliamo il valore della funzione di densità di probabilità (PDF) utilizzando ogni coppia di parametri <code class="docutils literal notranslate"><span class="pre">mu</span></code> e <code class="docutils literal notranslate"><span class="pre">sigma</span></code> dalla distribuzione posteriore. Convertiamo poi questi valori della PDF in logaritmi e calcoliamo la media di questi logaritmi. Questo fornisce una stima empirica della ELPD per la prima osservazione.</p>
 <p>Selezione della prima osservazione:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1164,7 +1239,7 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.644674340592355
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.993428306022466
 </pre></div>
 </div>
 </div>
@@ -1178,8 +1253,8 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.19830164, 5.24275865, 5.15480685, 4.95263206, 5.11349401,
-       4.76912106, 4.79233227, 4.87566573, 4.69998245, 4.9544055 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.77321145, 5.22839673, 5.03811446, 4.87284405, 4.74023865,
+       4.63888214, 4.39736459, 5.12644519, 4.94374397, 5.07238779])
 </pre></div>
 </div>
 </div>
@@ -1192,8 +1267,8 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.17072681, 2.18317519, 2.1315437 , 2.03292531, 1.99572155,
-       2.07992623, 2.09496957, 2.41966965, 1.98206425, 2.1169505 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.64244649, 1.85571417, 1.97032087, 1.82498678, 2.15662621,
+       1.63512571, 1.72016594, 1.89081096, 1.94516264, 2.00355102])
 </pre></div>
 </div>
 </div>
@@ -1210,11 +1285,11 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.14225609017175758,
- 0.1397876375045475,
- 0.1456208268370461,
- 0.15955162440187234,
- 0.15247103739636142]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.18431754125401914,
+ 0.19746653237262696,
+ 0.18002210477772218,
+ 0.18104248817015536,
+ 0.1562473049881412]
 </pre></div>
 </div>
 </div>
@@ -1228,7 +1303,7 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.95012639, -1.96763088, -1.92674911, -1.83538775, -1.88078062])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.69109524, -1.62218617, -1.71467563, -1.70902353, -1.85631524])
 </pre></div>
 </div>
 </div>
@@ -1242,16 +1317,16 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8483750430014547
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.7482695815087654
 </pre></div>
 </div>
 </div>
 </div>
 <p>Questo calcolo ci fornisce una stima empirica della media della densità logaritmica predittiva (ELPD) per la prima osservazione del campione.</p>
 </section>
-<section id="tutte-le-osservazioni-del-campione">
-<h4>Tutte le Osservazioni del Campione<a class="headerlink" href="#tutte-le-osservazioni-del-campione" title="Permalink to this heading">#</a></h4>
-<p>Per calcolare la media della densità logaritmica predittiva (ELPD) per tutte le osservazioni nel  campione, è necessario seguire un processo simile a quello usato per una singola osservazione, ma esteso a tutte le osservazioni nel set di dati. Il processo consiste nel calcolare la densità logaritmica predittiva per ciascuna osservazione, come visto in precedenza, e poi fare la media su tutte queste densità.</p>
+<section id="estensione-a-tutte-le-osservazioni">
+<h4>Estensione a Tutte le Osservazioni<a class="headerlink" href="#estensione-a-tutte-le-osservazioni" title="Permalink to this heading">#</a></h4>
+<p>Ripetiamo il processo per ogni osservazione nel set di dati. Calcoliamo la densità logaritmica predittiva per ogni osservazione utilizzando lo stesso metodo usato per la prima osservazione. Infine, calcoliamo la media di tutte queste densità logaritmiche predittive. Questo valore rappresenta la stima della ELPD per l’intero set di dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcolo della densità logaritmica predittiva per ogni osservazione</span>
@@ -1276,571 +1351,12 @@ elpd = \int_{\tilde{y}} p_{t}(\tilde{y}) \log p(\tilde{y} \mid y) \, \mathrm{d}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.1184822919005852
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.021046525453409
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-</section>
-</section>
-<section id="leave-one-out-cross-validation-loo-cv">
-<h2>Leave One Out Cross-Validation (LOO-CV)<a class="headerlink" href="#leave-one-out-cross-validation-loo-cv" title="Permalink to this heading">#</a></h2>
-<p>In termini pratici, per la stima dell’Expected Log Predictive Density (ELPD), l’approccio più comune non si basa sulla media della densità logaritmica predittiva calcolata direttamente. Piuttosto, si preferisce utilizzare un metodo di validazione incrociata più robusto, noto come Leave One Out Cross-Validation (LOO-CV). Questa procedura si articola in diverse fasi:</p>
-<ol class="arabic simple">
-<li><p>Rimozione di un’osservazione dal set di dati.</p></li>
-<li><p>Adattamento del modello ai dati restanti.</p></li>
-<li><p>Valutazione della predizione per l’osservazione esclusa.</p></li>
-<li><p>Ripetizione del processo per ciascuna osservazione nel dataset, calcolando la media dei valori logaritmici predittivi per arrivare alla stima LOO-CV dell’ELPD.</p></li>
-</ol>
-<p>Sia la media della LPD che la LOO-CV si focalizzano sulla valutazione della capacità predittiva di un modello, ma differiscono nel loro approccio:</p>
-<ul class="simple">
-<li><p><strong>Media della LPD</strong>: Questa misura valuta la capacità predittiva del modello sull’intero dataset, basandosi sulla probabilità complessiva dei dati osservati secondo il modello.</p></li>
-<li><p><strong>LOO-CV</strong>: Invece, la LOO-CV offre una valutazione più robusta e generalizzabile della capacità predittiva, eliminando una osservazione per volta dal dataset. Questo metodo è particolarmente vantaggioso per valutare la capacità di generalizzazione del modello oltre i dati su cui è stato addestrato, fornendo una stima più realistica della sua efficacia nel predire nuovi dati.</p></li>
-</ul>
-<p>Esaminiamo il calcolo di LOO-CV per i dati dell’esempio precedente. Iniziamo a calcolare la log-verosimiglianza.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">pm</span><span class="o">.</span><span class="n">compute_log_likelihood</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-<style>
-    /* Turns off some styling */
-    progress {
-        /* gets rid of default border in Firefox and Opera. */
-        border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
-        background-size: auto;
-    }
-    progress:not([value]), progress:not([value])::-webkit-progress-bar {
-        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
-    }
-    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-        background: #F44336;
-    }
-</style>
-</div><div class="output text_html">
-    <div>
-      <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      100.00% [4000/4000 00:00&lt;00:00]
-    </div>
-    </div></div>
-</div>
-<p>Ora usiamo la funzione <code class="docutils literal notranslate"><span class="pre">loo()</span></code> del pacchetto Arviz per calcolare LOO-CV:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loo_result</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">loo</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">pointwise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">loo_result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computed from 4000 posterior samples and 100 observations log-likelihood matrix.
-
-         Estimate       SE
-elpd_loo  -212.96     7.48
-p_loo        2.13        -
-------
-
-Pareto k diagnostic values:
-                         Count   Pct.
-(-Inf, 0.5]   (good)      100  100.0%
- (0.5, 0.7]   (ok)          0    0.0%
-   (0.7, 1]   (bad)         0    0.0%
-   (1, Inf)   (very bad)    0    0.0%
-</pre></div>
-</div>
-</div>
-</div>
-<p>Si noti che il valore assoluto di <code class="docutils literal notranslate"><span class="pre">overall_mean_log_density</span></code> (-2.286) non è direttamente confrontabile con il valore di <code class="docutils literal notranslate"><span class="pre">elpd_loo</span></code> (-226.64) a causa delle differenze nella loro scala e nel modo in cui vengono calcolati. Mentre <code class="docutils literal notranslate"><span class="pre">overall_mean_log_density</span></code> è la media del logaritmo delle densità per ogni osservazione, <code class="docutils literal notranslate"><span class="pre">elpd_loo</span></code> è una stima complessiva dell’adattamento del modello che tiene conto della validazione incrociata e della capacità predittiva. Tuttavia, in entrambi i casi, valori più alti indicano prestazioni migliori.</p>
-<p>In conclusione, mentre la media della LPD fornisce una valutazione della performance del modello basata sull’intero set di dati, la LOO-CV offre una prospettiva più rigorosa e generalizzabile sulla capacità predittiva del modello. È importante notare che strumenti come PyMC e Arviz facilitano il calcolo della LOO-CV, specialmente in scenari che coinvolgono l’utilizzo di tecniche di campionamento MCMC. Questi strumenti possono semplificare notevolmente l’analisi in contesti di statistica bayesiana.</p>
-<section id="valori-diagnostici-pareto-k">
-<h3>Valori Diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span><a class="headerlink" href="#valori-diagnostici-pareto-k" title="Permalink to this heading">#</a></h3>
-<p>Per stabilire quanto sia affidabile l’approssimazione effettuata attraverso LOO-CV si ricorre a un parametro diagnostico noto come valore Pareto <span class="math notranslate nohighlight">\( k \)</span>. Nel contesto della validazione incrociata di tipo Leave-One-Out (LOO), il valore Pareto <span class="math notranslate nohighlight">\( k \)</span> serve come un barometro per giudicare la precisione dell’approssimazione LOO. Il valore di <span class="math notranslate nohighlight">\( k \)</span> funge da indicatore della qualità dell’approssimazione e ha le seguenti interpretazioni:</p>
-<ul class="simple">
-<li><p><strong><span class="math notranslate nohighlight">\( k &lt; 0.5 \)</span></strong>: In questo caso, l’approssimazione è generalmente ottima e l’errore associato è trascurabile.</p></li>
-<li><p><strong><span class="math notranslate nohighlight">\( 0.5 \leq k &lt; 0.7 \)</span></strong>: L’approssimazione rimane buona, sebbene con qualche motivo di cautela. Un’analisi più approfondita del modello e dei dati potrebbe essere vantaggiosa.</p></li>
-<li><p><strong><span class="math notranslate nohighlight">\( 0.7 \leq k &lt; 1 \)</span></strong>: La qualità dell’approssimazione è mediocre. I risultati derivanti da LOO possono essere poco affidabili; potrebbe quindi essere utile considerare metodi di validazione alternativi o apportare modifiche al modello.</p></li>
-<li><p><strong><span class="math notranslate nohighlight">\( k \geq 1 \)</span></strong>: Qui, l’approssimazione è inadeguata e i risultati da LOO sono molto probabilmente inaffidabili. Questo è un campanello d’allarme che indica potenziali problemi con il modello o con il metodo di approssimazione adottato.</p></li>
-</ul>
-<p>Il valore diagnostico Pareto <span class="math notranslate nohighlight">\( k \)</span> è basato sulla distribuzione di Pareto e serve a valutare in che misura le code della distribuzione delle differenze di log-verosimiglianza (tra la log-verosimiglianza del punto dati escluso e quella relativa all’intero set di dati) divergono da una distribuzione esponenziale. Un valore di <span class="math notranslate nohighlight">\( k \)</span> elevato suggerisce che le code della distribuzione sono più pesanti del previsto, indicando che l’approssimazione LOO-CV potrebbe essere imprecisa.</p>
-<p>In sintesi, il valore Pareto <span class="math notranslate nohighlight">\( k \)</span> offre uno strumento pratico per verificare l’affidabilità dell’approssimazione LOO-CV. Permette inoltre ai ricercatori di identificare e indagare su potenziali problematiche relative sia al modello che alla metodologia di validazione incrociata adottata.</p>
-<p>Come abbiamo visto nell’esempio precedente, i valori diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span> sono stampati dalla funzione <code class="docutils literal notranslate"><span class="pre">loo()</span></code> del pacchetto Arviz.</p>
-</section>
-<section id="ruolo-dell-elpd-nella-valutazione-comparativa-dei-modelli">
-<h3>Ruolo dell’ELPD nella Valutazione Comparativa dei Modelli<a class="headerlink" href="#ruolo-dell-elpd-nella-valutazione-comparativa-dei-modelli" title="Permalink to this heading">#</a></h3>
-<p>L’ELPD è una metrica essenziale per effettuare confronti tra vari modelli statistici. Ottenendo una stima dell’ELPD attraverso metodologie come la Validazione Incrociata Leave-One-Out (LOO-CV), si può acquisire una valutazione obiettiva dell’adeguatezza di ciascun modello rispetto ai dati a disposizione. Questo aspetto assume particolare importanza quando si è chiamati a selezionare il modello più idoneo tra diverse alternative, o quando si desidera determinare se un modello di maggiore complessità offra un migliore adattamento rispetto a uno più semplice.</p>
-<p>In sintesi, l’ELPD funge da indicatore affidabile della capacità predittiva di un modello. Allo stesso tempo, la tecnica del LOO-CV fornisce un mezzo efficace per approssimare tale metrica. Grazie alla LOO-CV, gli analisti possono condurre una valutazione sia accurata che robusta delle prestazioni di differenti modelli, agevolando la decisione relativa al modello più appropriato per uno specifico contesto.</p>
-<p>L’opportunità di automatizzare queste procedure di valutazione attraverso l’uso di librerie software come PyMC e Arviz rende l’intero approccio ancor più accessibile e pratico, consolidando la sua utilità come strumento per l’accurata selezione e validazione di modelli statistici.</p>
-</section>
-<section id="simulazione">
-<h3>Simulazione<a class="headerlink" href="#simulazione" title="Permalink to this heading">#</a></h3>
-<p>Per illustrare questa metodologia di confronto tra modelli utilizzando la LOO-CV, procediamo con una simulazione. Genereremo dati sintetici in cui esiste una relazione lineare tra le variabili <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>. In questo scenario, potremmo essere interessati a confrontare un modello lineare con un modello più semplice, che considera solo il termine di intercetta. Utilizzeremo la LOO-CV per stabilire quale dei due modelli si adatta meglio ai dati in questione. La stima dell’ELPD servirà come criterio quantitativo per orientare questa scelta di modello.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate synthetic data</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">y_true</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">X</span>
-<span class="n">y_obs</span> <span class="o">=</span> <span class="n">y_true</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Adattiamo ai dati un modello che rispecchia il vero meccanismo generativo dei dati.</p>
-<p>Si noti che, per calcolare LOO e WAIC, ArviZ ha bisogno di accedere alla log-likelihood per ogni campione posteriore. Possiamo trovarla tramite <code class="docutils literal notranslate"><span class="pre">compute_log_likelihood()</span></code>. In alternativa, possiamo passare <code class="docutils literal notranslate"><span class="pre">idata_kwargs={&quot;log_likelihood&quot;:</span> <span class="pre">True}</span></code> a <code class="docutils literal notranslate"><span class="pre">sample()</span></code> per farla calcolare automaticamente alla fine del campionamento.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linear model</span>
-<span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">linear_model</span><span class="p">:</span>
-    <span class="n">alpha</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">beta</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">sigma</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">X</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y_obs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">linear_model</span><span class="p">:</span>
-    <span class="n">linear_trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sampling_jax</span><span class="o">.</span><span class="n">sample_numpyro_nuts</span><span class="p">(</span><span class="n">idata_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;log_likelihood&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
-</pre></div>
-</div>
-</div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.406534
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1464.16it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1465.04it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1466.25it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1467.53it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.429689
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.036165
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Log Likelihood...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.226404
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<p>Adattiamo ora un secondo modello che non tiene conto della relazione lineare tra x e y.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intercept model</span>
-<span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">intercept_model</span><span class="p">:</span>
-    <span class="n">alpha</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">alpha</span> 
-    <span class="n">y</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y_obs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">intercept_model</span><span class="p">:</span>
-    <span class="n">intercept_trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sampling_jax</span><span class="o">.</span><span class="n">sample_numpyro_nuts</span><span class="p">(</span><span class="n">idata_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;log_likelihood&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
-</pre></div>
-</div>
-</div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.225940
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                          | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                            | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                         | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1970.32it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1971.91it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1974.09it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1976.45it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.053268
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.025166
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Log Likelihood...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.061378
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<p>Troviamo ora elpd con il metodo LOO.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linear_loo</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">loo</span><span class="p">(</span><span class="n">linear_trace</span><span class="p">)</span>
-<span class="n">linear_loo</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computed from 4000 posterior samples and 100 observations log-likelihood matrix.
-
-         Estimate       SE
-elpd_loo  -244.45     6.90
-p_loo        2.75        -
-------
-
-Pareto k diagnostic values:
-                         Count   Pct.
-(-Inf, 0.5]   (good)      100  100.0%
- (0.5, 0.7]   (ok)          0    0.0%
-   (0.7, 1]   (bad)         0    0.0%
-   (1, Inf)   (very bad)    0    0.0%
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intercept_loo</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">loo</span><span class="p">(</span><span class="n">intercept_trace</span><span class="p">)</span>
-<span class="n">intercept_loo</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computed from 4000 posterior samples and 100 observations log-likelihood matrix.
-
-         Estimate       SE
-elpd_loo -2253.10   195.98
-p_loo       44.63        -
-------
-
-Pareto k diagnostic values:
-                         Count   Pct.
-(-Inf, 0.5]   (good)      100  100.0%
- (0.5, 0.7]   (ok)          0    0.0%
-   (0.7, 1]   (bad)         0    0.0%
-   (1, Inf)   (very bad)    0    0.0%
-</pre></div>
-</div>
-</div>
-</div>
-<p>Infine, calcoliamo <code class="docutils literal notranslate"><span class="pre">eldp_diff</span></code>. L’incertezza di questa quantità è espressa dall’errore standard. Se il rapporto tra <code class="docutils literal notranslate"><span class="pre">eldp_diff</span></code> e il suo errore standard è almeno uguale a 2, allora possiamo concludere che vi è una differenza credibile tra di due modelli.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_comp_loo</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">compare</span><span class="p">({</span><span class="s2">&quot;linear_model&quot;</span><span class="p">:</span> <span class="n">linear_trace</span><span class="p">,</span> <span class="s2">&quot;intercept_model&quot;</span><span class="p">:</span> <span class="n">intercept_trace</span><span class="p">})</span>
-<span class="n">df_comp_loo</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/arviz/stats/stats.py:307: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;False&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  df_comp.loc[val] = (
-/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/arviz/stats/stats.py:307: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;log&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  df_comp.loc[val] = (
-</pre></div>
-</div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rank</th>
-      <th>elpd_loo</th>
-      <th>p_loo</th>
-      <th>elpd_diff</th>
-      <th>weight</th>
-      <th>se</th>
-      <th>dse</th>
-      <th>warning</th>
-      <th>scale</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>linear_model</th>
-      <td>0</td>
-      <td>-244.454127</td>
-      <td>2.749929</td>
-      <td>0.000000</td>
-      <td>1.0</td>
-      <td>6.895352</td>
-      <td>0.00000</td>
-      <td>False</td>
-      <td>log</td>
-    </tr>
-    <tr>
-      <th>intercept_model</th>
-      <td>1</td>
-      <td>-2253.095052</td>
-      <td>44.632889</td>
-      <td>2008.640924</td>
-      <td>0.0</td>
-      <td>195.984692</td>
-      <td>195.64589</td>
-      <td>False</td>
-      <td>log</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>Nel caso presente, sappiamo che il modello che include una relazione lineare tra le due variabili è quello che rispecchia il modo in cui i dati sono stati generati. Infatti, troviamo che il rapporto tra <code class="docutils literal notranslate"><span class="pre">eldp_diff</span></code> e il suo errore standard è molto maggiore di 2, il che conferma che, per questi dati, il modello lineare è da preferire al modello che include solo l’intercetta.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_compare</span><span class="p">(</span><span class="n">df_comp_loo</span><span class="p">,</span> <span class="n">insample_dev</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/arviz/plots/backends/matplotlib/compareplot.py:87: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  scale = comp_df[&quot;scale&quot;][0]
-</pre></div>
-</div>
-<img alt="../_images/286bf6dbe45b6df467bf5b4b217165b62a0c05b9b01d7dd9b5b613b5d77b90bb.png" src="../_images/286bf6dbe45b6df467bf5b4b217165b62a0c05b9b01d7dd9b5b613b5d77b90bb.png" />
-</div>
-</div>
 </section>
 </section>
 <section id="commenti-e-considerazioni-finali">
@@ -1859,20 +1375,20 @@ Pareto k diagnostic values:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Dec 10 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Thu Jan 25 2024
 
 Python implementation: CPython
-Python version       : 3.11.6
-IPython version      : 8.18.0
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-arviz      : 0.16.1
-pandas     : 2.1.3
-scipy      : 1.11.4
-seaborn    : 0.13.0
+pymc       : 5.10.3
+arviz      : 0.17.0
+pandas     : 2.1.4
 numpy      : 1.26.2
+scipy      : 1.11.4
 matplotlib : 3.8.2
-pymc       : 5.10.0
-statsmodels: 0.14.0
+seaborn    : 0.13.0
+statsmodels: 0.14.1
 
 Watermark: 2.4.3
 </pre></div>
@@ -1922,11 +1438,11 @@ Watermark: 2.4.3
       </div>
     </a>
     <a class="right-next"
-       href="40_hier_beta_binom.html"
+       href="32_loo.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Modello gerarchico beta-binomiale</p>
+        <p class="prev-next-title">Validazione Incrociata Leave-One-Out</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1945,31 +1461,23 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perdita-di-informazione-e-divergenza-di-kullback-leibler">Perdita di Informazione e Divergenza di Kullback-Leibler</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-empirico">Un Esempio Empirico</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-divergenza-dipende-dalla-direzione">La Divergenza Dipende dalla Direzione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-empirico">Un Esempio Empirico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-divergenza-dipende-dalla-direzione">La Divergenza Dipende dalla Direzione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">La Divergenza Dipende dalla Direzione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-di-modelli-utilizzando-la-divergenza-di-kullback-leibler">Confronto di Modelli Utilizzando la Divergenza di Kullback-Leibler</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-predittiva-posteriori">Distribuzione Predittiva Posteriori</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misurare-la-somiglianza-tra-distribuzioni">Misurare la Somiglianza tra Distribuzioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confrontare-piu-modelli">Confrontare Più Modelli</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-tra-modelli-tramite-la-divergenza-mathbb-kl">Confronto tra Modelli Tramite la Divergenza <span class="math notranslate nohighlight">\(\mathbb{KL}\)</span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-predittiva-a-posteriori">Distribuzione Predittiva a Posteriori</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valutazione-della-somiglianza-tra-distribuzioni">Valutazione della Somiglianza tra Distribuzioni</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-tra-modelli-multipli">Confronto tra Modelli Multipli</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-log-predictive-density">Expected Log Predictive Density</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approssimazione-e-stima">Approssimazione e Stima</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Un Esempio Empirico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-densita-logaritmica-predittiva-attesa">La Densità Logaritmica Predittiva Attesa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sfide-nella-stima-dell-elpd">Sfide nella Stima dell’ELPD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Un Esempio Empirico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-secondo-esempio-empirico">Un Secondo Esempio Empirico</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#una-singola-osservazione">Una Singola Osservazione</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tutte-le-osservazioni-del-campione">Tutte le Osservazioni del Campione</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estensione-a-tutte-le-osservazioni">Estensione a Tutte le Osservazioni</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leave-one-out-cross-validation-loo-cv">Leave One Out Cross-Validation (LOO-CV)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-diagnostici-pareto-k">Valori Diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruolo-dell-elpd-nella-valutazione-comparativa-dei-modelli">Ruolo dell’ELPD nella Valutazione Comparativa dei Modelli</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione">Simulazione</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e Considerazioni Finali</a></li>

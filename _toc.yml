@@ -85,6 +85,7 @@ chapters:
       - file: chapter_4/24_multiple_groups
       - file: chapter_4/30_entropy
       - file: chapter_4/31_kl
+      - file: chapter_4/32_loo
       - file: chapter_4/40_hier_beta_binom
       - file: chapter_4/41_hier_poisson
       - file: chapter_4/42_hier_gaussian

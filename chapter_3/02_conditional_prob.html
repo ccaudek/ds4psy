@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -312,7 +313,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
@@ -322,6 +324,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
@@ -509,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-paradosso-di-monty-hall">Il paradosso di Monty Hall</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-condizionata-su-altri-eventi">Probabilità condizionata su altri eventi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-condizionata-e-lancio-di-due-dadi">Probabilità condizionata e lancio di due dadi</a></li>
@@ -545,13 +550,8 @@ document.write(`
 <li><p><strong>Probabilità Condizionata</strong>: Questa è la probabilità che un evento si verifichi, dato il verificarsi di un altro evento correlato. Ad esempio, se abbiamo già estratto una pallina verde da un’urna, potremmo voler sapere qual è la probabilità di estrarre una seconda pallina verde dalla stessa urna.</p></li>
 </ul>
 <p>In aggiunta, analizzeremo i principali teoremi legati alla probabilità condizionata. Inizieremo questa esplorazione introducendo un noto problema della teoria delle probabilità: il paradosso di Monty Hall.</p>
-<section id="il-paradosso-di-monty-hall">
-<h2>Il paradosso di Monty Hall<a class="headerlink" href="#il-paradosso-di-monty-hall" title="Permalink to this heading">#</a></h2>
-<p>Il paradosso di Monty Hall costituisce un esempio intrigante di come l’acquisizione di nuove informazioni possa condizionare l’esito di un problema probabilistico. Questo celebre quesito, radicato nella teoria delle probabilità, trae origine dal noto game show televisivo americano ‘Let’s Make a Deal’ e deve la sua fama al presentatore Monty Hall.</p>
-<p><img alt="Monty Hall" src="../_images/monty-hall.jpg" /></p>
-<p>Nel gioco sono presenti tre porte chiuse: dietro una si cela un’automobile, mentre dietro le altre due si trovano delle capre. Il concorrente seleziona inizialmente una delle tre porte senza aprirla. Monty Hall, successivamente, apre una delle due porte rimaste, rivelando una capra. In seguito, Monty offre al concorrente l’opzione di cambiare la sua scelta iniziale, optando per l’altra porta ancora chiusa. Il paradosso emerge dalla constatazione che, cambiando la scelta in questa fase, il concorrente aumenta le sue probabilità di vincere l’automobile, passando da 1/3 a 2/3.</p>
-<p>Per corroborare questo risultato inaspettato, è possibile realizzare una simulazione in Python. In questa, si prendono in considerazione due scenari: uno in cui il concorrente persiste nella sua scelta iniziale e un altro in cui cambia la scelta dopo che Monty Hall ha svelato una capra. Ripetendo la simulazione per migliaia di volte, è possibile confrontare i risultati empirici e confermare come il cambio di scelta incrementi effettivamente le probabilità di aggiudicarsi l’automobile.</p>
-<p>Di seguito è riportato lo script di una simulazione specificamente progettata per elucidare il paradosso di Monty Hall.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -567,6 +567,14 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 </div>
+</section>
+<section id="il-paradosso-di-monty-hall">
+<h2>Il paradosso di Monty Hall<a class="headerlink" href="#il-paradosso-di-monty-hall" title="Permalink to this heading">#</a></h2>
+<p>Il paradosso di Monty Hall costituisce un esempio intrigante di come l’acquisizione di nuove informazioni possa condizionare l’esito di un problema probabilistico. Questo celebre quesito, radicato nella teoria delle probabilità, trae origine dal noto game show televisivo americano ‘Let’s Make a Deal’ e deve la sua fama al presentatore Monty Hall.</p>
+<p><img alt="Monty Hall" src="../_images/monty-hall.jpg" /></p>
+<p>Nel gioco sono presenti tre porte chiuse: dietro una si cela un’automobile, mentre dietro le altre due si trovano delle capre. Il concorrente seleziona inizialmente una delle tre porte senza aprirla. Monty Hall, successivamente, apre una delle due porte rimaste, rivelando una capra. In seguito, Monty offre al concorrente l’opzione di cambiare la sua scelta iniziale, optando per l’altra porta ancora chiusa. Il paradosso emerge dalla constatazione che, cambiando la scelta in questa fase, il concorrente aumenta le sue probabilità di vincere l’automobile, passando da 1/3 a 2/3.</p>
+<p>Per corroborare questo risultato inaspettato, è possibile realizzare una simulazione in Python. In questa, si prendono in considerazione due scenari: uno in cui il concorrente persiste nella sua scelta iniziale e un altro in cui cambia la scelta dopo che Monty Hall ha svelato una capra. Ripetendo la simulazione per migliaia di volte, è possibile confrontare i risultati empirici e confermare come il cambio di scelta incrementi effettivamente le probabilità di aggiudicarsi l’automobile.</p>
+<p>Di seguito è riportato lo script di una simulazione specificamente progettata per elucidare il paradosso di Monty Hall.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">porte</span> <span class="o">=</span> <span class="p">[</span>
@@ -1119,6 +1127,7 @@ P(A \cap B \cap C) &amp;= P(A) P(B) P(C). \notag
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-paradosso-di-monty-hall">Il paradosso di Monty Hall</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-condizionata-su-altri-eventi">Probabilità condizionata su altri eventi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-condizionata-e-lancio-di-due-dadi">Probabilità condizionata e lancio di due dadi</a></li>

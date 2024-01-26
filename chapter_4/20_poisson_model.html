@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,13 +513,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domanda-della-ricerca">Domanda della ricerca</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importazione-e-pre-processing-dei-dati">Importazione e pre-processing dei dati</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Modello di Poisson</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-priori">Distribuzione a priori</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-poisson-con-pymc">Modello di Poisson con PyMC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivazione-analitica">Derivazione analitica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -536,6 +537,8 @@ document.write(`
 <p>In questo capitolo, esamineremo la stima del parametro “rate” di un modello di Poisson utilizzando PyMC. Il modello di Poisson è uno strumento impiegato per modellare il conteggio di eventi rari in un intervallo di tempo o spazio. Il parametro “rate” in questo contesto rappresenta il tasso di incidenza medio degli eventi nel sistema considerato, ovvero il numero medio di eventi che si verificano nell’unità di tempo o spazio.</p>
 <p>Attraverso l’utilizzo di PyMC, otterremo la distribuzione a posteriori del parametro “rate” che tiene conto dell’incertezza nella stima. Ciò ci permetterà di ottenere stime puntuali e intervalli di credibilità per il parametro “rate”, fornendo una migliore comprensione dell’andamento degli eventi nel sistema considerato e una misura dell’incertezza associata alla nostra stima.</p>
 <p>Il vantaggio principale di utilizzare la stima MCMC con PyMC è la sua capacità di gestire casi in cui i dati possono essere scarsi o non soddisfare gli assunti delle tecniche di stima tradizionali. Inoltre, attraverso questo approccio, potremo esplorare il comportamento del modello di Poisson e valutarne la capacità di descrivere correttamente il fenomeno oggetto di studio, consentendoci di ottenere una migliore comprensione e interpretazione dei dati osservati.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -572,9 +575,10 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Come spiegato <a class="reference external" href="https://github.com/washingtonpost/data-police-shootings">qui</a>, i dati che esamineremo sono raccolti dal Washington Post con lo scopo di registrare ogni sparatoria mortale negli Stati Uniti ad opera di agenti di polizia, a partire dal 1° gennaio 2015. Il Washington Post ha adottato un approccio sistematico e accurato nella raccolta di queste informazioni, fornendo dati che possono essere utili per valutare i problemi legati alla violenza delle forze di polizia negli Stati Uniti.</p>
+</section>
 <section id="domanda-della-ricerca">
 <h2>Domanda della ricerca<a class="headerlink" href="#domanda-della-ricerca" title="Permalink to this heading">#</a></h2>
+<p>Come spiegato <a class="reference external" href="https://github.com/washingtonpost/data-police-shootings">qui</a>, i dati che esamineremo sono raccolti dal Washington Post con lo scopo di registrare ogni sparatoria mortale negli Stati Uniti ad opera di agenti di polizia, a partire dal 1° gennaio 2015. Il Washington Post ha adottato un approccio sistematico e accurato nella raccolta di queste informazioni, fornendo dati che possono essere utili per valutare i problemi legati alla violenza delle forze di polizia negli Stati Uniti.</p>
 <p>Lo scopo della presente analisi dei dati è determinare il tasso di sparatorie fatali da parte della polizia negli Stati Uniti per ogni anno, e fornire una stima dell’incertezza associata a questo valore.</p>
 </section>
 <section id="importazione-e-pre-processing-dei-dati">
@@ -791,7 +795,7 @@ document.write(`
 2018     992
 2017     983
 2016     958
-2024      51
+2024      60
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -902,7 +906,7 @@ P(y \mid \theta) \propto \theta^y * \exp(−\theta),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9dfe253837d7657708db10f7d815888d194453b97e29271c6375ae965b026f72.png" src="../_images/9dfe253837d7657708db10f7d815888d194453b97e29271c6375ae965b026f72.png" />
+<img alt="../_images/fa8e4415f7882b809ad14ac82f191b626ea3d7310192e5408a131e8d17be5a09.png" src="../_images/fa8e4415f7882b809ad14ac82f191b626ea3d7310192e5408a131e8d17be5a09.png" />
 </div>
 </div>
 <p>La distribuzione predittiva a priori suggerisce che la distribuzione a priori per il parametro <code class="docutils literal notranslate"><span class="pre">rate</span></code> è adeguata per i dati a disposizione. Eseguiamo dunque il campionamento.</p>
@@ -922,7 +926,7 @@ P(y \mid \theta) \propto \theta^y * \exp(−\theta),
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.574899
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.096445
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -988,22 +992,10 @@ P(y \mid \theta) \propto \theta^y * \exp(−\theta),
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1012,31 +1004,43 @@ P(y \mid \theta) \propto \theta^y * \exp(−\theta),
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:00&lt;00:00, 2032.24it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:00&lt;00:00, 2034.56it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:00&lt;00:00, 2037.01it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:00&lt;00:00, 2040.19it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.258406
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1932.50it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1934.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1937.39it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1940.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.274469
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.052943
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.066985
 </pre></div>
 </div>
 </div>
@@ -1050,7 +1054,7 @@ P(y \mid \theta) \propto \theta^y * \exp(−\theta),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4901a57872b0afb0655771b8e0a2cd3e2b97437ed1fc4527e7f80077e94121b7.png" src="../_images/4901a57872b0afb0655771b8e0a2cd3e2b97437ed1fc4527e7f80077e94121b7.png" />
+<img alt="../_images/926321cccebef3b2c5b5530bfe37c5d757490fab8cbbc5c95678754ec678a613.png" src="../_images/926321cccebef3b2c5b5530bfe37c5d757490fab8cbbc5c95678754ec678a613.png" />
 </div>
 </div>
 <p>Il modello converge rapidamente e i grafici delle tracce sembrano ben mescolati.</p>
@@ -1094,14 +1098,14 @@ P(y \mid \theta) \propto \theta^y * \exp(−\theta),
   <tbody>
     <tr>
       <th>rate</th>
-      <td>1010.215</td>
-      <td>11.429</td>
-      <td>990.226</td>
-      <td>1032.18</td>
-      <td>0.307</td>
-      <td>0.217</td>
-      <td>1377.0</td>
-      <td>1654.0</td>
+      <td>1010.358</td>
+      <td>10.908</td>
+      <td>989.279</td>
+      <td>1030.241</td>
+      <td>0.276</td>
+      <td>0.196</td>
+      <td>1555.0</td>
+      <td>2085.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1116,7 +1120,7 @@ P(y \mid \theta) \propto \theta^y * \exp(−\theta),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/84c3259bca85edd999f100f816e19c620ef2e73cff5ba133fe495985feee5c80.png" src="../_images/84c3259bca85edd999f100f816e19c620ef2e73cff5ba133fe495985feee5c80.png" />
+<img alt="../_images/a30a310d8a06758dfa5239945eb3d6c70c219e23668ada5c4e4ee874e5b0c65d.png" src="../_images/a30a310d8a06758dfa5239945eb3d6c70c219e23668ada5c4e4ee874e5b0c65d.png" />
 </div>
 </div>
 <p>Eseguiamo il posterior predictive check.</p>
@@ -1162,7 +1166,7 @@ P(y \mid \theta) \propto \theta^y * \exp(−\theta),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d78bc3982a294c6ddb9154847dcea07c36e24884ee710d0f8ff8e779dc663339.png" src="../_images/d78bc3982a294c6ddb9154847dcea07c36e24884ee710d0f8ff8e779dc663339.png" />
+<img alt="../_images/5a5e2969a6732b958768c53b2230cf32a19efe7ade8c81f9899c828f83d1705d.png" src="../_images/5a5e2969a6732b958768c53b2230cf32a19efe7ade8c81f9899c828f83d1705d.png" />
 </div>
 </div>
 <p>In conclusione, possiamo affermare che il tasso stimato di sparatorie fatali da parte della polizia negli Stati Uniti è di 1011 casi all’anno, con un intervallo di credibilità del 94% di [988.53, 1031.41].</p>
@@ -1240,32 +1244,30 @@ Credibility Interval (94%): (989.7152329772036, 1031.9826527942685)
 </div>
 <p>L’output delle istruzioni precedenti fornisce il tasso stimato a posteriori e l’intervallo di credibilità al 94%. A causa di approssimazioni numeriche, i valori non coincidono esattamente con i risultati ottenuti con PyMC, ma sono molto simili.</p>
 <p>Un altro esempio di applicazione del modello di Poisson è presentato in appendice.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Tue Jan 23 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T18:58:51.293717+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-scipy     : 1.11.4
-numpy     : 1.26.2
-pandas    : 2.1.4
-arviz     : 0.17.0
-pymc      : 5.10.3
-matplotlib: 3.8.2
-seaborn   : 0.13.0
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-Watermark: 2.4.3
+
 </pre></div>
 </div>
 </div>
@@ -1336,13 +1338,13 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domanda-della-ricerca">Domanda della ricerca</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importazione-e-pre-processing-dei-dati">Importazione e pre-processing dei dati</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Modello di Poisson</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-priori">Distribuzione a priori</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-poisson-con-pymc">Modello di Poisson con PyMC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivazione-analitica">Derivazione analitica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

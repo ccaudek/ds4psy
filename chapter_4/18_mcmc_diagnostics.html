@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafici-di-tracciamento">Grafici di Tracciamento</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-grafici-della-densita-posteriore-sono-adeguati">I Grafici della Densità Posteriore Sono Adeguati?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-autocorrelazione-nelle-catene-di-markov-monte-carlo-e-troppo-alta">L’Autocorrelazione nelle Catene di Markov Monte Carlo È Troppo Alta?</a></li>
@@ -527,7 +529,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-bmfi-e-sufficientemente-grande">LA BMFI È Sufficientemente Grande?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-leave-one-out-cross-validation-fornisce-evidenze-di-buon-adattamento">La Leave-One-Out Cross-Validation Fornisce Evidenze di Buon Adattamento?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-parametro-hat-kappa-e-piccolo">Il Parametro <span class="math notranslate nohighlight">\(\hat \kappa\)</span> È Piccolo?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -546,6 +547,8 @@ document.write(`
 <p>La diagnostica delle catene Markoviane, quindi, si configura come un insieme di pratiche e strumenti mirati a indagare vari aspetti della convergenza. Questi includono l’accuratezza dell’approssimazione della distribuzione a posteriori, l’efficienza del campionamento e l’esplorazione esaustiva dello spazio dei parametri. Tali strumenti diagnostici possono essere sia grafici che numerici e dovrebbero essere applicati in un contesto olistico per fornire una panoramica completa della qualità della catena di Markov.</p>
 <p>Non esiste un’unica metrica o diagnostico che possa fornire un quadro completo; piuttosto, è l’analisi combinata di più metriche e diagnostici che permette di acquisire una comprensione più profonda del comportamento della catena. Inoltre, l’esperienza del ricercatore gioca un ruolo significativo nel distinguere tra una “buona” e una “cattiva” catena di Markov e nel suggerire strategie per migliorare la qualità del campionamento.</p>
 <p>In sintesi, l’analisi della convergenza e la diagnostica delle catene Markoviane sono fasi imprescindibili nel processo di inferenza bayesiana, soprattutto quando si utilizzano metodi MCMC. La loro applicazione consente di garantire che le stime a posteriori siano tanto accurate e affidabili quanto possibile.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
@@ -573,6 +576,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="grafici-di-tracciamento">
 <h2>Grafici di Tracciamento<a class="headerlink" href="#grafici-di-tracciamento" title="Permalink to this heading">#</a></h2>
 <p>Un metodo diagnostico comunemente utilizzato per valutare la convergenza nei metodi di Monte Carlo basati su catene di Markov (MCMC) è l’analisi dei grafici di tracciamento, o “trace plots”. Questi grafici rappresentano sequenzialmente le stime dei parametri posteriori ottenute ad ogni iterazione della catena. In generale, si tende a interpretare che un parametro sta convergendo quando le stime campionarie si aggregano in una banda orizzontale ristretta lungo l’asse delle iterazioni che compongono la catena. Tuttavia, considerare questa disposizione come prova conclusiva di convergenza è piuttosto grossolano, in quanto una traccia compatta non garantisce che la convergenza sia stata effettivamente raggiunta. Di fatto, questa metodologia risulta essere più un indicatore di non-convergenza. Ad esempio, se due catene per lo stesso parametro sono campionate da regioni diverse della distribuzione target e le stime rimangono separate lungo la storia della catena, ciò costituisce un’evidenza di non-convergenza. Allo stesso modo, se il grafico mostra fluttuazioni significative o salti nella catena, è probabile che la catena associata a quel parametro non abbia raggiunto la convergenza.</p>
@@ -606,7 +610,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/62a5a394b55f103d2d8a90e0c307aab2011f39f6eb6c8694f70126cd91a22191.png" src="../_images/62a5a394b55f103d2d8a90e0c307aab2011f39f6eb6c8694f70126cd91a22191.png" />
+<img alt="../_images/41bac882767915d9379b55c318db572645acce6c02ee7c4a8fb2b41fe0ef9aab.png" src="../_images/41bac882767915d9379b55c318db572645acce6c02ee7c4a8fb2b41fe0ef9aab.png" />
 </div>
 </div>
 <p>Le cattive catene non convergono né si mescolano tra loro. Uno dei motivi per l’esecuzione di più catene è che ogni singola catena potrebbe convergere verso un target, mentre un’altra catena potrebbe convergere su un target diverso, e questo sarebbe un problema. Inoltre, catene altrimenti sane possono bloccarsi occasionalmente nel corso della serie, il che suggerirebbe la necessità di modifiche al modello o alle impostazioni del campionatore. Un altro modo per valutare la convergenza dell’algoritmo è plottando la densità della distribuzione a posteriori degli effetti stimati, per assicurarsi che si avvicini ad una classica curva a campana.</p>
@@ -655,7 +659,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3453bec54c7fe72ebca69200176c7f1ad0cbdcee3e15ca8fcc56a9800b6982a1.png" src="../_images/3453bec54c7fe72ebca69200176c7f1ad0cbdcee3e15ca8fcc56a9800b6982a1.png" />
+<img alt="../_images/092af15f72b5c460fd310c931f2d1ae16db98472cdaf252f6b2a64f792faef1f.png" src="../_images/092af15f72b5c460fd310c931f2d1ae16db98472cdaf252f6b2a64f792faef1f.png" />
 </div>
 </div>
 </section>
@@ -688,7 +692,7 @@ N_{\text{eff}} = \frac{T}{1 + 2 \sum_{s=1}^{S} \rho_{s}},
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/db6f027fc3f5143e984469987cb35b943c422b83d8e3640e77bbb0ce207b5e6d.png" src="../_images/db6f027fc3f5143e984469987cb35b943c422b83d8e3640e77bbb0ce207b5e6d.png" />
+<img alt="../_images/97dc19e15448469ed1394525135cd44729d0243b71d5ba6066fbfb93679560e0.png" src="../_images/97dc19e15448469ed1394525135cd44729d0243b71d5ba6066fbfb93679560e0.png" />
 </div>
 </div>
 </section>
@@ -1070,9 +1074,9 @@ dl.xr-attrs {
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
 Dimensions:      ()
 Data variables:
-    good_chains  float64 1.001
-    bad_chains0  float64 2.428
-    bad_chains1  float64 1.028</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-4889e9a0-60f3-4ddb-94dd-43798feb8410' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4889e9a0-60f3-4ddb-94dd-43798feb8410' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-9b3aab50-4965-4786-9810-7159c928bf8e' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9b3aab50-4965-4786-9810-7159c928bf8e' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-eeee73ce-5a83-4517-8317-47d27c24ae7b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-eeee73ce-5a83-4517-8317-47d27c24ae7b' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>good_chains</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.001</div><input id='attrs-223842cf-fd66-4b78-a5e7-a226f2759416' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-223842cf-fd66-4b78-a5e7-a226f2759416' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5e4a4240-5932-4a7c-a4b2-43fc352c73d6' class='xr-var-data-in' type='checkbox'><label for='data-5e4a4240-5932-4a7c-a4b2-43fc352c73d6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.00055427)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>bad_chains0</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2.428</div><input id='attrs-90e09ff0-5398-42f0-b112-a0fe58efed5a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-90e09ff0-5398-42f0-b112-a0fe58efed5a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-03e249cd-3e68-4910-9461-fd6fcc9a1ac8' class='xr-var-data-in' type='checkbox'><label for='data-03e249cd-3e68-4910-9461-fd6fcc9a1ac8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(2.42805778)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>bad_chains1</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.028</div><input id='attrs-22f5006d-7d65-443e-b433-f2a524bc8e42' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-22f5006d-7d65-443e-b433-f2a524bc8e42' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5d0ac12d-d13f-4dfb-9940-8c7c7d750136' class='xr-var-data-in' type='checkbox'><label for='data-5d0ac12d-d13f-4dfb-9940-8c7c7d750136' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.02830989)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-15ae7bc0-c731-4429-b026-e7d3785424fd' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-15ae7bc0-c731-4429-b026-e7d3785424fd' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-c9aee054-5fc4-47ae-9fb4-265929f9fb0f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c9aee054-5fc4-47ae-9fb4-265929f9fb0f' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+    good_chains  float64 1.0
+    bad_chains0  float64 2.41
+    bad_chains1  float64 1.042</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-cce0a9ec-d5a8-4142-9077-c81b099d827b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-cce0a9ec-d5a8-4142-9077-c81b099d827b' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-9198c3ea-d833-4c2f-8153-c20e2b6135a9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9198c3ea-d833-4c2f-8153-c20e2b6135a9' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-ab74cb5f-a6e1-4cd2-88da-63a160de8412' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ab74cb5f-a6e1-4cd2-88da-63a160de8412' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>good_chains</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0</div><input id='attrs-5f3b60de-e816-4ca2-b26f-6e8138365ee8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5f3b60de-e816-4ca2-b26f-6e8138365ee8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5ed18f8d-ab0e-4156-bc08-d7d37f2ad097' class='xr-var-data-in' type='checkbox'><label for='data-5ed18f8d-ab0e-4156-bc08-d7d37f2ad097' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.00034693)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>bad_chains0</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2.41</div><input id='attrs-d18ccdd7-9962-4a16-b5b2-5e3c64fa6f29' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d18ccdd7-9962-4a16-b5b2-5e3c64fa6f29' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fb6334be-ed83-4859-a520-7b4beebb79b0' class='xr-var-data-in' type='checkbox'><label for='data-fb6334be-ed83-4859-a520-7b4beebb79b0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(2.41028532)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>bad_chains1</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.042</div><input id='attrs-6f22a4a4-96ae-460e-95db-e3619d27758a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6f22a4a4-96ae-460e-95db-e3619d27758a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7e3a9c11-1ba7-4da9-9bd8-3534dfee692c' class='xr-var-data-in' type='checkbox'><label for='data-7e3a9c11-1ba7-4da9-9bd8-3534dfee692c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.04193958)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d1f743ea-65ce-4577-b75f-28b86ef8048a' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-d1f743ea-65ce-4577-b75f-28b86ef8048a' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-069d9566-abd5-4b36-a874-57f036708303' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-069d9566-abd5-4b36-a874-57f036708303' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Nell’esempio di <span id="id6">Martin <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id72" title="Osvaldo A Martin, Ravin Kumar, and Junpeng Lao. Bayesian Modeling and Computation in Python. CRC Press, 2022.">MKL22</a>]</span> vediamo come <span class="math notranslate nohighlight">\(\hat{R}\)</span> è in grado di distinguere tra le buone e le cattive catene MCMC. Mentre <code class="docutils literal notranslate"><span class="pre">bad_chains0</span></code> ha valori <span class="math notranslate nohighlight">\(\hat{R}\)</span> totalmente inadeguati, <code class="docutils literal notranslate"><span class="pre">bad_chains1</span></code> tende ad avere valori accettabili e <code class="docutils literal notranslate"><span class="pre">good_chains</span></code> ha un valore <span class="math notranslate nohighlight">\(\hat{R}\)</span> praticamente uguale a 1.0.</p>
 </section>
@@ -1458,9 +1462,9 @@ dl.xr-attrs {
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
 Dimensions:      ()
 Data variables:
-    good_chains  float64 0.002421
-    bad_chains0  float64 0.1078
-    bad_chains1  float64 0.01621</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-10128504-2e02-4425-a40c-628517adb5c9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-10128504-2e02-4425-a40c-628517adb5c9' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-d9e34046-a39a-4416-8e33-5a2e18cb4a0b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-d9e34046-a39a-4416-8e33-5a2e18cb4a0b' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-1b3ca478-1bb1-4c7e-8ed2-78e6d3463beb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-1b3ca478-1bb1-4c7e-8ed2-78e6d3463beb' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>good_chains</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.002421</div><input id='attrs-43e86b7e-9a61-4c35-86d3-2d7f33a51e4e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-43e86b7e-9a61-4c35-86d3-2d7f33a51e4e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-25a45fdd-e629-417a-ac63-9bf98acf9cc3' class='xr-var-data-in' type='checkbox'><label for='data-25a45fdd-e629-417a-ac63-9bf98acf9cc3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.00242079)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>bad_chains0</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.1078</div><input id='attrs-02e755ed-0e05-4271-99cb-9bc71c149c8e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-02e755ed-0e05-4271-99cb-9bc71c149c8e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a027fea7-a15a-4321-a207-2d554eb8e232' class='xr-var-data-in' type='checkbox'><label for='data-a027fea7-a15a-4321-a207-2d554eb8e232' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.10775196)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>bad_chains1</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.01621</div><input id='attrs-d5a36e59-bd68-41b1-8990-c1fba88acd34' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d5a36e59-bd68-41b1-8990-c1fba88acd34' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1e9b87e5-c6fd-4398-b43f-c74016d767db' class='xr-var-data-in' type='checkbox'><label for='data-1e9b87e5-c6fd-4398-b43f-c74016d767db' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.01621456)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4806ca37-a052-42e5-98ea-f5a6b84bc7d1' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4806ca37-a052-42e5-98ea-f5a6b84bc7d1' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-804a5b81-e4eb-4535-b682-e2e84b12de83' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-804a5b81-e4eb-4535-b682-e2e84b12de83' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+    good_chains  float64 0.002591
+    bad_chains0  float64 0.1066
+    bad_chains1  float64 0.01606</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-cf9437f9-3f87-4e56-958b-54a38cdb4f05' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-cf9437f9-3f87-4e56-958b-54a38cdb4f05' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-31d123f7-ad9d-4ce3-96d3-2dcd8ac021f5' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-31d123f7-ad9d-4ce3-96d3-2dcd8ac021f5' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-fbc3f8ea-fd95-462a-8e89-02e3dccd3922' class='xr-section-summary-in' type='checkbox'  checked><label for='section-fbc3f8ea-fd95-462a-8e89-02e3dccd3922' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>good_chains</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.002591</div><input id='attrs-7ab928fd-b125-4848-b5e2-2078ca262ff8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7ab928fd-b125-4848-b5e2-2078ca262ff8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-96145ae7-b911-48c8-8bec-436116683bb8' class='xr-var-data-in' type='checkbox'><label for='data-96145ae7-b911-48c8-8bec-436116683bb8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.00259128)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>bad_chains0</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.1066</div><input id='attrs-cc45f3e2-307d-4781-8bb4-b893efe455a6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-cc45f3e2-307d-4781-8bb4-b893efe455a6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-edc05bf4-fefe-498b-80a9-fa282120aebd' class='xr-var-data-in' type='checkbox'><label for='data-edc05bf4-fefe-498b-80a9-fa282120aebd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.10657852)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>bad_chains1</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.01606</div><input id='attrs-f3de95ff-63f9-40fe-ba29-147453cba9f4' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f3de95ff-63f9-40fe-ba29-147453cba9f4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5e4bd14d-4675-40d8-b3e4-ec4118132186' class='xr-var-data-in' type='checkbox'><label for='data-5e4bd14d-4675-40d8-b3e4-ec4118132186' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.01605779)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-97fbb831-6d40-4949-9149-db144e4cb379' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-97fbb831-6d40-4949-9149-db144e4cb379' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-da0138ec-41b3-49ed-9878-4a1095bc0190' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-da0138ec-41b3-49ed-9878-4a1095bc0190' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1471,7 +1475,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3fe59326f14cc656266a33e9e8972beae42fff88eb3dcd3964a65342d1b5af28.png" src="../_images/3fe59326f14cc656266a33e9e8972beae42fff88eb3dcd3964a65342d1b5af28.png" />
+<img alt="../_images/c45497d7dae5bc55af5a95499cbbc4de51492026193278fc4f142cbd38b21dfb.png" src="../_images/c45497d7dae5bc55af5a95499cbbc4de51492026193278fc4f142cbd38b21dfb.png" />
 </div>
 </div>
 </section>
@@ -1489,7 +1493,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2ef478f45b0bc7e382aca82e91a34dc92ab888b5a77cc857d7b3bb84cf21e320.png" src="../_images/2ef478f45b0bc7e382aca82e91a34dc92ab888b5a77cc857d7b3bb84cf21e320.png" />
+<img alt="../_images/3ccb7664a4f6f7706d74c1d82c8b2a44c583d8989c2ea8ecdaf64121e2c95b53.png" src="../_images/3ccb7664a4f6f7706d74c1d82c8b2a44c583d8989c2ea8ecdaf64121e2c95b53.png" />
 </div>
 </div>
 <p>Una rappresentazione alternativa (con dei segmenti verticali al posto delle barre) è la seguente:</p>
@@ -1502,7 +1506,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8e619bfd67037bab7611fc171605b41e000149c1e67d983d450761c812ca3cad.png" src="../_images/8e619bfd67037bab7611fc171605b41e000149c1e67d983d450761c812ca3cad.png" />
+<img alt="../_images/661f7dd90b731c6252980be8938fac388118c5eda9c92021b9cf7570261dca67.png" src="../_images/661f7dd90b731c6252980be8938fac388118c5eda9c92021b9cf7570261dca67.png" />
 </div>
 </div>
 </section>
@@ -1547,31 +1551,30 @@ Data variables:
 <p>Il parametro <span class="math notranslate nohighlight">\( k \)</span> quantifica la fiducia che si può riporre nelle pesate di importanza all’interno della catena di campionamento. Un valore di <span class="math notranslate nohighlight">\( k \)</span> prossimo a 0 indica una solida affidabilità delle pesate, mentre un valore superiore a 0.7 segnala possibili instabilità e scarsa affidabilità delle pesate di importanza. Un valore elevato di <span class="math notranslate nohighlight">\( k \)</span> può anche rivelare una cattiva mescolanza della catena, implicando che i campioni successivi risultano fortemente correlati con quelli precedenti. Tale situazione può condurre a una sottostima della varianza nella distribuzione a posteriori, influenzando negativamente la qualità delle inferenze.</p>
 <p>In sintesi, il parametro <span class="math notranslate nohighlight">\( k \)</span> offre una misurazione quantitativa dell’efficacia del processo di campionamento, servendo come strumento diagnostico per la valutazione della qualità della catena di campionamento MCMC. Aiuta a individuare potenziali problemi nella convergenza della catena e a guidare le decisioni relative alla sua lunghezza, al periodo di burn-in e ad altri aspetti metodologici. Un valore di <span class="math notranslate nohighlight">\( k \)</span> che superi una certa soglia, come 0.7, dovrebbe essere interpretato come un campanello d’allarme che invita ad un’analisi più approfondita della catena e dei potenziali problemi ad essa associati. La conoscenza e il monitoraggio accurato di questo parametro sono quindi essenziali per garantire un campionamento affidabile e per prevenire conclusioni errate o fuorvianti nell’analisi bayesiana.</p>
 <p>Per calcolare il parametro <span class="math notranslate nohighlight">\(\hat \kappa\)</span>, è possibile fare uso di ArviZ, uno strumento appositamente progettato per le analisi bayesiane avanzate.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Tue Jan 23 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T18:58:13.326045+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-seaborn   : 0.13.0
-numpy     : 1.26.2
-pymc      : 5.10.3
-matplotlib: 3.8.2
-scipy     : 1.11.4
-arviz     : 0.17.0
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-Watermark: 2.4.3
+
 </pre></div>
 </div>
 </div>
@@ -1642,6 +1645,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafici-di-tracciamento">Grafici di Tracciamento</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-grafici-della-densita-posteriore-sono-adeguati">I Grafici della Densità Posteriore Sono Adeguati?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-autocorrelazione-nelle-catene-di-markov-monte-carlo-e-troppo-alta">L’Autocorrelazione nelle Catene di Markov Monte Carlo È Troppo Alta?</a></li>
@@ -1657,7 +1661,6 @@ Watermark: 2.4.3
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-bmfi-e-sufficientemente-grande">LA BMFI È Sufficientemente Grande?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-leave-one-out-cross-validation-fornisce-evidenze-di-buon-adattamento">La Leave-One-Out Cross-Validation Fornisce Evidenze di Buon Adattamento?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-parametro-hat-kappa-e-piccolo">Il Parametro <span class="math notranslate nohighlight">\(\hat \kappa\)</span> È Piccolo?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

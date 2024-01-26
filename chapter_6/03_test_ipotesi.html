@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardizzazione-della-media-campionaria">Standardizzazione della media campionaria</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazioni-pratiche">Applicazioni pratiche</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ipotesi-statistiche">Ipotesi statistiche</a></li>
@@ -550,7 +552,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approccio-bayesiano">Approccio Bayesiano</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -568,6 +569,8 @@ document.write(`
 <p>Comunemente, si tende a considerare un risultato come “statisticamente significativo” se è improbabile che sia dovuto al caso e, quindi, si conclude che il risultato è stabile o reale. Al contrario, i risultati “non significativi” vengono spesso etichettati come rumorosi e visti con scetticismo.</p>
 <p>Tuttavia, questa visione semplificata della significatività statistica può portare a fraintendimenti e conclusioni erronee. La significatività statistica dipende fortemente dalle dimensioni del campione e da altri fattori, e un risultato non significativo non implica necessariamente che l’effetto osservato sia nullo o non rilevante. Inoltre, la significatività statistica può essere influenzata dalla scelta dei livelli di confidenza e dai test statistici utilizzati. Ciò può portare a interpretazioni soggettive dei risultati e può essere fuorviante. Pertanto, invece di concentrarsi esclusivamente sulla significatività statistica, è preferibile valutare l’effetto osservato in base al contesto scientifico e ai risultati di altre analisi, utilizzando un approccio più completo e critico.</p>
 <p>In questo capitolo, torneremo a esaminare il caso specifico della media del campione come stimatore della media della popolazione, esplorando i suoi limiti e le sue applicazioni nella statistica inferenziale.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -578,6 +581,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="standardizzazione-della-media-campionaria">
 <h2>Standardizzazione della media campionaria<a class="headerlink" href="#standardizzazione-della-media-campionaria" title="Permalink to this heading">#</a></h2>
 <p>In precedenza abbiamo esaminato la costruzione della distribuzione campionaria di una statistica di test. Ad esempio, consideriamo la media campionaria come stima della media della popolazione. Nel caso semplice in cui la popolazione segue una distribuzione normale, la distribuzione campionaria della statistica <span class="math notranslate nohighlight">\(\bar{X}\)</span> sarà distribuita secondo una distribuzione normale con media <span class="math notranslate nohighlight">\(\mu\)</span> e deviazione standard <span class="math notranslate nohighlight">\(\sigma/\sqrt{n}\)</span>, dove <span class="math notranslate nohighlight">\(\sigma\)</span> è la deviazione standard della popolazione e <span class="math notranslate nohighlight">\(n\)</span> è la dimensione del campione.</p>
@@ -859,32 +863,35 @@ P(X = k) = \binom{k+n-1}{k} \times (1-p)^{k} \times p^n
 </ol>
 <p>Nel caso specifico, il Fattore di Bayes calcolato è risultato essere circa 147.33, un valore notevolmente alto. Questo suggerisce che i dati osservati sono molto più compatibili con l’ipotesi che la Dr.ssa Bristol possa effettivamente distinguere tra le diverse preparazioni del tè, piuttosto che con l’ipotesi che stia indovinando.</p>
 <p><span id="id15">Etz <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id15" title="Alexander Etz, Quentin F Gronau, Fabian Dablander, Peter A Edelsbrunner, and Beth Baribault. How to become a bayesian in eight easy steps: an annotated reading list. Psychonomic bulletin &amp; review, 25(1):219–234, 2018.">EGD+18</a>]</span> concludono che l’approccio bayesiano offre un quadro più robusto e coerente per il test delle ipotesi. A differenza del metodo frequentista, esso non dipende dalla definizione di “risultati più estremi” non osservati e si concentra invece esclusivamente sui dati effettivamente raccolti. Questa focalizzazione, in generale, rende l’approccio bayesiano una soluzione più solida per valutare le ipotesi scientifiche.</p>
-</section>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Oct 16 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:05:43.069867+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.5
-IPython version      : 8.15.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-numpy: 1.25.2
-scipy: 1.11.2
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-Watermark: 2.4.3
+
 </pre></div>
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -951,6 +958,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardizzazione-della-media-campionaria">Standardizzazione della media campionaria</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazioni-pratiche">Applicazioni pratiche</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ipotesi-statistiche">Ipotesi statistiche</a></li>
@@ -989,7 +997,6 @@ Watermark: 2.4.3
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approccio-bayesiano">Approccio Bayesiano</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

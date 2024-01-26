@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#odds">Odds</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">Interpretazione</a></li>
 </ul>
@@ -536,7 +538,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esercizio">Esercizio</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -552,6 +553,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="analisi-bayesiana-dell-odds-ratio">
 <h1>Analisi bayesiana dell’odds-ratio<a class="headerlink" href="#analisi-bayesiana-dell-odds-ratio" title="Permalink to this heading">#</a></h1>
 <p>In questo capitolo, esploreremo l’applicazione degli strumenti statistici descritti nei capitoli precedenti all’analisi bayesiana di due proporzioni. Inizieremo definendo i concetti di odds, odds ratio e logit. Successivamente, mostreremo come effettuare l’analisi bayesiana per il confronto tra due proporzioni.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -587,6 +590,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="odds">
 <h2>Odds<a class="headerlink" href="#odds" title="Permalink to this heading">#</a></h2>
 <p>Il termine “odds” rappresenta il rapporto tra la probabilità che un evento si verifichi e la probabilità che l’evento opposto si verifichi. Matematicamente, l’odds può essere calcolato come:</p>
@@ -745,7 +749,7 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.781476
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:03.165983
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -811,16 +815,16 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/3000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/3000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/3000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -835,31 +839,31 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/3000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/3000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 3000/3000 [00:01&lt;00:00, 2445.35it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 3000/3000 [00:01&lt;00:00, 2131.56it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 3000/3000 [00:01&lt;00:00, 2447.73it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 3000/3000 [00:01&lt;00:00, 2133.21it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 3000/3000 [00:01&lt;00:00, 2450.19it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 3000/3000 [00:01&lt;00:00, 2135.56it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 3000/3000 [00:01&lt;00:00, 2452.53it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 3000/3000 [00:01&lt;00:00, 2137.72it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.545654
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.171855
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.082285
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.094929
 </pre></div>
 </div>
 </div>
@@ -880,7 +884,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7b8c610709c21c4bf1f3f3bcffdf42fb0db39d1c2e44f3db65a46238278e0cd9.png" src="../_images/7b8c610709c21c4bf1f3f3bcffdf42fb0db39d1c2e44f3db65a46238278e0cd9.png" />
+<img alt="../_images/7e88aa49d69db2ec58c95c9d1e70e993dc82d42d3033fdd861910c4b46bcc48e.png" src="../_images/7e88aa49d69db2ec58c95c9d1e70e993dc82d42d3033fdd861910c4b46bcc48e.png" />
 </div>
 </div>
 </section>
@@ -929,37 +933,37 @@ document.write(`
     <tr>
       <th>p1</th>
       <td>0.692</td>
-      <td>0.036</td>
-      <td>0.626</td>
+      <td>0.037</td>
+      <td>0.622</td>
       <td>0.760</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>6623.0</td>
-      <td>5197.0</td>
+      <td>6535.0</td>
+      <td>5489.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>p2</th>
       <td>0.492</td>
-      <td>0.064</td>
-      <td>0.363</td>
-      <td>0.605</td>
+      <td>0.065</td>
+      <td>0.368</td>
+      <td>0.610</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>6819.0</td>
-      <td>5098.0</td>
+      <td>6977.0</td>
+      <td>4864.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>odds_ratio</th>
-      <td>2.450</td>
-      <td>0.772</td>
-      <td>1.210</td>
-      <td>3.963</td>
+      <td>2.455</td>
+      <td>0.794</td>
+      <td>1.154</td>
+      <td>3.904</td>
       <td>0.010</td>
       <td>0.007</td>
-      <td>6695.0</td>
-      <td>4977.0</td>
+      <td>6789.0</td>
+      <td>4962.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1345,9 +1349,9 @@ dl.xr-attrs {
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
 Dimensions:     ()
 Data variables:
-    p1          float64 1.001
-    p2          float64 1.0
-    odds_ratio  float64 1.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-2802167c-e465-46b2-b2d7-7703438b602f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-2802167c-e465-46b2-b2d7-7703438b602f' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-8880216d-e1f8-485a-b08b-84ea14a38268' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8880216d-e1f8-485a-b08b-84ea14a38268' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-bbb84861-909d-42c7-b95a-75f82d431b5d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-bbb84861-909d-42c7-b95a-75f82d431b5d' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>p1</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.001</div><input id='attrs-fcc56e24-e230-4b51-89ae-cdcf6bbb6339' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fcc56e24-e230-4b51-89ae-cdcf6bbb6339' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7079ac4e-2d5f-4838-a4ba-6952f170673e' class='xr-var-data-in' type='checkbox'><label for='data-7079ac4e-2d5f-4838-a4ba-6952f170673e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.0007679)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>p2</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0</div><input id='attrs-c1711b52-1a83-46d2-958e-e4cc84a5492d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c1711b52-1a83-46d2-958e-e4cc84a5492d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3b790c3b-eccb-45ea-b21f-82c59a30e457' class='xr-var-data-in' type='checkbox'><label for='data-3b790c3b-eccb-45ea-b21f-82c59a30e457' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.00034018)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>odds_ratio</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0</div><input id='attrs-061b5d02-8eb1-4db3-8cbe-68d534c7d1b6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-061b5d02-8eb1-4db3-8cbe-68d534c7d1b6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-959d93c1-c9cb-43af-8e83-57ddac6b5e61' class='xr-var-data-in' type='checkbox'><label for='data-959d93c1-c9cb-43af-8e83-57ddac6b5e61' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.00031875)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-153c6527-e9ba-4ba9-979a-2532e3e0f8d7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-153c6527-e9ba-4ba9-979a-2532e3e0f8d7' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-1ee9b4b8-2bfe-4926-9565-79473590f149' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-1ee9b4b8-2bfe-4926-9565-79473590f149' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+    p1          float64 1.0
+    p2          float64 1.001
+    odds_ratio  float64 1.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-660de8e2-b6cf-44d0-8f37-13016c4a14b7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-660de8e2-b6cf-44d0-8f37-13016c4a14b7' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-7294cd21-fe42-45db-8313-c4c6a7cba424' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-7294cd21-fe42-45db-8313-c4c6a7cba424' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-c63286fb-c954-42e5-ab8b-05e871733fac' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c63286fb-c954-42e5-ab8b-05e871733fac' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>p1</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0</div><input id='attrs-22db1e80-4ff6-4aa7-a414-b9d3267e254c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-22db1e80-4ff6-4aa7-a414-b9d3267e254c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2b1eaed5-2ef4-49aa-aded-1f7d405c478d' class='xr-var-data-in' type='checkbox'><label for='data-2b1eaed5-2ef4-49aa-aded-1f7d405c478d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.00046459)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>p2</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.001</div><input id='attrs-9fb9c26b-3c34-4605-a7d1-744668e8f41c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9fb9c26b-3c34-4605-a7d1-744668e8f41c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4fd4d45e-978f-4c5f-bd7c-f992e66da464' class='xr-var-data-in' type='checkbox'><label for='data-4fd4d45e-978f-4c5f-bd7c-f992e66da464' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.00050923)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>odds_ratio</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0</div><input id='attrs-ad078df1-d37a-40f7-bddb-420849448d29' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ad078df1-d37a-40f7-bddb-420849448d29' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-940dbfa3-082d-42ec-a625-543b4df3e805' class='xr-var-data-in' type='checkbox'><label for='data-940dbfa3-082d-42ec-a625-543b4df3e805' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1.00028233)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4bd9f229-5327-4965-9357-e1db4ed19b4a' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4bd9f229-5327-4965-9357-e1db4ed19b4a' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-d789e394-627b-4195-a42f-1390457b4023' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-d789e394-627b-4195-a42f-1390457b4023' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Il valore di <span class="math notranslate nohighlight">\(\hat{R}\)</span>, al massimo, raggiunge il valore di 1.001. Essendo il valore molto simile a 1 nel caso presente, possiamo dire che non ci sono evidenza di assenza di convergenza.</p>
 </section>
@@ -1728,9 +1732,9 @@ dl.xr-attrs {
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
 Dimensions:     ()
 Data variables:
-    p1          float64 0.0004436
-    p2          float64 0.0007699
-    odds_ratio  float64 0.009531</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-4f0facb3-7104-4949-8d4b-5149eaa97521' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4f0facb3-7104-4949-8d4b-5149eaa97521' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-6737aced-12b8-41f8-9746-32686b927bd3' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-6737aced-12b8-41f8-9746-32686b927bd3' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-437b0a7c-d849-4a31-91b6-22e6c4fbb9d0' class='xr-section-summary-in' type='checkbox'  checked><label for='section-437b0a7c-d849-4a31-91b6-22e6c4fbb9d0' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>p1</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0004436</div><input id='attrs-2f42bf32-3fc0-400c-964d-bd56e1c59022' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2f42bf32-3fc0-400c-964d-bd56e1c59022' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-88d8a2fa-330e-40d4-8fb7-519eb1888897' class='xr-var-data-in' type='checkbox'><label for='data-88d8a2fa-330e-40d4-8fb7-519eb1888897' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.00044365)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>p2</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0007699</div><input id='attrs-3520a78b-147d-448b-bd06-9e7a0491e7a1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3520a78b-147d-448b-bd06-9e7a0491e7a1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-816d54f0-13ea-4309-ba4d-4e023f7e3c86' class='xr-var-data-in' type='checkbox'><label for='data-816d54f0-13ea-4309-ba4d-4e023f7e3c86' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.00076994)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>odds_ratio</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.009531</div><input id='attrs-390840b5-6f0b-459d-be4b-6d4b9d55e55f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-390840b5-6f0b-459d-be4b-6d4b9d55e55f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6f1fdaee-617d-4f95-809a-e50795d04920' class='xr-var-data-in' type='checkbox'><label for='data-6f1fdaee-617d-4f95-809a-e50795d04920' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.00953056)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6498fef3-ef10-4c6a-8ae3-639fe7c652ff' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-6498fef3-ef10-4c6a-8ae3-639fe7c652ff' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-6620d291-2c6f-43b7-9d15-ec98131bac6c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-6620d291-2c6f-43b7-9d15-ec98131bac6c' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+    p1          float64 0.000453
+    p2          float64 0.0007797
+    odds_ratio  float64 0.009903</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-e23f2045-b7a2-40e1-8cda-75780044aeca' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-e23f2045-b7a2-40e1-8cda-75780044aeca' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-19ac4917-eb1e-46f5-956d-3027f07ebf96' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-19ac4917-eb1e-46f5-956d-3027f07ebf96' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-8c51a936-fd39-4536-88aa-e06d366da2b1' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8c51a936-fd39-4536-88aa-e06d366da2b1' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>p1</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.000453</div><input id='attrs-62cec217-00d3-4f0c-b7b0-f2c024c8794b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-62cec217-00d3-4f0c-b7b0-f2c024c8794b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2ea2b8d2-de55-472c-b058-5600a3ed5a90' class='xr-var-data-in' type='checkbox'><label for='data-2ea2b8d2-de55-472c-b058-5600a3ed5a90' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.00045296)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>p2</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0007797</div><input id='attrs-b19a235a-9b77-431a-9acd-4fd89d95cc45' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b19a235a-9b77-431a-9acd-4fd89d95cc45' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b5234f7e-5c2d-41de-8233-5b5dccbff505' class='xr-var-data-in' type='checkbox'><label for='data-b5234f7e-5c2d-41de-8233-5b5dccbff505' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.00077969)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>odds_ratio</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.009903</div><input id='attrs-813ece03-50e1-4ee2-bb52-976f1f4355ba' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-813ece03-50e1-4ee2-bb52-976f1f4355ba' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f5c92d94-0f07-45c1-ba3e-a047cd413147' class='xr-var-data-in' type='checkbox'><label for='data-f5c92d94-0f07-45c1-ba3e-a047cd413147' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(0.00990294)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-42eca63e-d9c6-4328-80b1-ce2a717cf259' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-42eca63e-d9c6-4328-80b1-ce2a717cf259' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-ecaf9f58-3773-4f2a-ae2c-a3204045d378' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ecaf9f58-3773-4f2a-ae2c-a3204045d378' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Come per l’ESS, l’MCSE varia nello spazio dei parametri e quindi potremmo anche volerlo valutare per diverse regioni dello spazio dei parametri.</p>
 <div class="cell docutils container">
@@ -1741,7 +1745,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/71b8b5e49cc191b3996cf1ed0847ce5a536e885c4fd7516295cf25e7ff796ea9.png" src="../_images/71b8b5e49cc191b3996cf1ed0847ce5a536e885c4fd7516295cf25e7ff796ea9.png" />
+<img alt="../_images/cd65e9df939c0baa633c82f0381a2c800f6b33c837c2c5513be967313acb3327.png" src="../_images/cd65e9df939c0baa633c82f0381a2c800f6b33c837c2c5513be967313acb3327.png" />
 </div>
 </div>
 <p>L’errore standard di Monte Carlo ci informa della precisione della stima ottenuta usando il metodo MCMC. Non possiamo riportare una precisione dei risultati maggiore di quella indicata dalla MCSE. Pertanto, per il caso presente relativo all’Odds Ratio (OR), possiamo affermare che la precisione massima raggiungibile è limitata a due decimali.</p>
@@ -1758,7 +1762,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6dde5f334fb8208498b767ea6900ec5c0a27f0880dbebef0015f5113647f791a.png" src="../_images/6dde5f334fb8208498b767ea6900ec5c0a27f0880dbebef0015f5113647f791a.png" />
+<img alt="../_images/c3f15dd55122757a04ea6e3eca083f94dca0f580eded23cf5d58e02cf121076c.png" src="../_images/c3f15dd55122757a04ea6e3eca083f94dca0f580eded23cf5d58e02cf121076c.png" />
 </div>
 </div>
 </section>
@@ -1774,7 +1778,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/30ff604404cc255b5659061fe39609d4d62db5c158de2301c270c49ba4dae158.png" src="../_images/30ff604404cc255b5659061fe39609d4d62db5c158de2301c270c49ba4dae158.png" />
+<img alt="../_images/daedd43a6999480bd24aa4fd5a26154747e56101ce5e1e24413e3ae26b768b91.png" src="../_images/daedd43a6999480bd24aa4fd5a26154747e56101ce5e1e24413e3ae26b768b91.png" />
 </div>
 </div>
 <p>Una rappresentazione alternativa è la seguente.</p>
@@ -1787,7 +1791,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/75e8d337ab223a45d90fcd42ba3f1a0ae0c891cf54df01f790de3c7376ff3336.png" src="../_images/75e8d337ab223a45d90fcd42ba3f1a0ae0c891cf54df01f790de3c7376ff3336.png" />
+<img alt="../_images/73c8ad3ae075fddea590f3c24544f06b07d20cfd45d995f2bf898ba5627a5fae.png" src="../_images/73c8ad3ae075fddea590f3c24544f06b07d20cfd45d995f2bf898ba5627a5fae.png" />
 </div>
 </div>
 <p>Possiamo vedere nella figura che i ranghi sono molto simili ad una distribuzione uniforme e che tutte le catene sono simili tra loro senza alcuno scostamento distintivo.</p>
@@ -1810,7 +1814,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.13078911, 1.06749175, 1.18060685, 1.11997393])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.09359332, 1.04540429, 1.02254792, 1.09464777])
 </pre></div>
 </div>
 </div>
@@ -1828,7 +1832,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a959753dd36049c65703c65ed90042260ff81352db65887401a42f02958b88b2.png" src="../_images/a959753dd36049c65703c65ed90042260ff81352db65887401a42f02958b88b2.png" />
+<img alt="../_images/3ae99778e9a51e20d5ed7c1d53f35cce9013bcf2bc70da5654dec8cb45a889e6.png" src="../_images/3ae99778e9a51e20d5ed7c1d53f35cce9013bcf2bc70da5654dec8cb45a889e6.png" />
 </div>
 </div>
 </section>
@@ -1844,31 +1848,30 @@ Data variables:
 <section id="esercizio">
 <h2>Esercizio<a class="headerlink" href="#esercizio" title="Permalink to this heading">#</a></h2>
 <p>Consideriamo un secondo evento dicotomico, ovvero il voto più alto, rappresentato da voti &gt;= 30. Tra le studentesse, 15 su un totale di 155 hanno ottenuto voti &gt;= 30. Mentre tra gli studenti maschi, 13 su un totale di 57 hanno ottenuto voti &gt;= 30. Il problema richiede di calcolare l’odds ratio tra le probabilità di ottenere voti &gt;= 30 tra le studentesse e gli studenti maschi, seguendo la procedura descritta in questo capitolo.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Tue Jan 23 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T18:58:31.995251+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-seaborn   : 0.13.0
-pandas    : 2.1.4
-pymc      : 5.10.3
-matplotlib: 3.8.2
-arviz     : 0.17.0
-numpy     : 1.26.2
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-Watermark: 2.4.3
+
 </pre></div>
 </div>
 </div>
@@ -1939,6 +1942,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#odds">Odds</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">Interpretazione</a></li>
 </ul>
@@ -1963,7 +1967,6 @@ Watermark: 2.4.3
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esercizio">Esercizio</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-denominatore-bayesiano">Il denominatore bayesiano</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catene-di-markov-monte-carlo">Catene di Markov Monte Carlo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-metodo-di-monte-carlo">Il Metodo di Monte Carlo</a></li>
@@ -565,6 +567,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="monte-carlo-a-catena-di-markov">
 <span id="metropolis-notebook"></span><h1>Monte Carlo a Catena di Markov<a class="headerlink" href="#monte-carlo-a-catena-di-markov" title="Permalink to this heading">#</a></h1>
 <p>In precedenza, abbiamo esplorato diversi esempi di inferenza bayesiana relativi alla distribuzione a posteriori di un singolo parametro, come nel caso del modello bernoulliano. Abbiamo anche discusso l’utilizzo di approcci come l’approssimazione tramite griglia e i metodi dei priori coniugati per ottenere o approssimare la distribuzione a posteriori. In questo capitolo, ci concentreremo sul metodo di simulazione e spiegheremo perché sono necessari approcci speciali noti come metodi di Monte Carlo a Catena di Markov (MCMC).</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -596,6 +600,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="il-denominatore-bayesiano">
 <h2>Il denominatore bayesiano<a class="headerlink" href="#il-denominatore-bayesiano" title="Permalink to this heading">#</a></h2>
 <p>Nel campo dell’approccio bayesiano, il nostro obiettivo primario si concentra sulla determinazione della distribuzione a posteriori <span class="math notranslate nohighlight">\(p(\theta \mid y)\)</span> di un parametro <span class="math notranslate nohighlight">\(\theta\)</span> (nel caso più semplice), utilizzando come base sia i dati osservati <span class="math notranslate nohighlight">\(y\)</span> che la distribuzione a priori <span class="math notranslate nohighlight">\(p(\theta)\)</span>. Questo processo si avvale del teorema di Bayes per calcolare tale distribuzione.</p>
@@ -1606,6 +1611,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-denominatore-bayesiano">Il denominatore bayesiano</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catene-di-markov-monte-carlo">Catene di Markov Monte Carlo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-metodo-di-monte-carlo">Il Metodo di Monte Carlo</a></li>

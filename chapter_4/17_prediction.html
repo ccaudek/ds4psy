@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-distribuzione-predittiva-a-posteriori">La distribuzione predittiva a posteriori</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivazione-analitica">Derivazione analitica</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>
@@ -545,6 +547,8 @@ document.write(`
 <span id="bayesian-prediction-notebook"></span><h1>La predizione bayesiana<a class="headerlink" href="#la-predizione-bayesiana" title="Permalink to this heading">#</a></h1>
 <p>L’analisi bayesiana ha diversi obiettivi chiave, che includono la formulazione della distribuzione a posteriori dei parametri, la valutazione delle ipotesi e la previsione di dati futuri. Una volta determinate le distribuzioni a posteriori dei parametri, si può procedere a formulare stime riguardo alle possibili caratteristiche di dati futuri. Questo processo porta alla creazione di una <em>distribuzione predittiva a posteriori</em>, che serve come strumento essenziale per la verifica e la validazione del modello statistico in uso. Questa distribuzione predittiva permette un confronto diretto tra le previsioni generate dal modello e i dati che sono stati effettivamente osservati nel campione. In pratica, utilizziamo il modello corrente per generare previsioni sui possibili dati futuri e poi confrontiamo queste previsioni con i dati che abbiamo effettivamente raccolto. Se le previsioni generate dal modello sono in buon accordo con i dati osservati, possiamo concludere che il modello fornisce una rappresentazione accurata dei dati.</p>
 <p>Una seconda forma di predizione bayesiana riguarda la distribuzione predittiva a priori (<em>prior predictive distribution</em>). La distribuzione predittiva a priori rappresenta la distribuzione dei possibili dati osservabili prima di aver effettivamente osservato qualsiasi dato. Essa incorpora la nostra conoscenza a priori, o le nostre credenze iniziali, riguardo ai parametri del modello.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -581,6 +585,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="la-distribuzione-predittiva-a-posteriori">
 <h2>La distribuzione predittiva a posteriori<a class="headerlink" href="#la-distribuzione-predittiva-a-posteriori" title="Permalink to this heading">#</a></h2>
 <p>Un modo molto intuitivo per valutare la qualità complessiva di un modello è esaminare quanto bene il modello si adatti ai dati reali.  Questo tipo di approccio è diffuso nelle statistiche frequentiste, spesso basato su misure di “badness-of-fit” (inadeguatezza dell’adattamento). Nel contesto delle statistiche Bayesiane, l’analisi dell’adattamento del modello ai dati si avvale del concetto di verifica predittiva a posteriori (<em>Posterior Predictive Checking</em>, PPC) <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id12" title="Andrew Gelman and Cosma Rohilla Shalizi. Philosophy and the practice of bayesian statistics. British Journal of Mathematical and Statistical Psychology, 66(1):8–38, 2013.">GS13</a>]</span>.</p>
@@ -3259,6 +3264,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-distribuzione-predittiva-a-posteriori">La distribuzione predittiva a posteriori</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivazione-analitica">Derivazione analitica</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>

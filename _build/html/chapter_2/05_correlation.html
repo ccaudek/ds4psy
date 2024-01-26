@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-delle-relazioni-tra-variabili">Definizione delle relazioni tra variabili</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-a-dispersione">Grafico a dispersione</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covarianza">Covarianza</a><ul class="nav section-nav flex-column">
@@ -543,6 +545,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="le-relazioni-tra-variabili">
 <span id="associations-notebook"></span><h1>Le relazioni tra variabili<a class="headerlink" href="#le-relazioni-tra-variabili" title="Permalink to this heading">#</a></h1>
 <p>In questo capitolo esamineremo due indicatori statistici utilizzati per misurare la relazione lineare tra due variabili: la covarianza e la correlazione. Questi due strumenti sono fondamentali per comprendere il grado e la direzione dell’associazione tra le variabili, consentendoci di quantificare quanto variano insieme e in che modo.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -566,6 +570,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="definizione-delle-relazioni-tra-variabili">
 <h2>Definizione delle relazioni tra variabili<a class="headerlink" href="#definizione-delle-relazioni-tra-variabili" title="Permalink to this heading">#</a></h2>
 <p>Nel contesto delle indagini statistiche, spesso non ci limitiamo a esaminare la distribuzione di una singola variabile. Invece, il nostro interesse si concentra sulla relazione che emerge nei dati tra due o più variabili. Ma cosa significa esattamente quando diciamo che due variabili hanno una relazione?</p>
@@ -1120,6 +1125,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-delle-relazioni-tra-variabili">Definizione delle relazioni tra variabili</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-a-dispersione">Grafico a dispersione</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covarianza">Covarianza</a><ul class="nav section-nav flex-column">

@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-caso-beta-binomiale">Il caso beta-binomiale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connessione-tra-intuizioni-e-teoria">Connessione tra intuizioni e teoria</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
@@ -533,6 +535,8 @@ document.write(`
 <p>Il dibattito tra approcci bayesiani e frequentisti nella statistica ha avuto un impatto significativo su molteplici discipline, dalla psicologia alla scienza dei dati. Mentre i metodi frequentisti hanno dominato il panorama scientifico per decenni, l’approccio bayesiano sta guadagnando sempre più terreno, grazie alla sua capacità di incorporare conoscenza esperta e credenze preesistenti nel modello statistico. In questo contesto, questo capitolo si focalizza sull’importanza e sulle implicazioni della soggettività intrinseca nella scelta dei priori durante il processo di aggiornamento bayesiano. Esploreremo come questa soggettività possa influenzare le conclusioni derivate da analisi bayesiane e come possa essere mitigata o valorizzata attraverso metodologie rigorose.</p>
 <p>Per illustrare questi concetti, esamineremo dettagliatamente alcuni esempi, tra cui un caso studio tratto dal libro “Bayes Rules!” di Johnson e collaboratori <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id88" title="Alicia A. Johnson, Miles Ott, and Mine Dogucu. Bayes Rules! An Introduction to Bayesian Modeling with R. CRC Press, 2022.">JOD22</a>]</span>. Questi esempi ci serviranno come veicolo per comprendere come l’integrazione di informazioni a priori e dati osservati avviene in pratica, e come essa possa portare a inferenze più robuste e ben informate.</p>
 <p>L’obiettivo del capitolo è quindi fornire una panoramica accessibile delle sfide e delle potenzialità inerenti all’uso dei priori nell’approccio bayesiano, al fine di migliorare la comprensione del suo ruolo crescente nel panorama scientifico attuale.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -574,6 +578,7 @@ document.write(`
 </div>
 </details>
 </div>
+</section>
 <section id="il-caso-beta-binomiale">
 <h2>Il caso beta-binomiale<a class="headerlink" href="#il-caso-beta-binomiale" title="Permalink to this heading">#</a></h2>
 <p>La formula <span class="math notranslate nohighlight">\( p(\theta \mid y) \propto p(\theta) \times p(y \mid \theta) \)</span> è fondamentale per la comprensione dell’inferenza bayesiana. Essa illustra chiaramente che la distribuzione a posteriori emerge dalla congiunzione tra la distribuzione a priori e la funzione di verosimiglianza associata ai dati osservati. Questa sinergia permette di integrare informazioni a priori con evidenze empiriche recenti, risultando in una stima a posteriori del parametro <span class="math notranslate nohighlight">\( \theta \)</span> che è caratterizzata da un elevato grado di precisione e informatività.</p>
@@ -1148,6 +1153,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-caso-beta-binomiale">Il caso beta-binomiale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connessione-tra-intuizioni-e-teoria">Connessione tra intuizioni e teoria</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>

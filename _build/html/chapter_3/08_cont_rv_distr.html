@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-uniforme">Distribuzione uniforme</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-esponenziale">Distribuzione esponenziale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-gaussiana">Distribuzione Gaussiana</a><ul class="nav section-nav flex-column">
@@ -568,6 +570,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="distribuzioni-di-v-c-continue">
 <span id="cont-rv-distr-notebook"></span><h1>Distribuzioni di v.c. continue<a class="headerlink" href="#distribuzioni-di-v-c-continue" title="Permalink to this heading">#</a></h1>
 <p>Dopo avere introdotto con una simulazione il concetto di funzione di densità nel capitolo <a class="reference internal" href="06_density_func.html#density-function-notebook"><span class="std std-ref">La funzione di densità di probabilità</span></a>, prendiamo ora in esame alcune delle densità di probabilità più note. Iniziamo con la distribuzione continua uniforme.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -593,6 +597,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="distribuzione-uniforme">
 <h2>Distribuzione uniforme<a class="headerlink" href="#distribuzione-uniforme" title="Permalink to this heading">#</a></h2>
 <p>La distribuzione uniforme è la più sempilce funzione di densità di probabilità. Consideriamo nuovamente l’esperimento con lo spinner che abbiamo introdotto nel capitolo <a class="reference internal" href="06_density_func.html#density-function-notebook"><span class="std std-ref">La funzione di densità di probabilità</span></a>. Simuliamo 20 valori che potrebbero essere ottenuti facendo ruotare lo spinner e li rappresentiamo con un istogramma.</p>
@@ -2169,6 +2174,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-uniforme">Distribuzione uniforme</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-esponenziale">Distribuzione esponenziale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-gaussiana">Distribuzione Gaussiana</a><ul class="nav section-nav flex-column">

@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -278,7 +279,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
@@ -287,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -311,22 +311,27 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_1/00_installation.html">Ambiente di lavoro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a05_sets.html">Insiemi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a13_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a53_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a60_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a70_predict_counts.html">La predizione delle frequenze</a></li>
 </ul>
 </li>
 </ul>
@@ -508,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizzabilita-dei-modelli-e-fondamenti-del-metodo-scientifico">Generalizzabilità dei modelli e fondamenti del metodo scientifico</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropia-una-misura-dell-incertezza">Entropia: Una Misura dell’Incertezza</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#divergenza-di-kullback-leibler-un-strumento-per-confrontare-le-distribuzioni">Divergenza di Kullback-Leibler: Un Strumento per Confrontare le Distribuzioni</a><ul class="nav section-nav flex-column">
@@ -524,7 +530,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riflessioni-conclusive-e-prospettive-future">Riflessioni Conclusive e Prospettive Future</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -539,6 +544,9 @@ document.write(`
   <p><a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/ccaudek/ds4psy_2023/blob/main/entropy.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="entropia">
 <span id="entropy-notebook"></span><h1>Entropia<a class="headerlink" href="#entropia" title="Permalink to this heading">#</a></h1>
+<p>In questo capitolo, esploreremo il concetto di entropia, sottolineando il suo ruolo fondamentale nel processo di quantificazione dell’incertezza all’interno delle distribuzioni di probabilità. Inoltre, affronteremo il tema cruciale di come l’entropia possa essere utilizzata per valutare la “distanza” tra un modello teorico e i dati osservati. A tale scopo, introdurremo la divergenza di Kullback-Leibler (KL), una misura che non solo misura le discrepanze tra due distribuzioni probabilistiche, ma offre anche una prospettiva approfondita sulla valutazione della concordanza tra teoria e realtà empirica.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -569,11 +577,12 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="generalizzabilita-dei-modelli-e-fondamenti-del-metodo-scientifico">
 <h2>Generalizzabilità dei modelli e fondamenti del metodo scientifico<a class="headerlink" href="#generalizzabilita-dei-modelli-e-fondamenti-del-metodo-scientifico" title="Permalink to this heading">#</a></h2>
 <p>Nella scienza, la generalizzabilità dei modelli rappresenta un aspetto fondamentale, essendo uno dei pilastri del metodo scientifico. La capacità di un modello di estendersi oltre il contesto specifico in cui è stato testato ne determina il valore scientifico. In questo contesto, la replicabilità emerge come un prerequisito essenziale, ma non sufficiente, poiché un modello può essere replicabile eppure non generalizzabile.</p>
-<p>Per valutare la robustezza di un modello, è importante porsi tre domande fondamentali <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id87" title="Alicia A. Johnson, Miles Ott, and Mine Dogucu. Bayes Rules! An Introduction to Bayesian Modeling with R. CRC Press, 2022.">JOD22</a>]</span>: Quali sono le implicazioni delle nostre inferenze? Le assunzioni del modello sono valide? E quanto accuratamente può fare previsioni? Quest’ultima domanda è cruciale per la generalizzabilità, evidenziando l’importanza di modelli che possano fare previsioni accurate su nuovi dati.</p>
-<p>Creare modelli che evitino le insidie del sovra-adattamento e del sotto-adattamento è una sfida significativa <span id="id2">[<a class="reference internal" href="../references/bibliography.html#id108" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span>. Il sovra-adattamento si verifica quando un modello è troppo specifico, mentre il sotto-adattamento accade quando è troppo generico. L’approccio bayesiano offre una soluzione elegante a questo problema, concentrando l’attenzione sulla capacità predittiva del modello.</p>
+<p>Per valutare la robustezza di un modello, è importante porsi tre domande fondamentali <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id88" title="Alicia A. Johnson, Miles Ott, and Mine Dogucu. Bayes Rules! An Introduction to Bayesian Modeling with R. CRC Press, 2022.">JOD22</a>]</span>: Quali sono le implicazioni delle nostre inferenze? Le assunzioni del modello sono valide? E quanto accuratamente può fare previsioni? Quest’ultima domanda è cruciale per la generalizzabilità, evidenziando l’importanza di modelli che possano fare previsioni accurate su nuovi dati.</p>
+<p>Creare modelli che evitino le insidie del sovra-adattamento e del sotto-adattamento è una sfida significativa <span id="id2">[<a class="reference internal" href="../references/bibliography.html#id109" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span>. Il sovra-adattamento si verifica quando un modello è troppo specifico, mentre il sotto-adattamento accade quando è troppo generico. L’approccio bayesiano offre una soluzione elegante a questo problema, concentrando l’attenzione sulla capacità predittiva del modello.</p>
 <p>La selezione dei modelli deve bilanciare la semplicità con la precisione. Principi come il rasoio di Ockham suggeriscono di favorire la semplicità, ma senza compromettere la capacità del modello di descrivere accuratamente i dati. I test di ipotesi, sebbene critici per la loro enfasi sui valori-p, rimangono strumenti comuni, ma devono essere impiegati con cautela.</p>
 <p>Un aspetto cruciale nella selezione del modello è la misurazione obiettiva della sua aderenza al “vero” processo generativo dei dati. In questo contesto, la divergenza di Kullback-Leibler si rivela come uno strumento efficace, misurando la “vicinanza” di un modello alla distribuzione sottostante dei dati. Tuttavia, per comprendere a fondo la divergenza di Kullback-Leibler, è fondamentale introdurre il concetto di entropia, che rappresenta l’incertezza o la sorpresa associata all’osservazione di un evento. L’entropia, così come la divergenza di Kullback-Leibler, fornisce una misura quantitativa per valutare quanto bene un modello approssima la distribuzione dei dati, sia in termini di famiglia di distribuzioni che di specifici parametri che le caratterizzano.</p>
 </section>
@@ -731,7 +740,7 @@ H(X) = \mathbb{E}[I(X)] = -\sum_{x \in X} p(x) \log_{2}(p(x)).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ef2d1de17ca1c182de4c027f19a103b2a36f3c79226ebe5db16d3981ac1a77a1.png" src="../_images/ef2d1de17ca1c182de4c027f19a103b2a36f3c79226ebe5db16d3981ac1a77a1.png" />
+<img alt="../_images/24e0866ff023b05cc20ffc31aa952350b63352f5efc089e46e41f767374970aa.png" src="../_images/24e0866ff023b05cc20ffc31aa952350b63352f5efc089e46e41f767374970aa.png" />
 </div>
 </div>
 <p>La figura mostra che questa relazione non è lineare, è infatti leggermente sublineare. Questo ha senso dato che abbiamo usato una funzione logaritmica.</p>
@@ -769,7 +778,7 @@ H(X) = \mathbb{E}[I(X)] = -\sum_{x \in X} p(x) \log_{2}(p(x)).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/00843b463f754ebfab2a4f2d55e2b3c25feb13a1723bdf41559834427455c5fa.png" src="../_images/00843b463f754ebfab2a4f2d55e2b3c25feb13a1723bdf41559834427455c5fa.png" />
+<img alt="../_images/f8247ab4ffb2b073525524d2ada782fc3980b088b515360555896f1f008b3625.png" src="../_images/f8247ab4ffb2b073525524d2ada782fc3980b088b515360555896f1f008b3625.png" />
 </div>
 </div>
 <p>Questo script mostra che, per la distribuzione normale, l’entropia tende ad aumentare con l’aumento della varianza. Tuttavia, consideriamo ora due distribuzioni con la stessa varianza ma probabilità differenti:</p>
@@ -884,7 +893,7 @@ Entropia della distribuzione 2: 1.5849624862946867
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.2168279165062206
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.1927373906510967
 </pre></div>
 </div>
 </div>
@@ -910,7 +919,7 @@ Entropia della distribuzione 2: 1.5849624862946867
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8895637559305881
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9103723991901927
 </pre></div>
 </div>
 </div>
@@ -924,32 +933,30 @@ Entropia della distribuzione 2: 1.5849624862946867
 <h2>Riflessioni Conclusive e Prospettive Future<a class="headerlink" href="#riflessioni-conclusive-e-prospettive-future" title="Permalink to this heading">#</a></h2>
 <p>In questo capitolo, abbiamo esaminato il concetto di entropia, evidenziando il suo ruolo fondamentale nel quantificare l’incertezza all’interno delle distribuzioni di probabilità. Abbiamo anche affrontato la questione di come l’entropia possa essere impiegata per valutare la “distanza” tra un modello teorico e i dati reali. A tale scopo, abbiamo introdotto la divergenza di Kullback-Leibler (KL), una misura che non solo quantifica le discrepanze tra due distribuzioni probabilistiche, ma agisce anche come collegamento tra teoria e pratica, tra il modello ideale e il mondo empirico.</p>
 <p>Nel capitolo successivo, approfondiremo ulteriormente il tema della divergenza KL. Esploreremo come questo strumento possa essere utilizzato per confrontare modelli teorici con dati empirici e ci concentreremo su come possa fornirci una comprensione più dettagliata dell’adattamento di un modello alla realtà che intende rappresentare. Questa esplorazione ci permetterà di valutare più accuratamente la validità e la generalizzabilità dei modelli scientifici nel loro tentativo di catturare e interpretare la complessità dei dati reali.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Wed Nov 15 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:00:26.050409+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.6
-IPython version      : 8.17.2
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-numpy      : 1.25.2
-scipy      : 1.11.3
-pandas     : 2.1.3
-seaborn    : 0.13.0
-matplotlib : 3.8.1
-statsmodels: 0.14.0
-arviz      : 0.16.1
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-Watermark: 2.4.3
+
 </pre></div>
 </div>
 </div>
@@ -1020,6 +1027,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizzabilita-dei-modelli-e-fondamenti-del-metodo-scientifico">Generalizzabilità dei modelli e fondamenti del metodo scientifico</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropia-una-misura-dell-incertezza">Entropia: Una Misura dell’Incertezza</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#divergenza-di-kullback-leibler-un-strumento-per-confrontare-le-distribuzioni">Divergenza di Kullback-Leibler: Un Strumento per Confrontare le Distribuzioni</a><ul class="nav section-nav flex-column">
@@ -1036,7 +1044,6 @@ Watermark: 2.4.3
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riflessioni-conclusive-e-prospettive-future">Riflessioni Conclusive e Prospettive Future</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

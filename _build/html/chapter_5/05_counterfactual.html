@@ -82,7 +82,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="✏️ Esercizi" href="E_stab.html" />
-    <link rel="prev" title="Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19" href="05_covid.html" />
+    <link rel="prev" title="Inferenza controfattuale" href="05_covid.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="E_stab.html">✏️ Esercizi</a></li>
@@ -513,6 +514,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisi causale con PyMC</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutazione-dell-efficacia-della-terapia-cognitivo-comportamentale-tcc">Valutazione dell’efficacia della Terapia Cognitivo-Comportamentale (TCC)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formalizzazione-della-rete-causale-bayesiana-sottostante">Formalizzazione della rete causale bayesiana sottostante</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-del-modello-generativo-dei-dati">Definizione del modello generativo dei dati</a></li>
@@ -524,7 +526,6 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-controfattuale">Analisi controfattuale</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">Commenti e considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
 </li>
 </ul>
@@ -543,6 +544,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="analisi-causale-con-pymc">
 <span id="causal-analysis-notebook"></span><h1>Analisi causale con PyMC<a class="headerlink" href="#analisi-causale-con-pymc" title="Permalink to this heading">#</a></h1>
 <p>Il codice di questo Notebook è ricavato dal sito ufficiale di PyMC.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -580,6 +583,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="valutazione-dell-efficacia-della-terapia-cognitivo-comportamentale-tcc">
 <h2>Valutazione dell’efficacia della Terapia Cognitivo-Comportamentale (TCC)<a class="headerlink" href="#valutazione-dell-efficacia-della-terapia-cognitivo-comportamentale-tcc" title="Permalink to this heading">#</a></h2>
 <p>Supponiamo di essere interessati a valutare l’efficacia della Terapia Cognitivo-Comportamentale (TCC) nei pazienti. La TCC è una forma di psicoterapia che mira a cambiare schemi negativi di pensiero o comportamento. L’obiettivo principale è quantificare quanto sia efficace la TCC nel miglioramento della qualità della vita, in particolare nella riduzione dei livelli di ansia.</p>
@@ -684,7 +688,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/edcc1a959ad6fc32ea4cb4342ffb1b518bb97d923aac92bdaaf1ae97ed2dfe74.svg" src="../_images/edcc1a959ad6fc32ea4cb4342ffb1b518bb97d923aac92bdaaf1ae97ed2dfe74.svg" /></div>
+<img alt="../_images/be0540789a1cc504fc225c42d80d99d280d1064503ce0f889afc788fefd65f96.svg" src="../_images/be0540789a1cc504fc225c42d80d99d280d1064503ce0f889afc788fefd65f96.svg" /></div>
 </div>
 </section>
 </section>
@@ -847,7 +851,7 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.364243
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.333706
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -916,10 +920,13 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -934,34 +941,31 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1416.92it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1450.08it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1418.06it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1451.27it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1419.42it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1452.71it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1420.76it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1454.08it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.592497
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.629054
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.063778
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.067809
 </pre></div>
 </div>
 </div>
@@ -978,7 +982,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/71169c675f267d124e45a01979b988380b35a5e7685fbf35d7356b331625a5c2.png" src="../_images/71169c675f267d124e45a01979b988380b35a5e7685fbf35d7356b331625a5c2.png" />
+<img alt="../_images/7491a70e031f2818181523a94439d089c967cb86acf0d4456100c105955d1b7d.png" src="../_images/7491a70e031f2818181523a94439d089c967cb86acf0d4456100c105955d1b7d.png" />
 </div>
 </div>
 <p>Si noti che l’indicatore che quantifica l’ATE, ovvero l’effetto del trattamento con TCC sul miglioramento della qualità della vita, è pari a 0.87, con un intervallo di credibilità al 94% compreso tra 0.54 e 1.2. Sulla base di queste informazioni, saremmo portati a concludere che la TCC è efficace nel migliorare la qualità della vita riducendo i sintomi d’ansia. Tuttavia, questa conclusione sarebbe errata, in quanto abbiamo generato i dati in maniera tale che non esista un effetto causale diretto della TCC, indicata come <span class="math notranslate nohighlight">\(Z\)</span> nel modello, sull’esito <span class="math notranslate nohighlight">\(Y\)</span>, che rappresenta la qualità della vita. Il motivo dell’errore risiede nel modello causale adottato per l’analisi, che ha trascurato l’influenza della variabile di confondimento <span class="math notranslate nohighlight">\(C\)</span>, associata alla pratica della mindfulness. Pertanto, il risultato ottenuto non riflette l’effettiva assenza di un impatto causale della TCC sulla qualità della vita.</p>
@@ -1012,7 +1016,7 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.846043
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.868618
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -1081,16 +1085,19 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1105,28 +1112,25 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1081.02it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1074.10it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1081.68it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1074.68it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1082.41it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1075.38it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1083.07it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1075.99it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.963032
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.954279
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.099083
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.090072
 </pre></div>
 </div>
 </div>
@@ -1350,31 +1354,30 @@ document.write(`
 <p>Analizzando lo stesso insieme di dati attraverso due analisi statistiche diverse, basate su presupposti differenti riguardo il meccanismo generatore dei dati, arriviamo a conclusioni opposte. Nel primo caso, trascurando l’effetto di una variabile confondente, deduciamo che il trattamento con la Terapia Cognitivo-Comportamentale (TCC) è efficace nel migliorare la qualità della vita. Nel secondo, invece, tenendo conto dell’effetto potenziale della variabile confondente, concludiamo che il trattamento TCC non ha effetto sul miglioramento della qualità della vita, risultato che rispecchia la struttura causale che abbiamo usato per generare i dati.</p>
 <p>Questo esempio evidenzia in maniera chiara quanto sia facile essere ingannati dalle correlazioni. Inizialmente sembrava che il trattamento TCC avesse un effetto positivo sulla qualità della vita, ma questa percezione era frutto dell’influenza della pratica della mindfulness. Tale illusione si dissolve quando analizziamo i dati in due scenari diversi: uno in cui manteniamo l’effetto della mindfulness e uno in cui lo eliminiamo. Se ci fossimo limitati a valutare l’associazione tra le variabili, avremmo erroneamente concluso che il trattamento TCC è efficace, una deduzione non supportata dalla realtà dei dati simulati. Inoltre, è fondamentale considerare l’incertezza che accompagna le stime puntuali. Nonostante abbiamo identificato un lieve effetto positivo del trattamento TCC, l’intervallo di credibilità ci mostra che la stima è troppo influenzata dal rumore per confermare con certezza un effetto positivo.</p>
 <p>Questo caso studio mette in luce l’importanza e l’efficacia dell’approccio bayesiano nella modellazione causale, un approccio che può essere facilmente implementato con PyMC. Definendo accuratamente il processo generativo dei dati e sfruttando strumenti come l’operatore “do()”, possiamo simulare interventi tenendo conto sia delle relazioni causali che dell’incertezza associata ai parametri del modello. Ciò ci permette di condurre analisi di tipo “cosa succederebbe se” in scenari ipotetici, fornendo una visione più completa e sofisticata delle dinamiche causali presenti nei nostri dati.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Thu Jan 25 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:01:30.488117+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-pandas    : 2.1.4
-matplotlib: 3.8.2
-networkx  : 3.2.1
-numpy     : 1.26.2
-bambi     : 0.13.0
-seaborn   : 0.13.0
-pymc      : 5.10.3
-arviz     : 0.17.0
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
+
+
 </pre></div>
 </div>
 </div>
@@ -1418,7 +1421,7 @@ arviz     : 0.17.0
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</p>
+        <p class="prev-next-title">Inferenza controfattuale</p>
       </div>
     </a>
     <a class="right-next"
@@ -1446,6 +1449,7 @@ arviz     : 0.17.0
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisi causale con PyMC</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutazione-dell-efficacia-della-terapia-cognitivo-comportamentale-tcc">Valutazione dell’efficacia della Terapia Cognitivo-Comportamentale (TCC)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formalizzazione-della-rete-causale-bayesiana-sottostante">Formalizzazione della rete causale bayesiana sottostante</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-del-modello-generativo-dei-dati">Definizione del modello generativo dei dati</a></li>
@@ -1457,7 +1461,6 @@ arviz     : 0.17.0
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-controfattuale">Analisi controfattuale</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">Commenti e considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
 </li>
 </ul>

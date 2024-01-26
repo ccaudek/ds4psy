@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -323,6 +324,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
@@ -510,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-alla-ricerca-causale-nei-disegni-osservazionali">Introduzione alla Ricerca Causale nei Disegni Osservazionali</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-disegni-di-ricerca-e-la-causalita">I Disegni di Ricerca e la Causalità</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disegni-osservazionali">Disegni Osservazionali</a></li>
@@ -580,7 +584,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-complessita-delle-inferenze-causali-sui-dati-correlazionali">La Complessità delle Inferenze Causali sui Dati Correlazionali</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riconsiderazione-delle-inferenze-causali-in-studi-osservazionali">Riconsiderazione delle Inferenze Causali in Studi Osservazionali</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dettagli-sui-confondenti">Dettagli sui Confondenti</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-di-calcolo">Ambiente di Calcolo</a></li>
 </ul>
             </nav>
@@ -600,6 +607,8 @@ document.write(`
 <span id="correlation-causation-notebook"></span><h1>Correlazione e causazione<a class="headerlink" href="#correlazione-e-causazione" title="Permalink to this heading">#</a></h1>
 <p>In questo capitolo, approfondiremo la complessa relazione tra correlazione e causalità, due concetti fondamentali nell’analisi dei dati che, seppur strettamente interconnessi, sono nettamente distinti. La correlazione rappresenta una misura della forza e della direzione dell’associazione lineare tra due variabili. Tuttavia, è cruciale comprendere che la correlazione non implica automaticamente una relazione di causa-effetto tra le variabili coinvolte. Questo principio è riassunto nell’espressione comune ‘correlazione non implica causalità’, un concetto di vitale importanza. Vari esempi di come possano emergere correlazioni apparentemente significative ma del tutto prive di relazione causale sono fornite dal sito <a class="reference external" href="https://tylervigen.com/spurious-correlations">spurious correlations</a>.</p>
 <p>Nel corso del capitolo, esploreremo come la correlazione possa presentarsi in diversi modelli causali, come la biforcazione, la catena, il collider e le strutture discendenti. Questa analisi evidenzierà il rischio di interpretazioni erronee, sottolineando l’importanza di distinguere tra correlazione e causalità. Esaminando indici statistici come la covarianza e investigando l’impatto dei confounders, ci addentreremo in analisi che vanno oltre la semplice relazione bivariata. Questo approccio ci permetterà di esplorare le dinamiche più complesse che regolano le interazioni tra le variabili, fornendo strumenti essenziali per un’interpretazione accurata dei dati e per evitare i comuni errori di valutazione che possono sorgere quando si confonde correlazione con causalità.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -624,6 +633,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="introduzione-alla-ricerca-causale-nei-disegni-osservazionali">
 <h2>Introduzione alla Ricerca Causale nei Disegni Osservazionali<a class="headerlink" href="#introduzione-alla-ricerca-causale-nei-disegni-osservazionali" title="Permalink to this heading">#</a></h2>
 <section id="i-disegni-di-ricerca-e-la-causalita">
@@ -1160,26 +1170,27 @@ Correlazione nel gruppo selezionato: -0.2557322309536501
 <p>In generale, le conclusioni causali più solide sono quelle supportate da “evidenze convergenti”, derivanti da diverse metodologie di ricerca. Se da un lato gli esperimenti randomizzati ben progettati forniscono un elevato livello di fiducia nella validità interna, ovvero nella presenza di una relazione causa-effetto nell’ambito dello studio, dall’altro richiedono assunzioni aggiuntive per dimostrare la rilevanza o l’applicabilità di tale relazione in contesti più ampi o nella vita quotidiana. Questo aspetto solleva questioni sulla loro validità esterna, cioè sulla generalizzabilità dei risultati al di fuori delle condizioni sperimentali specifiche. L’impiego di un insieme diversificato di design di ricerca, che includa sia studi sperimentali rigorosi sia dati osservazionali, può fornire contributi unici per rispondere a domande di ricerca comuni. Ciò migliora la validità esterna delle scoperte e suggerisce nuovi fenomeni meritevoli di ulteriori indagini.</p>
 </section>
 </section>
-<section id="considerazioni-conclusive">
-<h2>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
-<p>Per riassumere le considerazioni finali sull’inferenza causale basata su dati osservazionali, è importante enfatizzare i seguenti concetti chiave:</p>
+<section id="riconsiderazione-delle-inferenze-causali-in-studi-osservazionali">
+<h2>Riconsiderazione delle Inferenze Causali in Studi Osservazionali<a class="headerlink" href="#riconsiderazione-delle-inferenze-causali-in-studi-osservazionali" title="Permalink to this heading">#</a></h2>
+<p>L’analisi delle inferenze causali in studi basati su dati osservazionali necessita di una comprensione approfondita di diverse componenti fondamentali, che includono il riconoscimento dei confondenti, l’analisi dei percorsi causali, la gestione dei mediatori e dei collider, e la valutazione della validità interna ed esterna degli studi.</p>
 <ol class="arabic simple">
-<li><p><strong>Riconoscimento dei Confondenti</strong>: La precisione delle inferenze causali da dati osservazionali dipende dalla corretta identificazione e gestione dei confondenti, cioè delle variabili che possono influenzare sia la variabile indipendente sia quella dipendente, creando associazioni spurie.</p></li>
-<li><p><strong>Analisi dei Percorsi Causali</strong>: L’utilizzo dei DAG è fondamentale per visualizzare e comprendere i percorsi causali, in particolare i percorsi back-door, al fine di evitare bias come il sovracontrollo e il controllo post-trattamento.</p></li>
-<li><p><strong>Gestione di Mediatori e Discendenti</strong>: È cruciale prestare attenzione alla gestione dei mediatori, che collegano la variabile indipendente alla dipendente, per evitare di eliminare parte dell’effetto causale di interesse.</p></li>
-<li><p><strong>Attenzione ai Collider</strong>: Il controllo inappropriato dei collider, che sono variabili influenzate da più fattori nel modello, può introdurre nuovi percorsi back-door e creare associazioni spurie, quindi richiede un’analisi accurata.</p></li>
-<li><p><strong>Bilanciamento tra Validità Interna ed Esterna</strong>: Mentre gli esperimenti randomizzati assicurano una forte validità interna, la loro validità esterna, ovvero la generalizzabilità dei risultati, può essere limitata. Pertanto, è essenziale valutare attentamente sia i dati osservazionali sia gli esperimenti randomizzati in base alla loro capacità di dimostrare ciò che è rilevante per la ricerca.</p></li>
-<li><p><strong>Riconoscimento dei Limiti dei Dati Osservazionali</strong>: I ricercatori devono essere consapevoli delle limitazioni intrinseche dei dati osservazionali, in particolare per quanto riguarda la misurazione dei confondenti chiave.</p></li>
-<li><p><strong>Integrazione di Diversi Disegni di Ricerca</strong>: Adottare un approccio integrato che combina diversi disegni di ricerca può arricchire la comprensione e contribuire efficacemente alla risoluzione delle domande di ricerca.</p></li>
+<li><p><strong>Riconoscimento dei Confondenti</strong>: La chiave per interpretare accuratamente i dati osservazionali risiede nella capacità di identificare e gestire variabili confondenti. Queste sono variabili che influenzano sia la variabile indipendente sia quella dipendente, potenzialmente creando false associazioni o correlazioni spurie.</p></li>
+<li><p><strong>Analisi dei Percorsi Causali e Uso dei DAG</strong>: I Diagrammi Aciclici Diretti (DAG) sono strumenti essenziali per visualizzare e comprendere i percorsi causali. Essi aiutano a identificare i percorsi back-door e a evitare errori di analisi, come il sovracontrollo o il controllo post-trattamento.</p></li>
+<li><p><strong>Gestione di Mediatori e Collider</strong>: Un aspetto critico è la gestione adeguata dei mediatori, che collegano le variabili indipendenti e dipendenti. È fondamentale non eliminare erroneamente l’effetto causale di interesse. Inoltre, è importante evitare il controllo inappropriato dei collider, variabili influenzate da più fattori nel modello, che possono introdurre nuovi percorsi back-door e distorcere i risultati.</p></li>
+<li><p><strong>Bilanciamento tra Validità Interna ed Esterna</strong>: La validità interna, spesso garantita dagli esperimenti randomizzati, deve essere bilanciata con la validità esterna, ovvero la generalizzabilità dei risultati. Sia i dati osservazionali sia gli esperimenti randomizzati devono essere valutati per la loro capacità di rispondere efficacemente alle domande di ricerca.</p></li>
+<li><p><strong>Riconoscimento dei Limiti dei Dati Osservazionali</strong>: È essenziale essere consapevoli delle limitazioni dei dati osservazionali, soprattutto per quanto riguarda la misurazione dei confondenti chiave.</p></li>
+<li><p><strong>Integrazione di Diversi Disegni di Ricerca</strong>: Un approccio integrato che combina diversi disegni di ricerca può arricchire la comprensione e contribuire efficacemente alla risoluzione delle domande di ricerca.</p></li>
 </ol>
-<p>Per evitare errori nell’analisi causale, è quindi essenziale:</p>
+<section id="dettagli-sui-confondenti">
+<h3>Dettagli sui Confondenti<a class="headerlink" href="#dettagli-sui-confondenti" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Controllare i confondenti in modo accurato per eliminare associazioni spurie.</p></li>
-<li><p>Evitare il controllo inappropriato dei collider per non creare nuovi percorsi back-door.</p></li>
-<li><p>Gestire con cautela mediatori per preservare l’effetto causale desiderato.</p></li>
-<li><p>Valutare attentamente l’inclusione delle variabili in base agli obiettivi specifici della ricerca e al contesto analitico.</p></li>
+<li><p><strong>La biforcazione (<em>Fork</em>)</strong>: Quando una variabile <code class="docutils literal notranslate"><span class="pre">Z</span></code> causa sia <code class="docutils literal notranslate"><span class="pre">X</span></code> che <code class="docutils literal notranslate"><span class="pre">Y</span></code>, si forma una struttura a biforcazione. Se non si controlla per <code class="docutils literal notranslate"><span class="pre">Z</span></code>, si può erroneamente attribuire a <code class="docutils literal notranslate"><span class="pre">X</span></code> un effetto su <code class="docutils literal notranslate"><span class="pre">Y</span></code>, mentre entrambe sono in realtà influenzate da <code class="docutils literal notranslate"><span class="pre">Z</span></code>.</p></li>
+<li><p><strong>La catena (<em>Pipe</em>)</strong>: In questa struttura, <code class="docutils literal notranslate"><span class="pre">X</span></code> causa <code class="docutils literal notranslate"><span class="pre">Z</span></code>, che a sua volta causa <code class="docutils literal notranslate"><span class="pre">Y</span></code>. <code class="docutils literal notranslate"><span class="pre">Z</span></code> agisce come un mediatore nella relazione tra <code class="docutils literal notranslate"><span class="pre">X</span></code> e <code class="docutils literal notranslate"><span class="pre">Y</span></code>, essenziale per comprendere l’effetto di <code class="docutils literal notranslate"><span class="pre">X</span></code> su <code class="docutils literal notranslate"><span class="pre">Y</span></code>.</p></li>
+<li><p><strong>La biforcazione invertita (<em>Collider</em>)</strong>: Qui, <code class="docutils literal notranslate"><span class="pre">X</span></code> e <code class="docutils literal notranslate"><span class="pre">Y</span></code> causano <code class="docutils literal notranslate"><span class="pre">Z</span></code>, ma non esistono effetti diretti tra <code class="docutils literal notranslate"><span class="pre">X</span></code> e <code class="docutils literal notranslate"><span class="pre">Y</span></code>. Controllare per <code class="docutils literal notranslate"><span class="pre">Z</span></code> può introdurre una correlazione artificiale tra <code class="docutils literal notranslate"><span class="pre">X</span></code> e <code class="docutils literal notranslate"><span class="pre">Y</span></code>.</p></li>
+<li><p><strong>Il discendente (<em>Descendant</em>)</strong>: In questa configurazione, oltre alla catena causale <code class="docutils literal notranslate"><span class="pre">X</span></code> → <code class="docutils literal notranslate"><span class="pre">Z</span></code> → <code class="docutils literal notranslate"><span class="pre">Y</span></code>, <code class="docutils literal notranslate"><span class="pre">Z</span></code> causa un’altra variabile <code class="docutils literal notranslate"><span class="pre">A</span></code>. Questo aggiunge complessità nell’analisi delle relazioni tra <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Z</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code> e <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p></li>
 </ul>
-<p>In sintesi, l’analisi causale richiede una considerazione attenta della teoria e della metodologia, una comprensione profonda delle relazioni causali sottostanti e una valutazione critica delle assunzioni utilizzate. I ricercatori devono prestare una grande attenzione nella progettazione dello studio, nell’analisi dei dati e nella comunicazione delle conclusioni, sempre tenendo conto del contesto più ampio e delle limitazioni dei loro modelli e dati. Le conclusioni causali più valide derivano spesso dall’integrazione di diverse metodologie di ricerca.</p>
+<p>In conclusione, l’analisi causale richiede un approccio metodico e critico, considerando attentamente le strutture causali, i confondenti, i mediatori, i collider e integrando diverse metodologie di ricerca per ottenere risultati affidabili e validi sulle relazioni causali tra le variabili.</p>
+</section>
 </section>
 <section id="ambiente-di-calcolo">
 <h2>Ambiente di Calcolo<a class="headerlink" href="#ambiente-di-calcolo" title="Permalink to this heading">#</a></h2>
@@ -1282,6 +1293,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-alla-ricerca-causale-nei-disegni-osservazionali">Introduzione alla Ricerca Causale nei Disegni Osservazionali</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-disegni-di-ricerca-e-la-causalita">I Disegni di Ricerca e la Causalità</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disegni-osservazionali">Disegni Osservazionali</a></li>
@@ -1352,7 +1364,10 @@ Watermark: 2.4.3
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-complessita-delle-inferenze-causali-sui-dati-correlazionali">La Complessità delle Inferenze Causali sui Dati Correlazionali</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riconsiderazione-delle-inferenze-causali-in-studi-osservazionali">Riconsiderazione delle Inferenze Causali in Studi Osservazionali</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dettagli-sui-confondenti">Dettagli sui Confondenti</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-di-calcolo">Ambiente di Calcolo</a></li>
 </ul>
   </nav></div>

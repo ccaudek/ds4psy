@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -278,7 +279,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
@@ -287,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -311,22 +311,27 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_1/00_installation.html">Ambiente di lavoro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a05_sets.html">Insiemi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a13_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a53_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a60_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a70_predict_counts.html">La predizione delle frequenze</a></li>
 </ul>
 </li>
 </ul>
@@ -508,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-normale">Il modello Normale</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metropolis">Metropolis</a></li>
@@ -519,7 +525,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -535,6 +540,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="inferenza-bayesiana-su-una-media">
 <span id="bayes-one-mean-notebook"></span><h1>Inferenza bayesiana su una media<a class="headerlink" href="#inferenza-bayesiana-su-una-media" title="Permalink to this heading">#</a></h1>
 <p>L’obiettivo principale di questo capitolo è esaminare un contesto che abbiamo già preso in considerazione in precedenza: ci troviamo di fronte a un campione di dati misurati su una scala a intervalli o rapporti e desideriamo effettuare inferenze sulla media della popolazione da cui il campione è stato estratto. Tuttavia, anziché procedere con una derivazione analitica della distribuzione a posteriori della media della popolazione, in questo caso utilizzeremo i metodi MCMC attraverso PyMC.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -554,7 +561,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc9_env/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
   from .autonotebook import tqdm as notebook_tqdm
 </pre></div>
 </div>
@@ -570,12 +577,13 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="il-modello-normale">
 <h2>Il modello Normale<a class="headerlink" href="#il-modello-normale" title="Permalink to this heading">#</a></h2>
 <p>I priori coniugati Normali di una Normale non richiedono l’approssimazione numerica ottenuta mediante metodi MCMC. Tuttavia, per fare un esercizio e per verificare che i risultati ottenuti con MCMC corrispondano a quelli trovati per via analitica, ripetiamo l’esercizio descritto nel capitolo <a class="reference internal" href="04_conjugate_families_2.html#distr-coniugate-2-notebook"><span class="std std-ref">Distribuzioni coniugate (2)</span></a> usando prima l’algoritmo di Metropolis e poi PyMC.</p>
 <section id="un-esempio-concreto">
 <h3>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Permalink to this heading">#</a></h3>
-<p>Useremo gli stessi dati usati in precedenza, ovvero il campione di 30 valori BDI-II ottenuti dai soggetti clinici esaminati da <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id58" title="Ulrike Zetsche, Paul-Christian Buerkner, and Babette Renneberg. Future expectations in clinical depression: biased or realistic? Journal of Abnormal Psychology, 128(7):678, 2019.">ZBR19</a>]</span>.</p>
+<p>Useremo gli stessi dati usati in precedenza, ovvero il campione di 30 valori BDI-II ottenuti dai soggetti clinici esaminati da <span id="id1">[<a class="reference internal" href="../references/bibliography.html#id59" title="Ulrike Zetsche, Paul-Christian Buerkner, and Babette Renneberg. Future expectations in clinical depression: biased or realistic? Journal of Abnormal Psychology, 128(7):678, 2019.">ZBR19</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
@@ -712,7 +720,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.41754
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.41772
 </pre></div>
 </div>
 </div>
@@ -726,7 +734,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5066c6c1fb8d426147efa643e8f0cd799dcdb48d2bd1dc444bc47021b34695af.png" src="../_images/5066c6c1fb8d426147efa643e8f0cd799dcdb48d2bd1dc444bc47021b34695af.png" />
+<img alt="../_images/b21dbb587844e4e16b22300628d673fbde4f52dc6e7873dfa8159b6f03634b7b.png" src="../_images/b21dbb587844e4e16b22300628d673fbde4f52dc6e7873dfa8159b6f03634b7b.png" />
 </div>
 </div>
 <p>Se applichiamo un “thinning” con un intervallo di 5, l’autocorrelazione si riduce quasi a zero.</p>
@@ -738,7 +746,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/57e84b0f63e29dc82a647b97fcb1be11c2bb0c32c70089eeed7f3785dd7cbfce.png" src="../_images/57e84b0f63e29dc82a647b97fcb1be11c2bb0c32c70089eeed7f3785dd7cbfce.png" />
+<img alt="../_images/2afdf9d60c05e866190bcea66b4a54f196f89516b3c58a0054457766dbf356f3.png" src="../_images/2afdf9d60c05e866190bcea66b4a54f196f89516b3c58a0054457766dbf356f3.png" />
 </div>
 </div>
 <p>Esaminiamo la stima della distribuzione a posteriori dopo un burn-in di 40000 passi.</p>
@@ -750,7 +758,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2dee28f9a7f89817769dce84391440ebe7f446ac5658bb61fc70e4da945ca26f.png" src="../_images/2dee28f9a7f89817769dce84391440ebe7f446ac5658bb61fc70e4da945ca26f.png" />
+<img alt="../_images/4881e50e4d86a9aa43538ea42703fb67e44c732bc208ba2863a1a528713bfedc.png" src="../_images/4881e50e4d86a9aa43538ea42703fb67e44c732bc208ba2863a1a528713bfedc.png" />
 </div>
 </div>
 <p>Calcoliamo l’intervallo a densità posteriore più alta del 94% per il parametro <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
@@ -761,7 +769,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([28.66899087, 33.02576976])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([28.72657267, 33.11022257])
 </pre></div>
 </div>
 </div>
@@ -825,33 +833,22 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1699425671.193192       1 tfrt_cpu_pjrt_client.cc:349] TfrtCpuClient created.
-Compilation time = 0:00:03.730267
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:04.473011
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -860,7 +857,7 @@ Compilation time = 0:00:03.730267
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -869,7 +866,7 @@ Compilation time = 0:00:03.730267
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -878,7 +875,7 @@ Compilation time = 0:00:03.730267
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -887,19 +884,7 @@ Compilation time = 0:00:03.730267
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -908,7 +893,7 @@ Compilation time = 0:00:03.730267
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -917,31 +902,52 @@ Compilation time = 0:00:03.730267
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1761.42it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1763.51it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1765.35it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1766.86it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.312596
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1866.78it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1869.23it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1871.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1873.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.290441
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.045767
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.060946
 </pre></div>
 </div>
 </div>
@@ -956,7 +962,7 @@ Compilation time = 0:00:03.730267
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/784a52dc1195570c48cc1c2d7f4e2c151c1b93c12945b4a544394790c243b708.png" src="../_images/784a52dc1195570c48cc1c2d7f4e2c151c1b93c12945b4a544394790c243b708.png" />
+<img alt="../_images/3f9a09462126e7f4e5ac1ab80e7ef66c24103ea0c0dc93d450ef7ad17acc05bc.png" src="../_images/3f9a09462126e7f4e5ac1ab80e7ef66c24103ea0c0dc93d450ef7ad17acc05bc.png" />
 </div>
 </div>
 <p>Esaminiamo l’autocorrelazione.</p>
@@ -968,7 +974,7 @@ Compilation time = 0:00:03.730267
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a10017faf2b279360985d484e5c9fe48d5a4d8f775de564b1da245b43b1f1af7.png" src="../_images/a10017faf2b279360985d484e5c9fe48d5a4d8f775de564b1da245b43b1f1af7.png" />
+<img alt="../_images/edead03370dfaa70945abd1f2213e6baa3a9d693646e509d19fb18831c34c737.png" src="../_images/edead03370dfaa70945abd1f2213e6baa3a9d693646e509d19fb18831c34c737.png" />
 </div>
 </div>
 <p>Una sintesi della distribuzione a posteriori dei parametri si ottiene nel modo seguente.</p>
@@ -1011,14 +1017,14 @@ Compilation time = 0:00:03.730267
   <tbody>
     <tr>
       <th>mu</th>
-      <td>30.87</td>
-      <td>1.17</td>
-      <td>28.59</td>
-      <td>32.96</td>
+      <td>30.94</td>
+      <td>1.19</td>
+      <td>28.71</td>
+      <td>33.09</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>1659.11</td>
-      <td>2103.92</td>
+      <td>1352.74</td>
+      <td>1747.68</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1402,7 +1408,7 @@ Dimensions:  (hdi: 2)
 Coordinates:
   * hdi      (hdi) &lt;U6 &#x27;lower&#x27; &#x27;higher&#x27;
 Data variables:
-    mu       (hdi) float64 28.59 32.96</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-5a92c603-ba7f-4038-a1e3-27cbfd28d075' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-5a92c603-ba7f-4038-a1e3-27cbfd28d075' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>hdi</span>: 2</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-fc109a52-ff73-4648-b378-89e5a138de3f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-fc109a52-ff73-4648-b378-89e5a138de3f' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>hdi</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>&lt;U6</div><div class='xr-var-preview xr-preview'>&#x27;lower&#x27; &#x27;higher&#x27;</div><input id='attrs-be31bab6-501d-4331-a478-f79bdba92710' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-be31bab6-501d-4331-a478-f79bdba92710' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5b118848-db2e-4522-80de-489242a377b4' class='xr-var-data-in' type='checkbox'><label for='data-5b118848-db2e-4522-80de-489242a377b4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>hdi_prob :</span></dt><dd>0.94</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;lower&#x27;, &#x27;higher&#x27;], dtype=&#x27;&lt;U6&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-72fb99ff-206c-422a-86dc-5ffa5ebacb37' class='xr-section-summary-in' type='checkbox'  checked><label for='section-72fb99ff-206c-422a-86dc-5ffa5ebacb37' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mu</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>28.59 32.96</div><input id='attrs-f5387c95-6f80-401f-9f32-7dbe721f5446' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f5387c95-6f80-401f-9f32-7dbe721f5446' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c69a133e-ded5-43d5-b76b-81ffffdecd9d' class='xr-var-data-in' type='checkbox'><label for='data-c69a133e-ded5-43d5-b76b-81ffffdecd9d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([28.58642427, 32.96095941])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-85609e10-70bf-492d-84f1-6003b3b2b064' class='xr-section-summary-in' type='checkbox'  ><label for='section-85609e10-70bf-492d-84f1-6003b3b2b064' class='xr-section-summary' >Indexes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>hdi</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-bfea1a9e-6493-4ee7-a1d9-f7004bcc4f63' class='xr-index-data-in' type='checkbox'/><label for='index-bfea1a9e-6493-4ee7-a1d9-f7004bcc4f63' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;lower&#x27;, &#x27;higher&#x27;], dtype=&#x27;object&#x27;, name=&#x27;hdi&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a891d8ca-e7a7-48b3-a507-1383485e138b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a891d8ca-e7a7-48b3-a507-1383485e138b' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+    mu       (hdi) float64 28.71 33.09</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-97b51929-ca63-48dc-b0e8-0f8d3f3440ac' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-97b51929-ca63-48dc-b0e8-0f8d3f3440ac' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>hdi</span>: 2</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-be401d93-edfa-46a6-b746-639a74bbba8e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-be401d93-edfa-46a6-b746-639a74bbba8e' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>hdi</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>&lt;U6</div><div class='xr-var-preview xr-preview'>&#x27;lower&#x27; &#x27;higher&#x27;</div><input id='attrs-cccd1d3d-a90c-4320-b03b-92720f0974ea' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cccd1d3d-a90c-4320-b03b-92720f0974ea' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fbcf181b-a850-4def-9369-5661f09e3195' class='xr-var-data-in' type='checkbox'><label for='data-fbcf181b-a850-4def-9369-5661f09e3195' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>hdi_prob :</span></dt><dd>0.94</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;lower&#x27;, &#x27;higher&#x27;], dtype=&#x27;&lt;U6&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-612cefc0-8494-41e1-9065-464c83f28d04' class='xr-section-summary-in' type='checkbox'  checked><label for='section-612cefc0-8494-41e1-9065-464c83f28d04' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mu</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>28.71 33.09</div><input id='attrs-9c34a662-f6b0-4711-a8d4-4349afe4877d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9c34a662-f6b0-4711-a8d4-4349afe4877d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c5fb00a3-bf6d-4066-a34d-c3e42934b398' class='xr-var-data-in' type='checkbox'><label for='data-c5fb00a3-bf6d-4066-a34d-c3e42934b398' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([28.71233756, 33.09025554])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-2db138ce-8430-4c05-beb5-9812f77f0ec2' class='xr-section-summary-in' type='checkbox'  ><label for='section-2db138ce-8430-4c05-beb5-9812f77f0ec2' class='xr-section-summary' >Indexes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>hdi</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-fe25e855-9c99-40c9-bda0-e7f26989aaf2' class='xr-index-data-in' type='checkbox'/><label for='index-fe25e855-9c99-40c9-bda0-e7f26989aaf2' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;lower&#x27;, &#x27;higher&#x27;], dtype=&#x27;object&#x27;, name=&#x27;hdi&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-517d2e6d-07b6-4ac9-ac0d-260965f3cd27' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-517d2e6d-07b6-4ac9-ac0d-260965f3cd27' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Le stime così trovate sono molto simili ai quantili di ordine 0.03 e 0.97 della distribuzione a posteriori di <span class="math notranslate nohighlight">\(\mu\)</span> ottenuta per via analitica e a quelle ottenute con l’algoritmo di Metropolis che abbiamo implementato in precedenza.</p>
 <div class="cell docutils container">
@@ -1436,7 +1442,7 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14f63d760c453adc8618e68bb510aa05e3b239b2dcb59d1ae0509b90949cdc29.png" src="../_images/14f63d760c453adc8618e68bb510aa05e3b239b2dcb59d1ae0509b90949cdc29.png" />
+<img alt="../_images/032d92de419e92dd9cdf11bba03f464ba62053522ff48b9b5d2138643fe9f462.png" src="../_images/032d92de419e92dd9cdf11bba03f464ba62053522ff48b9b5d2138643fe9f462.png" />
 </div>
 </div>
 <p>In questo secondo scenario, più realistico, la struttura del modello è la seguente:</p>
@@ -1478,31 +1484,22 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.515169
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.660052
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1511,7 +1508,7 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1520,7 +1517,7 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1529,7 +1526,7 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1538,7 +1535,7 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                  | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1547,19 +1544,7 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling.. :   0%|                                                                    | 0/2000 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1568,31 +1553,52 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                               | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1570.74it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1571.85it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1573.48it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|██████████████████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1574.82it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.331363
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1726.34it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1727.74it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1729.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1731.36it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.224292
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.033128
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.034863
 </pre></div>
 </div>
 </div>
@@ -1608,7 +1614,7 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b9509bc1220e98cfe09d3de5f7f64b935996716cdbcfa0df27bc9bbb19804a54.png" src="../_images/b9509bc1220e98cfe09d3de5f7f64b935996716cdbcfa0df27bc9bbb19804a54.png" />
+<img alt="../_images/9c520bd11e943e9b8810f4ccf4af688c0a1649e3a11a1d6ef93bc17935093504.png" src="../_images/9c520bd11e943e9b8810f4ccf4af688c0a1649e3a11a1d6ef93bc17935093504.png" />
 </div>
 </div>
 <p>Una sintesi della distribuzione a posteriori dei parametri si ottiene nel modo seguente.</p>
@@ -1652,25 +1658,25 @@ Y_i &amp;\sim \mathcal{N}(\mu, \sigma) \notag\\
     <tr>
       <th>mu</th>
       <td>30.86</td>
-      <td>1.26</td>
-      <td>28.51</td>
-      <td>33.19</td>
+      <td>1.17</td>
+      <td>28.62</td>
+      <td>33.02</td>
       <td>0.02</td>
       <td>0.02</td>
-      <td>3160.70</td>
-      <td>2592.18</td>
+      <td>3051.42</td>
+      <td>2250.89</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>6.86</td>
-      <td>0.94</td>
+      <td>6.87</td>
+      <td>0.97</td>
       <td>5.22</td>
-      <td>8.61</td>
+      <td>8.72</td>
       <td>0.02</td>
       <td>0.01</td>
-      <td>2718.08</td>
-      <td>2211.43</td>
+      <td>2766.97</td>
+      <td>2357.76</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2053,8 +2059,8 @@ Dimensions:  (hdi: 2)
 Coordinates:
   * hdi      (hdi) &lt;U6 &#x27;lower&#x27; &#x27;higher&#x27;
 Data variables:
-    mu       (hdi) float64 28.51 33.19
-    sigma    (hdi) float64 5.218 8.614</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-cde0be07-d373-48c8-8821-1fdb64289327' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-cde0be07-d373-48c8-8821-1fdb64289327' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>hdi</span>: 2</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-21a369dc-d573-45eb-96b1-c20c8cb261d9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-21a369dc-d573-45eb-96b1-c20c8cb261d9' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>hdi</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>&lt;U6</div><div class='xr-var-preview xr-preview'>&#x27;lower&#x27; &#x27;higher&#x27;</div><input id='attrs-33c296b8-b033-4368-af7d-ef005c7726aa' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-33c296b8-b033-4368-af7d-ef005c7726aa' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8fb970c7-82da-4a5f-94ef-2afa192f4816' class='xr-var-data-in' type='checkbox'><label for='data-8fb970c7-82da-4a5f-94ef-2afa192f4816' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>hdi_prob :</span></dt><dd>0.94</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;lower&#x27;, &#x27;higher&#x27;], dtype=&#x27;&lt;U6&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d5dbbad3-910f-49b9-9d8b-f39a1c7374c6' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d5dbbad3-910f-49b9-9d8b-f39a1c7374c6' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mu</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>28.51 33.19</div><input id='attrs-7f9c3fba-1642-4667-92ab-6fd9cf8898b3' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7f9c3fba-1642-4667-92ab-6fd9cf8898b3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-abaaa57f-9602-457b-9b78-72d4fbe3459d' class='xr-var-data-in' type='checkbox'><label for='data-abaaa57f-9602-457b-9b78-72d4fbe3459d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([28.50964985, 33.1908648 ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sigma</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.218 8.614</div><input id='attrs-787c8a9f-229c-4fcc-ab33-dd52cb3ac4cc' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-787c8a9f-229c-4fcc-ab33-dd52cb3ac4cc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ee8a335d-dc40-466b-a7f0-0129860bd918' class='xr-var-data-in' type='checkbox'><label for='data-ee8a335d-dc40-466b-a7f0-0129860bd918' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([5.21832375, 8.61352965])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6f4dc0f8-f5b0-4bdf-96e4-43015f783dc8' class='xr-section-summary-in' type='checkbox'  ><label for='section-6f4dc0f8-f5b0-4bdf-96e4-43015f783dc8' class='xr-section-summary' >Indexes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>hdi</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-c554f794-2e00-4c1d-81fa-7a9e0ef2bd8a' class='xr-index-data-in' type='checkbox'/><label for='index-c554f794-2e00-4c1d-81fa-7a9e0ef2bd8a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;lower&#x27;, &#x27;higher&#x27;], dtype=&#x27;object&#x27;, name=&#x27;hdi&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3ce552c3-69ba-4976-9baa-7f082112dc78' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3ce552c3-69ba-4976-9baa-7f082112dc78' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+    mu       (hdi) float64 28.62 33.02
+    sigma    (hdi) float64 5.215 8.719</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-f0cbe84c-0ccf-4e00-b788-1cf93ea62c8c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-f0cbe84c-0ccf-4e00-b788-1cf93ea62c8c' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>hdi</span>: 2</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-ff0e1895-f863-4537-a8dd-140ec2fbbc07' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ff0e1895-f863-4537-a8dd-140ec2fbbc07' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>hdi</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>&lt;U6</div><div class='xr-var-preview xr-preview'>&#x27;lower&#x27; &#x27;higher&#x27;</div><input id='attrs-e1694bf4-3390-4b9f-b811-3dc866f73f82' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e1694bf4-3390-4b9f-b811-3dc866f73f82' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a74b88fb-97a5-4de5-8201-b02fefd65219' class='xr-var-data-in' type='checkbox'><label for='data-a74b88fb-97a5-4de5-8201-b02fefd65219' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>hdi_prob :</span></dt><dd>0.94</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;lower&#x27;, &#x27;higher&#x27;], dtype=&#x27;&lt;U6&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-da7f4eaf-1c26-45aa-81b0-aeea9b7fd9fe' class='xr-section-summary-in' type='checkbox'  checked><label for='section-da7f4eaf-1c26-45aa-81b0-aeea9b7fd9fe' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>mu</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>28.62 33.02</div><input id='attrs-3d4a5d9f-e7e8-4430-9c82-eafb69341131' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3d4a5d9f-e7e8-4430-9c82-eafb69341131' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-08b65088-df5a-4b29-a71e-7d0fb630ea31' class='xr-var-data-in' type='checkbox'><label for='data-08b65088-df5a-4b29-a71e-7d0fb630ea31' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([28.61565527, 33.02310617])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sigma</span></div><div class='xr-var-dims'>(hdi)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.215 8.719</div><input id='attrs-ce469e55-8678-4b20-ae7e-bba060c6109b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ce469e55-8678-4b20-ae7e-bba060c6109b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4a8bbae4-baac-4e11-8ecf-607a5af08ce9' class='xr-var-data-in' type='checkbox'><label for='data-4a8bbae4-baac-4e11-8ecf-607a5af08ce9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([5.21510135, 8.71882055])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-eb05a9e4-9500-4d8e-b596-ca96cf82bd52' class='xr-section-summary-in' type='checkbox'  ><label for='section-eb05a9e4-9500-4d8e-b596-ca96cf82bd52' class='xr-section-summary' >Indexes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>hdi</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-04989ccc-ac8c-4dd8-aff7-4d08a20dbf42' class='xr-index-data-in' type='checkbox'/><label for='index-04989ccc-ac8c-4dd8-aff7-4d08a20dbf42' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;lower&#x27;, &#x27;higher&#x27;], dtype=&#x27;object&#x27;, name=&#x27;hdi&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a81a726e-13cf-4d37-8081-898def4233f4' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a81a726e-13cf-4d37-8081-898def4233f4' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>I risultati sono molto simili a quelli ottenuti in precedenza.</p>
 </section>
@@ -2062,34 +2068,30 @@ Data variables:
 <section id="commenti-e-considerazioni-finali">
 <h2>Commenti e considerazioni finali<a class="headerlink" href="#commenti-e-considerazioni-finali" title="Permalink to this heading">#</a></h2>
 <p>In questo capitolo abbiamo visto come calcolare l’intervallo di credibilità per la media di una v.c. Normale usando l’algoritmo di Metropolis e PyMC. I risultati che abbiamo trovato in entrambi i casi corrispondono molto da vicino a quelli che abbiamo ottenuto per via analitica nel capitolo <a class="reference internal" href="04_conjugate_families_2.html#distr-coniugate-2-notebook"><span class="std std-ref">Distribuzioni coniugate (2)</span></a>.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -p pytensor
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Wed Nov 08 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T18:59:31.880467+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.6
-IPython version      : 8.16.1
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-pytensor: 2.13.1
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-arviz     : 0.16.1
-pymc      : 5.9.1
-numpy     : 1.25.2
-scipy     : 1.11.3
-matplotlib: 3.8.0
-seaborn   : 0.13.0
-pandas    : 2.1.1
 
-Watermark: 2.4.3
 </pre></div>
 </div>
 </div>
@@ -2160,6 +2162,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-normale">Il modello Normale</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metropolis">Metropolis</a></li>
@@ -2171,7 +2174,6 @@ Watermark: 2.4.3
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

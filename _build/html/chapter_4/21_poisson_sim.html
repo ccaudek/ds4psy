@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,11 +513,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-priori-gamma">Distribuzione a priori Gamma</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verosimiglianza">Verosimiglianza</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-posteriori-per-lambda-a-meno-di-una-costante-di-proporzionalita">Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span> (a meno di una costante di proporzionalità)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-posteriori-per-lambda">Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soluzione-analitica">Soluzione analitica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-di-poisson">Distribuzione di Poisson</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-priori-gamma">Distribuzione a priori Gamma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verosimiglianza">Verosimiglianza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-posteriori-per-lambda-a-meno-di-una-costante-di-proporzionalita">Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span> (a meno di una costante di proporzionalità)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-posteriori-per-lambda">Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#soluzione-analitica">Soluzione analitica</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soluzione-con-pymc">Soluzione con PyMC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
@@ -534,6 +539,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="modello-di-poisson-derivazione-analitica-e-mcmc">
 <span id="poisson-model-2-notebook"></span><h1>Modello di Poisson: derivazione analitica e MCMC<a class="headerlink" href="#modello-di-poisson-derivazione-analitica-e-mcmc" title="Permalink to this heading">#</a></h1>
 <p>In questo capitolo, spiegheremo la derivazione analitica della distribuzione a posteriori utilizzando una funzione di verosimiglianza di Poisson e una distribuzione a priori gamma. Inoltre, dimostreremo l’equivalenza tra la soluzione ottenuta analiticamente e quella ricavata attraverso l’utilizzo di PyMC.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -573,6 +580,9 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="distribuzione-di-poisson">
+<h2>Distribuzione di Poisson<a class="headerlink" href="#distribuzione-di-poisson" title="Permalink to this heading">#</a></h2>
 <p>Ricordiamo che la <a class="reference external" href="https://it.wikipedia.org/wiki/Distribuzione_di_Poisson">distribuzione di Poisson</a> è data da:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -614,7 +624,7 @@ f(y_i|\lambda)=\frac{e^{-\lambda}\lambda^{y_i}}{y_i!}
 </div>
 </div>
 <section id="distribuzione-a-priori-gamma">
-<h2>Distribuzione a priori Gamma<a class="headerlink" href="#distribuzione-a-priori-gamma" title="Permalink to this heading">#</a></h2>
+<h3>Distribuzione a priori Gamma<a class="headerlink" href="#distribuzione-a-priori-gamma" title="Permalink to this heading">#</a></h3>
 <p>Consideriamo una distribuzione a priori <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">gamma</a> per il parametro <span class="math notranslate nohighlight">\(\lambda \sim \Gamma(a,b)\)</span>. Ricordiamo che la funzione di densità della distribuzione gamma è data da</p>
 <div class="math notranslate nohighlight">
 \[
@@ -668,7 +678,7 @@ Var(\lambda)=\frac{a}{b^2}.
 </div>
 </section>
 <section id="verosimiglianza">
-<h2>Verosimiglianza<a class="headerlink" href="#verosimiglianza" title="Permalink to this heading">#</a></h2>
+<h3>Verosimiglianza<a class="headerlink" href="#verosimiglianza" title="Permalink to this heading">#</a></h3>
 <p>Poiché le osservazioni sono indipendenti, la funzione di verosimiglianza è</p>
 <div class="math notranslate nohighlight">
 \[
@@ -699,7 +709,7 @@ f(y|\lambda)=\prod_{i=1}^{n} \frac{e^{-\lambda}\lambda^{y_i}}{y_i!}
 </div>
 </section>
 <section id="distribuzione-a-posteriori-per-lambda-a-meno-di-una-costante-di-proporzionalita">
-<h2>Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span> (a meno di una costante di proporzionalità)<a class="headerlink" href="#distribuzione-a-posteriori-per-lambda-a-meno-di-una-costante-di-proporzionalita" title="Permalink to this heading">#</a></h2>
+<h3>Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span> (a meno di una costante di proporzionalità)<a class="headerlink" href="#distribuzione-a-posteriori-per-lambda-a-meno-di-una-costante-di-proporzionalita" title="Permalink to this heading">#</a></h3>
 <p>Poiché ci interessa solamente la struttura della distribuzione a posteriori, senza tener conto della  costante di normalizzazione), abbiamo:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -722,7 +732,7 @@ f(\lambda|y)\propto &amp; \: \text{likelihood} \times \text{prior}\\
 </div>
 </section>
 <section id="distribuzione-a-posteriori-per-lambda">
-<h2>Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span><a class="headerlink" href="#distribuzione-a-posteriori-per-lambda" title="Permalink to this heading">#</a></h2>
+<h3>Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span><a class="headerlink" href="#distribuzione-a-posteriori-per-lambda" title="Permalink to this heading">#</a></h3>
 <p>Per trovare la distribuzione a posteriori, è necessario normalizzare la funzione non normalizzata che abbiamo definito precedentemente, in modo che l’area totale sotto la curva sia unitaria. Questo significa che dobbiamo trovare una costante di normalizzazione, che è ottenuta calcolando l’integrale della funzione non normalizzata su tutto il dominio di λ.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -770,7 +780,7 @@ f(\lambda|y)\propto &amp; \: \text{likelihood} \times \text{prior}\\
 </div>
 </section>
 <section id="soluzione-analitica">
-<h2>Soluzione analitica<a class="headerlink" href="#soluzione-analitica" title="Permalink to this heading">#</a></h2>
+<h3>Soluzione analitica<a class="headerlink" href="#soluzione-analitica" title="Permalink to this heading">#</a></h3>
 <p>La distribuzione a priori per <span class="math notranslate nohighlight">\( \lambda \)</span> è una gamma con parametri <span class="math notranslate nohighlight">\( a \)</span> e <span class="math notranslate nohighlight">\( b \)</span>, e la verosimiglianza è proporzionale a <span class="math notranslate nohighlight">\( \lambda^{\left(\sum_{i=1}^n y_i\right)-1} e^{-(n\lambda)} \)</span>. I dati <span class="math notranslate nohighlight">\( y \)</span> seguono una distribuzione di Poisson.</p>
 <p>Quando moltiplichiamo la distribuzione a priori gamma per questa verosimiglianza, otteniamo la distribuzione a posteriori non normalizzata:</p>
 <div class="math notranslate nohighlight">
@@ -832,6 +842,7 @@ f(\lambda|y) = \Gamma\left(\sum_{i=1}^n y_i+a, n+b\right).
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="soluzione-con-pymc">
 <h2>Soluzione con PyMC<a class="headerlink" href="#soluzione-con-pymc" title="Permalink to this heading">#</a></h2>
@@ -1178,11 +1189,15 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-priori-gamma">Distribuzione a priori Gamma</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verosimiglianza">Verosimiglianza</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-posteriori-per-lambda-a-meno-di-una-costante-di-proporzionalita">Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span> (a meno di una costante di proporzionalità)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-posteriori-per-lambda">Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soluzione-analitica">Soluzione analitica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-di-poisson">Distribuzione di Poisson</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-priori-gamma">Distribuzione a priori Gamma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verosimiglianza">Verosimiglianza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-posteriori-per-lambda-a-meno-di-una-costante-di-proporzionalita">Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span> (a meno di una costante di proporzionalità)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-a-posteriori-per-lambda">Distribuzione a posteriori per <span class="math notranslate nohighlight">\(\lambda\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#soluzione-analitica">Soluzione analitica</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soluzione-con-pymc">Soluzione con PyMC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>

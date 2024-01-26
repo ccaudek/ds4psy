@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,7 +513,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazioni-del-test-t-di-student">Applicazioni del Test t di Student</a></li>
 </ul>
             </nav>
         </div>
@@ -527,6 +529,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="test-t-di-student-per-campioni-indipendenti">
 <span id="two-means-notebook"></span><h1>Test t di Student per campioni indipendenti<a class="headerlink" href="#test-t-di-student-per-campioni-indipendenti" title="Permalink to this heading">#</a></h1>
 <p>In questo capitolo, esamineremo il test <span class="math notranslate nohighlight">\(t\)</span> di Student per campioni indipendenti, uno dei test statistici frequentisti più ampiamente utilizzati nella pratica.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -555,6 +559,9 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="applicazioni-del-test-t-di-student">
+<h2>Applicazioni del Test t di Student<a class="headerlink" href="#applicazioni-del-test-t-di-student" title="Permalink to this heading">#</a></h2>
 <p>Il test t di Student per due campioni indipendenti è un metodo statistico utilizzato per determinare se le medie di due campioni indipendenti sono significativamente diverse. Questo test si applica quando i due campioni sono estratti da popolazioni diverse e non vi è alcuna correlazione tra le osservazioni di un campione e quelle dell’altro.</p>
 <p>Per condurre il test t di Student per due campioni indipendenti, calcoliamo la differenza tra le medie dei due campioni e le stime delle varianze campionarie delle rispettive popolazioni. L’ipotesi nulla del test è che le medie dei due campioni siano uguali, mentre l’ipotesi alternativa a due code è che le medie dei due campioni siano diverse. La statistica del test t viene calcolata come il rapporto tra la differenza delle medie campionarie e la deviazione standard media campionaria.</p>
 <p>Successivamente, confrontiamo la statistica t con la distribuzione t di Student con <span class="math notranslate nohighlight">\(n_1 + n_2 - 2\)</span> gradi di libertà, dove <span class="math notranslate nohighlight">\(n_1\)</span> e <span class="math notranslate nohighlight">\(n_2\)</span> sono le dimensioni dei due campioni. Calcoliamo quindi il valore-p dalla distribuzione t per determinare la significatività del test.</p>
@@ -744,11 +751,6 @@ t = \frac{\bar{x}_0 - \bar{x}_1}{s_p \sqrt{1/n_0 + 1/n_1}},
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/outdated/utils.py:14: OutdatedPackageWarning: The package pingouin is out of date. Your version is 0.5.3, the latest is 0.5.4.
-Set the environment variable OUTDATED_IGNORE=1 to disable these warnings.
-  return warn(
-</pre></div>
-</div>
 <img alt="../_images/6bbece78b84715548f693abfe72f1556ad0ee50adbc3bfe6294d15c8cb146181.png" src="../_images/6bbece78b84715548f693abfe72f1556ad0ee50adbc3bfe6294d15c8cb146181.png" />
 </div>
 </div>
@@ -820,6 +822,11 @@ Set the environment variable OUTDATED_IGNORE=1 to disable these warnings.
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/outdated/utils.py:14: OutdatedPackageWarning: The package pingouin is out of date. Your version is 0.5.3, the latest is 0.5.4.
+Set the environment variable OUTDATED_IGNORE=1 to disable these warnings.
+  return warn(
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.013265602643801042
 </pre></div>
 </div>
@@ -844,33 +851,30 @@ T-test  0.743519
 </div>
 </div>
 <p>Il risultato conferma quanto trovato in precedenza attraverso i calcoli effettuati. Il valore-<span class="math notranslate nohighlight">\(p\)</span> indica che possiamo rifiutare l’ipotesi nulla di uguaglianza delle medie delle due popolazioni. Quindi, possiamo concludere con un livello di confidenza del 95% che la media del peso dei maschi nella popolazione è superiore alla media del peso delle femmine nella popolazione.</p>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -p pytensor
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Thu Jan 25 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:05:45.874583+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-pytensor: 2.18.4
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-pingouin  : 0.5.3
-pandas    : 2.1.4
-seaborn   : 0.13.0
-numpy     : 1.26.2
-arviz     : 0.17.0
-scipy     : 1.11.4
-matplotlib: 3.8.2
 
-Watermark: 2.4.3
 </pre></div>
 </div>
 </div>
@@ -941,7 +945,8 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazioni-del-test-t-di-student">Applicazioni del Test t di Student</a></li>
 </ul>
   </nav></div>
 

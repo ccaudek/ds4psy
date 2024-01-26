@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,9 +513,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errori-di-tipo-m-e-s">Errori di tipo <em>M</em> e <em>S</em></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">Considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -534,13 +535,8 @@ document.write(`
 <p>Due casi molto famosi in psicologia riguardano gli studi di John Bargh sul “camminare degli anziani”, ampiamente citati e insegnati nei corsi universitari, ma non replicati in studi successivi. Inoltre, gli esperimenti sulla percezione extrasensoriale condotti da Daryl Bem hanno fornito presunte prove per il controverso fenomeno, ma sono stati pesantemente criticati per la metodologia e i dati non hanno confermato l’esistenza della percezione extrasensoriale.</p>
 <p>Va notato che la crisi della riproducibilità dei risultati della ricerca può essere, in parte, attribuita alla frode e/o alle “pratiche di ricerca discutibili”, ma, d’altra parte, è anche una componente intrinseca del processo scientifico stesso, in cui vecchie idee o risultati che non resistono a un’attenta analisi vengono eliminati, anche se questo processo di selezione non è sempre efficace. Un punto cruciale per la presente discussione riguarda il fatto che, in psicologia, per molti decenni, questo processo di selezione si è basato principalmente sull’uso di un metodo statistico, l’approccio frequentista del test di ipotesi nulla e della significatività statistica. Si è ritenuto che i risultati che non raggiungono la “significatività statistica” debbano essere scartati, mentre quelli che la superano possono essere considerati credibili, basandosi esclusivamente sulla loro significatività statistica.</p>
 <p>Tuttavia, l’idea che la significatività statistica sia un filtro in grado di distinguere i “buoni” risultati di ricerca dai “cattivi” è fondamentalmente sbagliata. Numerose evidenze dimostrano questa fallacia. Per comprendere questo aspetto, esamineremo uno studio di <span id="id1">Loken and Gelman [<a class="reference internal" href="../references/bibliography.html#id51" title="Eric Loken and Andrew Gelman. Measurement error and the replication crisis. Science, 355(6325):584–585, 2017.">LG17</a>]</span>, che mette in evidenza la relazione tra la crisi della replicabilità e la procedura di decisione statistica dell’approccio frequentista. Uno dei principali problemi sottolineati dallo studio è che in contesti di ricerca complessi, la significatività statistica fornisce prove molto deboli riguardo al segno o all’entità di eventuali effetti sottostanti. In altre parole, il raggiungimento della significatività statistica non garantisce la rilevanza o la consistenza dei risultati.</p>
-<section id="errori-di-tipo-m-e-s">
-<h2>Errori di tipo <em>M</em> e <em>S</em><a class="headerlink" href="#errori-di-tipo-m-e-s" title="Permalink to this heading">#</a></h2>
-<p>Per evidenziare le implicazioni del processo decisionale basato sulla significatività statistica, gli autori di <span id="id2">Loken and Gelman [<a class="reference internal" href="../references/bibliography.html#id51" title="Eric Loken and Andrew Gelman. Measurement error and the replication crisis. Science, 355(6325):584–585, 2017.">LG17</a>]</span> hanno condotto una simulazione. In questa simulazione, hanno immaginato una ricerca ipotetica in cui un effetto reale, seppur molto debole, era presente, ma difficilmente individuabile senza una grande quantità di dati. I ricercatori hanno quindi cercato di rilevare questo effetto utilizzando l’approccio frequentista e valutando la significatività statistica.</p>
-<p>I risultati della simulazione hanno rivelato che, anche quando un effetto reale ma debole era presente, l’approccio frequentista tendeva a individuare un effetto significativo solo in una piccola percentuale dei casi. Inoltre, quando veniva individuato un effetto significativo, la sua stima di grandezza risultava molto imprecisa e instabile.</p>
-<p>In altre parole, la significatività statistica fornisce solo un’indicazione generale sulla presenza o assenza di un effetto, ma non offre informazioni precise sulla sua dimensione o replicabilità. Questo problema diventa ancora più evidente quando si considera che molte ricerche in psicologia e scienze sociali utilizzano campioni relativamente piccoli, e gli effetti osservati in tali studi tendono ad essere molto modesti. In tali contesti, l’approccio frequentista rischia di fornire prove molto deboli e instabili riguardo alla presenza o assenza di un effetto, mettendo a rischio la replicabilità e l’affidabilità dei risultati della ricerca.</p>
-<p>Riproduciamo qui, in maniera semplificata, la simulazione condotta da <span id="id3">Loken and Gelman [<a class="reference internal" href="../references/bibliography.html#id51" title="Eric Loken and Andrew Gelman. Measurement error and the replication crisis. Science, 355(6325):584–585, 2017.">LG17</a>]</span>.
-Iniziamo ad importare le librerie necessarie.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -563,6 +559,14 @@ Iniziamo ad importare le librerie necessarie.</p>
 </div>
 </div>
 </div>
+</section>
+<section id="errori-di-tipo-m-e-s">
+<h2>Errori di tipo <em>M</em> e <em>S</em><a class="headerlink" href="#errori-di-tipo-m-e-s" title="Permalink to this heading">#</a></h2>
+<p>Per evidenziare le implicazioni del processo decisionale basato sulla significatività statistica, gli autori di <span id="id2">Loken and Gelman [<a class="reference internal" href="../references/bibliography.html#id51" title="Eric Loken and Andrew Gelman. Measurement error and the replication crisis. Science, 355(6325):584–585, 2017.">LG17</a>]</span> hanno condotto una simulazione. In questa simulazione, hanno immaginato una ricerca ipotetica in cui un effetto reale, seppur molto debole, era presente, ma difficilmente individuabile senza una grande quantità di dati. I ricercatori hanno quindi cercato di rilevare questo effetto utilizzando l’approccio frequentista e valutando la significatività statistica.</p>
+<p>I risultati della simulazione hanno rivelato che, anche quando un effetto reale ma debole era presente, l’approccio frequentista tendeva a individuare un effetto significativo solo in una piccola percentuale dei casi. Inoltre, quando veniva individuato un effetto significativo, la sua stima di grandezza risultava molto imprecisa e instabile.</p>
+<p>In altre parole, la significatività statistica fornisce solo un’indicazione generale sulla presenza o assenza di un effetto, ma non offre informazioni precise sulla sua dimensione o replicabilità. Questo problema diventa ancora più evidente quando si considera che molte ricerche in psicologia e scienze sociali utilizzano campioni relativamente piccoli, e gli effetti osservati in tali studi tendono ad essere molto modesti. In tali contesti, l’approccio frequentista rischia di fornire prove molto deboli e instabili riguardo alla presenza o assenza di un effetto, mettendo a rischio la replicabilità e l’affidabilità dei risultati della ricerca.</p>
+<p>Riproduciamo qui, in maniera semplificata, la simulazione condotta da <span id="id3">Loken and Gelman [<a class="reference internal" href="../references/bibliography.html#id51" title="Eric Loken and Andrew Gelman. Measurement error and the replication crisis. Science, 355(6325):584–585, 2017.">LG17</a>]</span>.
+Iniziamo ad importare le librerie necessarie.</p>
 <p>Supponiamo di considerare due campioni casuali indipendenti di dimensioni (n_1 = 20) e (n_2 = 25), estratti dalle distribuzioni normali (\mathcal{N}(102, 10)) e (\mathcal{N}(100, 10)) rispettivamente. La dimensione effettiva dell’effetto per la differenza tra le medie di questi due campioni è rappresentata da (d), calcolato attraverso la formula:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -647,7 +651,7 @@ s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}},
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6bb4b5313b24be454ea3bb94ff954b7ce89847b9edda284cd5dbfe5cbbb44ac7.png" src="../_images/6bb4b5313b24be454ea3bb94ff954b7ce89847b9edda284cd5dbfe5cbbb44ac7.png" />
+<img alt="../_images/27d12b0be98e438df48d9ac92a4f1b72d4bf4931e7d65e55a56970b940537abe.png" src="../_images/27d12b0be98e438df48d9ac92a4f1b72d4bf4931e7d65e55a56970b940537abe.png" />
 </div>
 </div>
 <p>Come sottolineato da <span id="id4">Loken and Gelman [<a class="reference internal" href="../references/bibliography.html#id51" title="Eric Loken and Andrew Gelman. Measurement error and the replication crisis. Science, 355(6325):584–585, 2017.">LG17</a>]</span>, l’utilizzo dell’approccio frequentista nella procedura di decisione statistica può portare a due tipi di errori significativi. Il primo errore, noto come “magnitude”, si manifesta nel fatto che i risultati pubblicati tendono a sovrastimare la vera grandezza dell’effetto. Nella simulazione effettuata, sebbene la vera grandezza dell’effetto fosse modesta (0.2), la media della grandezza dell’effetto per i risultati dichiarati “statisticamente significativi” era di circa 0.8, indicando una grandezza dell’effetto “ampia”.</p>
@@ -658,30 +662,30 @@ s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}},
 <h2>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
 <p>In conclusione, come evidenziato da <span id="id5">Loken and Gelman [<a class="reference internal" href="../references/bibliography.html#id51" title="Eric Loken and Andrew Gelman. Measurement error and the replication crisis. Science, 355(6325):584–585, 2017.">LG17</a>]</span>, l’approccio frequentista non sembra rappresentare un metodo affidabile per valutare i risultati della ricerca e determinare la loro attendibilità o la necessità di scartarli. Questa mancanza di affidabilità deriva dall’introduzione di errori sistematici nella stima dell’effetto, che può anche portare a errori nella direzione dell’effetto in alcune circostanze. Di conseguenza, non sembra esserci motivo valido per continuare a impiegare questo approccio.</p>
 <p>Al contrario, l’adozione dell’approccio bayesiano potrebbe offrire risultati più precisi e affidabili nella valutazione dei dati di ricerca. Tale approccio considera la probabilità delle ipotesi alla luce dei dati osservati, evitando gli errori intrinseci dell’approccio frequentista e fornendo una base più solida per le decisioni sulla validità dei risultati.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Thu Jan 25 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:06:13.194445+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-scipy     : 1.11.4
-numpy     : 1.26.2
-seaborn   : 0.13.0
-matplotlib: 3.8.2
-arviz     : 0.17.0
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-Watermark: 2.4.3
+
 </pre></div>
 </div>
 </div>
@@ -752,9 +756,9 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errori-di-tipo-m-e-s">Errori di tipo <em>M</em> e <em>S</em></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">Considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

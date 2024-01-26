@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,7 +513,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">Interpretazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimostrazione-e-applicazioni">Dimostrazione e Applicazioni</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">Interpretazione</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcuni-esempi">Alcuni esempi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferire-il-genere-dalla-lunghezza-dei-capelli">Inferire il genere dalla lunghezza dei capelli</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mammografia-e-cancro-al-seno">Mammografia e cancro al seno</a></li>
@@ -550,7 +555,7 @@ document.write(`
 <span id="bayes-theorem-notebook"></span><h1>Il teorema di Bayes<a class="headerlink" href="#il-teorema-di-bayes" title="Permalink to this heading">#</a></h1>
 <div class="admonition-obiettivi-di-apprendimento admonition">
 <p class="admonition-title">Obiettivi di apprendimento</p>
-<p>Dopo aver completato questo capitolo, acquisirai le competenze per:</p>
+<p>Dopo aver completato questo capitolo, acquisirete le competenze per:</p>
 <ul class="simple">
 <li><p>Capire in profondità il teorema di Bayes e la sua importanza.</p></li>
 <li><p>Utilizzare il teorema di Bayes per analizzare e interpretare i test diagnostici, tenendo in considerazione la prevalenza della malattia in questione.</p></li>
@@ -558,6 +563,8 @@ document.write(`
 </ul>
 </div>
 <p>In questo capitolo esploreremo il teorema di Bayes, un fondamentale risultato della teoria delle probabilità che ci permette di calcolare le probabilità a posteriori di eventi ipotetici, dati i loro valori a priori e nuove informazioni. In altre parole, ci consente di aggiornare razionalmente le nostre conoscenze alla luce di nuove evidenze. Prima di procedere con il presente capitolo, è essenziale leggere l’appendice <a class="reference internal" href="../chapter_7/a15_calculus.html#calculus-appendix"><span class="std std-ref">Per liberarvi dai terrori preliminari</span></a>.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -581,6 +588,9 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="dimostrazione-e-applicazioni">
+<h2>Dimostrazione e Applicazioni<a class="headerlink" href="#dimostrazione-e-applicazioni" title="Permalink to this heading">#</a></h2>
 <p>Supponiamo di avere una partizione dell’evento certo <span class="math notranslate nohighlight">\(\Omega\)</span> in due soli eventi mutuamente esclusivi, che chiamiamo ipotesi <span class="math notranslate nohighlight">\(H_1\)</span> e <span class="math notranslate nohighlight">\(H_2\)</span>. Supponiamo inoltre di conoscere le probabilità a priori <span class="math notranslate nohighlight">\(P(H_1)\)</span> e <span class="math notranslate nohighlight">\(P(H_2)\)</span> delle due ipotesi. Consideriamo ora un terzo evento <span class="math notranslate nohighlight">\(E\)</span>, con probabilità non nulla, di cui conosciamo le probabilità condizionate <span class="math notranslate nohighlight">\(P(E \mid H_1)\)</span> e <span class="math notranslate nohighlight">\(P(E \mid H_2)\)</span>, ovvero la probabilità che si verifichi l’evento <span class="math notranslate nohighlight">\(E\)</span> dati i valori delle due ipotesi. Supponendo che si sia verificato l’evento <span class="math notranslate nohighlight">\(E\)</span>, vogliamo conoscere le probabilità a posteriori delle ipotesi, ovvero <span class="math notranslate nohighlight">\(P(H_1 \mid E)\)</span> e <span class="math notranslate nohighlight">\(P(H_2 \mid E)\)</span>.</p>
 <p>La figura seguente rappresenta una partizione dell’evento certo in due eventi chiamati ‘ipotesi’ <span class="math notranslate nohighlight">\(H_1\)</span> e <span class="math notranslate nohighlight">\(H_2\)</span>. L’evidenza <span class="math notranslate nohighlight">\(E\)</span> è un sottoinsieme dello spazio campione.</p>
 <a class="reference internal image-reference" href="../_images/bayes_theorem.png"><img alt="../_images/bayes_theorem.png" class="align-center" src="../_images/bayes_theorem.png" style="height: 230px;" /></a>
@@ -620,7 +630,7 @@ P(H_i \mid E) = \frac{P(E \mid H_i) \cdot P(H_i)}{\int P(E \mid H) \cdot P(H) \,
 \]</div>
 <p>dove <span class="math notranslate nohighlight">\(P(H_i \mid E)\)</span> è la probabilità a posteriori dell’ipotesi <span class="math notranslate nohighlight">\(H_i\)</span> dato l’evidenza <span class="math notranslate nohighlight">\(E\)</span>, <span class="math notranslate nohighlight">\(P(E \mid H_i)\)</span> è la verosimiglianza di <span class="math notranslate nohighlight">\(E\)</span> dato <span class="math notranslate nohighlight">\(H_i\)</span>, <span class="math notranslate nohighlight">\(P(H_i)\)</span> è la probabilità a priori dell’ipotesi <span class="math notranslate nohighlight">\(H_i\)</span>, e l’integrale è effettuato sull’insieme delle ipotesi <span class="math notranslate nohighlight">\(H\)</span>.</p>
 <section id="interpretazione">
-<h2>Interpretazione<a class="headerlink" href="#interpretazione" title="Permalink to this heading">#</a></h2>
+<h3>Interpretazione<a class="headerlink" href="#interpretazione" title="Permalink to this heading">#</a></h3>
 <p>Possiamo identificare tre concetti fondamentali nell’eq. <a class="reference internal" href="#equation-eq-bayes2">(15)</a>.</p>
 <ul class="simple">
 <li><p>La probabilità a priori, <span class="math notranslate nohighlight">\(P(H)\)</span>, rappresenta la misura di fiducia che attribuiamo all’ipotesi <span class="math notranslate nohighlight">\(H\)</span> prima di avere qualsiasi informazione sull’evidenza <span class="math notranslate nohighlight">\(E\)</span>.</p></li>
@@ -628,6 +638,7 @@ P(H_i \mid E) = \frac{P(E \mid H_i) \cdot P(H_i)}{\int P(E \mid H) \cdot P(H) \,
 <li><p>La verosimiglianza di <span class="math notranslate nohighlight">\(E\)</span> dato <span class="math notranslate nohighlight">\(H\)</span>, <span class="math notranslate nohighlight">\(P(E \mid H)\)</span>, rappresenta la probabilità dell’evidenza <span class="math notranslate nohighlight">\(E\)</span> quando l’ipotesi <span class="math notranslate nohighlight">\(H\)</span> è vera. È una misura di quanta “supporto” o “conferma” fornisce l’evidenza <span class="math notranslate nohighlight">\(E\)</span> all’ipotesi <span class="math notranslate nohighlight">\(H\)</span>.</p></li>
 </ul>
 <p>Il teorema di Bayes è uno strumento fondamentale che ci permette di aggiornare le nostre credenze in base a nuove informazioni. In pratica, ci consente di calcolare la probabilità di un’ipotesi o evento dati gli elementi di evidenza disponibili. Questo teorema è particolarmente rilevante nell’interpretazione soggettiva della probabilità, poiché ci dà un metodo per aggiornare la nostra credenza sull’ipotesi <span class="math notranslate nohighlight">\(H\)</span> alla luce di nuove evidenze <span class="math notranslate nohighlight">\(E\)</span>. In altre parole, ci aiuta ad adeguare la probabilità assegnata a un’ipotesi in base alle nuove informazioni che abbiamo a disposizione. Questo processo di aggiornamento delle credenze è estremamente utile in molti campi, come l’intelligenza artificiale, la statistica, la biologia e la psicologia. In sostanza, il teorema di Bayes ci permette di considerare l’informazione come una risorsa dinamica e di tener conto di come questa influenza la nostra credenza. Ci aiuta a prendere decisioni più informate e a interpretare meglio i dati che abbiamo a disposizione, aumentando la nostra comprensione e la nostra capacità di fare previsioni corrette.</p>
+</section>
 </section>
 <section id="alcuni-esempi">
 <h2>Alcuni esempi<a class="headerlink" href="#alcuni-esempi" title="Permalink to this heading">#</a></h2>
@@ -1787,7 +1798,11 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">Interpretazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimostrazione-e-applicazioni">Dimostrazione e Applicazioni</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">Interpretazione</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcuni-esempi">Alcuni esempi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferire-il-genere-dalla-lunghezza-dei-capelli">Inferire il genere dalla lunghezza dei capelli</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mammografia-e-cancro-al-seno">Mammografia e cancro al seno</a></li>

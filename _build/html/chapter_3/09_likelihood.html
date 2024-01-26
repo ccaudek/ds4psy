@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concetto-di-verosimiglianza-e-sua-formalizzazione-matematica">Concetto di Verosimiglianza e Sua Formalizzazione Matematica</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verosimiglianza-nel-contesto-del-modello-binomiale-un-esempio-approfondito">Verosimiglianza nel Contesto del Modello Binomiale: Un Esempio Approfondito</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-della-funzione-di-verosimiglianza">Interpretazione della Funzione di Verosimiglianza</a></li>
@@ -543,6 +545,8 @@ document.write(`
   <p><a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/ccaudek/ds4psy_2023/blob/main/225_likelihood.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="la-verosimiglianza">
 <span id="notebook-likelihood"></span><h1>La verosimiglianza<a class="headerlink" href="#la-verosimiglianza" title="Permalink to this heading">#</a></h1>
+<p>La funzione di verosimiglianza rappresenta un elemento chiave che collega i dati osservati ai parametri di un modello statistico. È un concetto fondamentale che sottende gran parte dell’analisi statistica e svolge un ruolo centrale nell’applicazione del Teorema di Bayes. La sua definizione e comprensione sono essenziali per qualsiasi persona coinvolta nella ricerca scientifica, nell’analisi dei dati o nell’interpretazione dei risultati.</p>
+<p>In questo capitolo, esploreremo a fondo il concetto di verosimiglianza. Scopriremo come essa rappresenta un ponte tra i dati che osserviamo e i parametri che desideriamo stimare o testare. Attraverso esempi concreti, illustreremo come la verosimiglianza può essere calcolata e utilizzata per formulare inferenze statistiche. Sarà chiaro come questa funzione gioca un ruolo cruciale in molti contesti, dall’analisi dei dati sperimentali alla costruzione di modelli complessi.</p>
 <div class="admonition-obiettivi-di-apprendimento admonition">
 <p class="admonition-title">Obiettivi di apprendimento</p>
 <p>Dopo aver completato questo capitolo, sarete in grado di:</p>
@@ -554,6 +558,8 @@ document.write(`
 <li><p>Comprendere il concetto di stima di massima verosimiglianza.</p></li>
 </ul>
 </div>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -579,6 +585,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="concetto-di-verosimiglianza-e-sua-formalizzazione-matematica">
 <h2>Concetto di Verosimiglianza e Sua Formalizzazione Matematica<a class="headerlink" href="#concetto-di-verosimiglianza-e-sua-formalizzazione-matematica" title="Permalink to this heading">#</a></h2>
 <p>La funzione di verosimiglianza è una struttura matematica utilizzata per quantificare la congruenza tra un insieme di dati osservati <span class="math notranslate nohighlight">\( y \)</span> e un modello statistico parametrizzato da <span class="math notranslate nohighlight">\( \theta \)</span>. Essa è formalmente definita come proporzionale alla probabilità condizionale dei dati <span class="math notranslate nohighlight">\( y \)</span> dato il vettore dei parametri <span class="math notranslate nohighlight">\( \theta \)</span>:</p>
@@ -1269,6 +1276,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concetto-di-verosimiglianza-e-sua-formalizzazione-matematica">Concetto di Verosimiglianza e Sua Formalizzazione Matematica</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verosimiglianza-nel-contesto-del-modello-binomiale-un-esempio-approfondito">Verosimiglianza nel Contesto del Modello Binomiale: Un Esempio Approfondito</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-della-funzione-di-verosimiglianza">Interpretazione della Funzione di Verosimiglianza</a></li>

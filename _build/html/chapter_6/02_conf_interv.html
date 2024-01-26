@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approcci-distinti-nell-inferenza-statistica">Approcci Distinti nell’Inferenza Statistica</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferenza-statistica-frequentista-intervallo-di-confidenza">Inferenza Statistica Frequentista: Intervallo di Confidenza</a></li>
 </ul>
@@ -547,7 +549,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riflessioni-conclusive">Riflessioni Conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -561,6 +562,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="intervallo-di-confidenza">
 <span id="confidence-interval-notebook"></span><h1>Intervallo di confidenza<a class="headerlink" href="#intervallo-di-confidenza" title="Permalink to this heading">#</a></h1>
+<p>Gli intervalli di confidenza sono uno strumento cruciale dell’approccio frequentista all’inferenza stastistica. Rappresentano un modo per affrontare l’incertezza nei risultati delle analisi statistiche. In questo capitolo, ci immergeremo nei dettagli degli intervalli di confidenza. Esploreremo come vengono calcolati e cosa rappresentano dal punto di vista frequentista. Attraverso esempi pratici, chiariremo il concetto di intervallo di confidenza e mostreremo come possa essere applicato in diverse situazioni.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -597,20 +601,25 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="approcci-distinti-nell-inferenza-statistica">
 <h2>Approcci Distinti nell’Inferenza Statistica<a class="headerlink" href="#approcci-distinti-nell-inferenza-statistica" title="Permalink to this heading">#</a></h2>
-<p>Il campo della statistica utilizza prevalentemente due metodi fondamentali per l’inferenza statistica:</p>
+<p>L’inferenza statistica, un pilastro della statistica, si basa su due approcci fondamentali che interpretano e utilizzano la probabilità in maniere diverse. Questi approcci sono l’approccio bayesiano e l’approccio frequentista.</p>
 <ol class="arabic simple">
-<li><p><strong>Approccio Bayesianista</strong>: L’approccio bayesiano, come delineato da <span id="id1">Jaynes [<a class="reference internal" href="../references/bibliography.html#id3" title="Edwin T Jaynes. Probability theory: The logic of science. Cambridge University Press, 2003.">Jay03</a>]</span>, considera la probabilità come una misura del grado di convinzione o credenza nella realizzazione di un evento o nella validità di un’affermazione.</p></li>
-<li><p><strong>Approccio Frequentista</strong>: Al contrario, l’approccio frequentista interpreta la probabilità come la frequenza relativa di un evento nel lungo termine.</p></li>
+<li><p><strong>Approccio Bayesiano</strong>: L’approccio bayesiano tratta la probabilità come una misura del grado di convinzione o fiducia nella verificabilità di un evento o nell’affidabilità di un’affermazione. Questa visione, come delineata da Jaynes nel suo lavoro <span id="id1">Jaynes [<a class="reference internal" href="../references/bibliography.html#id3" title="Edwin T Jaynes. Probability theory: The logic of science. Cambridge University Press, 2003.">Jay03</a>]</span>, si concentra sulla probabilità come una misura soggettiva, legata alla conoscenza o alle informazioni disponibili sull’evento in questione.</p></li>
+</ol>
+<p>In questo contesto, la probabilità è aggiornata man mano che vengono acquisite nuove informazioni, seguendo il teorema di Bayes. Questo teorema permette di aggiornare la probabilità iniziale (probabilità a priori) di un evento sulla base di nuove evidenze, portando alla probabilità aggiornata (probabilità a posteriori). L’approccio bayesiano è quindi particolarmente adatto a situazioni in cui le informazioni sono in continuo aggiornamento e le probabilità devono essere adattate di conseguenza.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Approccio Frequentista</strong>: Al contrario, l’approccio frequentista interpreta la probabilità come la frequenza relativa con cui un evento si verifica nel lungo periodo. Questo significa che, secondo i frequentisti, la probabilità di un evento è determinata dalla frequenza con cui si verifica in un gran numero di ripetizioni o prove.</p></li>
 </ol>
 <section id="inferenza-statistica-frequentista-intervallo-di-confidenza">
 <h3>Inferenza Statistica Frequentista: Intervallo di Confidenza<a class="headerlink" href="#inferenza-statistica-frequentista-intervallo-di-confidenza" title="Permalink to this heading">#</a></h3>
-<p>Nell’approccio frequentista, si pone enfasi sulla ripetizione di esperimenti in contesti casuali. Questo principio è fondamentale per comprendere l’intervallo di confidenza, un concetto chiave in questo approccio.</p>
-<p>Quando si estrae un campione casuale da una popolazione più vasta, i risultati statistici derivanti dal campione possono non corrispondere esattamente ai parametri reali della popolazione. Questa discrepanza è attribuibile alla “variabilità campionaria”. Per quantificarla e comprenderla meglio, si utilizza un indicatore chiamato “errore standard”.</p>
-<p>L’errore standard è una stima della deviazione standard della distribuzione di un estimatore statistico, che indica quanto si possa aspettare che la nostra stima si discosti dal valore vero nella popolazione. Questa misura è essenziale perché, nella maggior parte dei casi, non è possibile calcolare direttamente la deviazione standard della distribuzione campionaria, dato che ciò richiederebbe l’accesso a numerosi campioni dalla popolazione, una situazione raramente realizzabile. Di conseguenza, si stima la deviazione standard basandosi sul singolo campione disponibile, definendo tale stima come “errore standard” dello stimatore.</p>
-<p>L’errore standard valuta la variabilità delle stime del parametro tra diversi campioni, fornendo un’indicazione su quanto la stima possa variare rispetto al valore vero del parametro nella popolazione. Attraverso l’errore standard, gli statistici frequentisti costruiscono l’ “intervallo di confidenza”, che rappresenta l’insieme di valori entro cui, a lungo termine, il vero parametro della popolazione si dovrebbe trovare con una certa probabilità <span class="math notranslate nohighlight">\(\gamma\)</span>. Ad esempio, con un livello di confidenza del 95%, ci aspettiamo che il vero valore del parametro rientri nel 95% degli intervalli di confidenza calcolati.</p>
-<p>Questo metodo si applica a vari parametri statistici, come media, varianza o proporzione di una popolazione, offrendo una stima affidabile dell’intervallo entro cui il parametro della popolazione è presumibilmente situato, basata sui dati raccolti dal campione.</p>
+<p>Un concetto chiave dell’approccio frequentista è l’intervallo di confidenza. Questo strumento statistico viene utilizzato per stimare la variabilità di un parametro all’interno di una popolazione, basandosi su un campione estratto da quella popolazione.</p>
+<p>L’errore standard gioca un ruolo cruciale in questo contesto. È una misura della deviazione standard della distribuzione campionaria di uno stimatore, e indica quanto ci si può aspettare che la stima si discosti dal vero valore del parametro nella popolazione. Questa misura è essenziale poiché, nella pratica, non è possibile calcolare direttamente la deviazione standard della distribuzione campionaria senza un numero elevato di campioni, una situazione raramente realizzabile.</p>
+<p>L’errore standard valuta quindi la variabilità delle stime del parametro tra diversi campioni, fornendo un’indicazione su quanto la stima possa variare rispetto al valore vero del parametro nella popolazione. Gli statistici frequentisti utilizzano l’errore standard per costruire l’intervallo di confidenza, che è un range di valori attorno a una stima di un parametro (come la media del campione). La chiave per comprendere l’intervallo di confidenza in un contesto frequentista è il concetto di “procedura di stima”. Secondo questo approccio, l’intervallo di confidenza è costruito in modo tale che, se la stessa procedura di stima venisse ripetuta molteplici volte su diversi campioni della stessa popolazione, una certa percentuale (ad esempio, il 95%) di questi intervalli di confidenza conterrebbe il vero valore del parametro della popolazione.</p>
+<p>Quindi, in termini frequentisti, non si dice che un particolare intervallo di confidenza ha il 95% di probabilità di contenere il vero valore del parametro. Piuttosto, si afferma che, seguendo la medesima metodologia di stima, il 95% degli intervalli di confidenza calcolati da diversi campioni includerebbe il vero valore del parametro.</p>
+<p>In questo contesto, l’intervallo di confidenza non è una dichiarazione sulla probabilità che un determinato intervallo contenga il valore del parametro, ma piuttosto una dichiarazione sulla frequenza con cui gli intervalli calcolati in un certo modo catturano il valore del parametro quando si applica lo stesso processo a numerosi campioni. Questa distinzione è fondamentale per comprendere correttamente l’approccio frequentista all’inferenza statistica.</p>
+<p>In sintesi, mentre l’approccio bayesiano si concentra sull’aggiornamento delle probabilità con nuove informazioni, l’approccio frequentista si basa sulla ripetizione di esperimenti e sulla stima della variabilità campionaria.</p>
 </section>
 </section>
 <section id="determinazione-dell-intervallo-di-confidenza">
@@ -788,7 +797,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>168.0235843261227 178.92342025975285 158.65889923372802 179.6303178730518 177.75078650361684 177.31866698901266 169.88844431975423 173.99135052495092 155.63817562258805 169.53704629450522 172.1846365663152 170.11193088235237 189.1162327429333 178.5978486138266 167.63106248293263 180.74371060129255 177.18646634486203 176.28306680516667 176.60288472870744 168.93824655712658 167.2950031353247 179.81886746832015 182.67806668453912 173.1038294930573 177.77855556665045 181.75181825006547 182.07547839535917 180.19577862001373 169.15707072920102 178.34792586562392
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>191.30846307309426 175.2359559346993 178.6870952484977 184.00696924027358 171.86954171756295 168.20614149394322 173.01900251927844 168.96453624790124 174.23512703655143 168.0121549577795 180.25497213014484 171.31277168755884 174.57394454792484 179.77620363347714 183.9902474271265 175.56332101987684 168.6877053500457 160.29422766936545 181.7886888564388 176.88958231816372 173.52294574383458 180.83317934656566 182.4318892784229 178.82282066612692 171.42951741328977 167.2824845256842 171.55460716856243 173.38613085324656 174.22872524310236 179.98967388740706
 </pre></div>
 </div>
 </div>
@@ -802,7 +811,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>175.4166043369681 174.63197241602512 175.9696501580123 176.6702639047767 173.8864949976773 174.33756273615305 177.7103476536556 174.7674110831892 175.57384560218222 174.09523033929497
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>172.89968512753595 175.33862087453156 173.6572452847689 175.84134166753682 175.2426423794041 175.5333253675927 175.64535095516374 173.61894422306005 175.20782045305114 176.1975511321435
 </pre></div>
 </div>
 </div>
@@ -841,7 +850,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.954
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.942
 </pre></div>
 </div>
 </div>
@@ -918,11 +927,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[35.44430526 50.37619113 57.82069969 61.49685418 63.31102252 48.02910401
- 45.18235321 62.82355297 63.92752261 41.20279962 42.11268884 55.99844846
- 60.07445322 33.05071348 54.83105374 45.6758504  59.98376005 42.96708554
- 48.40015995 36.32776835 40.67411814 43.3548912  41.33663651 60.06455434
- 46.82724403 64.13341426 51.02910962 40.08284525 49.95768882 50.41745881]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[41.70912245 37.50718538 45.94701421 34.29448747 26.88715261 55.43872451
+ 54.09078232 40.40602857 34.21592043 51.21046914 54.6764232  35.31304004
+ 47.25548128 63.98407869 58.94800515 51.93033603 68.25558083 44.65885557
+ 53.23141166 38.48835238 71.01413528 47.41579127 56.92689336 38.19338625
+ 43.38083719 35.78688966 58.51318566 38.06077923 58.25988165 61.16236298]
 </pre></div>
 </div>
 </div>
@@ -935,7 +944,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/19daa35101c7b59a7e4cce9bc2fdc6cb00d3f17d8784e9ab8fad2f8606243eda.png" src="../_images/19daa35101c7b59a7e4cce9bc2fdc6cb00d3f17d8784e9ab8fad2f8606243eda.png" />
+<img alt="../_images/c49d709f32ac7440d869cc0bf2121287dae07179bc4f352e9b69c323ce341193.png" src="../_images/c49d709f32ac7440d869cc0bf2121287dae07179bc4f352e9b69c323ce341193.png" />
 </div>
 </div>
 <section id="intervallo-di-confidenza-frequentista">
@@ -955,7 +964,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49.897144940464585
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>48.238753148811796
 </pre></div>
 </div>
 </div>
@@ -980,7 +989,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.3396311992263
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.198110373247237
 </pre></div>
 </div>
 </div>
@@ -994,7 +1003,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0884050246247887
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5039736014126364
 </pre></div>
 </div>
 </div>
@@ -1027,7 +1036,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.371081951886763
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.240876979359936
 </pre></div>
 </div>
 </div>
@@ -1049,7 +1058,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[45.52606298857782, 54.26822689235135]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[42.99787616945186, 53.479630128171735]
 </pre></div>
 </div>
 </div>
@@ -1075,7 +1084,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2280d04b84c1a9ea5e4ad0676b7e5025531c3a2b8a6b9b4aa37fc07d2c3c815f.png" src="../_images/2280d04b84c1a9ea5e4ad0676b7e5025531c3a2b8a6b9b4aa37fc07d2c3c815f.png" />
+<img alt="../_images/af5352664f6cc2e664799f704f1047991557174af204796f5b83758f2439fa14.png" src="../_images/af5352664f6cc2e664799f704f1047991557174af204796f5b83758f2439fa14.png" />
 </div>
 </div>
 </section>
@@ -1117,7 +1126,7 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.288662
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.972401
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -1186,13 +1195,10 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1204,34 +1210,37 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1027.42it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1028.27it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1029.34it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1691.30it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1030.23it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1692.93it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.267764
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1694.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1696.67it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.388134
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.097112
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.059803
 </pre></div>
 </div>
 </div>
@@ -1276,26 +1285,26 @@ document.write(`
   <tbody>
     <tr>
       <th>mu</th>
-      <td>49.85</td>
-      <td>1.82</td>
-      <td>46.10</td>
-      <td>53.21</td>
+      <td>48.27</td>
+      <td>2.14</td>
+      <td>44.05</td>
+      <td>52.41</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>0.02</td>
-      <td>3082.23</td>
-      <td>2335.22</td>
+      <td>3096.57</td>
+      <td>2453.96</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>9.76</td>
-      <td>1.30</td>
-      <td>7.41</td>
-      <td>12.34</td>
+      <td>11.71</td>
+      <td>1.63</td>
+      <td>8.65</td>
+      <td>14.89</td>
+      <td>0.03</td>
       <td>0.02</td>
-      <td>0.02</td>
-      <td>3010.46</td>
-      <td>2748.49</td>
+      <td>2838.87</td>
+      <td>2577.88</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1312,32 +1321,30 @@ document.write(`
 <h2>Riflessioni Conclusive<a class="headerlink" href="#riflessioni-conclusive" title="Permalink to this heading">#</a></h2>
 <p>Come sottolineato da <span id="id7">Hoekstra <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id61" title="Rink Hoekstra, Richard D Morey, Jeffrey N Rouder, and Eric-Jan Wagenmakers. Robust misinterpretation of confidence intervals. Psychonomic Bulletin &amp; Review, 21(5):1157–1164, 2014.">HMRW14</a>]</span>, è comune riscontrare fraintendimenti riguardo agli intervalli di fiducia. Il “livello di confidenza del 95%” è da interpretarsi come la probabilità a lungo termine che, in una serie di intervalli di fiducia calcolati, il 95% di essi includa il vero valore del parametro sconosciuto. Tuttavia, per un singolo intervallo di fiducia, non è possibile dichiarare con sicurezza che questo contenga effettivamente il parametro di interesse. In altre parole, la certezza sulla presenza del parametro sconosciuto all’interno di un dato intervallo di fiducia non è garantita per ogni singolo caso analizzato.</p>
 <p>È inoltre inesatto presumere che esista un legame diretto tra la varianza e la media di un campione, ipotizzando che un intervallo di fiducia più ristretto implichi maggiore precisione. Nella prospettiva frequentista, la “precisione” è strettamente legata al livello di copertura a lungo termine assicurato dal metodo usato per creare gli intervalli di fiducia. Questo concetto non si applica al singolo intervallo di fiducia osservato. Dunque, un intervallo di fiducia che si presenta estremamente ristretto potrebbe in realtà essere significativamente lontano dal valore vero del parametro non noto.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Thu Jan 25 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:05:38.839521+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-pandas    : 2.1.4
-matplotlib: 3.8.2
-scipy     : 1.11.4
-seaborn   : 0.13.0
-numpy     : 1.26.2
-pymc      : 5.10.3
-arviz     : 0.17.0
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-Watermark: 2.4.3
+
 </pre></div>
 </div>
 </div>
@@ -1408,6 +1415,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approcci-distinti-nell-inferenza-statistica">Approcci Distinti nell’Inferenza Statistica</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferenza-statistica-frequentista-intervallo-di-confidenza">Inferenza Statistica Frequentista: Intervallo di Confidenza</a></li>
 </ul>
@@ -1443,7 +1451,6 @@ Watermark: 2.4.3
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riflessioni-conclusive">Riflessioni Conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -278,7 +279,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
@@ -287,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -311,22 +311,27 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_1/00_installation.html">Ambiente di lavoro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a05_sets.html">Insiemi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a13_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a53_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a60_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a70_predict_counts.html">La predizione delle frequenze</a></li>
 </ul>
 </li>
 </ul>
@@ -508,6 +513,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popolazione-e-campioni">Popolazione e campioni</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-relazione-tra-stime-e-parametri">La relazione tra stime e parametri</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-campionaria">Distribuzione campionaria</a></li>
@@ -544,6 +550,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="stime-stimatori-e-parametri">
 <span id="sampling-distr-notebook"></span><h1>Stime, stimatori e parametri<a class="headerlink" href="#stime-stimatori-e-parametri" title="Permalink to this heading">#</a></h1>
 <p>In questo capitolo, approfondiremo il concetto di <em>distribuzione campionaria</em> che costituisce uno dei pilastri dell’inferenza statistica frequentista. La distribuzione campionaria ci permette di comprendere come le stime dei parametri della popolazione, come la media o la varianza, cambiano da campione a campione. In particolare, la distribuzione campionaria ci consente di stabilire delle proprietà probabilistiche delle stime campionarie, come ad esempio la loro media e la loro varianza. Queste proprietà verranno utilizzate per costruire gli strumenti fondamentali dell’inferenza frequentista: gli intervalli di fiducia e i test di ipotesi.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -569,6 +577,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="popolazione-e-campioni">
 <h2>Popolazione e campioni<a class="headerlink" href="#popolazione-e-campioni" title="Permalink to this heading">#</a></h2>
 <p>Nell’analisi dei dati, l’obiettivo spesso è comprendere una quantità specifica a livello di popolazione, ma in genere abbiamo accesso solo a un campione di osservazioni. La quantità sconosciuta che vogliamo determinare viene chiamata <em>parametro</em>. Quando usiamo i dati del campione per calcolare una misura di questo parametro, la misura ottenuta è chiamata <em>stima</em>, e la formula che utilizziamo per ottenerla è conosciuta come <em>stimatore</em>. In termini formali, uno stimatore è una funzione dei dati osservati, utilizzata per fornire un’approssimazione del parametro di interesse.</p>
@@ -972,11 +981,11 @@ document.write(`
 <section id="errore-standard-e-rappresentazione-dell-incertezza-inferenziale">
 <h2>Errore standard e rappresentazione dell’incertezza inferenziale<a class="headerlink" href="#errore-standard-e-rappresentazione-dell-incertezza-inferenziale" title="Permalink to this heading">#</a></h2>
 <p>Nella statistica inferenziale, l’errore standard è una misura frequentemente utilizzata per rappresentare l’incertezza legata a un parametro stimato, conosciuta anche come incertezza inferenziale. L’errore standard quantifica quanto possa variare la stima di una statistica da un campione all’altro; un errore standard minore indica una stima più precisa, mentre uno maggiore implica maggiore incertezza. Spesso, le rappresentazioni grafiche includono gli errori standard nella forma di “media più o meno uno (o due) errori standard.” Questa espressione fornisce una gamma di valori entro cui è plausibile che ricada il valore vero del parametro della popolazione.</p>
-<p>L’uso dell’errore standard nei grafici non è soltanto una convenzione; esso è uno strumento per quantificare e visualizzare l’incertezza inferenziale. Contribuisce alla comprensione dell’affidabilità delle stime ottenute dai dati campionari, permettendo di valutare quanto le stime possano variare se si prendesse un altro campione dalla stessa popolazione. Tuttavia, è importante notare che questo utilizzo dell’errore standard può essere problematico, come evidenziato nello studio di <span id="id1">Zhang <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id36" title="Sam Zhang, Patrick R Heck, Michelle N Meyer, Christopher F Chabris, Daniel G Goldstein, and Jake M Hofman. An illusion of predictability in scientific results: even experts confuse inferential uncertainty and outcome variability. Proceedings of the National Academy of Sciences, 120(33):e2302491120, 2023.">ZHM+23</a>]</span>, descritto nel capitolo <a class="reference internal" href="04b_illusion.html#illusion-notebook"><span class="std std-ref">Incertezza inferenziale e variabilità dei risultati</span></a>.</p>
+<p>L’uso dell’errore standard nei grafici non è soltanto una convenzione; esso è uno strumento per quantificare e visualizzare l’incertezza inferenziale. Contribuisce alla comprensione dell’affidabilità delle stime ottenute dai dati campionari, permettendo di valutare quanto le stime possano variare se si prendesse un altro campione dalla stessa popolazione. Tuttavia, è importante notare che questo utilizzo dell’errore standard può essere problematico, come evidenziato nello studio di <span id="id1">Zhang <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id37" title="Sam Zhang, Patrick R Heck, Michelle N Meyer, Christopher F Chabris, Daniel G Goldstein, and Jake M Hofman. An illusion of predictability in scientific results: even experts confuse inferential uncertainty and outcome variability. Proceedings of the National Academy of Sciences, 120(33):e2302491120, 2023.">ZHM+23</a>]</span>, descritto nel capitolo <a class="reference internal" href="04b_illusion.html#illusion-notebook"><span class="std std-ref">Incertezza inferenziale e variabilità dei risultati</span></a>.</p>
 <div class="proof example admonition" id="sampling-disr-expl-1">
 <p class="admonition-title"><span class="caption-number">Example 7 </span></p>
 <section class="example-content" id="proof-content">
-<p>Prendiamo in considerazione la figura seguente, presente in un recente articolo di <span id="id2">Ward and Mann [<a class="reference internal" href="../references/bibliography.html#id34" title="Andrew Ward and Traci Mann. Control yourself: broad implications of narrowed attention. Perspectives on Psychological Science, 17(6):1692–1703, 2022.">WM22</a>]</span>.</p>
+<p>Prendiamo in considerazione la figura seguente, presente in un recente articolo di <span id="id2">Ward and Mann [<a class="reference internal" href="../references/bibliography.html#id35" title="Andrew Ward and Traci Mann. Control yourself: broad implications of narrowed attention. Perspectives on Psychological Science, 17(6):1692–1703, 2022.">WM22</a>]</span>.</p>
 <figure class="align-default" id="file-collection">
 <a class="reference internal image-reference" href="../_images/mann_ward_2004.png"><img alt="../_images/mann_ward_2004.png" src="../_images/mann_ward_2004.png" style="height: 400px;" /></a>
 </figure>
@@ -989,7 +998,7 @@ document.write(`
 <div><p>The milkshake-salient–high load condition included 27 participants, the milkshake-salient–low load condition included 31 participants, the diet-salient–high load condition included 23 participants, and the diet-salient–low load condition included 21 participants.</p>
 </div></blockquote>
 <p>In effetti, senza conoscere la variabilità all’interno dei gruppi, diventa difficile interpretare i risultati. In un disegno <em>between-subjects</em> non abbiamo alcuna evidenza che il pattern mostrato nella figura rappresenti qualcosa che succede <em>a ciascun singolo individuo</em>, se si sottoponesse alle due condizioni in cui viene manipolata la salienza, o alle due condizioni in cui viene manipolata l’attenzione. Le differenze tra le <em>medie</em> dei gruppi potrebbero dipendere dalle idiosincrasie dei diversi campioni. Nel caso di campioni così piccoli, gli effetti della randomizzazione non consentono di escludere conseguenze importanti degli artefatti che dipendono dalla specificità dei gruppi. Inoltre, i risultati potrebbero dipendere dalla presenza di uno o pochissimi individui che si comportano in questo modo, mentre la maggioranza degli individui non mostra alcuna differenza tra le varie condizioni.</p>
-<p>Questo esempio dimostra che la rappresentazione grafica, che include la media e le barre d’errore, non è il metodo più efficace per illustrare il significato pratico di un effetto sperimentale. Questa tematica verrà esplorata più in dettaglio nel prossimo capitolo, in cui discuteremo l’articolo di <span id="id3">Zhang <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id36" title="Sam Zhang, Patrick R Heck, Michelle N Meyer, Christopher F Chabris, Daniel G Goldstein, and Jake M Hofman. An illusion of predictability in scientific results: even experts confuse inferential uncertainty and outcome variability. Proceedings of the National Academy of Sciences, 120(33):e2302491120, 2023.">ZHM+23</a>]</span>.</p>
+<p>Questo esempio dimostra che la rappresentazione grafica, che include la media e le barre d’errore, non è il metodo più efficace per illustrare il significato pratico di un effetto sperimentale. Questa tematica verrà esplorata più in dettaglio nel prossimo capitolo, in cui discuteremo l’articolo di <span id="id3">Zhang <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id37" title="Sam Zhang, Patrick R Heck, Michelle N Meyer, Christopher F Chabris, Daniel G Goldstein, and Jake M Hofman. An illusion of predictability in scientific results: even experts confuse inferential uncertainty and outcome variability. Proceedings of the National Academy of Sciences, 120(33):e2302491120, 2023.">ZHM+23</a>]</span>.</p>
 </section>
 </div></section>
 <section id="legge-dei-grandi-numeri">
@@ -1405,6 +1414,7 @@ numpy     : 1.25.2
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popolazione-e-campioni">Popolazione e campioni</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-relazione-tra-stime-e-parametri">La relazione tra stime e parametri</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-campionaria">Distribuzione campionaria</a></li>

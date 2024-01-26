@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="E_stab.html">✏️ Esercizi</a></li>
@@ -512,10 +513,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osservazioni-anomale-e-influenti">Osservazioni anomale e influenti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mistura-di-gaussiane">Mistura di Gaussiane</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-tra-modelli">Confronto tra Modelli</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">Commenti e considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -531,6 +534,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="regressione-robusta">
 <span id="robust-reg-notebook"></span><h1>Regressione robusta<a class="headerlink" href="#regressione-robusta" title="Permalink to this heading">#</a></h1>
 <p>In un mondo in cui i dati anomali sono comuni e possono portare a interpretazioni errate, la regressione robusta bayesiana emerge come una soluzione molto utile. Questo capitolo esplorerà gli aspetti chiave di questa metodologia, dalla comprensione degli outliers all’utilizzo di tecniche come la distribuzione Student-t e Pareto Smoothed Importance Sampling (PSIS) per affrontare le sfide poste da dati anomali e modelli complessi, fornendo una guida pratica e teorica per la moderna analisi statistica.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -541,6 +546,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">pymc.sampling_jax</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">scale</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
@@ -567,6 +573,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="osservazioni-anomale-e-influenti">
 <h2>Osservazioni anomale e influenti<a class="headerlink" href="#osservazioni-anomale-e-influenti" title="Permalink to this heading">#</a></h2>
 <p>Le osservazioni anomale, meglio note come outlier, che si posizionano agli estremi della distribuzione predittiva, rivestono un ruolo cruciale nell’analisi dati e nella costruzione di modelli statistici. L’emergenza di tali osservazioni può indicare un’eccessiva fiducia nelle stime del modello, rendendone le previsioni potenzialmente inattendibili. In altre parole, la presenza di outlier mette in luce l’incapacità del modello di rappresentare adeguatamente la variabilità dei dati, suggerendo che il modello stesso potrebbe essere inadeguato o mal configurato.</p>
@@ -574,6 +581,96 @@ document.write(`
 <p>La vera sfida sta nel comprendere come e perché gli outlier incidono sul modello e nel cercare metodi per incorporare, piuttosto che escludere, queste informazioni. Questo comporta una rigorosa quantificazione dell’effetto di ciascuna osservazione anomala, trattando gli outlier come una componente informativa nell’analisi complessiva.</p>
 <p>Per affrontare efficacemente questo problema, è possibile adottare approcci statistici robusti. Questi possono variare dalla revisione della funzione di verosimiglianza, per renderla più tollerante a fluttuazioni estreme, all’adozione di distribuzioni a priori che considerino la possibilità di deviazioni, fino all’uso di tecniche specializzate per l’identificazione e lo studio degli outlier.</p>
 <p>In conclusione, gli outlier non devono essere percepiti come un ostacolo, ma come un’opportunità per raffinare e migliorare il modello statistico. L’omissione o l’eliminazione precipitosa degli outlier può portare a interpretazioni erronee e a previsioni inaffidabili. Al contrario, un’analisi accurata e un’integrazione metodica degli outlier possono migliorare la comprensione del fenomeno in esame e rendere le previsioni più precise e attendibili.</p>
+</section>
+<section id="mistura-di-gaussiane">
+<h2>Mistura di Gaussiane<a class="headerlink" href="#mistura-di-gaussiane" title="Permalink to this heading">#</a></h2>
+<p>La distribuzione t di Student, comunemente usata in statistica, può essere intuitivamente compresa come il risultato della combinazione di diverse distribuzioni gaussiane (normali) con varianze diverse.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creazione dell&#39;array di valori x</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Inizializzazione dell&#39;array per i PDF (Probability Density Function)</span>
+<span class="n">pdfs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Numero di gaussiane</span>
+<span class="n">n_gaussians</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># Ciclo per tracciare ogni gaussiana</span>
+<span class="k">for</span> <span class="n">variance</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_gaussians</span><span class="p">):</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Individual</span><span class="se">\n</span><span class="s2">Gaussians&quot;</span> <span class="k">if</span> <span class="n">variance</span> <span class="o">==</span> <span class="mf">.5</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">pdf</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+    <span class="n">pdfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.25</span><span class="p">)</span>  <span class="c1"># Usa matplotlib.pyplot.plot</span>
+
+<span class="c1"># Calcolo della somma dei PDFs</span>
+<span class="n">sum_of_pdfs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pdfs</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sum_of_pdfs</span> <span class="o">/=</span> <span class="n">sum_of_pdfs</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">sum_of_pdfs</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">n_gaussians</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Tracciare la somma dei PDFs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">sum_of_pdfs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mixture of</span><span class="se">\n</span><span class="s1">Gaussian&#39;</span><span class="p">)</span>
+
+<span class="c1"># Aggiungere la legenda</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Mostrare il grafico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c947943d243cde2d3ca3e600239142523d8947da9fecef21e014ae081321aab0.png" src="../_images/c947943d243cde2d3ca3e600239142523d8947da9fecef21e014ae081321aab0.png" />
+</div>
+</div>
+<p>Questa caratteristica ha implicazioni significative per l’analisi statistica, soprattutto in ambiti come la psicologia dove la variabilità e gli outliers sono frequenti.</p>
+<ol class="arabic simple">
+<li><p><strong>Code più Pesanti della Distribuzione t di Student</strong>:</p>
+<ul class="simple">
+<li><p>La somma di distribuzioni gaussiane con varianze diverse porta alla formazione di una distribuzione con code più pesanti rispetto a una singola distribuzione gaussiana. Questo significa che, rispetto a una normale gaussiana, la distribuzione t di Student presenta una maggior frequenza di osservazioni estreme.</p></li>
+<li><p>Queste code più pesanti rendono la distribuzione t di Student particolarmente adatta per modellare dati che non aderiscono strettamente a una distribuzione normale, soprattutto in presenza di outliers. È quindi un modello utile quando si analizzano dati che si discostano dai presupposti della normalità.</p></li>
+</ul>
+</li>
+<li><p><strong>Cattura Implicita dell’Eterogeneità Non Osservata</strong>:</p>
+<ul class="simple">
+<li><p>Spesso, nei dati psicologici e in altri campi, si incontrano dati che provengono da popolazioni eterogenee, caratterizzate da differenze sottili e non sempre osservabili direttamente. Queste differenze possono derivare da una varietà di processi sottostanti con varianze diverse.</p></li>
+<li><p>La distribuzione t di Student, essendo una miscela di gaussiane, è capace di modellare efficacemente questa eterogeneità intrinseca. Ogni componente gaussiana nella mistura può rappresentare un processo sottostante diverso, e la combinazione di queste componenti descrive la variabilità complessiva dei dati.</p></li>
+</ul>
+</li>
+<li><p><strong>Minore Sensibilità agli Outliers</strong>:</p>
+<ul class="simple">
+<li><p>Un’importante caratteristica della distribuzione t di Student è la sua minore sensibilità agli outliers rispetto alla distribuzione gaussiana. Le sue code più pesanti conferiscono maggiore probabilità alle osservazioni estreme, rendendola più tollerante nei confronti di questi valori anomali.</p></li>
+<li><p>Nei modelli bayesiani, l’utilizzo di una distribuzione a posteriori t di Student può essere preferibile in presenza di dati contaminati da outliers. Questo perché la distribuzione t di Student fornisce stime più robuste, riducendo l’impatto distortivo degli outliers sulle conclusioni del modello.</p></li>
+</ul>
+</li>
+</ol>
+<p>In sintesi, la distribuzione t di Student, con le sue code più pesanti e la sua capacità di modellare eterogeneità e tollerare outliers, si rivela un’opzione potente e flessibile per l’analisi statistica, specialmente in contesti complessi e variabili come quelli incontrati nella ricerca psicologica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creazione dell&#39;array di valori x</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Configurazione delle dimensioni del grafico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Tracciare la distribuzione normale (Gaussiana)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gaussian&#39;</span><span class="p">)</span>
+
+<span class="c1"># Tracciare la distribuzione Student-t</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Student-t&#39;</span><span class="p">)</span>
+
+<span class="c1"># Aggiungere la legenda</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Mostrare il grafico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8445b5a5b18ce41220cd94beee0d14765f1ec1b88298624ac43278807b457774.png" src="../_images/8445b5a5b18ce41220cd94beee0d14765f1ec1b88298624ac43278807b457774.png" />
+</div>
+</div>
 </section>
 <section id="un-esempio-concreto">
 <h2>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Permalink to this heading">#</a></h2>
@@ -723,20 +820,27 @@ document.write(`
 <img alt="../_images/d1f3e61c0c4b32272903e4b84c75feb74f0cfa5a1c3a5da39eb72a18e920b181.png" src="../_images/d1f3e61c0c4b32272903e4b84c75feb74f0cfa5a1c3a5da39eb72a18e920b181.png" />
 </div>
 </div>
-<p>Per semplicità, ci concentreremo sul tasso di matrimonio e sull’età media del matrimonio come predittori per il tasso di divorzio.</p>
+<p>Ci porremo il problema di predire il tasso di divorzio negli stati del sud mediante il tasso di matrimonio e l’età media del matrimonio.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">divorce</span><span class="p">[</span><span class="s2">&quot;MedianAgeMarriage&quot;</span><span class="p">],</span> <span class="n">divorce</span><span class="p">[</span><span class="s2">&quot;Divorce&quot;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">divorce</span><span class="p">[</span><span class="s2">&quot;South&quot;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;MedianAgeMarriage&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">divorce</span><span class="p">[</span><span class="s2">&quot;MedianAgeMarriage&quot;</span><span class="p">],</span> <span class="n">divorce</span><span class="p">[</span><span class="s2">&quot;Divorce&quot;</span><span class="p">])</span>
+
+<span class="c1"># Annotare il punto (26.5, 13) con &#39;Maine&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Maine&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">26.5</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">26.5</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+<span class="c1"># Annotare il punto (23.3, 7.8) con &#39;Idaho&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Idaho&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">23.3</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">23.3</span><span class="p">,</span> <span class="mf">7.8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Median Age Marriage&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Divorce&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/32b06e2db340f1c5d986c88a0a903742521681a4b76815681f720b94be202be8.png" src="../_images/32b06e2db340f1c5d986c88a0a903742521681a4b76815681f720b94be202be8.png" />
+<img alt="../_images/55a604640483c12cc9ac213237b6f7b77c3e23349cb5f926cc17e6d7864ae942.png" src="../_images/55a604640483c12cc9ac213237b6f7b77c3e23349cb5f926cc17e6d7864ae942.png" />
 </div>
 </div>
-<p>Si noti Maine e Idaho presentano entrambi caratteristiche inusuali quando si tratta di tendenze nel divorzio. Il Maine mostra un tasso di divorzio insolitamente alto rispetto alla tendenza generale, mentre l’Idaho ha un tasso di divorzio insolitamente basso.</p>
+<p>Si noti che Maine e Idaho presentano entrambi caratteristiche inusuali relativamente alla relazione tra divorzio e età media del matrimonio: il Maine mostra un tasso di divorzio insolitamente alto rispetto alla tendenza generale, mentre l’Idaho ha un tasso di divorzio insolitamente basso.</p>
 <p>Queste anomalie possono essere esaminate in modo rigoroso attraverso l’utilizzo di metodi statistici avanzati. Un modo principale per quantificare questi outlier è attraverso l’utilizzo della statistica PSIS <span class="math notranslate nohighlight">\(k\)</span>, una tecnica che può aiutare a determinare l’effetto delle osservazioni estreme su una distribuzione.</p>
 <p>Un’altra considerazione importante nel contesto di questi Stati è l’ipotesi che la popolazione sia il risultato di una miscela di distribuzioni gaussiane. Questo approccio, noto come “Mixing Gaussians,” assume che vi siano sottogruppi all’interno della popolazione che seguono diverse distribuzioni gaussiane.</p>
 <p>Quando si mescolano distribuzioni gaussiane con la stessa media ma varianze diverse, si ottengono code più spesse. Questo fenomeno porta alla distribuzione Student-t, che è particolarmente utile nell’analisi di dati con code pesanti.</p>
@@ -754,7 +858,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/646bb63a0343f115acd94b7a38b9b3bc4090a33138b68ac0a8d54136a4efbbf7.png" src="../_images/646bb63a0343f115acd94b7a38b9b3bc4090a33138b68ac0a8d54136a4efbbf7.png" />
+<img alt="../_images/2c36a5097cd7eaa359eff2e0f93f7440c92e1cd497d6eb7b68a5ebda60712259.png" src="../_images/2c36a5097cd7eaa359eff2e0f93f7440c92e1cd497d6eb7b68a5ebda60712259.png" />
 </div>
 </div>
 <p>Nell’ambito della statistica, la distribuzione gaussiana e la distribuzione Student-t sono due strumenti fondamentali utilizzati per modellare i dati. Tuttavia, presentano differenze significative nella loro reazione agli outlier.</p>
@@ -797,7 +901,7 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.511481
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.104251
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -863,22 +967,10 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -887,43 +979,64 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 846.23it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 846.76it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 847.49it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 848.07it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.709142
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1400.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1401.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1402.67it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1404.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.656548
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.113924
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.073145
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Log Likelihood...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.205718
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.126190
 </pre></div>
 </div>
 </div>
 </details>
 </div>
 <p>Si noti che l’argomento <code class="docutils literal notranslate"><span class="pre">idata_kwargs={&quot;log_likelihood&quot;:</span> <span class="pre">True}</span></code> passato alla funzione <code class="docutils literal notranslate"><span class="pre">sample_numpyro_nuts</span></code> è usato per specificare le opzioni per la creazione dell’oggetto <code class="docutils literal notranslate"><span class="pre">InferenceData</span></code> che sarà restituito. In questo caso, stiamo indicando che vogliamo che il logaritmo della verosimiglianza sia incluso nell’oggetto <code class="docutils literal notranslate"><span class="pre">InferenceData</span></code>. Il logaritmo della verosimiglianza può essere utilizzato per ulteriori analisi e diagnostica, come il calcolo del LOO (Leave-One-Out Cross-Validation).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">model_to_graphviz</span><span class="p">(</span><span class="n">n_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0c21f2751ccf81dfb035be24f3daf169f10c7023e6563122d08eafc61c1265fe.svg" src="../_images/0c21f2751ccf81dfb035be24f3daf169f10c7023e6563122d08eafc61c1265fe.svg" /></div>
+</div>
 <p>In un secondo modello assumiamo che gli errori seguano una distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student con 2 gradi di libertà.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -949,7 +1062,7 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.268619
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.867863
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -1018,19 +1131,19 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1039,41 +1152,50 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 837.45it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1378.68it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 837.88it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1379.67it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 838.47it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1380.81it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 839.02it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1381.88it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.537660
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.543389
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.070943
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.044692
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Log Likelihood...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.272337
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.166122
 </pre></div>
 </div>
 </div>
 </details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">model_to_graphviz</span><span class="p">(</span><span class="n">t_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d10abeb2eb4af0e3c8ac17efc28561759fa502898881aad455af01bbe5ced168.svg" src="../_images/d10abeb2eb4af0e3c8ac17efc28561759fa502898881aad455af01bbe5ced168.svg" /></div>
 </div>
 <p>Il modello che assume una distribuzione gaussiana dei residui produce una stima a posteriori della pendenza della retta di regressione che è maggiore rispetto a quella ottenuta mediante un modello che assume una distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student per gli errori.</p>
 <div class="dropdown admonition note">
@@ -1119,50 +1241,50 @@ document.write(`
   <tbody>
     <tr>
       <th>bA</th>
-      <td>-0.611</td>
+      <td>-0.607</td>
       <td>0.159</td>
-      <td>-0.904</td>
-      <td>-0.307</td>
+      <td>-0.921</td>
+      <td>-0.322</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>3142.0</td>
-      <td>2836.0</td>
+      <td>3103.0</td>
+      <td>2762.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bM</th>
-      <td>-0.065</td>
-      <td>0.159</td>
-      <td>-0.375</td>
-      <td>0.223</td>
+      <td>-0.060</td>
+      <td>0.160</td>
+      <td>-0.361</td>
+      <td>0.233</td>
       <td>0.003</td>
       <td>0.002</td>
-      <td>3106.0</td>
-      <td>2612.0</td>
+      <td>3136.0</td>
+      <td>2691.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>a</th>
-      <td>0.001</td>
-      <td>0.114</td>
-      <td>-0.195</td>
-      <td>0.233</td>
+      <td>-0.001</td>
+      <td>0.117</td>
+      <td>-0.231</td>
+      <td>0.211</td>
       <td>0.002</td>
       <td>0.002</td>
-      <td>3608.0</td>
-      <td>2635.0</td>
+      <td>3521.0</td>
+      <td>2579.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.836</td>
-      <td>0.088</td>
+      <td>0.838</td>
+      <td>0.089</td>
       <td>0.677</td>
-      <td>1.001</td>
+      <td>1.002</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>3397.0</td>
-      <td>2197.0</td>
+      <td>3151.0</td>
+      <td>2864.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1208,50 +1330,50 @@ document.write(`
   <tbody>
     <tr>
       <th>bA</th>
-      <td>-0.701</td>
-      <td>0.147</td>
-      <td>-0.985</td>
-      <td>-0.438</td>
-      <td>0.003</td>
+      <td>-0.691</td>
+      <td>0.144</td>
+      <td>-0.967</td>
+      <td>-0.423</td>
       <td>0.002</td>
-      <td>3039.0</td>
-      <td>2734.0</td>
+      <td>0.002</td>
+      <td>3409.0</td>
+      <td>2894.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>bM</th>
-      <td>0.046</td>
-      <td>0.204</td>
-      <td>-0.316</td>
-      <td>0.441</td>
-      <td>0.004</td>
+      <td>0.050</td>
+      <td>0.200</td>
+      <td>-0.324</td>
+      <td>0.425</td>
       <td>0.003</td>
-      <td>3028.0</td>
-      <td>2832.0</td>
+      <td>0.003</td>
+      <td>3475.0</td>
+      <td>3120.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>a</th>
-      <td>0.029</td>
-      <td>0.116</td>
-      <td>-0.186</td>
-      <td>0.244</td>
+      <td>0.027</td>
+      <td>0.110</td>
+      <td>-0.171</td>
+      <td>0.238</td>
       <td>0.002</td>
       <td>0.002</td>
-      <td>3736.0</td>
-      <td>2462.0</td>
+      <td>4341.0</td>
+      <td>2970.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>0.588</td>
-      <td>0.090</td>
-      <td>0.420</td>
+      <td>0.586</td>
+      <td>0.088</td>
+      <td>0.424</td>
       <td>0.752</td>
-      <td>0.002</td>
       <td>0.001</td>
-      <td>3516.0</td>
-      <td>2661.0</td>
+      <td>0.001</td>
+      <td>3967.0</td>
+      <td>3123.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1260,15 +1382,17 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_dist</span><span class="p">(</span><span class="n">t_sample</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;bA&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Student-t&quot;</span><span class="p">)</span>
-<span class="n">az</span><span class="o">.</span><span class="n">plot_dist</span><span class="p">(</span><span class="n">n_sample</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;bA&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C3&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Gaussian&quot;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_dist</span><span class="p">(</span><span class="n">t_sample</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;bA&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Student-t Model&quot;</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">plot_dist</span><span class="p">(</span><span class="n">n_sample</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;bA&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C3&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Gaussian Model&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b195436b722869b7d1056100dc176104c703b63a7b58d0d9512d7b1f1467f939.png" src="../_images/b195436b722869b7d1056100dc176104c703b63a7b58d0d9512d7b1f1467f939.png" />
+<img alt="../_images/d16dc8d2f2f95c0b6af9888d7b50cb0bd48a8194c9704cc45b809afe6a0a164b.png" src="../_images/d16dc8d2f2f95c0b6af9888d7b50cb0bd48a8194c9704cc45b809afe6a0a164b.png" />
 </div>
 </div>
+<p>I valori anomali hanno l’effetto di “spingere” il posteriore verso lo zero nella regressione lineare gaussiana classica. Invece, il modello student-t è più robusto e meno influenzato da questi valori anomali.</p>
+<p>Si noti inoltre che, quando si sono presentati dati anomali, l’impiego della distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student ha portato a un adattamento del modello più accurato, come evidenziato dai valori diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">loo</span><span class="p">(</span><span class="n">n_sample</span><span class="p">)</span>
@@ -1279,15 +1403,17 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computed from 4000 posterior samples and 50 observations log-likelihood matrix.
 
          Estimate       SE
-elpd_loo   -64.48     6.39
-p_loo        4.93        -
+elpd_loo   -64.71     6.45
+p_loo        5.09        -
+
+There has been a warning during the calculation. Please check the results.
 ------
 
 Pareto k diagnostic values:
                          Count   Pct.
-(-Inf, 0.5]   (good)       50  100.0%
+(-Inf, 0.5]   (good)       49   98.0%
  (0.5, 0.7]   (ok)          0    0.0%
-   (0.7, 1]   (bad)         0    0.0%
+   (0.7, 1]   (bad)         1    2.0%
    (1, Inf)   (very bad)    0    0.0%
 </pre></div>
 </div>
@@ -1303,8 +1429,8 @@ Pareto k diagnostic values:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computed from 4000 posterior samples and 50 observations log-likelihood matrix.
 
          Estimate       SE
-elpd_loo   -67.25     5.70
-p_loo        6.54        -
+elpd_loo   -67.07     5.70
+p_loo        6.32        -
 ------
 
 Pareto k diagnostic values:
@@ -1317,40 +1443,187 @@ Pareto k diagnostic values:
 </div>
 </div>
 </div>
-<p>Si osservi che, quando si sono presentati dati anomali, l’impiego della distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student ha portato a un adattamento del modello più accurato, come evidenziato dai valori diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span>.</p>
-</section>
-<section id="commenti-e-considerazioni-conclusive">
-<h2>Commenti e considerazioni conclusive<a class="headerlink" href="#commenti-e-considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
-<p>Nel contesto della statistica, l’eterogeneità non osservata nei dati può spesso essere modellata come una miscela di distribuzioni gaussiane. Questo approccio porta a code più spesse nella distribuzione, il che significa che il modello è meno “sorpreso” da valori estremi. Tuttavia, è solitamente impossibile stimare con precisione la distribuzione di questi valori estremi. Spesso, la scelta deve essere fatta tramite simulazioni esplorando tutti i gradi di libertà per la distribuzione Student-t. Nei processi con code spesse, i campioni estremi sono ancora rari ma possono avere un grande effetto sulla modellazione. La regressione Student-t è un buon punto di partenza predefinito per i domini “poco teorizzati”, poiché l’approccio gaussiano può essere troppo “scettico” e non adeguato per gestire questi effetti.</p>
-<p>Una delle sfide chiave in statistica è prevedere la prossima osservazione dallo stesso processo. Questo compito, noto come previsione, può essere complesso. Per misurare e gestire l’accuratezza nelle previsioni, esistono strumenti potenti come PSIS (Pareto Smoothed Importance Sampling) e tecniche di regolarizzazione. In questo capitolo abbiamo usato i valori diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span> per valutare la bontà di adattamento del modello ai dati. PSIS e i valori diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span> sono strettamente collegati, con PSIS che utilizza la stima di <span class="math notranslate nohighlight">\(k\)</span> per migliorare l’adattamento del modello, e i valori di <span class="math notranslate nohighlight">\(k\)</span> che servono come strumento diagnostico per valutare la qualità dell’importance sampling e dell’adattamento del modello stesso. Questi metodi possono aiutare a creare modelli più robusti e accurati, soprattutto quando si tratta di dati con caratteristiche complesse come valori anomali e eterogeneità non osservata.</p>
-<p>In sintesi, la regressione robusta attraverso l’utilizzo di distribuzioni come la Student-t può offrire una metodologia efficace per affrontare dati complessi e eterogenei. La capacità di gestire valori estremi e l’uso di strumenti avanzati per la previsione rappresentano un passo importante nella creazione di modelli statistici più robusti e affidabili.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
+<p>Nelle figure successive mettiamo in relazione i valori diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span> con il <em>Watanabe-Akaike Information Criterion</em> (WAIC). Il WAIC è una misura usata per valutare la qualità di un modello statistico. Simile al più familiare criterio di informazione di Akaike (AIC) utilizzato in contesti frequentisti, il WAIC si propone di quantificare la bontà di adattamento di un modello ai dati, tenendo conto anche della complessità del modello stesso. L’obiettivo è evitare sia il sovradimensionamento (“overfitting”) che il sotto-dimensionamento (“underfitting”) del modello. In termini semplici, il WAIC misura quanto bene un modello probabilistico predice nuovi dati.</p>
+<p>Il WAIC funziona calcolando la log-verosimiglianza dei dati, corretta per il numero effettivo di parametri nel modello. Un valore più basso di WAIC indica un modello con una migliore performance previsionale.</p>
+<p>Il PSIS (<em>Pareto Smoothed Importance Sampling</em>) Pareto <span class="math notranslate nohighlight">\(k\)</span> misura la qualità dell’approssimazione utilizzata nel calcolare il WAIC. Quando si calcola il WAIC, si utilizza spesso l’importance sampling, un metodo per stimare proprietà di una distribuzione di probabilità mentre si campionano da una distribuzione diversa. Il PSIS è una versione migliorata di questo metodo. Il valore di Pareto <span class="math notranslate nohighlight">\(k\)</span> è un indicatore di quanto bene funziona l’importance sampling per un dato modello e un dato set di dati. Valori alti di Pareto <span class="math notranslate nohighlight">\(k\)</span> (tipicamente maggiori di 0.7) indicano che l’approssimazione potrebbe non essere affidabile, suggerendo che le stime di WAIC potrebbero essere distorte. In altre parole, un alto valore di Pareto <span class="math notranslate nohighlight">\(k\)</span> indica che il modello potrebbe avere problemi nel predire determinate osservazioni nei dati, spesso a causa di outliers o di una cattiva adattabilità del modello.</p>
+<p>Mettere in relazione WAIC e PSIS Pareto <span class="math notranslate nohighlight">\(k\)</span> è utile perché fornisce una visione più completa della performance di un modello. Il WAIC da solo fornisce una misura di quanto bene il modello si adatta ai dati e gestisce la complessità, ma non fornisce informazioni sulla qualità dell’approssimazione usata per calcolarlo. Il valore di Pareto <span class="math notranslate nohighlight">\(k\)</span>, d’altra parte, aiuta a valutare l’affidabilità di questa approssimazione, offrendo quindi una visione più completa e affidabile della qualità del modello.</p>
+<p>Nella seguente funzione, il WAIC viene calcolato in modo puntiforme (<code class="docutils literal notranslate"><span class="pre">pointwise=True</span></code>), il che significa che viene calcolato separatamente per ogni singola osservazione nel set di dati. Il calcolo puntuale del WAIC consente di esaminare come ciascun punto di dati contribuisca al valore complessivo del WAIC e di identificare potenziali outlier o punti problematici nel modello. Questo è differente dal calcolare un singolo WAIC per l’intero modello.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -p pytensor
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_loocv</span><span class="p">(</span><span class="n">inference</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outliers_idx</span><span class="o">=</span><span class="p">[],</span> <span class="n">divorce</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">pareto_k</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">loo</span><span class="p">(</span><span class="n">inference</span><span class="p">,</span> <span class="n">pointwise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">pareto_k</span>
+    <span class="n">waic</span> <span class="o">=</span> <span class="o">-</span><span class="n">az</span><span class="o">.</span><span class="n">waic</span><span class="p">(</span><span class="n">inference</span><span class="p">,</span> <span class="n">pointwise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">waic_i</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pareto_k</span><span class="p">,</span> <span class="n">waic</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># Assicurati che outliers_idx e divorce siano definiti</span>
+    <span class="k">for</span> <span class="n">oi</span> <span class="ow">in</span> <span class="n">outliers_idx</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">divorce</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">oi</span> <span class="ow">in</span> <span class="n">divorce</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">divorce</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">oi</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span><span class="p">],</span> <span class="p">(</span><span class="n">pareto_k</span><span class="p">[</span><span class="n">oi</span><span class="p">]</span> <span class="o">+</span> <span class="mf">.01</span><span class="p">,</span> <span class="n">waic</span><span class="p">[</span><span class="n">oi</span><span class="p">]),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PSIS Pareto K&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;WAIC&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Possiamo dunque creare un grafico che mostra i valori di WAIC in funzione dei valori Pareto <span class="math notranslate nohighlight">\(k\)</span>. Con questa rappresentazione possiamo esaminare come ogni osservazione influisca sulla performance del modello e sulla sua affidabilità. Se un punto ha un alto valore di Pareto <span class="math notranslate nohighlight">\(k\)</span> e un elevato impatto negativo sul WAIC (indicato da un alto valore negativo di WAIC), potrebbe essere un candidato per un’ulteriore revisione o esclusione dal modello.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_loocv</span><span class="p">(</span><span class="n">n_sample</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Gaussian Likelihood Posterior</span><span class="se">\n</span><span class="s2">Affected by Outliers&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Thu Jan 25 2024
+<img alt="../_images/ae86b87cea1dbb700e31bf4ffa635080e7df4cab027c98abba10e63d0c36cbe2.png" src="../_images/ae86b87cea1dbb700e31bf4ffa635080e7df4cab027c98abba10e63d0c36cbe2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_loocv</span><span class="p">(</span><span class="n">t_sample</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Student Likelihood Posterior</span><span class="se">\n</span><span class="s2">Affected by Outliers&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/18c9b207cb432b3fac994f5563e0acd177d01fc2e540728f6b740b9da0ca9cb4.png" src="../_images/18c9b207cb432b3fac994f5563e0acd177d01fc2e540728f6b740b9da0ca9cb4.png" />
+</div>
+</div>
+<p>È evidente che, per i dati in esame, quando si utilizza un modello di regressione lineare che assume una distribuzione degli errori t di Student, sia il WAIC che i valori diagnostici Pareto <span class="math notranslate nohighlight">\(k\)</span> risultano essere inferiori. Questa riduzione indica una maggiore efficienza del modello nella previsione dei dati.</p>
+</section>
+<section id="confronto-tra-modelli">
+<h2>Confronto tra Modelli<a class="headerlink" href="#confronto-tra-modelli" title="Permalink to this heading">#</a></h2>
+<p>Eseguiamo ora un’analisi di validazione incrociata Leave-One-Out (LOO) per confrontare i due modelli statistici, il modello gaussiano e il modello basato sulla distribuzione t di Student.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comparison</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;Gaussian Model&quot;</span><span class="p">:</span> <span class="n">n_sample</span><span class="p">,</span>
+        <span class="s2">&quot;Student t Model&quot;</span><span class="p">:</span> <span class="n">t_sample</span>
+    <span class="p">},</span> 
+    <span class="n">scale</span><span class="o">=</span><span class="s1">&#39;deviance&#39;</span>
+<span class="p">)</span>
+<span class="n">comparison</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-pytensor: 2.18.4
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rank</th>
+      <th>elpd_loo</th>
+      <th>p_loo</th>
+      <th>elpd_diff</th>
+      <th>weight</th>
+      <th>se</th>
+      <th>dse</th>
+      <th>warning</th>
+      <th>scale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Gaussian Model</th>
+      <td>0</td>
+      <td>129.421075</td>
+      <td>5.094203</td>
+      <td>0.000000</td>
+      <td>0.806862</td>
+      <td>12.908591</td>
+      <td>0.000000</td>
+      <td>True</td>
+      <td>deviance</td>
+    </tr>
+    <tr>
+      <th>Student t Model</th>
+      <td>1</td>
+      <td>134.132267</td>
+      <td>6.317006</td>
+      <td>4.711192</td>
+      <td>0.193138</td>
+      <td>11.406402</td>
+      <td>6.001906</td>
+      <td>False</td>
+      <td>deviance</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Come abbiamo visto in precedenza, la ELPD (<em>Expected Log Predictive Density</em>) è una misura della performance predittiva di un modello statistico. Rappresenta il logaritmo della densità predittiva media attesa, calcolata attraverso la validazione incrociata LOO. Un valore più alto di ELPD indica una migliore capacità del modello di adattarsi ai dati e di fare previsioni accurate su nuovi dati non visti.</p>
+<ol class="arabic simple">
+<li><p><strong>Rank</strong>: Indica la classificazione dei modelli in base alla loro performance. Un rank di 0 significa il modello migliore.</p></li>
+<li><p><strong>elpd_loo</strong>: È il valore di ELPD calcolato usando la validazione incrociata LOO.</p>
+<ul class="simple">
+<li><p>Per il Gaussian Model, l’elpd_loo è 129.138506.</p></li>
+<li><p>Per il Student t Model, l’elpd_loo è 134.232129.</p></li>
+</ul>
+</li>
+<li><p><strong>p_loo</strong>: Rappresenta la complessità effettiva del modello. Un valore più alto suggerisce un modello più complesso.</p></li>
+<li><p><strong>elpd_diff</strong>: Differenza di ELPD rispetto al modello migliore. Un valore più basso qui è migliore.</p></li>
+<li><p><strong>weight</strong>: I pesi dati ai modelli nel calcolo della media dell’ensemble.</p></li>
+<li><p><strong>se</strong>: Errore standard di elpd_loo.</p></li>
+<li><p><strong>dse</strong>: Differenza standard nell’errore tra i modelli.</p></li>
+<li><p><strong>warning</strong>: Indica se ci sono stati problemi nel calcolo del LOO per quel modello.</p></li>
+<li><p><strong>scale</strong>: La scala utilizzata per il calcolo, in questo caso la devianza.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Guardando l’elpd_loo, il <strong>Student t Model</strong> ha un valore più alto (134.232129) rispetto al Gaussian Model (129.138506), indicando una migliore performance predittiva.</p></li>
+<li><p>Il “rank” conferma questa interpretazione, collocando il Gaussian Model a rank 0 (peggiore) e lo Student t Model a rank 1 (migliore).</p></li>
+<li><p>La differenza in ELPD (elpd_diff) di 5.093623 a favore dello Student t Model suggerisce che ha una capacità predittiva significativamente migliore rispetto al modello gaussiano.</p></li>
+<li><p>Anche se il modello t di Student ha una maggiore complessità (p_loo più alto), la sua migliore performance predittiva lo rende preferibile in questo caso.</p></li>
+</ul>
+<p>In conclusione, basandoci sull’ELPD e altri parametri correlati, il modello basato sulla distribuzione t di Student risulta il modello migliore tra i due. Mostra una capacità predittiva superiore, come indicato dal suo più alto valore di ELPD e dal suo rank migliore. Questo dimostra che, nonostante una maggiore complessità, è in grado di adattarsi e prevedere i dati in modo più efficace rispetto al modello gaussiano.</p>
+</section>
+<section id="commenti-e-considerazioni-conclusive">
+<h2>Commenti e considerazioni conclusive<a class="headerlink" href="#commenti-e-considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
+<p>Nella pratica statistica, si incontrano spesso situazioni in cui l’eterogeneità non osservata - variazioni o differenze tra osservazioni in un insieme di dati che non sono spiegabili attraverso le variabili misurabili nel contesto dello studio - svolge un ruolo significativo. Questa eterogeneità si manifesta quando le differenze osservate tra i dati non possono essere attribuite completamente alle variabili note e misurabili. Al contrario, esistono fattori ignoti o non misurati che influenzano le osservazioni, che possono essere intrinseci alle unità di osservazione o dipendere da condizioni ambientali o contestuali non contemplate durante la progettazione dello studio o la raccolta dei dati.</p>
+<p>Per modellare questa eterogeneità, spesso si utilizzano miscele di distribuzioni gaussiane o Student-t. La scelta della distribuzione Student-t in particolare implica un modello che è meno sensibile agli effetti dei valori estremi, o “outliers”, grazie alle sue code più pesanti. Tuttavia, una sfida nella modellazione statistica risiede nel corretto posizionamento dei parametri dei gradi di libertà della distribuzione Student-t, specialmente perché gli outliers sono eventi rari e quindi difficili da stimare accuratamente.</p>
+<p>In assenza di una teoria solida per guidare la scelta del modello statistico, la regressione robusta, basata su una distribuzione Student-t, emerge come una strategia prudente. Questo approccio si contrappone alla metodologia gaussiana standard, che può risultare inadeguata nel gestire gli effetti dei valori estremi e dell’eterogeneità non osservata.</p>
+<p>È fondamentale, inoltre, valutare accuratamente la bontà di adattamento del modello ai dati. Strumenti come il Pareto Smoothed Importance Sampling (PSIS) e i valori diagnostici Pareto <span class="math notranslate nohighlight">\( k \)</span> si rivelano preziosi in questo contesto. Il PSIS utilizza la stima di <span class="math notranslate nohighlight">\( k \)</span> per perfezionare l’adattamento del modello, mentre i valori di <span class="math notranslate nohighlight">\( k \)</span> funzionano come indicatori diagnostici per valutare la qualità dell’importance sampling e l’adeguatezza del modello stesso. Questi metodi aiutano a sviluppare modelli più robusti e precisi, specialmente quando si trattano dati complessi con caratteristiche quali outliers e eterogeneità non osservata.</p>
+<p>In conclusione, la regressione robusta, in particolare quella basata sulla distribuzione Student-t, si rivela una metodologia efficace per affrontare dati complessi e eterogenei. La sua capacità di gestire valori estremi e l’impiego di strumenti avanzati per la valutazione dell’adattamento del modello rappresentano passi fondamentali verso la creazione di modelli statistici più robusti e affidabili, utili specialmente in ambiti poco teorizzati o nuovi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:04:44.993007+01:00</span>
 
-pymc      : 5.10.3
-numpy     : 1.26.2
-arviz     : 0.17.0
-pandas    : 2.1.4
-matplotlib: 3.8.2
-seaborn   : 0.13.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-Watermark: 2.4.3
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
+
+
 </pre></div>
 </div>
 </div>
@@ -1421,10 +1694,12 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osservazioni-anomale-e-influenti">Osservazioni anomale e influenti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mistura-di-gaussiane">Mistura di Gaussiane</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">Un esempio concreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-tra-modelli">Confronto tra Modelli</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">Commenti e considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

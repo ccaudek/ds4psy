@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -512,12 +513,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggiornamento-bayesiano-con-una-distribuzione-a-priori-discreta">Aggiornamento bayesiano con una distribuzione a priori discreta</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggiornamento-bayesiano-con-una-distribuzione-a-priori-continua">Aggiornamento bayesiano con una distribuzione a priori continua</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintesi-ed-elaborazioni-inferenziali-sulla-distribuzione-a-posteriori">Sintesi ed elaborazioni inferenziali sulla distribuzione a posteriori</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-basato-su-griglia">Metodo basato su griglia</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -535,6 +536,8 @@ document.write(`
 <p>Questo capitolo ha l’obiettivo di chiarire il concetto di aggiornamento bayesiano, introdotto nel capitolo precedente, attraverso l’uso di un esempio numerico in una situazione particolarmente semplice. In particolare, esamineremo come sia possibile aggiornare le nostre credenze riguardo alla probabilità (<span class="math notranslate nohighlight">\(\theta\)</span>) di un evento specifico.</p>
 <p>Cominceremo affrontando la questione della rappresentazione delle credenze iniziali, cioè le opinioni che abbiamo prima di osservare i dati, mediante l’uso di una distribuzione a priori. Successivamente, spiegheremo i calcoli necessari per ottenere la distribuzione a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span>. Questa distribuzione riflette la nostra credenza aggiornata su <span class="math notranslate nohighlight">\(\theta\)</span> dopo aver osservato i dati. La distribuzione a posteriori si ottiene moltiplicando la distribuzione a priori per la verosimiglianza e quindi normalizzando il risultato mediante una costante.</p>
 <p>Nel corso di questo capitolo, ci concentreremo sul caso più semplice, ovvero il modello binomiale. Inizieremo esaminando il contesto in cui la distribuzione a priori è discreta e successivamente esploreremo il caso in cui questa assume una forma continua. Per una trattazione più approfondita, è possibile fare riferimento al settimo capitolo del libro di <span id="id1">Albert and Hu [<a class="reference internal" href="../references/bibliography.html#id60" title="Jim Albert and Jingchen Hu. Probability and Bayesian Modeling. Chapman and Hall/CRC, 2019.">AH19</a>]</span>.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -559,6 +562,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="aggiornamento-bayesiano-con-una-distribuzione-a-priori-discreta">
 <h2>Aggiornamento bayesiano con una distribuzione a priori discreta<a class="headerlink" href="#aggiornamento-bayesiano-con-una-distribuzione-a-priori-discreta" title="Permalink to this heading">#</a></h2>
 <p>L’aggiornamento bayesiano con una distribuzione a priori discreta è un processo fondamentale nell’ambito della statistica bayesiana, in cui le nostre conoscenze e convinzioni precedenti (priori) vengono aggiornate in base a nuove evidenze o dati, portando a una conoscenza aggiornata (posteriore). Questo approccio è particolarmente utile quando affrontiamo situazioni incerte e vogliamo quantificare la nostra incertezza in modo sistematico.</p>
@@ -918,11 +922,11 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_26791/3061577581.py:12: UserWarning: The figure layout has changed to tight
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_78669/3061577581.py:12: UserWarning: The figure layout has changed to tight
   plt.tight_layout()
 </pre></div>
 </div>
-<img alt="../_images/1a558958e422f4a60ae0717749e3e77b8a1aed71d72cd3cde9a579ba65613bb8.png" src="../_images/1a558958e422f4a60ae0717749e3e77b8a1aed71d72cd3cde9a579ba65613bb8.png" />
+<img alt="../_images/6748ffead6d376b0459ea0665f97e6fbfec56cbcde8c4f7f34911f536dcf82db.png" src="../_images/6748ffead6d376b0459ea0665f97e6fbfec56cbcde8c4f7f34911f536dcf82db.png" />
 </div>
 </div>
 <p>Sfruttando il campione estratto dalla distribuzione a posteriori, è possibile calcolare diverse quantità di interesse. Ad esempio, la stima della media a posteriori di <span class="math notranslate nohighlight">\(\theta\)</span> si ottiene semplicemente calcolando la media dei valori così ottenuti.</p>
@@ -933,7 +937,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5184149149149149
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5196386386386386
 </pre></div>
 </div>
 </div>
@@ -946,7 +950,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0947143845792592
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09373710012709233
 </pre></div>
 </div>
 </div>
@@ -972,7 +976,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5525525525525525
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5385385385385385
 </pre></div>
 </div>
 </div>
@@ -985,7 +989,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5185185185185185
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5205205205205206
 </pre></div>
 </div>
 </div>
@@ -1011,7 +1015,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.425
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4165
 </pre></div>
 </div>
 </div>
@@ -1024,7 +1028,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5694
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5783
 </pre></div>
 </div>
 </div>
@@ -1037,7 +1041,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.34034034, 0.6956957 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.34334334, 0.69272272])
 </pre></div>
 </div>
 </div>
@@ -1051,7 +1055,7 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.34334334, 0.6966967 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.33933934, 0.68668669])
 </pre></div>
 </div>
 </div>
@@ -1073,31 +1077,30 @@ p(\theta \mid y) = \frac{p(y \mid \theta)p(\theta)}{p(y)}.
 <section id="commenti-e-considerazioni-finali">
 <h2>Commenti e considerazioni finali<a class="headerlink" href="#commenti-e-considerazioni-finali" title="Permalink to this heading">#</a></h2>
 <p>In questo capitolo, abbiamo esplorato l’aggiornamento bayesiano all’interno del quadro di una distribuzione a priori di natura discreta, con una breve menzione riguardante il caso di distribuzioni a priori continue. Quando affrontiamo scenari in cui la distribuzione a priori è continua, l’elaborazione della distribuzione a posteriori implica generalmente la risoluzione di un integrale che, nella maggior parte dei casi, non ammette una soluzione analitica. Tuttavia, esistono eccezioni notevoli, come nel contesto dell’inferenza relativa a proporzioni, dove la distribuzione a priori è modellizzata come una distribuzione Beta e la funzione di verosimiglianza segue una distribuzione binomiale. In queste circostanze particolari, è possibile derivare analiticamente la distribuzione a posteriori. L’analisi dettagliata di questo caso sarà l’oggetto del capitolo successivo.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 22 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T18:57:53.884668+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-seaborn   : 0.13.0
-pandas    : 2.1.4
-matplotlib: 3.8.2
-numpy     : 1.26.2
-arviz     : 0.17.0
-scipy     : 1.11.4
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-Watermark: 2.4.3
+
 </pre></div>
 </div>
 </div>
@@ -1173,12 +1176,12 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggiornamento-bayesiano-con-una-distribuzione-a-priori-discreta">Aggiornamento bayesiano con una distribuzione a priori discreta</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggiornamento-bayesiano-con-una-distribuzione-a-priori-continua">Aggiornamento bayesiano con una distribuzione a priori continua</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintesi-ed-elaborazioni-inferenziali-sulla-distribuzione-a-posteriori">Sintesi ed elaborazioni inferenziali sulla distribuzione a posteriori</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-basato-su-griglia">Metodo basato su griglia</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

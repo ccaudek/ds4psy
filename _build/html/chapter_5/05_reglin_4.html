@@ -265,6 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
@@ -286,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="E_stab.html">✏️ Esercizi</a></li>
@@ -512,11 +513,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-bayesiana-per-due-gruppi-indipendenti">Regressione bayesiana per due gruppi indipendenti</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-illustrativo">Un esempio illustrativo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrizzazione-alternativa">Parametrizzazione alternativa</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-con-pymc">Analisi con PyMC</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -534,6 +535,8 @@ document.write(`
 <p>Nel capitolo <a class="reference internal" href="../chapter_4/23_two_groups.html#two-groups-comparison-notebook"><span class="std std-ref">Confronto tra due gruppi</span></a>, abbiamo esaminato come effettuare l’inferenza sulla differenza tra le medie di due campioni indipendenti usando un modello bayesiano. In questo approccio, trattiamo i due gruppi come entità separate e calcoliamo direttamente la differenza tra le loro medie. Per fare ciò, utilizziamo distribuzioni a priori per i parametri del modello, come le deviazioni standard e le medie, e poi aggiorniamo queste distribuzioni a posteriori utilizzando i dati osservati.</p>
 <p>Tuttavia, possiamo ottenere lo stesso risultato utilizzando un modello di regressione. Invece di calcolare direttamente la differenza tra le medie dei due gruppi, includiamo una variabile “dummy” nel modello di regressione. Questa variabile “dummy” ci permette di rappresentare in modo binario l’appartenenza dei dati ai gruppi: assegniamo il valore 0 a un gruppo di riferimento e il valore 1 al gruppo di confronto. Successivamente, il modello di regressione stima un parametro di regressione associato alla variabile “dummy”, che rappresenta proprio la differenza tra le medie dei due gruppi. Quindi, la variabile “dummy” funge da indicatore per il gruppo e ci consente di ottenere la stima della differenza tra le medie dei due gruppi in modo efficiente.</p>
 <p>Entrambi gli approcci sono validi per l’inferenza sulla differenza tra le medie dei due gruppi indipendenti, ma il modello di regressione offre una maggiore flessibilità e possibilità di espansione. Infatti, possiamo includere ulteriori variabili esplicative nel modello di regressione per comprendere meglio i fattori che influenzano il risultato di interesse. Questa flessibilità è particolarmente utile quando vogliamo esplorare come altre variabili possano contribuire alla differenza tra le medie dei gruppi o quando desideriamo considerare più fattori simultaneamente.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -573,6 +576,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="regressione-bayesiana-per-due-gruppi-indipendenti">
 <h2>Regressione bayesiana per due gruppi indipendenti<a class="headerlink" href="#regressione-bayesiana-per-due-gruppi-indipendenti" title="Permalink to this heading">#</a></h2>
 <p>Nel contesto bayesiano, il modello di regressione può essere formulato nel modo seguente:</p>
@@ -831,7 +835,7 @@ dtype: int64
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:02.310148
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:01.763474
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -897,61 +901,61 @@ dtype: int64
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 897.04it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1465.88it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 897.72it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1467.14it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 898.55it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1468.64it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 899.25it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1469.90it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.576075
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.586769
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.103865
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.165112
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Log Likelihood...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.197466
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.133356
 </pre></div>
 </div>
 </div>
@@ -995,7 +999,7 @@ dtype: int64
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling: [Intercept, kid_score_sigma, mom_hs]
 </pre></div>
 </div>
-<img alt="../_images/96abbd86f10af5967209b7b755b9742869aebfae635b37d56c1d01066f4af273.png" src="../_images/96abbd86f10af5967209b7b755b9742869aebfae635b37d56c1d01066f4af273.png" />
+<img alt="../_images/3a1ddcb2f0d23387198028635185115f13a5bb8bbe434c7c5e8ae3bbeb22b8ba.png" src="../_images/3a1ddcb2f0d23387198028635185115f13a5bb8bbe434c7c5e8ae3bbeb22b8ba.png" />
 </div>
 </div>
 <p>Per ispezionare il nostro posteriore e il processo di campionamento possiamo utilizzare <code class="docutils literal notranslate"><span class="pre">az.plot_trace()</span></code>. L’opzione <code class="docutils literal notranslate"><span class="pre">kind='rank_vlines'</span></code> ci fornisce una variante del grafico di rango che utilizza linee e punti e ci aiuta a ispezionare la stazionarietà delle catene. Poiché non c’è un modello chiaro o deviazioni serie dalle linee orizzontali, possiamo concludere che le catene sono stazionarie.</p>
@@ -1007,7 +1011,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/394e7fadc6465b41604eeb2b79c322cf462362c7674235f786cfce57731c2203.png" src="../_images/394e7fadc6465b41604eeb2b79c322cf462362c7674235f786cfce57731c2203.png" />
+<img alt="../_images/c5a3e616fa33009b8e1f55918cadb5c17cb072b1b5ca3a2ce91a65b5a46d294c.png" src="../_images/c5a3e616fa33009b8e1f55918cadb5c17cb072b1b5ca3a2ce91a65b5a46d294c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1050,37 +1054,37 @@ dtype: int64
     <tr>
       <th>Intercept</th>
       <td>77.57</td>
-      <td>2.08</td>
-      <td>73.90</td>
-      <td>81.78</td>
+      <td>2.02</td>
+      <td>73.74</td>
+      <td>81.29</td>
       <td>0.03</td>
       <td>0.02</td>
-      <td>3844.72</td>
-      <td>3136.72</td>
+      <td>3902.76</td>
+      <td>2944.49</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>mom_hs</th>
       <td>11.75</td>
-      <td>2.35</td>
-      <td>7.44</td>
-      <td>16.27</td>
+      <td>2.29</td>
+      <td>7.70</td>
+      <td>16.29</td>
       <td>0.04</td>
       <td>0.03</td>
-      <td>3803.04</td>
-      <td>2720.20</td>
+      <td>3823.98</td>
+      <td>3128.04</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>kid_score_sigma</th>
-      <td>19.92</td>
-      <td>0.69</td>
-      <td>18.67</td>
-      <td>21.20</td>
+      <td>19.90</td>
+      <td>0.68</td>
+      <td>18.70</td>
+      <td>21.23</td>
       <td>0.01</td>
       <td>0.01</td>
-      <td>3352.90</td>
-      <td>2953.17</td>
+      <td>3856.01</td>
+      <td>2711.41</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1098,7 +1102,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3f7eaf9647ab8c5d1a3ba6f915901069bff8188839c841f267a347d955218aed.png" src="../_images/3f7eaf9647ab8c5d1a3ba6f915901069bff8188839c841f267a347d955218aed.png" />
+<img alt="../_images/d648c06689319dfb24d3706ecaa8e7f6018097f9c9d5774204f68000a86c99fc.png" src="../_images/d648c06689319dfb24d3706ecaa8e7f6018097f9c9d5774204f68000a86c99fc.png" />
 </div>
 </div>
 <p>Un valore numerico si ottiene nel modo seguente.</p>
@@ -1478,38 +1482,38 @@ Coordinates:
   * chain            (chain) int64 0 1 2 3
   * draw             (draw) int64 0 1 2 3 4 5 6 ... 993 994 995 996 997 998 999
 Data variables:
-    Intercept        (chain, draw) float64 78.6 80.16 76.37 ... 77.08 73.06
-    mom_hs           (chain, draw) float64 9.982 7.362 11.98 ... 12.82 16.54
-    kid_score_sigma  (chain, draw) float64 18.75 20.53 19.68 ... 20.48 20.82
+    Intercept        (chain, draw) float64 77.95 75.32 77.17 ... 74.27 74.4
+    mom_hs           (chain, draw) float64 14.34 15.61 12.15 ... 14.75 16.75
+    kid_score_sigma  (chain, draw) float64 18.94 19.54 18.93 ... 21.47 19.88
 Attributes:
-    created_at:                  2024-01-25T07:17:27.967297
+    created_at:                  2024-01-26T18:03:31.631282
     arviz_version:               0.17.0
     modeling_interface:          bambi
-    modeling_interface_version:  0.13.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-f2088a1b-b58b-4308-96f8-a87609c48ead' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-f2088a1b-b58b-4308-96f8-a87609c48ead' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 4</li><li><span class='xr-has-index'>draw</span>: 1000</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-4b5d3d58-9592-46f3-8531-73554d46952f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4b5d3d58-9592-46f3-8531-73554d46952f' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3</div><input id='attrs-b337a159-167e-46fb-b5ab-9ff64f94b65e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b337a159-167e-46fb-b5ab-9ff64f94b65e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-43390ac6-db60-4e32-bb94-c2a8269e3ef6' class='xr-var-data-in' type='checkbox'><label for='data-43390ac6-db60-4e32-bb94-c2a8269e3ef6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1, 2, 3])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 995 996 997 998 999</div><input id='attrs-db21d30a-7e3a-4e8a-89b9-4e8f938746b2' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-db21d30a-7e3a-4e8a-89b9-4e8f938746b2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cfbbd7ec-4c59-4a67-bd24-6e82f92aa415' class='xr-var-data-in' type='checkbox'><label for='data-cfbbd7ec-4c59-4a67-bd24-6e82f92aa415' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 997, 998, 999])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8477dd7f-ca95-4fa0-8e21-f597a93b2f3c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8477dd7f-ca95-4fa0-8e21-f597a93b2f3c' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>Intercept</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>78.6 80.16 76.37 ... 77.08 73.06</div><input id='attrs-00b9f11b-3819-4895-b1f3-df562a08570c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-00b9f11b-3819-4895-b1f3-df562a08570c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8a3ee4bf-8f7c-46ab-a589-6f75c7823f78' class='xr-var-data-in' type='checkbox'><label for='data-8a3ee4bf-8f7c-46ab-a589-6f75c7823f78' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[78.59520998, 80.15557352, 76.36830462, ..., 79.5806512 ,
-        80.75359137, 78.21113756],
-       [76.27371622, 79.03408504, 78.7469677 , ..., 77.35561266,
-        75.9436277 , 74.20202792],
-       [78.98800104, 76.40310126, 76.21820232, ..., 77.0289571 ,
-        79.15382024, 80.65787484],
-       [80.13484349, 77.08502099, 77.98343493, ..., 75.42512256,
-        77.07816322, 73.05760089]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mom_hs</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.982 7.362 11.98 ... 12.82 16.54</div><input id='attrs-29dbf371-1be7-4ea3-b796-78254dc4c42a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-29dbf371-1be7-4ea3-b796-78254dc4c42a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b6082aaa-916d-4758-bab4-a888b61ed6f8' class='xr-var-data-in' type='checkbox'><label for='data-b6082aaa-916d-4758-bab4-a888b61ed6f8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[ 9.98244392,  7.36189985, 11.98262257, ...,  8.3808848 ,
-         6.67047674, 10.98692963],
-       [12.84841208, 10.88088571, 11.01973311, ..., 11.41516691,
-        12.93905308, 16.81054744],
-       [10.86700105, 12.26755006, 14.28654907, ..., 11.76864912,
-         7.0771481 , 10.47729499],
-       [ 7.5845195 , 10.64196895, 12.79193447, ..., 14.01799463,
-        12.81794844, 16.53709528]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>kid_score_sigma</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>18.75 20.53 19.68 ... 20.48 20.82</div><input id='attrs-961c79fc-bdc4-4ce8-99e7-38ba066eed0a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-961c79fc-bdc4-4ce8-99e7-38ba066eed0a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ad70f8b5-e289-44ff-a398-d2425fc2dd60' class='xr-var-data-in' type='checkbox'><label for='data-ad70f8b5-e289-44ff-a398-d2425fc2dd60' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[18.74677707, 20.52791765, 19.67821176, ..., 21.1840527 ,
-        20.40003746, 20.61337866],
-       [18.77991276, 20.598099  , 20.44165012, ..., 19.53123329,
-        20.40015946, 19.92798906],
-       [19.32297835, 20.42213509, 19.22415508, ..., 18.89160848,
-        19.85472328, 20.63377529],
-       [20.58788914, 19.9052724 , 19.82168809, ..., 20.16599507,
-        20.48010774, 20.81895655]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-89781ee4-7bc7-4a06-9d22-19735c479941' class='xr-section-summary-in' type='checkbox'  ><label for='section-89781ee4-7bc7-4a06-9d22-19735c479941' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f81a5620-0619-45be-85b7-123217e95455' class='xr-index-data-in' type='checkbox'/><label for='index-f81a5620-0619-45be-85b7-123217e95455' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0, 1, 2, 3], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-484ea934-9d41-4065-883b-916616d8ad61' class='xr-index-data-in' type='checkbox'/><label for='index-484ea934-9d41-4065-883b-916616d8ad61' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
+    modeling_interface_version:  0.13.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-827d2b9b-4545-415d-83b9-dcb12b6ed0ea' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-827d2b9b-4545-415d-83b9-dcb12b6ed0ea' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chain</span>: 4</li><li><span class='xr-has-index'>draw</span>: 1000</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-bdd14768-4a73-4a56-87a1-f5ef50c17eeb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-bdd14768-4a73-4a56-87a1-f5ef50c17eeb' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chain</span></div><div class='xr-var-dims'>(chain)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3</div><input id='attrs-80277f39-7f14-4a1e-a1df-da7cd5fed72f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-80277f39-7f14-4a1e-a1df-da7cd5fed72f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b20e6d7b-43ee-48c8-81f9-378d307dd151' class='xr-var-data-in' type='checkbox'><label for='data-b20e6d7b-43ee-48c8-81f9-378d307dd151' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1, 2, 3])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>draw</span></div><div class='xr-var-dims'>(draw)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 995 996 997 998 999</div><input id='attrs-69d83290-a77b-4f12-a11a-c5a69dd8b51d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-69d83290-a77b-4f12-a11a-c5a69dd8b51d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f69fe62a-60c7-47ff-9200-0314beee5bf4' class='xr-var-data-in' type='checkbox'><label for='data-f69fe62a-60c7-47ff-9200-0314beee5bf4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 997, 998, 999])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e02989c1-5339-4065-936d-ee1522e64e0f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e02989c1-5339-4065-936d-ee1522e64e0f' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>Intercept</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>77.95 75.32 77.17 ... 74.27 74.4</div><input id='attrs-e29f35a7-9c03-4c94-9b50-d06f183fda59' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e29f35a7-9c03-4c94-9b50-d06f183fda59' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0c32596a-d8fd-4c1b-a2a9-556b2615c83c' class='xr-var-data-in' type='checkbox'><label for='data-0c32596a-d8fd-4c1b-a2a9-556b2615c83c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[77.95434634, 75.31983505, 77.1655974 , ..., 78.06857102,
+        79.20069017, 77.48242168],
+       [79.1940582 , 75.6291435 , 81.49765522, ..., 78.54089244,
+        79.71604412, 78.11744114],
+       [77.09506404, 78.98950644, 78.26104097, ..., 78.70489184,
+        77.43420199, 78.17669867],
+       [79.66039022, 76.8108144 , 78.98410846, ..., 79.30699181,
+        74.27233244, 74.4016816 ]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mom_hs</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>14.34 15.61 12.15 ... 14.75 16.75</div><input id='attrs-1f5ce423-0eda-493f-bb3f-69014b07cef0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1f5ce423-0eda-493f-bb3f-69014b07cef0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-70ca8499-8482-464c-abcd-5c291c29cd82' class='xr-var-data-in' type='checkbox'><label for='data-70ca8499-8482-464c-abcd-5c291c29cd82' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[14.33956847, 15.60563015, 12.14837313, ..., 11.76217307,
+         9.64845138, 11.57483948],
+       [ 9.56735916, 15.23208809,  7.27143774, ..., 10.24775866,
+         9.37069254, 13.15262175],
+       [11.57580007,  9.67324955, 11.58502468, ..., 10.43471747,
+        10.64350359, 10.80850234],
+       [10.71958845, 11.04773535,  9.24627159, ...,  9.87470794,
+        14.74619542, 16.7463075 ]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>kid_score_sigma</span></div><div class='xr-var-dims'>(chain, draw)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>18.94 19.54 18.93 ... 21.47 19.88</div><input id='attrs-116e2c7d-78e8-45ab-acb5-304c4ec23cb7' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-116e2c7d-78e8-45ab-acb5-304c4ec23cb7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-80462067-54d7-4c0f-adef-bb691a3c9f8f' class='xr-var-data-in' type='checkbox'><label for='data-80462067-54d7-4c0f-adef-bb691a3c9f8f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[18.94367885, 19.53668865, 18.92570515, ..., 19.31260936,
+        19.04566399, 19.14781493],
+       [20.23166202, 19.63683943, 19.26029228, ..., 19.63004405,
+        19.68077694, 20.15617755],
+       [19.24600015, 19.87714471, 20.1365786 , ..., 20.13135587,
+        20.02781401, 19.68966593],
+       [19.93153895, 19.71371306, 20.81226747, ..., 18.87595575,
+        21.47465629, 19.88296242]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1dfd3357-1d1f-4917-b801-cd550c722c81' class='xr-section-summary-in' type='checkbox'  ><label for='section-1dfd3357-1d1f-4917-b801-cd550c722c81' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chain</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8e68b681-a5fa-4c70-b9cc-162861fcc92e' class='xr-index-data-in' type='checkbox'/><label for='index-8e68b681-a5fa-4c70-b9cc-162861fcc92e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([0, 1, 2, 3], dtype=&#x27;int64&#x27;, name=&#x27;chain&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>draw</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2b28d685-b401-4d8a-93e0-4b3290efa370' class='xr-index-data-in' type='checkbox'/><label for='index-2b28d685-b401-4d8a-93e0-4b3290efa370' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
        ...
        990, 991, 992, 993, 994, 995, 996, 997, 998, 999],
-      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;, length=1000))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-103f3b32-6a4c-40cc-9b27-e9e7b8e29a1d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-103f3b32-6a4c-40cc-9b27-e9e7b8e29a1d' class='xr-section-summary' >Attributes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2024-01-25T07:17:27.967297</dd><dt><span>arviz_version :</span></dt><dd>0.17.0</dd><dt><span>modeling_interface :</span></dt><dd>bambi</dd><dt><span>modeling_interface_version :</span></dt><dd>0.13.0</dd></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;int64&#x27;, name=&#x27;draw&#x27;, length=1000))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d187b3be-f201-4f0a-b0f7-ed6a857a7ab4' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d187b3be-f201-4f0a-b0f7-ed6a857a7ab4' class='xr-section-summary' >Attributes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>created_at :</span></dt><dd>2024-01-26T18:03:31.631282</dd><dt><span>arviz_version :</span></dt><dd>0.17.0</dd><dt><span>modeling_interface :</span></dt><dd>bambi</dd><dt><span>modeling_interface_version :</span></dt><dd>0.13.0</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1630,7 +1634,7 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.836445
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.569034
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -1699,7 +1703,19 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1708,49 +1724,37 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1517.03it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1518.03it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1519.54it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1520.92it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 932.15it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 932.70it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 933.45it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 934.11it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.286446
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.413069
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.091996
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.062035
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Log Likelihood...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.153751
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log Likelihood time = 0:00:00.092057
 </pre></div>
 </div>
 </div>
@@ -1792,7 +1796,7 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling: [hs, kid_score_sigma]
 </pre></div>
 </div>
-<img alt="../_images/4e4228b0cbaa9f39b4156160ae1bb075b42e3732145b3d28fb384d274f40a8bd.png" src="../_images/4e4228b0cbaa9f39b4156160ae1bb075b42e3732145b3d28fb384d274f40a8bd.png" />
+<img alt="../_images/bfe80292ae79087aa860e5839d547b0cb9dedf3a45c71230b3f96c1e767be779.png" src="../_images/bfe80292ae79087aa860e5839d547b0cb9dedf3a45c71230b3f96c1e767be779.png" />
 </div>
 </div>
 <p>Esaminiamo le distribuzioni a posteriori dei parametri del modello.</p>
@@ -1803,7 +1807,7 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fe427bf61c68374523be0f300781e0ffd78db75a1d333b3143aad6f7389f18ff.png" src="../_images/fe427bf61c68374523be0f300781e0ffd78db75a1d333b3143aad6f7389f18ff.png" />
+<img alt="../_images/72eebf0263f009afb8154e8d1ea2c6ba80cf42a1074f1a5c92ede936244ac1c9.png" src="../_images/72eebf0263f009afb8154e8d1ea2c6ba80cf42a1074f1a5c92ede936244ac1c9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1845,38 +1849,38 @@ Attributes:
   <tbody>
     <tr>
       <th>hs[completed]</th>
-      <td>89.329</td>
+      <td>89.324</td>
       <td>1.063</td>
-      <td>87.340</td>
-      <td>91.357</td>
-      <td>0.017</td>
-      <td>0.012</td>
-      <td>4142.0</td>
-      <td>3067.0</td>
+      <td>87.293</td>
+      <td>91.271</td>
+      <td>0.016</td>
+      <td>0.011</td>
+      <td>4514.0</td>
+      <td>3104.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>hs[not_completed]</th>
-      <td>77.559</td>
-      <td>2.041</td>
-      <td>73.649</td>
-      <td>81.211</td>
-      <td>0.033</td>
+      <td>77.540</td>
+      <td>2.056</td>
+      <td>73.901</td>
+      <td>81.479</td>
+      <td>0.034</td>
       <td>0.024</td>
-      <td>3773.0</td>
-      <td>2986.0</td>
+      <td>3671.0</td>
+      <td>2925.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>kid_score_sigma</th>
-      <td>19.887</td>
-      <td>0.678</td>
-      <td>18.624</td>
-      <td>21.113</td>
-      <td>0.011</td>
-      <td>0.008</td>
-      <td>4153.0</td>
-      <td>2783.0</td>
+      <td>19.878</td>
+      <td>0.656</td>
+      <td>18.665</td>
+      <td>21.125</td>
+      <td>0.010</td>
+      <td>0.007</td>
+      <td>4290.0</td>
+      <td>3010.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1894,7 +1898,7 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c06f2bf596af20bbe93ca4584ec0c8a9cc72a6ec77d268b7c7bc2d809f346af1.png" src="../_images/c06f2bf596af20bbe93ca4584ec0c8a9cc72a6ec77d268b7c7bc2d809f346af1.png" />
+<img alt="../_images/7d84136b04d8a33d3bf136b280e154b3254b95e14448afa4681f7eb5e3ff9b02.png" src="../_images/7d84136b04d8a33d3bf136b280e154b3254b95e14448afa4681f7eb5e3ff9b02.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1940,7 +1944,7 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/15be4b9543cea279c642aca71b26efc4990ae01d3780d36a896a52981e806ee2.svg" src="../_images/15be4b9543cea279c642aca71b26efc4990ae01d3780d36a896a52981e806ee2.svg" /></div>
+<img alt="../_images/5b127c9b56c491f193f3bc8c3cd3d07f3f5c65338eac84e86b5ca72b6e4f6e03.svg" src="../_images/5b127c9b56c491f193f3bc8c3cd3d07f3f5c65338eac84e86b5ca72b6e4f6e03.svg" /></div>
 </div>
 <p>Esaminiamo la distribuzione predittia a priori.</p>
 <div class="cell docutils container">
@@ -1963,7 +1967,7 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3109027e4ec19b9173815ff107cbe8bd8abcc15201a45229e7f7b52b6cd82559.png" src="../_images/3109027e4ec19b9173815ff107cbe8bd8abcc15201a45229e7f7b52b6cd82559.png" />
+<img alt="../_images/03d7ad6ee29b8d352cf23873d393f9660b0264bc4ce0b71ebcfac9d67fcff58d.png" src="../_images/03d7ad6ee29b8d352cf23873d393f9660b0264bc4ce0b71ebcfac9d67fcff58d.png" />
 </div>
 </div>
 <p>Eseguiamo il campionamento.</p>
@@ -1983,7 +1987,7 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.687894
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.480196
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -2052,19 +2056,7 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -2073,31 +2065,43 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 848.15it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 848.57it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 849.19it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 849.72it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.462855
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1462.41it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1463.24it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1464.76it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1465.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.434919
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.063145
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.044257
 </pre></div>
 </div>
 </div>
@@ -2143,38 +2147,38 @@ Attributes:
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>78.1</td>
-      <td>1.97</td>
-      <td>74.56</td>
-      <td>81.91</td>
-      <td>0.04</td>
+      <td>78.07</td>
+      <td>1.96</td>
+      <td>74.31</td>
+      <td>81.52</td>
+      <td>0.05</td>
       <td>0.03</td>
-      <td>1922.25</td>
-      <td>1782.97</td>
+      <td>1778.51</td>
+      <td>2025.33</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>11.1</td>
-      <td>2.20</td>
+      <td>11.11</td>
+      <td>2.18</td>
       <td>7.11</td>
-      <td>15.35</td>
+      <td>15.14</td>
       <td>0.05</td>
       <td>0.04</td>
-      <td>1935.50</td>
-      <td>1950.60</td>
+      <td>1815.15</td>
+      <td>1956.64</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>19.9</td>
-      <td>0.68</td>
-      <td>18.58</td>
-      <td>21.16</td>
+      <td>19.89</td>
+      <td>0.69</td>
+      <td>18.53</td>
+      <td>21.15</td>
+      <td>0.02</td>
       <td>0.01</td>
-      <td>0.01</td>
-      <td>2291.55</td>
-      <td>1868.79</td>
+      <td>1945.47</td>
+      <td>2041.86</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2210,7 +2214,7 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.657894
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compilation time = 0:00:00.553920
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling...
@@ -2279,7 +2283,19 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -2288,43 +2304,31 @@ Attributes:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2:   0%|                                                                 | 0/2000 [00:01&lt;?, ?it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1440.25it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1440.97it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3:   0%|                                                                 | 0/2000 [00:02&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1442.44it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|████████████████████████████████████████████████████| 2000/2000 [00:01&lt;00:00, 1443.66it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 0: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 917.75it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 1: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 918.21it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 2: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 918.89it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running chain 3: 100%|█████████████████████████████████████████████████████| 2000/2000 [00:02&lt;00:00, 919.47it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:02.281499
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling time = 0:00:01.461422
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transforming variables...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.074150
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transformation time = 0:00:00.061660
 </pre></div>
 </div>
 </div>
@@ -2337,7 +2341,7 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/806861219745dd43001e306f574a4ae993ff01b2c77235140f3ed36c5cec385b.png" src="../_images/806861219745dd43001e306f574a4ae993ff01b2c77235140f3ed36c5cec385b.png" />
+<img alt="../_images/b6567cfabdf6a3fc494bfb70efb00fdafc31ad1421d4502bf4264b55317c16bf.png" src="../_images/b6567cfabdf6a3fc494bfb70efb00fdafc31ad1421d4502bf4264b55317c16bf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2379,50 +2383,50 @@ Attributes:
   <tbody>
     <tr>
       <th>alpha</th>
-      <td>77.97</td>
-      <td>2.05</td>
-      <td>74.21</td>
-      <td>81.83</td>
+      <td>78.08</td>
+      <td>2.03</td>
+      <td>74.12</td>
+      <td>81.77</td>
       <td>0.05</td>
       <td>0.04</td>
-      <td>1629.99</td>
-      <td>1675.49</td>
+      <td>1557.00</td>
+      <td>1658.46</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>beta</th>
-      <td>11.23</td>
-      <td>2.29</td>
-      <td>6.97</td>
-      <td>15.60</td>
+      <td>11.13</td>
+      <td>2.31</td>
+      <td>6.94</td>
+      <td>15.52</td>
       <td>0.06</td>
       <td>0.04</td>
-      <td>1589.76</td>
-      <td>1796.61</td>
+      <td>1546.58</td>
+      <td>1692.92</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>sigma</th>
-      <td>19.89</td>
+      <td>19.91</td>
       <td>0.68</td>
-      <td>18.58</td>
-      <td>21.16</td>
-      <td>0.02</td>
+      <td>18.57</td>
+      <td>21.15</td>
       <td>0.01</td>
-      <td>1954.08</td>
-      <td>1967.26</td>
+      <td>0.01</td>
+      <td>2473.27</td>
+      <td>1925.53</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>effect size</th>
-      <td>0.57</td>
+      <td>0.56</td>
       <td>0.12</td>
       <td>0.34</td>
       <td>0.78</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td>1549.63</td>
-      <td>1851.86</td>
+      <td>1562.21</td>
+      <td>1584.95</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2430,35 +2434,30 @@ Attributes:
 </div></div></div>
 </div>
 <p>Anche in questo caso i risultati replicano quelli ottenuti in precedenza.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -p pytensor
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Thu Jan 25 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
+<span class=" -Color -Color-Red">----------</span>
+<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:03:40.904307+01:00</span>
 
-Python implementation: CPython
-Python version       : 3.11.7
-IPython version      : 8.19.0
+<span class=" -Color -Color-Blue">Python implementation: CPython</span>
+<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
+<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
 
-pytensor: 2.18.4
+<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
+<span class=" -Color -Color-Blue">OS          : Darwin</span>
+<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
+<span class=" -Color -Color-Blue">Machine     : x86_64</span>
+<span class=" -Color -Color-Blue">Processor   : i386</span>
+<span class=" -Color -Color-Blue">CPU cores   : 8</span>
+<span class=" -Color -Color-Blue">Architecture: 64bit</span>
 
-seaborn   : 0.13.0
-pandas    : 2.1.4
-numpy     : 1.26.2
-arviz     : 0.17.0
-pymc      : 5.10.3
-bambi     : 0.13.0
-matplotlib: 3.8.2
-scipy     : 1.11.4
 
-Watermark: 2.4.3
 </pre></div>
 </div>
 </div>
@@ -2529,11 +2528,11 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-bayesiana-per-due-gruppi-indipendenti">Regressione bayesiana per due gruppi indipendenti</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-illustrativo">Un esempio illustrativo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrizzazione-alternativa">Parametrizzazione alternativa</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-con-pymc">Analisi con PyMC</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

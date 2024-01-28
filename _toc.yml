@@ -61,6 +61,7 @@ chapters:
   - file: chapter_4/introduction_part_4
     sections:
       - file: chapter_4/01_intro_bayes
+      - file: chapter_4/01a_models
       - file: chapter_4/02_subj_prop
       - file: chapter_4/03_conjugate_families_1
       - file: chapter_4/04_conjugate_families_2
@@ -70,7 +71,6 @@ chapters:
       - file: chapter_4/10_metropolis
       - file: chapter_4/11_beta_binomial_pymc
       - file: chapter_4/12_jax
-      - file: chapter_4/13_preliz
       - file: chapter_4/16_summary_posterior_pymc
       - file: chapter_4/17_prediction
       - file: chapter_4/18_mcmc_diagnostics
@@ -89,6 +89,7 @@ chapters:
       - file: chapter_4/40_hier_beta_binom
       - file: chapter_4/41_hier_poisson
       - file: chapter_4/42_hier_gaussian
+      - file: chapter_4/45_missing
       - file: chapter_4/hssm
 
   - file: chapter_5/introduction_part_5

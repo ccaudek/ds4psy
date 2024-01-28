@@ -222,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -241,6 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -250,7 +251,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -269,6 +269,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -514,22 +517,15 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-alla-ricerca-causale-nei-disegni-osservazionali">Introduzione alla Ricerca Causale nei Disegni Osservazionali</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-disegni-di-ricerca-e-la-causalita">I Disegni di Ricerca e la Causalità</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disegni-osservazionali">Disegni Osservazionali</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disegni-sperimentali">Disegni Sperimentali</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-e-considerazioni">Confronto e Considerazioni</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-e-contesto-della-causalita">Definizione e Contesto della Causalità</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strategie-di-ricerca-nei-dati-osservazionali">Strategie di Ricerca nei Dati Osservazionali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-alla-ricerca-causale">Introduzione alla Ricerca Causale</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-disegni-di-ricerca-e-la-causalita">I Disegni di Ricerca e la Causalità</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelli-causali-grafici">Modelli Causali Grafici</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importanza-delle-assunzioni">Importanza delle Assunzioni</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-ai-grafici-aciclici-diretti-dags">Introduzione ai Grafici Aciclici Diretti (DAGs)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-ai-dag">Introduzione ai DAG</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caratteristiche-dei-dag">Caratteristiche dei DAG</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rappresentazione-dei-legami-non-causali">Rappresentazione dei Legami Non-Causali</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-percorsi">Tipi di Percorsi</a></li>
@@ -588,7 +584,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dettagli-sui-confondenti">Dettagli sui Confondenti</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-di-calcolo">Ambiente di Calcolo</a></li>
 </ul>
             </nav>
         </div>
@@ -605,8 +600,10 @@ document.write(`
 </a>
 <section class="tex2jax_ignore mathjax_ignore" id="correlazione-e-causazione">
 <span id="correlation-causation-notebook"></span><h1>Correlazione e causazione<a class="headerlink" href="#correlazione-e-causazione" title="Permalink to this heading">#</a></h1>
-<p>In questo capitolo, approfondiremo la complessa relazione tra correlazione e causalità, due concetti fondamentali nell’analisi dei dati che, seppur strettamente interconnessi, sono nettamente distinti. La correlazione rappresenta una misura della forza e della direzione dell’associazione lineare tra due variabili. Tuttavia, è cruciale comprendere che la correlazione non implica automaticamente una relazione di causa-effetto tra le variabili coinvolte. Questo principio è riassunto nell’espressione comune ‘correlazione non implica causalità’, un concetto di vitale importanza. Vari esempi di come possano emergere correlazioni apparentemente significative ma del tutto prive di relazione causale sono fornite dal sito <a class="reference external" href="https://tylervigen.com/spurious-correlations">spurious correlations</a>.</p>
-<p>Nel corso del capitolo, esploreremo come la correlazione possa presentarsi in diversi modelli causali, come la biforcazione, la catena, il collider e le strutture discendenti. Questa analisi evidenzierà il rischio di interpretazioni erronee, sottolineando l’importanza di distinguere tra correlazione e causalità. Esaminando indici statistici come la covarianza e investigando l’impatto dei confounders, ci addentreremo in analisi che vanno oltre la semplice relazione bivariata. Questo approccio ci permetterà di esplorare le dinamiche più complesse che regolano le interazioni tra le variabili, fornendo strumenti essenziali per un’interpretazione accurata dei dati e per evitare i comuni errori di valutazione che possono sorgere quando si confonde correlazione con causalità.</p>
+<p>Per garantire che i modelli statistici forniscano intuizioni scientificamente valide, è essenziale che siano supportati da modelli scientifici aggiuntivi, specificatamente modelli causali. Le fondamenta di un’analisi statistica non risiedono nei dati in sé, ma piuttosto nelle cause che hanno prodotto tali dati. Queste cause, tuttavia, non sono direttamente deducibili dai soli dati. In altre parole, senza l’inclusione di informazioni causali nel modello, non è possibile estrarre conclusioni causali dai dati.</p>
+<p>Questo principio sottolinea l’importanza di integrare l’analisi statistica con un contesto causale per ottenere una comprensione più profonda dei fenomeni studiati. Mentre l’analisi statistica può identificare correlazioni e tendenze all’interno dei dati, la comprensione dei meccanismi sottostanti richiede una considerazione attenta delle cause che hanno portato a tali risultati. In sintesi, per una comprensione completa e scientificamente robusta, è cruciale abbinare i modelli statistici con un’analisi delle cause che li hanno generati.</p>
+<p>Nel corso di questo capitolo, esploriamo la distinzione fondamentale tra correlazione e causalità, due concetti chiave nell’analisi dei dati. La correlazione descrive la relazione tra due variabili in termini di forza e direzione, ma non implica automaticamente un legame di causa-effetto. L’affermazione “correlazione non implica causalità” sottolinea l’importanza di non confondere queste due nozioni. Esempi di correlazioni apparentemente significative, ma prive di legami causali, sono disponibili sul sito <a class="reference external" href="https://tylervigen.com/spurious-correlations">spurious correlations</a>.</p>
+<p>Proseguendo, indagheremo come la correlazione si manifesti in vari contesti causali, quali biforcazioni, catene, collider e strutture discendenti. Questa analisi enfatizza il pericolo di interpretazioni errate, evidenziando l’importanza di distinguere tra correlazione e causalità. Approfondiremo il tema attraverso l’esame di indici statistici come la covarianza e l’analisi dell’impatto dei fattori confondenti. Andremo oltre l’analisi delle semplici relazioni bivariate, per esaminare dinamiche più complesse tra le variabili. Questo approccio ci fornirà strumenti cruciali per un’interpretazione precisa dei dati, aiutandoci a evitare gli errori comuni che possono derivare dalla confusione tra correlazione e causalità.</p>
 <section id="preparazione-del-notebook">
 <h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -634,43 +631,54 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="introduzione-alla-ricerca-causale-nei-disegni-osservazionali">
-<h2>Introduzione alla Ricerca Causale nei Disegni Osservazionali<a class="headerlink" href="#introduzione-alla-ricerca-causale-nei-disegni-osservazionali" title="Permalink to this heading">#</a></h2>
+<section id="introduzione-alla-ricerca-causale">
+<h2>Introduzione alla Ricerca Causale<a class="headerlink" href="#introduzione-alla-ricerca-causale" title="Permalink to this heading">#</a></h2>
+<p>L’inferenza causale è un processo cruciale nella previsione degli effetti di un intervento. Essa non solo permette di anticipare le conseguenze di una causa, ma anche di costruire scenari controfattuali, immaginando gli esiti alternativi che sarebbero potuti accadere se fossero state prese decisioni diverse. Questo tipo di ragionamento si rivela fondamentale anche in contesti puramente descrittivi, come nell’analisi di un campione di studio rispetto alla popolazione generale. Per comprendere le ragioni di eventuali discrepanze tra campione e popolazione, è necessario adottare un approccio causale che vada oltre la semplice descrizione dei dati, fornendo un modello causale che spieghi le differenze osservate.</p>
+<p><span id="id1">McElreath [<a class="reference internal" href="../references/bibliography.html#id110" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span> utilizza l’analogia dei Golem, robot di argilla potenti ma privi di saggezza e previsione, per descrivere un approccio limitante che è stato a lungo lo standard in psicologia.</p>
+<figure class="align-default" id="golem-fig">
+<a class="reference internal image-reference" href="../_images/mcelreath_golem.png"><img alt="../_images/mcelreath_golem.png" src="../_images/mcelreath_golem.png" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Esempio di albero decisionale per la selezione di una procedura statistica appropriata. Iniziando dall’alto, l’utente risponde a una serie di domande riguardanti la misurazione e l’intento, arrivando infine al nome di una procedura. Sono possibili molti alberi decisionali simili.  (Figura tratta da <span id="id2">McElreath [<a class="reference internal" href="../references/bibliography.html#id110" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span>).</span><a class="headerlink" href="#golem-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Questo approccio si concentra sulla semplice confutazione delle ipotesi nulle e non stabilisce una relazione chiara tra ricerca e test. Tale limitazione può essere considerata una delle cause principali della crisi della replicabilità dei risultati nella ricerca psicologica e, di conseguenza, una crisi della psicologia stessa.</p>
+<p><span id="id3">McElreath [<a class="reference internal" href="../references/bibliography.html#id110" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span> sottolinea che processi causali completamente diversi possono produrre distribuzioni simili di risultati osservati, evidenziando i limiti di un approccio che si concentra solo sul test di ipotesi nulle. Questo “Golem” nella data science è caratterizzato da un basso potere di rilevazione (incapacità di scoprire le caratteristiche importanti dei fenomeni studiati) e da un alto tasso di falsi positivi, portando a conclusioni errate basate su dati che in realtà contengono solo rumore di misurazione [per es., <a href="#id4"><span class="problematic" id="id5">van2023new</span></a>].</p>
+<p>La ricerca richiede più di semplici “robot” che confutano le ipotesi nulle. È necessario sviluppare modelli causali generativi e modelli statistici che siano giustificati da questi modelli generativi e dalle domande di ricerca. Per ottenere stime accurate, è essenziale avere un modello generativo che guidi la progettazione e la verifica dell’inferenza. È inoltre cruciale avere una strategia ben definita per derivare stime e quantificare l’incertezza associata. In questo contesto, l’analisi bayesiana dei dati si presenta come un approccio altamente efficace. In analisi semplici, le differenze rispetto all’approccio del “Golem” potrebbero sembrare minime e potrebbero addirittura introdurre complicazioni, ma quando ci si confronta con analisi più realistiche, la differenza è sostanziale.</p>
+<p>Per un’analisi scientifica dei dati che vada oltre l’approccio “amatoriale” dei “Golem”, <span id="id6">McElreath [<a class="reference internal" href="../references/bibliography.html#id110" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span> suggerisce i seguenti punti:</p>
+<ol class="arabic simple">
+<li><p>Comprendere appieno il concetto teorico che si sta cercando di stimare. Questo richiede una solida base teorica e una chiara definizione dell’oggetto dell’analisi.</p></li>
+<li><p>Costruire modelli scientifici o causali che descrivano le relazioni tra le variabili coinvolte nel problema di ricerca. Questi modelli dovrebbero essere basati sulla teoria e sull’esperienza.</p></li>
+<li><p>Utilizzare le informazioni ottenute dai primi due passaggi per sviluppare modelli statistici appropriati. Questi modelli dovrebbero riflettere accuratamente il contesto scientifico.</p></li>
+<li><p>Eseguire simulazioni basate sui modelli causali per verificare se i modelli statistici costruiti sono in grado di stimare correttamente ciò che è teoricamente atteso.</p></li>
+<li><p>Alla fine, condurre l’analisi dei dati reali in base ai modelli statistici sviluppati, avendo la fiducia che questi modelli riflettano le teorie sottostanti.</p></li>
+</ol>
+<p>In questo approccio, <span id="id7">McElreath [<a class="reference internal" href="../references/bibliography.html#id110" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span> utilizza i DAG (“Directed Acyclic Graphs”) come rappresentazione grafica dei modelli causali. Questi grafici servono a rendere trasparenti le assunzioni scientifiche alla base dell’analisi, consentendo così una critica utile e una connessione tra le teorie e l’analisi statistica. In contrasto, i “Golems” sono degli strumenti statistici potenti ma privi di una base teorica o causale, e vengono utilizzati senza una chiara comprensione delle relazioni sottostanti tra le variabili.</p>
 <section id="i-disegni-di-ricerca-e-la-causalita">
 <h3>I Disegni di Ricerca e la Causalità<a class="headerlink" href="#i-disegni-di-ricerca-e-la-causalita" title="Permalink to this heading">#</a></h3>
-<section id="disegni-osservazionali">
-<h4>Disegni Osservazionali<a class="headerlink" href="#disegni-osservazionali" title="Permalink to this heading">#</a></h4>
-<p>Nei disegni osservazionali, i ricercatori osservano e registrano gli eventi senza intervenire direttamente. A differenza degli esperimenti controllati, qui non si manipolano le variabili studiate, ma si osservano le relazioni naturali che emergono. Tali studi sono preziosi quando gli esperimenti non sono realizzabili per ragioni etiche o pratiche. Sebbene i disegni osservazionali siano efficaci nell’identificare correlazioni e tendenze, spesso mancano della capacità di stabilire con sicurezza relazioni causali per via di variabili confondenti e bias di selezione. Studi trasversali e longitudinali sono esempi comuni in questo ambito.</p>
-</section>
-<section id="disegni-sperimentali">
-<h4>Disegni Sperimentali<a class="headerlink" href="#disegni-sperimentali" title="Permalink to this heading">#</a></h4>
-<p>I disegni sperimentali si basano invece sulla manipolazione controllata delle variabili e sulla randomizzazione. Quest’ultima, ovvero l’assegnazione casuale dei partecipanti ai gruppi, è fondamentale per ridurre i bias e garantire la validità delle conclusioni causali. Gli esperimenti randomizzati sono considerati il gold standard nell’indagare le relazioni causali, poiché la randomizzazione bilancia le variabili osservate e non osservate tra i gruppi di trattamento.</p>
-</section>
-<section id="confronto-e-considerazioni">
-<h4>Confronto e Considerazioni<a class="headerlink" href="#confronto-e-considerazioni" title="Permalink to this heading">#</a></h4>
-<p>Mentre gli esperimenti offrono maggiore certezza nella determinazione delle relazioni causali, i disegni osservazionali forniscono flessibilità e applicabilità in contesti dove gli esperimenti non sono possibili. Tuttavia, i disegni osservazionali spesso si basano su relazioni associative piuttosto che causali.</p>
-</section>
-</section>
-<section id="definizione-e-contesto-della-causalita">
-<h3>Definizione e Contesto della Causalità<a class="headerlink" href="#definizione-e-contesto-della-causalita" title="Permalink to this heading">#</a></h3>
-<p>Nel contesto della ricerca, la causalità si riferisce a come una variabile (X) possa influenzare o determinare un’altra variabile (Y). Il linguaggio causale include termini come “causa,” “influenza,” “determina,” contrapposti a termini descrittivi come “associato,” “correlato,” usati per descrivere relazioni senza implicazioni causali dirette. La causalità è intesa come un concetto probabilistico: una modifica in X aumenta la probabilità di un certo esito in Y, piuttosto che determinarlo in modo rigido.</p>
-<p>Nella pratica psicologica e sociale, spesso si cerca di inferire relazioni causali da dati osservazionali. Gli esperimenti randomizzati, pur essendo il gold standard, non sono sempre praticabili o etici. Di conseguenza, i ricercatori devono navigare tra limitazioni e sfide, cercando di inferire relazioni causali in modi alternativi.</p>
-</section>
-<section id="strategie-di-ricerca-nei-dati-osservazionali">
-<h3>Strategie di Ricerca nei Dati Osservazionali<a class="headerlink" href="#strategie-di-ricerca-nei-dati-osservazionali" title="Permalink to this heading">#</a></h3>
-<p>Nella ricerca, quando si lavora con dati osservazionali, esistono vari limiti che possono influenzare la qualità e l’accuratezza delle conclusioni. I ricercatori impiegano diverse tecniche per mitigare questi limiti e migliorare la validità dei loro studi.</p>
+<p>Per comprendere meglio l’uso dei DAG (Directed Acyclic Graphs) nell’inferenza causale, è utile esaminare un articolo di <span id="id8">[<a class="reference internal" href="../references/bibliography.html#id4" title="Julia M Rohrer. Thinking clearly about correlations and causation: graphical causal models for observational data. Advances in methods and practices in psychological science, 1(1):27–42, 2018.">Roh18</a>]</span> relativo alla ricerca sulla causalità nei disegni osservazionali.</p>
+<p><strong>Disegni Osservazionali</strong>
+Nei disegni osservazionali, i ricercatori osservano e registrano gli eventi senza intervenire direttamente. A differenza degli esperimenti controllati, qui non si manipolano le variabili studiate, ma si osservano le relazioni naturali che emergono. Questi studi sono preziosi quando gli esperimenti non sono fattibili per motivi etici o pratici. Tuttavia, i disegni osservazionali, sebbene efficaci nell’identificare correlazioni e tendenze, spesso mancano della capacità di stabilire con certezza relazioni causali, a causa di variabili confondenti e bias di selezione. Esempi comuni di disegni osservazionali includono studi trasversali e longitudinali.</p>
+<p><strong>Disegni Sperimentali</strong>
+I disegni sperimentali, d’altra parte, si basano sulla manipolazione controllata delle variabili e sulla randomizzazione. Quest’ultima, ovvero l’assegnazione casuale dei partecipanti ai gruppi, è fondamentale per ridurre i bias e garantire la validità delle conclusioni causali. Gli esperimenti randomizzati sono considerati il gold standard per indagare le relazioni causali, poiché la randomizzazione equilibra le variabili osservate e non osservate tra i gruppi di trattamento.</p>
+<p><strong>Confronto e Considerazioni</strong>
+Mentre gli esperimenti offrono maggiore certezza nella determinazione delle relazioni causali, i disegni osservazionali forniscono flessibilità e applicabilità in contesti in cui gli esperimenti non sono possibili o etici. Tuttavia, i disegni osservazionali spesso si basano su relazioni associative piuttosto che causali.</p>
+<p><strong>Definizione e Contesto della Causalità</strong>
+Nel contesto della ricerca, la causalità si riferisce a come una variabile (X) possa influenzare o determinare un’altra variabile (Y). Il linguaggio causale utilizza termini come “causa”, “influenza”, “determina”, a differenza dei termini descrittivi come “associato” o “correlato”, che vengono utilizzati per descrivere relazioni senza implicazioni causali dirette. La causalità è concepita come un concetto probabilistico: una modifica in X aumenta la probabilità di un certo esito in Y, piuttosto che determinarlo in modo rigido.</p>
+<p>Nella pratica psicologica e sociale, spesso si cerca di inferire relazioni causali da dati osservazionali poiché gli esperimenti randomizzati non sono sempre fattibili o etici. Pertanto, i ricercatori devono affrontare sfide e limitazioni, cercando di inferire relazioni causali in modi alternativi.</p>
+<p><strong>Strategie di Ricerca nei Dati Osservazionali</strong>
+Nella ricerca con dati osservazionali, esistono vari limiti che possono influenzare la qualità e l’accuratezza delle conclusioni. I ricercatori adottano diverse strategie per mitigare queste limitazioni e migliorare la validità dei loro studi.</p>
 <ol class="arabic simple">
-<li><p><strong>Uso di interventi surrogati</strong>: Gli interventi surrogati sono utilizzati quando non è possibile o etico condurre esperimenti diretti. Invece di manipolare direttamente una variabile, i ricercatori osservano gli effetti di una variabile surrogata che si ritiene abbia una relazione con la variabile di interesse. Questo approccio può aiutare a stabilire legami indiretti, ma presenta delle limitazioni perché non sempre è possibile garantire che la variabile surrogata abbia una correlazione diretta e significativa con la variabile principale.</p></li>
-<li><p><strong>Linguaggio prudente nell’interpretazione dei dati</strong>: È importante usare un linguaggio cauto, specialmente quando si interpretano dati osservazionali. Questo significa evitare di fare affermazioni causali dirette quando i dati mostrano solo correlazioni. La distinzione tra correlazione e causalità è fondamentale in quanto la presenza di una correlazione non implica necessariamente un rapporto di causa-effetto.</p></li>
-<li><p><strong>Impiego di metodi statistici avanzati per controllare variabili confondenti</strong>: Le variabili confondenti sono fattori esterni che possono influenzare il rapporto tra le variabili studiate. L’uso di tecniche statistiche avanzate, come la regressione multivariata o l’analisi di matching, aiuta a controllare l’effetto di queste variabili confondenti, permettendo una stima più accurata del rapporto tra le variabili di interesse. Tuttavia, anche questi metodi hanno limiti, in quanto possono non riuscire a controllare completamente tutte le variabili confondenti, soprattutto in situazioni complesse.</p></li>
+<li><p><strong>Uso di interventi surrogati</strong>: Gli interventi surrogati vengono utilizzati quando non è possibile o etico condurre esperimenti diretti. Invece di manipolare direttamente una variabile, i ricercatori osservano gli effetti di una variabile surrogata che si ritiene abbia una relazione con la variabile di interesse. Questo approccio può aiutare a stabilire legami indiretti, ma presenta delle limitazioni poiché non sempre è possibile garantire una correlazione diretta e significativa tra la variabile surrogata e la variabile principale.</p></li>
+<li><p><strong>Linguaggio prudente nell’interpretazione dei dati</strong>: È importante utilizzare un linguaggio cauto, specialmente quando si interpretano dati osservazionali. Ciò significa evitare di fare affermazioni causali dirette quando i dati mostrano solo correlazioni. La distinzione tra correlazione e causalità è fondamentale, poiché la presenza di una correlazione non implica necessariamente un rapporto di causa-effetto.</p></li>
+<li><p><strong>Utilizzo di metodi statistici avanzati per controllare variabili confondenti</strong>: Le variabili confondenti sono fattori esterni che possono influenzare il rapporto tra le variabili studiate. L’uso di tecniche statistiche avanzate, come la regressione multivariata o l’analisi di matching, aiuta a controllare l’effetto di queste variabili confondenti, permettendo una stima più accurata del rapporto tra le variabili di interesse. Tuttavia, anche questi metodi hanno limiti poiché potrebbero non riuscire a controllare completamente tutte le variabili confondenti, soprattutto in situazioni complesse.</p></li>
 </ol>
-<p>Nonostante l’adozione di queste strategie, persistono sfide in termini di validità esterna (cioè la generalizzabilità dei risultati) e interpretazione dei dati. La validità esterna può essere limitata in quanto le condizioni specifiche dello studio potrebbero non essere rappresentative di situazioni più ampie o diverse. Inoltre, l’interpretazione dei risultati può essere complicata dalla natura indiretta o surrogata delle evidenze raccolte.</p>
-<p>Di conseguenza, è essenziale affrontare l’analisi dei dati osservazionali con un approccio critico e metodologicamente rigoroso. Questo implica essere consapevoli dei limiti degli studi osservazionali, interpretare i risultati con cautela, e utilizzare metodologie appropriate per ridurre al minimo il rischio di conclusioni errate. La chiarezza nell’esposizione dei metodi e delle limitazioni dello studio è cruciale per garantire che le conclusioni siano valide e affidabili.</p>
+<p>Nonostante l’adozione di queste strategie, persistono sfide in termini di validità esterna (cioè la generalizzabilità dei risultati) e interpretazione dei dati. La validità esterna può essere limitata poiché le condizioni specifiche dello studio potrebbero non rappresentare situazioni più ampie o diverse. Inoltre, l’interpretazione dei risultati può essere complicata dalla natura indiretta o surrogata delle evidenze raccolte.</p>
+<p>È essenziale quindi affrontare l’analisi dei dati osservazionali con un approccio critico e metodologicamente rigoroso, consapevoli dei limiti degli studi osservazionali e interpretando i risultati con cautela. La chiarezza nell’esposizione dei metodi e delle limitazioni dello studio è cruciale per garantire che le conclusioni siano valide e affidabili.</p>
 </section>
 </section>
 <section id="modelli-causali-grafici">
 <h2>Modelli Causali Grafici<a class="headerlink" href="#modelli-causali-grafici" title="Permalink to this heading">#</a></h2>
-<p>Per rafforzare la validità delle inferenze causali ottenute da dati osservazionali, <span id="id1">Rohrer [<a class="reference internal" href="../references/bibliography.html#id4" title="Julia M Rohrer. Thinking clearly about correlations and causation: graphical causal models for observational data. Advances in methods and practices in psychological science, 1(1):27–42, 2018.">Roh18</a>]</span> suggerisce l’impiego dei Grafici Aciclici Diretti (DAGs). Questi strumenti, sviluppati in larga parte dallo scienziato informatico Judea Pearl, servono a fornire rappresentazioni visive delle ipotesi causali. I DAGs condividono molti aspetti con i modelli di equazioni strutturali (SEM), ma si distinguono per la loro capacità di illustrare direttamente le relazioni causali.</p>
+<p>Per rafforzare la validità delle inferenze causali ottenute da dati osservazionali, <span id="id9">Rohrer [<a class="reference internal" href="../references/bibliography.html#id4" title="Julia M Rohrer. Thinking clearly about correlations and causation: graphical causal models for observational data. Advances in methods and practices in psychological science, 1(1):27–42, 2018.">Roh18</a>]</span> suggerisce l’impiego dei Grafici Aciclici Diretti (DAGs). Questi strumenti, sviluppati in larga parte dallo scienziato informatico Judea Pearl, servono a fornire rappresentazioni visive delle ipotesi causali. I DAGs condividono molti aspetti con i modelli di equazioni strutturali (SEM), ma si distinguono per la loro capacità di illustrare direttamente le relazioni causali.</p>
 <p>Una caratteristica fondamentale dei DAGs è la loro efficacia nell’identificare quali variabili esterne (spesso denominate ‘variabili terze’) dovrebbero essere considerate o escluse durante l’analisi. Questo aspetto è cruciale perché il controllo inadeguato o eccessivo di queste variabili può condurre a inferenze errate. In particolare, i DAGs sono utili per determinare in quali situazioni il controllo statistico delle variabili terze può effettivamente migliorare l’accuratezza dell’inferenza causale, e in quali altri casi tale controllo potrebbe invece introdurre distorsioni o errori.</p>
 <p>Attraverso l’uso di DAGs, gli scienziati e i ricercatori possono quindi sviluppare una comprensione più profonda e accurata delle relazioni causali nei loro dati, evitando gli errori comuni che possono emergere nell’interpretazione di dati osservazionali.</p>
 <section id="importanza-delle-assunzioni">
@@ -680,9 +688,9 @@ document.write(`
 <p>L’aspetto cruciale in entrambi gli approcci, osservazionali e sperimentali, è la consapevolezza e la comunicazione trasparente delle assunzioni sottostanti. Questa pratica permette ai ricercatori e alla comunità scientifica di effettuare valutazioni critiche delle affermazioni causali presentate. Inoltre, una chiara esposizione delle ipotesi impiegate pone le basi per dibattiti scientifici costruttivi e produttivi, consentendo al campo della ricerca di avanzare in modo più informato ed efficace.</p>
 </section>
 </section>
-<section id="introduzione-ai-grafici-aciclici-diretti-dags">
-<h2>Introduzione ai Grafici Aciclici Diretti (DAGs)<a class="headerlink" href="#introduzione-ai-grafici-aciclici-diretti-dags" title="Permalink to this heading">#</a></h2>
-<p>I DAGs vengono impiegati per analizzare l’effetto causale di una variabile su un’altra. Consideriamo l’effetto dell’istruzione sul reddito come esempio <span id="id2">[<a class="reference internal" href="../references/bibliography.html#id4" title="Julia M Rohrer. Thinking clearly about correlations and causation: graphical causal models for observational data. Advances in methods and practices in psychological science, 1(1):27–42, 2018.">Roh18</a>]</span>. Immaginiamo di dividere il livello di istruzione in due categorie: laurea o nessuna laurea entro i 30 anni. Successivamente, misuriamo il reddito a 40 anni. Ora, è importante sottolineare che non possiamo dedurre direttamente che il possesso di una laurea causa un aumento del reddito, poiché esistono numerose altre variabili che possono influenzare il reddito.</p>
+<section id="introduzione-ai-dag">
+<h2>Introduzione ai DAG<a class="headerlink" href="#introduzione-ai-dag" title="Permalink to this heading">#</a></h2>
+<p>I DAGs vengono impiegati per analizzare l’effetto causale di una variabile su un’altra. Consideriamo l’effetto dell’istruzione sul reddito come esempio <span id="id10">[<a class="reference internal" href="../references/bibliography.html#id4" title="Julia M Rohrer. Thinking clearly about correlations and causation: graphical causal models for observational data. Advances in methods and practices in psychological science, 1(1):27–42, 2018.">Roh18</a>]</span>. Immaginiamo di dividere il livello di istruzione in due categorie: laurea o nessuna laurea entro i 30 anni. Successivamente, misuriamo il reddito a 40 anni. Ora, è importante sottolineare che non possiamo dedurre direttamente che il possesso di una laurea causa un aumento del reddito, poiché esistono numerose altre variabili che possono influenzare il reddito.</p>
 <p>I DAGs ci aiutano a visualizzare questa complessa rete di relazioni causali in modo chiaro. In un DAG, le frecce rappresentano le relazioni causali tra le variabili, e l’assenza di cicli garantisce che le relazioni siano direzionali, ovvero vanno da una variabile all’altra senza creare loop causali.</p>
 <p>Nel nostro esempio, il livello di istruzione può influenzare il reddito, ma ci sono anche altri fattori da considerare, come l’intelligenza, ad esempio. Un DAG ci permetterà di rappresentare queste relazioni in modo preciso, mostrando come il livello di istruzione può avere un impatto indiretto sul reddito attraverso altre variabili.</p>
 <div class="cell docutils container">
@@ -1190,10 +1198,6 @@ Correlazione nel gruppo selezionato: -0.2557322309536501
 <li><p><strong>Il discendente (<em>Descendant</em>)</strong>: In questa configurazione, oltre alla catena causale <code class="docutils literal notranslate"><span class="pre">X</span></code> → <code class="docutils literal notranslate"><span class="pre">Z</span></code> → <code class="docutils literal notranslate"><span class="pre">Y</span></code>, <code class="docutils literal notranslate"><span class="pre">Z</span></code> causa un’altra variabile <code class="docutils literal notranslate"><span class="pre">A</span></code>. Questo aggiunge complessità nell’analisi delle relazioni tra <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Z</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code> e <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p></li>
 </ul>
 <p>In conclusione, l’analisi causale richiede un approccio metodico e critico, considerando attentamente le strutture causali, i confondenti, i mediatori, i collider e integrando diverse metodologie di ricerca per ottenere risultati affidabili e validi sulle relazioni causali tra le variabili.</p>
-</section>
-</section>
-<section id="ambiente-di-calcolo">
-<h2>Ambiente di Calcolo<a class="headerlink" href="#ambiente-di-calcolo" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1227,6 +1231,7 @@ Watermark: 2.4.3
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -1294,22 +1299,15 @@ Watermark: 2.4.3
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-alla-ricerca-causale-nei-disegni-osservazionali">Introduzione alla Ricerca Causale nei Disegni Osservazionali</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-disegni-di-ricerca-e-la-causalita">I Disegni di Ricerca e la Causalità</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disegni-osservazionali">Disegni Osservazionali</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disegni-sperimentali">Disegni Sperimentali</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-e-considerazioni">Confronto e Considerazioni</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-e-contesto-della-causalita">Definizione e Contesto della Causalità</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strategie-di-ricerca-nei-dati-osservazionali">Strategie di Ricerca nei Dati Osservazionali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-alla-ricerca-causale">Introduzione alla Ricerca Causale</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-disegni-di-ricerca-e-la-causalita">I Disegni di Ricerca e la Causalità</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelli-causali-grafici">Modelli Causali Grafici</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importanza-delle-assunzioni">Importanza delle Assunzioni</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-ai-grafici-aciclici-diretti-dags">Introduzione ai Grafici Aciclici Diretti (DAGs)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-ai-dag">Introduzione ai DAG</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caratteristiche-dei-dag">Caratteristiche dei DAG</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rappresentazione-dei-legami-non-causali">Rappresentazione dei Legami Non-Causali</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-percorsi">Tipi di Percorsi</a></li>
@@ -1368,7 +1366,6 @@ Watermark: 2.4.3
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dettagli-sui-confondenti">Dettagli sui Confondenti</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-di-calcolo">Ambiente di Calcolo</a></li>
 </ul>
   </nav></div>
 

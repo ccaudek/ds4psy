@@ -651,7 +651,7 @@ s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}},
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/27d12b0be98e438df48d9ac92a4f1b72d4bf4931e7d65e55a56970b940537abe.png" src="../_images/27d12b0be98e438df48d9ac92a4f1b72d4bf4931e7d65e55a56970b940537abe.png" />
+<img alt="../_images/16c609fe92e546fdadcba19a33faa54c8e9d812df2c0235f170941ac9f11a121.png" src="../_images/16c609fe92e546fdadcba19a33faa54c8e9d812df2c0235f170941ac9f11a121.png" />
 </div>
 </div>
 <p>Come sottolineato da <span id="id4">Loken and Gelman [<a class="reference internal" href="../references/bibliography.html#id51" title="Eric Loken and Andrew Gelman. Measurement error and the replication crisis. Science, 355(6325):584–585, 2017.">LG17</a>]</span>, l’utilizzo dell’approccio frequentista nella procedura di decisione statistica può portare a due tipi di errori significativi. Il primo errore, noto come “magnitude”, si manifesta nel fatto che i risultati pubblicati tendono a sovrastimare la vera grandezza dell’effetto. Nella simulazione effettuata, sebbene la vera grandezza dell’effetto fosse modesta (0.2), la media della grandezza dell’effetto per i risultati dichiarati “statisticamente significativi” era di circa 0.8, indicando una grandezza dell’effetto “ampia”.</p>
@@ -664,28 +664,25 @@ s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}},
 <p>Al contrario, l’adozione dell’approccio bayesiano potrebbe offrire risultati più precisi e affidabili nella valutazione dei dati di ricerca. Tale approccio considera la probabilità delle ipotesi alla luce dei dati osservati, evitando gli errori intrinseci dell’approccio frequentista e fornendo una base più solida per le decisioni sulla validità dei risultati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
-<span class=" -Color -Color-Red">----------</span>
-<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:06:13.194445+01:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Fri Jan 26 2024
 
-<span class=" -Color -Color-Blue">Python implementation: CPython</span>
-<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
-<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
+Python implementation: CPython
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
-<span class=" -Color -Color-Blue">OS          : Darwin</span>
-<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
-<span class=" -Color -Color-Blue">Machine     : x86_64</span>
-<span class=" -Color -Color-Blue">Processor   : i386</span>
-<span class=" -Color -Color-Blue">CPU cores   : 8</span>
-<span class=" -Color -Color-Blue">Architecture: 64bit</span>
+scipy     : 1.11.4
+seaborn   : 0.13.0
+numpy     : 1.26.2
+matplotlib: 3.8.2
+arviz     : 0.17.0
 
-
+Watermark: 2.4.3
 </pre></div>
 </div>
 </div>

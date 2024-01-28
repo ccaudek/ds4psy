@@ -222,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -241,6 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -250,7 +251,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -269,6 +269,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -517,7 +520,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-rappresentazione-dell-incertezza-inferenziale">La rappresentazione dell’incertezza inferenziale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#illusione-di-prevedibilita">Illusione di prevedibilità</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">Commenti e considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -579,7 +581,7 @@ Questo studio riguarda l’effetto dei videogiochi violenti sul comportamento ag
 <figure class="align-default" id="file-collection">
 <a class="reference internal image-reference" href="../_images/zhang_fig_1.png"><img alt="../_images/zhang_fig_1.png" src="../_images/zhang_fig_1.png" style="height: 600px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Incertezza inferenziale vs. variabilità dei risultati. (Sinistra) Medie stimate e una barra di errore che rappresenta un errore standard (SE) sopra e uno sotto la media, per due condizioni in un esperimento. L’errore standard è una misura dell’incertezza nella nostra inferenza della media. (Destra) Risultati individuali mostrati in aggiunta agli stessi errori standard sulla Sinistra. Con solo 100 partecipanti per condizione (Sopra), abbiamo stime meno sicure della media rispetto a quando abbiamo 800 partecipanti per condizione (Sotto). Tuttavia, più dati non riducono sistematicamente la variabilità nei risultati stessi. La figura è tratta da <span id="id9">Zhang <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id37" title="Sam Zhang, Patrick R Heck, Michelle N Meyer, Christopher F Chabris, Daniel G Goldstein, and Jake M Hofman. An illusion of predictability in scientific results: even experts confuse inferential uncertainty and outcome variability. Proceedings of the National Academy of Sciences, 120(33):e2302491120, 2023.">ZHM+23</a>]</span>.</span><a class="headerlink" href="#file-collection" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Incertezza inferenziale vs. variabilità dei risultati. (Sinistra) Medie stimate e una barra di errore che rappresenta un errore standard (SE) sopra e uno sotto la media, per due condizioni in un esperimento. L’errore standard è una misura dell’incertezza nella nostra inferenza della media. (Destra) Risultati individuali mostrati in aggiunta agli stessi errori standard sulla Sinistra. Con solo 100 partecipanti per condizione (Sopra), abbiamo stime meno sicure della media rispetto a quando abbiamo 800 partecipanti per condizione (Sotto). Tuttavia, più dati non riducono sistematicamente la variabilità nei risultati stessi. La figura è tratta da <span id="id9">Zhang <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id37" title="Sam Zhang, Patrick R Heck, Michelle N Meyer, Christopher F Chabris, Daniel G Goldstein, and Jake M Hofman. An illusion of predictability in scientific results: even experts confuse inferential uncertainty and outcome variability. Proceedings of the National Academy of Sciences, 120(33):e2302491120, 2023.">ZHM+23</a>]</span>.</span><a class="headerlink" href="#file-collection" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -784,9 +786,6 @@ Violent game      6.833342            0.592238        0.085482
 <h2>Commenti e considerazioni conclusive<a class="headerlink" href="#commenti-e-considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
 <p><span id="id15">Zhang <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id37" title="Sam Zhang, Patrick R Heck, Michelle N Meyer, Christopher F Chabris, Daniel G Goldstein, and Jake M Hofman. An illusion of predictability in scientific results: even experts confuse inferential uncertainty and outcome variability. Proceedings of the National Academy of Sciences, 120(33):e2302491120, 2023.">ZHM+23</a>]</span> concludono il loro articolo riflettendo sul modo in cui la ricerca scientifica viene condotta e i suoi risultati vengono comunicati. Essi evidenziano che, in molti campi scientifici, l’attenzione si è concentrata per lungo tempo sull’inferenza (ossia, sull’ottenimento di stime non distorte degli effetti sperimentali) piuttosto che sulla previsione (come, ad esempio, la proiezione dei possibili risultati futuri). Questa enfasi potrebbe derivare, in parte, dalla complessità intrinseca della previsione, specialmente quando confrontata con l’inferenza. Infatti, stimare un effetto medio su una popolazione, come avviene nell’inferenza statistica standard, è indubbiamente più semplice che prevedere i risultati individuali, tenendo conto di tutti i fattori che potrebbero influenzare un fenomeno specifico. Tuttavia, questa enfasi sull’inferenza può generare confusione nella comunicazione dei risultati dello studio, dando l’impressione che i risultati della ricerca possano prevedere gli esiti individuali, quando in realtà hanno soltanto stabilito un effetto medio. Di conseguenza, anche gli esperti possono finire con l’equiparare le rappresentazioni visive che esprimono l’incertezza inferenziale con quelle che trasmettono informazioni sulla previsione dei dati individuali.</p>
 <p>Per <span id="id16">Zhang <em>et al.</em> [<a class="reference internal" href="../references/bibliography.html#id37" title="Sam Zhang, Patrick R Heck, Michelle N Meyer, Christopher F Chabris, Daniel G Goldstein, and Jake M Hofman. An illusion of predictability in scientific results: even experts confuse inferential uncertainty and outcome variability. Proceedings of the National Academy of Sciences, 120(33):e2302491120, 2023.">ZHM+23</a>]</span>, la soluzione a questo problema sta nella comunicazione chiara e integrata sia dell’incertezza inferenziale che della variabilità dei risultati. Invece di favorire l’inferenza rispetto alla previsione (o viceversa), gli autori propongono un approccio olistico che consideri entrambi gli aspetti dell’indagine scientifica, presentandoli in modo parallelo e comprensibile. Ciò consentirebbe ai lettori di trarre inferenze più accurate ed appropriate dai dati presentati. Questa prospettiva integrata potrebbe rappresentare un passo importante verso una comprensione e una comunicazione della ricerca più trasparenti e precise, contribuendo a colmare il divario tra ciò che gli studi effettivamente dimostrano e ciò che viene percepito da chi li legge.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
@@ -881,7 +880,6 @@ scipy     : 1.11.3
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-rappresentazione-dell-incertezza-inferenziale">La rappresentazione dell’incertezza inferenziale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#illusione-di-prevedibilita">Illusione di prevedibilità</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">Commenti e considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

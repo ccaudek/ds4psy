@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Variabili casuali &#8212; ds4p</title>
+    <title>Proprietà delle variabili casuali &#8212; ds4p</title>
   
   
   
@@ -222,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Variabili casuali</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -241,6 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -250,7 +251,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -269,6 +269,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -503,7 +506,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Variabili casuali</h1>
+    <h1>Proprietà delle variabili casuali</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -514,17 +517,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-natura-tipologie-e-distribuzione">Variabili Casuali: Natura, Tipologie e Distribuzione</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natura-delle-variabili-casuali">Natura delle Variabili Casuali</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classificazione-delle-variabili-casuali">Classificazione delle Variabili Casuali</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabile-casuale-come-entita-latente">Variabile Casuale come Entità Latente</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notazione">Notazione</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-di-una-variabile-casuale">Distribuzione di una Variabile Casuale</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#che-cos-e-una-distribuzione">Che Cos’è una Distribuzione?</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#natura-delle-variabili-casuali">Natura delle Variabili Casuali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valore-atteso">Valore atteso</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">Interpretazione</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proprieta-del-valore-atteso">Proprietà del valore atteso</a></li>
@@ -545,7 +538,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#momenti-di-variabili-casuali">Momenti di variabili casuali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcuni-esempi-in-python">Alcuni esempi in Python</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -558,13 +550,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <p><a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/ccaudek/ds4psy_2023/blob/main/125_expval_var.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="variabili-casuali">
-<span id="random-variables-notebook"></span><h1>Variabili casuali<a class="headerlink" href="#variabili-casuali" title="Permalink to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="proprieta-delle-variabili-casuali">
+<span id="random-variables-notebook"></span><h1>Proprietà delle variabili casuali<a class="headerlink" href="#proprieta-delle-variabili-casuali" title="Permalink to this heading">#</a></h1>
 <div class="admonition-obiettivi-di-apprendimento admonition">
 <p class="admonition-title">Obiettivi di apprendimento</p>
-<p>Al termine di questo capitolo, sarai in grado di:</p>
+<p>Al termine di questo capitolo, sarete in grado di:</p>
 <ul class="simple">
-<li><p>Comprendere i fondamenti delle variabili casuali, sia discrete che continue.</p></li>
 <li><p>Comprendere in modo approfondito i concetti di valore atteso e varianza per variabili casuali discrete.</p></li>
 <li><p>Familiarizzare con le principali proprietà legate a valore atteso e varianza.</p></li>
 <li><p>Estendere la tua comprensione di valore atteso e varianza a variabili casuali continue.</p></li>
@@ -572,7 +563,7 @@ document.write(`
 <li><p>Interpretare in maniera critica i risultati calcolati.</p></li>
 </ul>
 </div>
-<p>In questo capitolo, introdurremo le variabili casuali, un concetto che semplifica la notazione e amplia la nostra capacità di quantificare l’incertezza e riassumere i risultati degli esperimenti.</p>
+<p>In questo capitolo descriveremo le proprietà di base delle variabili casuali.</p>
 <section id="preparazione-del-notebook">
 <h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -581,6 +572,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="k">as</span> <span class="n">stats</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -591,47 +583,17 @@ document.write(`
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="variabili-casuali-natura-tipologie-e-distribuzione">
-<h2>Variabili Casuali: Natura, Tipologie e Distribuzione<a class="headerlink" href="#variabili-casuali-natura-tipologie-e-distribuzione" title="Permalink to this heading">#</a></h2>
 <section id="natura-delle-variabili-casuali">
-<h3>Natura delle Variabili Casuali<a class="headerlink" href="#natura-delle-variabili-casuali" title="Permalink to this heading">#</a></h3>
-<p>Una variabile casuale è un costrutto matematico fondamentale nella teoria della probabilità e nelle applicazioni statistiche. Formalmente, è definita come una funzione che mappa uno spazio campione <span class="math notranslate nohighlight">\( S \)</span> a un sottoinsieme dei numeri reali <span class="math notranslate nohighlight">\( \mathbb{R} \)</span>. In termini più intuitivi, una variabile casuale quantifica gli esiti di un fenomeno aleatorio, assegnando un valore numerico a ciascuno di essi.</p>
-<div class="math notranslate nohighlight">
-\[
-\text{Variabile Casuale (v.c.)} : S \rightarrow \mathbb{R}
-\]</div>
-</section>
-<section id="classificazione-delle-variabili-casuali">
-<h3>Classificazione delle Variabili Casuali<a class="headerlink" href="#classificazione-delle-variabili-casuali" title="Permalink to this heading">#</a></h3>
-<p>Le variabili casuali possono essere categorizzate in due classi principali:</p>
-<ol class="arabic simple">
-<li><p><strong>Variabili Casuali Discrete</strong>: Queste variabili assumono un insieme finito o numerabile di valori distinti. Ad esempio, la frequenza con cui un individuo controlla il proprio smartphone in un’ora è una variabile casuale discreta.</p></li>
-<li><p><strong>Variabili Casuali Continue</strong>: Queste variabili possono assumere un’infinità di valori all’interno di un determinato intervallo continuo. Un esempio potrebbe essere il tempo di reazione di un individuo a un particolare stimolo visuale.</p></li>
-</ol>
-</section>
-<section id="variabile-casuale-come-entita-latente">
-<h3>Variabile Casuale come Entità Latente<a class="headerlink" href="#variabile-casuale-come-entita-latente" title="Permalink to this heading">#</a></h3>
-<p>Una variabile casuale può anche essere concepita come una “variabile latente”: un parametro intrinseco ma non direttamente osservabile. Questa variabile latente rappresenta l’intero spettro di esiti potenzialmente osservabili in un esperimento, ma rimane in uno stato di “latenza” fino a quando l’esperimento non viene effettuato. Al momento della realizzazione dell’esperimento, la variabile latente si “attualizza” in un esito specifico, che viene quindi registrato come dato empirico. Ad esempio, in un test psicometrico come un test di IQ, l’intelligenza è la variabile latente che si manifesta attraverso i punteggi ottenuti dai partecipanti al test.</p>
-</section>
-<section id="notazione">
-<h3>Notazione<a class="headerlink" href="#notazione" title="Permalink to this heading">#</a></h3>
-<p>È convenzionale denotare le variabili casuali con lettere maiuscole (ad esempio, <span class="math notranslate nohighlight">\(X, Y, Z\)</span>) e i loro valori realizzati (esiti osservati) con lettere minuscole (ad esempio, <span class="math notranslate nohighlight">\(x, y, z\)</span>).</p>
-</section>
-<section id="distribuzione-di-una-variabile-casuale">
-<h3>Distribuzione di una Variabile Casuale<a class="headerlink" href="#distribuzione-di-una-variabile-casuale" title="Permalink to this heading">#</a></h3>
-<p>Una volta introdotta la variabile casuale, si pone la questione di come descrivere l’insieme di tutti i suoi esiti possibili e le relative probabilità. Questo ci introduce al concetto di “distribuzione” di una variabile casuale.</p>
-<section id="che-cos-e-una-distribuzione">
-<h4>Che Cos’è una Distribuzione?<a class="headerlink" href="#che-cos-e-una-distribuzione" title="Permalink to this heading">#</a></h4>
-<p>Una distribuzione di una variabile casuale fornisce una descrizione dettagliata degli esiti possibili e delle loro probabilità associate. Per esempio, nel lancio di un dado standard a sei facce, ogni faccia ha una probabilità di <span class="math notranslate nohighlight">\( \frac{1}{6} \)</span> di apparire. In questo caso, la distribuzione della variabile casuale sarà un elenco che collega ogni esito numerico (da 1 a 6) alla sua probabilità di occorrenza (<span class="math notranslate nohighlight">\( \frac{1}{6} \)</span>).</p>
-<p>Questo quadro distributivo è cruciale per comprendere il comportamento delle variabili casuali, consentendo analisi inferenziali e previsionali più accurate.</p>
-<p>In sintesi, la variabile casuale agisce come un modello astratto che esprime la totalità degli esiti possibili in un fenomeno aleatorio. Solo quando l’esperimento viene condotto, la variabile casuale esce dal suo stato latente per manifestarsi come un esito osservabile e specifico, che può quindi essere analizzato statisticamente.</p>
-</section>
-</section>
+<h2>Natura delle Variabili Casuali<a class="headerlink" href="#natura-delle-variabili-casuali" title="Permalink to this heading">#</a></h2>
+<p>Una variabile casuale rappresenta un elemento centrale nella teoria della probabilità e nelle sue applicazioni statistiche. Dal punto di vista formale, una variabile casuale è definita come una funzione che associa elementi di uno spazio campionario <span class="math notranslate nohighlight">\( S \)</span> a valori in un sottoinsieme dei numeri reali <span class="math notranslate nohighlight">\( \mathbb{R} \)</span>. Questa definizione consente di quantificare numericamente gli esiti di un fenomeno aleatorio, attribuendo un valore specifico ad ogni possibile risultato.</p>
+<p>Le variabili casuali possono essere classificate in due categorie principali: le variabili casuali discrete e quelle continue. Le variabili casuali discrete sono caratterizzate dal fatto di assumere valori in un insieme finito o al più numerabile, mentre le variabili casuali continue si distinguono per la loro capacità di assumere un’infinità di valori all’interno di un intervallo continuo.</p>
+<p>Con il concetto di variabile casuale ben definito, emergono questioni relative alla descrizione dell’insieme completo dei possibili esiti e delle probabilità associate a ciascun esito. Queste considerazioni portano alla nozione di “distribuzione” di una variabile casuale. Per le variabili casuali discrete, la distribuzione è una funzione che elenca tutti i possibili valori che la variabile può assumere, insieme alle probabilità corrispondenti a ciascun valore. In questo modo, la distribuzione di una variabile casuale fornisce un quadro completo delle sue caratteristiche probabilistiche, consentendo analisi e inferenze statistiche.</p>
 </section>
 <section id="valore-atteso">
 <h2>Valore atteso<a class="headerlink" href="#valore-atteso" title="Permalink to this heading">#</a></h2>
@@ -769,7 +731,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.001
 </pre></div>
 </div>
 </div>
@@ -1349,7 +1311,7 @@ Mo(Y) = \text{argmax}_y p(y).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.3239027767697324
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.3590999399683525
 </pre></div>
 </div>
 </div>
@@ -1517,7 +1479,7 @@ Z = \frac{Y - \mathbb{E}(Y)}{\sigma_Y}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7d7d29db053b5cdacd4f85b2e05a0405d7692ada19613e6b99ffba3b9b09eba4.png" src="../_images/7d7d29db053b5cdacd4f85b2e05a0405d7692ada19613e6b99ffba3b9b09eba4.png" />
+<img alt="../_images/3bed840f9c47e257c4aaa97dea56048f5c3aef9ee0f1b4f70c92bd054d6b0c2e.png" src="../_images/3bed840f9c47e257c4aaa97dea56048f5c3aef9ee0f1b4f70c92bd054d6b0c2e.png" />
 </div>
 </div>
 <p>Calcolo il valore atteso di <span class="math notranslate nohighlight">\(X\)</span> implementando la formula del valore atteso, utilizzando i vettori <code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">px</span></code>.</p>
@@ -1605,9 +1567,6 @@ Z = \frac{Y - \mathbb{E}(Y)}{\sigma_Y}.
 <section id="commenti-e-considerazioni-finali">
 <h2>Commenti e considerazioni finali<a class="headerlink" href="#commenti-e-considerazioni-finali" title="Permalink to this heading">#</a></h2>
 <p>L’inferenza bayesiana mira a descrivere la distribuzione a posteriori di variabili casuali che rappresentano i parametri di un modello statistico. Nel capitolo precedente, abbiamo esaminato le caratteristiche principali delle variabili casuali, concentrandoci sul caso discreto. In questo capitolo, abbiamo approfondito le proprietà di una singola variabile casuale. Nel prossimo capitolo, invece, esploreremo il problema di descrivere il verificarsi congiunto di due o più variabili casuali.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
@@ -1616,16 +1575,17 @@ Z = \frac{Y - \mathbb{E}(Y)}{\sigma_Y}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Thu Nov 09 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Jan 28 2024
 
 Python implementation: CPython
-Python version       : 3.11.6
-IPython version      : 8.16.1
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-scipy     : 1.11.3
-numpy     : 1.25.2
-matplotlib: 3.8.0
-arviz     : 0.16.1
+numpy     : 1.26.2
+scipy     : 1.11.4
+arviz     : 0.17.0
+matplotlib: 3.8.2
+seaborn   : 0.13.0
 
 Watermark: 2.4.3
 </pre></div>
@@ -1708,17 +1668,7 @@ Watermark: 2.4.3
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-natura-tipologie-e-distribuzione">Variabili Casuali: Natura, Tipologie e Distribuzione</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natura-delle-variabili-casuali">Natura delle Variabili Casuali</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classificazione-delle-variabili-casuali">Classificazione delle Variabili Casuali</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabile-casuale-come-entita-latente">Variabile Casuale come Entità Latente</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notazione">Notazione</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-di-una-variabile-casuale">Distribuzione di una Variabile Casuale</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#che-cos-e-una-distribuzione">Che Cos’è una Distribuzione?</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#natura-delle-variabili-casuali">Natura delle Variabili Casuali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valore-atteso">Valore atteso</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">Interpretazione</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proprieta-del-valore-atteso">Proprietà del valore atteso</a></li>
@@ -1739,7 +1689,6 @@ Watermark: 2.4.3
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#momenti-di-variabili-casuali">Momenti di variabili casuali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcuni-esempi-in-python">Alcuni esempi in Python</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

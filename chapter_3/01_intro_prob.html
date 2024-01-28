@@ -241,6 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -250,7 +251,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -269,6 +269,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -530,21 +533,30 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concetti-di-base">Concetti di base</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esperimento-casuale-ed-eventi">Esperimento casuale ed eventi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali">Variabili casuali</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assiomi-della-probabilita">Assiomi della probabilità</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-multiple">Variabili casuali multiple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali">Variabili casuali</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notazione">Notazione</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-multiple">Variabili casuali multiple</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-di-massa-di-probabilita">Funzione di massa di probabilità</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-di-ripartizione">Funzione di ripartizione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-di-massa-di-probabilita-e-distribuzione-di-probabilita">Funzione di Massa di Probabilità e Distribuzione di Probabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-discrete">Variabili Casuali Discrete</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-continue">Variabili Casuali Continue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-supporto-della-variabile-casuale">Il Supporto della Variabile Casuale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assegnazione-di-probabilita-nelle-variabili-casuali">Assegnazione di Probabilità nelle Variabili Casuali</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">Un Esempio Pratico</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-di-ripartizione-per-variabili-casuali-discrete">Funzione di Ripartizione per Variabili Casuali Discrete</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trovare-la-probabilita-con-una-simulazione">Trovare la probabilità con una simulazione</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-problema-del-compleanno">Il problema del compleanno</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-legge-dei-grandi-numeri">La legge dei grandi numeri</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-legge-dei-grandi-numeri">La Legge dei Grandi Numeri</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esercizio">Esercizio</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -559,6 +571,8 @@ document.write(`
   <p><a target="_blank" rel="noopener noreferrer" href="https://colab.research.google.com/github/ccaudek/ds4psy_2023/blob/main/110_intro_prob.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="introduzione-al-calcolo-delle-probabilita">
 <span id="intro-prob-notebook"></span><h1>Introduzione al calcolo delle probabilità<a class="headerlink" href="#introduzione-al-calcolo-delle-probabilita" title="Permalink to this heading">#</a></h1>
+<p>Una definizione di inferenza bayesiana è l’applicazione della teoria delle probabilità ai problemi di inferenza statistica. Pertanto, è fondamentale comprendere la teoria delle probabilità per apprendere l’inferenza bayesiana.</p>
+<p>L’inferenza bayesiana è un approccio statistico che si basa sul teorema di Bayes per aggiornare le credenze o le probabilità su un’ipotesi data a seguito dell’osservazione di dati empirici. Questo processo richiede una solida comprensione della teoria delle probabilità, in quanto le probabilità sono fondamentali per quantificare le incertezze e le relazioni tra variabili nel contesto dell’inferenza bayesiana.</p>
 <p>In questo capitolo, esamineremo diverse concezioni della probabilità, tra cui la visione classica, frequentista e bayesiana. Approfondiremo anche argomenti come le variabili casuali, le funzioni di massa di probabilità e le funzioni di ripartizione. Inoltre, introdurremo la simulazione con Python per comprendere la legge dei grandi numeri, un concetto fondamentale nell’ambito della probabilità.</p>
 <p>Prima di procedere, è indispensabile leggere l’appendice dedicata al <a class="reference internal" href="../chapter_7/a14_combinatorics.html#combinatorics-notebook"><span class="std std-ref">Calcolo combinatorio</span></a>.</p>
 <section id="preparazione-del-notebook">
@@ -573,6 +587,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 </pre></div>
 </div>
 </div>
@@ -645,37 +660,67 @@ document.write(`
 <p>Esaminiamo qui di seguito alcuni concetti di base della teoria delle probabilità.</p>
 <section id="esperimento-casuale-ed-eventi">
 <h3>Esperimento casuale ed eventi<a class="headerlink" href="#esperimento-casuale-ed-eventi" title="Permalink to this heading">#</a></h3>
-<p>Nella teoria delle probabilità, un esperimento casuale è un processo o una situazione in cui il risultato non può essere predetto con certezza prima dell’esecuzione dell’esperimento. Al fine di analizzare gli esperimenti casuali, sono fondamentali alcune nozioni chiave:</p>
+<p>Nella teoria delle probabilità, un <em>esperimento casuale</em> è un processo o una situazione in cui il risultato non può essere previsto con certezza prima dell’esecuzione stessa dell’esperimento. Per poter analizzare in modo appropriato gli esperimenti casuali, sono fondamentali alcune nozioni chiave.</p>
 <ol class="arabic simple">
-<li><p><em>Spazio campionario</em>: Lo spazio campionario è l’insieme di tutti i possibili risultati che possono verificarsi durante l’esperimento casuale. È comunemente indicato con il simbolo <span class="math notranslate nohighlight">\(\Omega\)</span>.</p></li>
-<li><p><em>Evento elementare</em>: Un evento elementare rappresenta un singolo risultato all’interno dello spazio campionario. Gli eventi elementari sono indivisibili e costituiscono i mattoni di base per gli altri eventi. Sono generalmente indicati con simboli come <span class="math notranslate nohighlight">\(E_1\)</span>, <span class="math notranslate nohighlight">\(E_2\)</span>, ecc.</p></li>
-<li><p><em>Evento</em>: Un evento è un sottoinsieme dello spazio campionario e rappresenta una collezione di eventi elementari. Può consistere in uno o più eventi elementari ed è spesso indicato con simboli come <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, ecc.</p></li>
+<li><p>Il concetto di <em>spazio campionario</em> si riferisce all’insieme completo di tutti i potenziali risultati che potrebbero emergere da un esperimento casuale. Questo insieme è spesso rappresentato con il simbolo <span class="math notranslate nohighlight">\(\Omega\)</span>. Ad esempio, nel contesto di un esperimento casuale come il lancio di un dado, il nostro spazio campionario <span class="math notranslate nohighlight">\(\Omega\)</span> sarebbe costituito da un insieme di risultati possibili: <span class="math notranslate nohighlight">\(\Omega = \{\omega_1, \omega_2, \omega_3, \omega_4, \omega_5, \omega_6\}\)</span>. Qui, ogni <span class="math notranslate nohighlight">\(\omega_i\)</span>, con <span class="math notranslate nohighlight">\(i = 1, \dots, 6\)</span>, rappresenta uno dei risultati osservabili possibili durante l’esperimento.</p></li>
+<li><p>Un <em>evento elementare</em> è la rappresentazione di un singolo risultato all’interno dello spazio campionario, <span class="math notranslate nohighlight">\(\omega \in \Omega\)</span>. Questi eventi elementari costituiscono gli elementi fondamentali da cui sono composti gli altri eventi. Solitamente vengono identificati mediante simboli come <span class="math notranslate nohighlight">\(\omega_1\)</span>, <span class="math notranslate nohighlight">\(\omega_2\)</span>, e così via.</p></li>
+<li><p>Un <em>evento</em> può essere descritto come un insieme di risultati all’interno dello spazio campionario e rappresenta una collezione di eventi elementari. Questo insieme può comprendere uno o più eventi elementari ed è solitamente indicato mediante simboli come <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, e così via. Per esempio, <span class="math notranslate nohighlight">\(E = \{\omega \in \Omega : \omega \text{ è dispari}\}\)</span>.</p></li>
 </ol>
+<div class="admonition-il-punto-di-vista-bayesiano admonition">
+<p class="admonition-title">Il punto di vista bayesiano</p>
+<p>Nella statistica bayesiana, consideriamo un risultato di un esperimento casuale come una rappresentazione dello stato sottostante del mondo. Tuttavia, esiste un’incertezza intrinseca: non disponiamo di conoscenze complete su quale risultato specifico corrisponda al vero stato del mondo.</p>
+<p>Le nostre osservazioni forniscono informazioni parziali sullo stato del mondo o sul risultato. Queste informazioni ci consentono di escludere i risultati che non sono coerenti con le nostre osservazioni. Tuttavia, anche dopo questo processo di esclusione, rimangono molteplici risultati potenziali che potrebbero ancora essere plausibili.</p>
+<p>È qui che entra in gioco la teoria delle probabilità. L’inferenza bayesiana utilizza la teoria delle probabilità per quantificare e gestire l’incertezza residua. Ci consente di assegnare probabilità ai vari risultati plausibili, riflettendo il nostro livello di convinzione o incertezza su ciascuno di essi. In questo modo, possiamo prendere decisioni informate, fare previsioni o trarre conclusioni basate su una comprensione probabilistica del mondo.</p>
+</div>
 <p>Per esprimere il verificarsi di eventi congiunti (eventi “compatibili”), utilizziamo il connettivo logico “e” (<span class="math notranslate nohighlight">\(\land\)</span>) e la probabilità della loro intersezione è indicata come <span class="math notranslate nohighlight">\(P(A \cap B)\)</span> o <span class="math notranslate nohighlight">\(P(A, B)\)</span>. Mentre per gli eventi disgiunti (eventi “incompatibili”), in cui i due eventi non possono verificarsi contemporaneamente, usiamo il connettivo logico “o” (<span class="math notranslate nohighlight">\(\lor\)</span>) e la probabilità della loro unione è <span class="math notranslate nohighlight">\(P(A \cup B) = 0\)</span>.</p>
 <p>I valori di probabilità <span class="math notranslate nohighlight">\(P(A) = 0\)</span> rappresentano eventi impossibili, mentre <span class="math notranslate nohighlight">\(P(A) = 1\)</span> rappresentano eventi certi.</p>
 <p>Per denotare la probabilità che un evento <span class="math notranslate nohighlight">\(A\)</span> non si verifichi, possiamo usare la notazione <span class="math notranslate nohighlight">\(P(\lnot A)\)</span> o <span class="math notranslate nohighlight">\(P(\bar{A})\)</span>, dove <span class="math notranslate nohighlight">\(P(\bar{A}) = 1 - P(A)\)</span>.</p>
-<p>Ad esempio, consideriamo l’esperimento casuale del lancio di un dado. Gli eventi elementari sarebbero rappresentati dai singoli numeri {1}, {2}, {3}, ecc. Gli eventi, invece, possono essere insiemi di eventi elementari. Ad esempio, l’evento “ottenere un numero dispari” sarebbe rappresentato dall’insieme {1, 3, 5}, mentre l’evento “ottenere un numero maggiore di 4” sarebbe rappresentato dall’insieme {5, 6}. Se ci concentriamo sull’evento “dispari”, il dado potrebbe cadere sul 3, 1 o 5, e tutti questi risultati verificherebbero l’evento “dispari”.</p>
-</section>
-<section id="variabili-casuali">
-<h3>Variabili casuali<a class="headerlink" href="#variabili-casuali" title="Permalink to this heading">#</a></h3>
-<p>Ogni volta che lanciamo un dado, otteniamo un risultato specifico nel mondo reale, ma è anche possibile immaginare quali risultati alternativi sarebbero potuti accadere. Questo tipo di ragionamento, chiamato controfattuale, è fondamentale per comprendere la teoria delle probabilità e l’inferenza statistica.</p>
-<p>Introduciamo ora il concetto di <em>variabile casuale</em>. Consideriamo la variabile <span class="math notranslate nohighlight">\(Y\)</span>, che rappresenta il risultato di uno specifico lancio di un dado in un dato momento, e notiamo che i suoi valori non possono essere predetti con certezza in anticipo. Per semplificare i calcoli e l’analisi, nella teoria della probabilità, le variabili casuali vengono generalmente rappresentate da valori numerici.</p>
-<p>Un esempio è rappresentato da <span class="math notranslate nohighlight">\(Y = 1\)</span>, che indica l’evento in cui il lancio del dado produce il risultato “dispari”. La probabilità di un evento, indicata con <span class="math notranslate nohighlight">\(P(Y)\)</span>, rappresenta la credibilità o la proporzione di volte in cui ci si aspetta che l’evento <span class="math notranslate nohighlight">\(Y\)</span> si verifichi, considerando molte ripetizioni indipendenti dell’esperimento casuale a lungo termine. Ad esempio, per un dado equilibrato, la probabilità dell’evento “il risultato del lancio del dado è dispari” è scritta come <span class="math notranslate nohighlight">\(P(Y = 1) = 0.5\)</span>. Questo significa che ci si aspetta che il risultato “dispari” si verifichi con una probabilità del 50% nei lanci ripetuti di un dado equilibrato.</p>
-<p>Un altro aspetto importante riguarda gli eventi <em>mutuamente esclusivi</em> ed <em>esaustivi</em>. Se lanciamo un dado equilibrato, allora la probabilità di ottenere “dispari” (<span class="math notranslate nohighlight">\(Y=1\)</span>) deve essere uguale alla probabilità di ottenere “pari” (<span class="math notranslate nohighlight">\(Y=0\)</span>), entrambe pari a <span class="math notranslate nohighlight">\(0.5\)</span>. I due eventi, <span class="math notranslate nohighlight">\(Y=1\)</span> e <span class="math notranslate nohighlight">\(Y=0\)</span>, sono mutuamente esclusivi, il che significa che non possono verificarsi contemporaneamente: <span class="math notranslate nohighlight">\(P(Y=1 \text{ e } Y=0) = 0\)</span>. Inoltre, i due eventi sono esaustivi, il che significa che almeno uno di essi deve verificarsi e non ci sono altre possibilità. In notazione probabilistica, ciò si esprime come <span class="math notranslate nohighlight">\(P(Y=1 \text{ o } Y=0) = 1\)</span>.</p>
-<p>Le variabili casuali possono essere di due tipi: discrete o continue. Una variabile casuale discreta può assumere solo un numero finito o numerabile di valori distinti, come ad esempio i risultati di un test psicometrico con punteggi specifici su una scala Likert. In questo caso, i valori possibili della variabile casuale sono rappresentati da <span class="math notranslate nohighlight">\(x_1, \dots, x_n\)</span>, corrispondenti agli eventi <span class="math notranslate nohighlight">\(E_1, \dots, E_n\)</span>, che si verificano con le rispettive probabilità <span class="math notranslate nohighlight">\(p_1, \dots, p_n\)</span>. D’altra parte, una variabile casuale continua può assumere un numero infinito di valori all’interno di un intervallo specifico. Un esempio di variabile casuale continua è la distanza tra due punti, poiché può variare in modo continuo tra un valore minimo e massimo all’interno dell’intervallo considerato.</p>
+<p>Per esemplificare, prendiamo in considerazione l’esperimento casuale del lancio di un dado. I singoli risultati elementari, rappresentati come <span class="math notranslate nohighlight">\(\omega\)</span>, sarebbero i singoli numeri, come {1}, {2}, {3}, e così via. D’altro canto, gli eventi possono essere formati da insiemi di questi risultati elementari. Per esempio, l’evento A, che rappresenta “ottenere un numero dispari,” sarebbe espresso come l’insieme A = {1, 3, 5}, mentre l’evento B, che indica “ottenere un numero maggiore di 4,” sarebbe rappresentato come l’insieme B = {5, 6}. Se focalizziamo la nostra attenzione sull’evento “dispari,” il dado potrebbe mostrare come risultato il 3, l’1 o il 5, e ciascuno di questi risultati verificherebbe l’evento “dispari.”</p>
+<p>Si può affermare che <span class="math notranslate nohighlight">\(E_1, E_2, \ldots\)</span> costituisce una partizione di <span class="math notranslate nohighlight">\(E\)</span> quando:</p>
+<ul class="simple">
+<li><p>Gli insiemi <span class="math notranslate nohighlight">\(E_i\)</span> sono disgiunti, ossia <span class="math notranslate nohighlight">\(E_i \cap E_j = \emptyset\)</span> per ogni <span class="math notranslate nohighlight">\(i\)</span> diverso da <span class="math notranslate nohighlight">\(j\)</span>,</p></li>
+<li><p>La loro unione è l’insieme completo <span class="math notranslate nohighlight">\(E\)</span>, ovvero <span class="math notranslate nohighlight">\(E_1 \cup E_2 \cup \ldots = E\)</span>.</p></li>
+</ul>
 </section>
 <section id="assiomi-della-probabilita">
 <h3>Assiomi della probabilità<a class="headerlink" href="#assiomi-della-probabilita" title="Permalink to this heading">#</a></h3>
 <p>Ci sono tre assiomi fondamentali della probabilità, dai quali possiamo derivare l’intera teoria delle probabilità.</p>
+<div class="note admonition">
+<p class="admonition-title">Assiomi</p>
 <ol class="arabic simple">
-<li><p>Il primo assioma afferma che la probabilità di qualsiasi evento A è non negativa. In notazione matematica, possiamo esprimerlo come: <span class="math notranslate nohighlight">\(P(A) \geq 0\)</span>, dove P indica la “probabilità di” e A rappresenta l’evento.</p></li>
-<li><p>Il secondo assioma stabilisce che la probabilità dell’intero spazio degli eventi è pari a 1. In altre parole, la somma delle probabilità di tutti gli eventi possibili è uguale a 1: <span class="math notranslate nohighlight">\(P(\text{spazio degli eventi}) = 1\)</span>.</p></li>
-<li><p>Il terzo assioma riguarda la probabilità di eventi mutuamente esclusivi. Se gli eventi <span class="math notranslate nohighlight">\(A_1, A_2, \ldots, A_n\)</span> sono mutuamente esclusivi (ovvero, non possono verificarsi contemporaneamente), allora la probabilità che almeno uno di essi si verifichi è la somma delle probabilità di ciascun evento:
+<li><p>La probabilità di qualsiasi evento A è non negativa. In notazione matematica, possiamo esprimerlo come: <span class="math notranslate nohighlight">\(P(A) \geq 0\)</span>, dove P indica la “probabilità di” e A rappresenta l’evento.</p></li>
+<li><p>La probabilità dell’intero spazio campionario è pari a 1. In altre parole, la somma delle probabilità di tutti gli eventi elementari è uguale a 1: <span class="math notranslate nohighlight">\(P(\text{spazio campionario}) = 1\)</span>.</p></li>
+<li><p>Se gli eventi <span class="math notranslate nohighlight">\(A_1, A_2, \ldots, A_n\)</span> sono mutuamente esclusivi (ovvero, non possono verificarsi contemporaneamente), allora la probabilità che almeno uno di essi si verifichi è la somma delle probabilità di ciascun evento:
 <span class="math notranslate nohighlight">\(P(A_1 \cup A_2 \cup \ldots \cup A_n) = P(A_1) + P(A_2) + \ldots + P(A_n)\)</span>.</p></li>
 </ol>
+</div>
+</section>
+<section id="variabili-casuali">
+<h3>Variabili casuali<a class="headerlink" href="#variabili-casuali" title="Permalink to this heading">#</a></h3>
+<p>Le variabili casuali vengono utilizzate come elementi fondamentali in due principali contesti nella statistica bayesiana: la modellazione delle “conoscenze” (osservazioni) e delle “incognite” (variabili latenti/parametri/predizioni).</p>
+<p>Nel contesto della modellazione delle “conoscenze”, le variabili casuali sono impiegate per rappresentare le osservazioni o i dati noti. Questo significa che si utilizzano per descrivere quantitativamente le informazioni a nostra disposizione, come i dati sperimentali o le osservazioni effettive.</p>
+<p>D’altra parte, nel contesto delle “incognite”, le variabili casuali vengono utilizzate per rappresentare le incertezze o i parametri non osservati di un modello statistico. Queste variabili latenti possono rappresentare quantità sconosciute, come i valori dei parametri di un modello probabilistico o le previsioni future del modello.</p>
+<div class="note admonition">
+<p class="admonition-title">Definizione</p>
+<p>Una variabile casuale reale può essere definita come una funzione che associa elementi di uno spazio campionario <span class="math notranslate nohighlight">\(\Omega\)</span> a valori reali, formalmente espressa come <span class="math notranslate nohighlight">\(X : \Omega \rightarrow \mathbb{R}\)</span>.</p>
+</div>
+<p>Per comprendere meglio questa definizione, possiamo considerare un esempio pratico come il lancio di un dado. In ogni lancio, otteniamo un esito concreto nel mondo fisico. Tuttavia, la teoria della probabilità ci permette di considerare tutti i possibili esiti che avrebbero potuto verificarsi. Per facilitare l’analisi e i calcoli in questa teoria, si utilizzano le variabili casuali, che rappresentano gli eventi mediante valori numerici.</p>
+<p>Ad esempio, se denotiamo con <span class="math notranslate nohighlight">\(Y\)</span> la variabile casuale relativa all’esito di un lancio di dado, ogni valore di <span class="math notranslate nohighlight">\(Y\)</span> corrisponderà a un possibile esito. Si può specificare che <span class="math notranslate nohighlight">\(Y = 1\)</span> rappresenti l’evento in cui il dado mostra un numero dispari sulla faccia superiore. In questo modo, trasformiamo l’evento fisico del lancio del dado in una rappresentazione numerica, semplificando l’analisi statistica e probabilistica dell’evento.</p>
+<p>Le variabili casuali possono essere di due tipi: discrete o continue. Una variabile casuale discreta può assumere solo un numero finito o numerabile di valori distinti, come ad esempio i risultati di un test psicometrico con punteggi specifici su una scala Likert. In questo caso, i valori possibili della variabile casuale sono rappresentati da <span class="math notranslate nohighlight">\(x_1, \dots, x_n\)</span>, corrispondenti agli eventi <span class="math notranslate nohighlight">\(E_1, \dots, E_n\)</span>, che si verificano con le rispettive probabilità <span class="math notranslate nohighlight">\(p_1, \dots, p_n\)</span>. D’altra parte, una variabile casuale continua può assumere un numero infinito di valori all’interno di un intervallo specifico. Un esempio di variabile casuale continua è la distanza tra due punti, poiché può variare in modo continuo tra un valore minimo e massimo all’interno dell’intervallo considerato.</p>
+<section id="notazione">
+<h4>Notazione<a class="headerlink" href="#notazione" title="Permalink to this heading">#</a></h4>
+<p>Nella teoria della probabilità, è comune rappresentare le variabili casuali utilizzando lettere maiuscole. Ad esempio, la lettera ‘X’ può essere usata per indicare una variabile casuale. Allo stesso modo, la corrispondente lettera minuscola, in questo caso ‘x’, viene impiegata per denotare una specifica realizzazione di quella variabile casuale. Quest’ultima, definita come “realizzazione”, rappresenta un singolo esito o valore che la variabile casuale può assumere.</p>
+<p>È importante notare che questa convenzione di utilizzo delle lettere maiuscole e minuscole non è universalmente adottata in tutti i campi. In particolare, nella letteratura della statistica bayesiana, si tende a non seguire sempre questa norma.</p>
+<p>Per approfondire ulteriormente, si introducono altre convenzioni utili:</p>
+<ul class="simple">
+<li><p>‘X’ rappresenta una variabile casuale non osservata, che può riferirsi, ad esempio, a un parametro sconosciuto o a una variabile latente nel modello statistico.</p></li>
+<li><p>‘Y’, invece, indica una variabile casuale osservata, che si riferisce a dati effettivamente misurati o raccolti durante un esperimento o uno studio.</p></li>
+</ul>
+<p>In questo contesto, ‘Y’ non è solo una variabile casuale, ma rappresenta anche il “meccanismo di osservazione”. La realizzazione di ‘Y’, indicata con ‘y’, è l’osservazione effettiva ottenuta.</p>
+<p>Le variabili casuali possono assumere forme diverse da semplici valori scalari; possono essere, ad esempio, vettori. In statistica, un vettore casuale è definito come una funzione che mappa gli elementi di uno spazio campionario in vettori all’interno di <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, lo spazio euclideo n-dimensionale. Questo consente di analizzare più variabili casuali simultaneamente, considerando i loro possibili valori come componenti di un vettore.</p>
 </section>
 <section id="variabili-casuali-multiple">
-<h3>Variabili casuali multiple<a class="headerlink" href="#variabili-casuali-multiple" title="Permalink to this heading">#</a></h3>
+<h4>Variabili casuali multiple<a class="headerlink" href="#variabili-casuali-multiple" title="Permalink to this heading">#</a></h4>
 <p>Nella teoria delle probabilità, le variabili casuali non esistono in modo isolato. Immaginiamo di iniziare con una singola variabile casuale <span class="math notranslate nohighlight">\(Y\)</span>, che rappresenta il risultato di un lancio di una moneta equilibrata. Ora, supponiamo di lanciare la stessa moneta tre volte. I risultati di ciascuno dei tre lanci possono essere rappresentati da tre diverse variabili casuali, ad esempio <span class="math notranslate nohighlight">\(Y_1\)</span>, <span class="math notranslate nohighlight">\(Y_2\)</span> e <span class="math notranslate nohighlight">\(Y_3\)</span>. Ognuno di questi lanci può essere considerato indipendente, il che significa che il risultato di un lancio non dipende dal risultato degli altri lanci. Per ogni variabile casuale <span class="math notranslate nohighlight">\(Y_n\)</span>, con <span class="math notranslate nohighlight">\(n \in \{1, 2, 3\}\)</span>, avremo ancora che <span class="math notranslate nohighlight">\(P(Y_n = 1) = 0.5\)</span> e <span class="math notranslate nohighlight">\(P(Y_n = 0) = 0.5\)</span>, poiché stiamo lanciando una moneta equilibrata e quindi la probabilità di ottenere testa o croce in ogni singolo lancio è sempre del 50%.</p>
 <p>Le variabili casuali possono essere combinate utilizzando le operazioni aritmetiche. Consideriamo ad esempio tre lanci di una moneta equilibrata (o, in modo equivalente, un lancio di tre monete equilibrate), e definiamo tre variabili casuali <span class="math notranslate nohighlight">\(Y_1\)</span>, <span class="math notranslate nohighlight">\(Y_2\)</span> e <span class="math notranslate nohighlight">\(Y_3\)</span>, ognuna rappresentante il risultato di un singolo lancio. Inoltre, possiamo definire una nuova variabile casuale <span class="math notranslate nohighlight">\(Z\)</span>, che rappresenta la somma dei risultati dei tre lanci:</p>
 <div class="math notranslate nohighlight">
@@ -689,12 +734,31 @@ Z = Y_1 + Y_2 + Y_3.
 \]</div>
 </section>
 </section>
-<section id="funzione-di-massa-di-probabilita">
-<span id="sec-fun-mass-prob"></span><h2>Funzione di massa di probabilità<a class="headerlink" href="#funzione-di-massa-di-probabilita" title="Permalink to this heading">#</a></h2>
-<p>La distribuzione di probabilità costituisce un aspetto fondamentale nelle variabili casuali e rappresenta l’insieme delle probabilità associate ai suoi diversi valori. Nel caso di variabili casuali discrete, ci riferiamo a tale distribuzione utilizzando la notazione <span class="math notranslate nohighlight">\(P(\cdot)\)</span>, mentre per le variabili casuali continue, utilizziamo la notazione <span class="math notranslate nohighlight">\(p(\cdot)\)</span> per indicare la densità di probabilità.</p>
-<p>Il supporto di una variabile casuale rappresenta l’insieme di tutti i valori che essa può assumere ed è un elemento cruciale della sua distribuzione di probabilità. Tale supporto può essere finito, come nel caso di una variabile casuale discreta che rappresenta il numero di facce di un dado standard a sei facce, con supporto <span class="math notranslate nohighlight">\(\{1, 2, 3, 4, 5, 6\}\)</span>, oppure infinito, come nel caso di una variabile casuale gaussiana che ha un supporto sull’intera retta reale.</p>
-<p>Per definire completamente una variabile casuale discreta, è necessario assegnare una probabilità a ciascun possibile valore. Tuttavia, tale assegnazione è possibile solo nel caso in cui la variabile casuale sia discreta, come definito nel paragrafo precedente. Per le variabili continue, invece, si utilizza la densità di probabilità, che rappresenta la probabilità che una variabile casuale assuma valori in un determinato intervallo.</p>
-<p>Consideriamo ora un esperimento casuale in cui lanciamo due dadi equilibrati a 6 facce. Definiamo la variabile casuale <span class="math notranslate nohighlight">\(Z = D_1 + D_2\)</span> come la somma dei punti ottenuti dai due lanci. Esaminiamo lo spazio campione di questa variabile casuale:</p>
+</section>
+<section id="funzione-di-massa-di-probabilita-e-distribuzione-di-probabilita">
+<span id="sec-fun-mass-prob"></span><h2>Funzione di Massa di Probabilità e Distribuzione di Probabilità<a class="headerlink" href="#funzione-di-massa-di-probabilita-e-distribuzione-di-probabilita" title="Permalink to this heading">#</a></h2>
+<p>La distribuzione di probabilità è un concetto cruciale nello studio delle variabili casuali, descrivendo come le probabilità sono associate ai diversi valori che una variabile casuale può assumere. Questa distribuzione differisce a seconda che la variabile casuale sia discreta o continua.</p>
+<section id="variabili-casuali-discrete">
+<h3>Variabili Casuali Discrete<a class="headerlink" href="#variabili-casuali-discrete" title="Permalink to this heading">#</a></h3>
+<p>Nel contesto delle variabili casuali discrete, la distribuzione è rappresentata dalla funzione di massa di probabilità, indicata con la notazione <span class="math notranslate nohighlight">\(P(\cdot)\)</span>. Questa funzione assegna una probabilità specifica ad ogni valore che la variabile casuale può assumere. Ad esempio, nel caso di un dado equilibrato, la probabilità che il risultato sia un numero dispari (ad esempio, il lancio del dado dà 1) è espresso come <span class="math notranslate nohighlight">\(P(Y = 1) = 0.5\)</span>. Ciò significa che, in una serie di lanci ripetuti e indipendenti, ci aspettiamo che il risultato “1” emerga il 50% delle volte. Il concetto di probabilità qui può essere interpretato in due modi: in termini di credibilità bayesiana o come frequenza a lungo termine nell’approccio frequentista.</p>
+</section>
+<section id="variabili-casuali-continue">
+<h3>Variabili Casuali Continue<a class="headerlink" href="#variabili-casuali-continue" title="Permalink to this heading">#</a></h3>
+<p>Per le variabili casuali continue, si utilizza la densità di probabilità, indicata con <span class="math notranslate nohighlight">\(p(\cdot)\)</span>. La densità di probabilità non assegna probabilità ai singoli valori, ma piuttosto definisce la probabilità che la variabile casuale rientri in un determinato intervallo.</p>
+</section>
+<section id="il-supporto-della-variabile-casuale">
+<h3>Il Supporto della Variabile Casuale<a class="headerlink" href="#il-supporto-della-variabile-casuale" title="Permalink to this heading">#</a></h3>
+<p>Il supporto di una variabile casuale è l’insieme di tutti i valori che essa può assumere. Questo supporto è un aspetto fondamentale per comprendere la sua distribuzione di probabilità. Per una variabile casuale discreta, come un dado a sei facce, il supporto è l’insieme finito <span class="math notranslate nohighlight">\(\{1, 2, 3, 4, 5, 6\}\)</span>. Nel caso di variabili casuali continue, come una variabile gaussiana, il supporto può essere l’intera linea dei numeri reali.</p>
+</section>
+<section id="assegnazione-di-probabilita-nelle-variabili-casuali">
+<h3>Assegnazione di Probabilità nelle Variabili Casuali<a class="headerlink" href="#assegnazione-di-probabilita-nelle-variabili-casuali" title="Permalink to this heading">#</a></h3>
+<p>Per una variabile casuale discreta, è necessario specificare la probabilità di ogni possibile valore che essa può assumere. Questo dettaglio è fondamentale per definire completamente la distribuzione della variabile. Invece, per le variabili casuali continue, si lavora con densità di probabilità che misura la probabilità che la variabile assuma valori all’interno di intervalli specifici, piuttosto che valori singoli.</p>
+<p>In sintesi, la distribuzione di probabilità, sia essa una funzione di massa di probabilità per variabili discrete o una densità di probabilità per variabili continue, è essenziale per descrivere completamente il comportamento delle variabili casuali.</p>
+<section id="un-esempio-pratico">
+<h4>Un Esempio Pratico<a class="headerlink" href="#un-esempio-pratico" title="Permalink to this heading">#</a></h4>
+<p>Concentriamoci sul caso di una variabile casuale discreta attraverso un esperimento specifico. Immaginiamo di lanciare due dadi equilibrati, ciascuno con sei facce. Definiamo una variabile casuale <span class="math notranslate nohighlight">\(Z\)</span>, che rappresenta la somma dei valori ottenuti in ciascun lancio dei dadi. Indichiamo con <span class="math notranslate nohighlight">\(D_1\)</span> il risultato del primo dado e con <span class="math notranslate nohighlight">\(D_2\)</span> quello del secondo dado, quindi <span class="math notranslate nohighlight">\(Z = D_1 + D_2\)</span>.</p>
+<p>Per analizzare questa variabile casuale, dobbiamo prima costruire lo spazio campionario associato all’esperimento. Lo spazio campionario in questo caso è l’insieme di tutte le possibili combinazioni dei risultati dei due lanci di dado. Dato che ogni dado ha sei facce, ci sono in totale <span class="math notranslate nohighlight">\(6 \times 6 = 36\)</span> possibili esiti.</p>
+<p>Ogni esito può essere rappresentato come una coppia ordinata (i, j), dove i e j sono i risultati dei dadi <span class="math notranslate nohighlight">\(D_1\)</span> e <span class="math notranslate nohighlight">\(D_2\)</span>, rispettivamente. Quindi, lo spazio campionario può essere descritto come <span class="math notranslate nohighlight">\({(1,1), (1,2), (1,3), \dots, (6,4), (6,5), (6,6)}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
@@ -709,8 +773,7 @@ Z = Y_1 + Y_2 + Y_3.
 </div>
 </div>
 </div>
-<p>In corrispondenza del primo punto dello spazio campione elencato sopra, la variabile casuale <span class="math notranslate nohighlight">\(Z\)</span> assume valore 2; corrispondenza del secondo punto assume valore 3, e così via.</p>
-<p>Le sequenze come (1, 1), (1, 2), ecc. sono chiamate “eventi elementari”, ovvero corrispondono a possibili esiti dell’esperimento casuale. Lo spazio campione di questo esperimento casuale è costituito da 36 eventi elementari:</p>
+<p>Le sequenze come (1, 1), (1, 2), ecc. sono gli eventi elementari di questo esperimento casuale. Lo spazio campione di questo esperimento casuale è costituito da 36 eventi elementari:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
@@ -723,7 +786,8 @@ Z = Y_1 + Y_2 + Y_3.
 </div>
 </div>
 </div>
-<p>L’evento <span class="math notranslate nohighlight">\(Z = u\)</span>, con <span class="math notranslate nohighlight">\(u\)</span> compreso tra 2 e 12, è un “evento composto”, poiché può essere costituito da più eventi elementari. Ad esempio, l’evento <span class="math notranslate nohighlight">\(Z = 2\)</span> è composto da un unico evento elementare: (1, 1); l’evento <span class="math notranslate nohighlight">\(Z = 3\)</span> è composto da due eventi elementari: (1, 1) e (1, 2); e così via.</p>
+<p>Per ogni possibile combinazione (i, j) risultante dal lancio dei due dadi, la variabile casuale <span class="math notranslate nohighlight">\(Z\)</span> assume un valore che corrisponde alla somma dei numeri i e j. Ad esempio, se i risultati dei dadi sono 3 e 4, allora <span class="math notranslate nohighlight">\(Z = 3 + 4 = 7\)</span>. Pertanto, il valore di <span class="math notranslate nohighlight">\(Z\)</span> può variare da un minimo di 2 (ottenuto dal lancio di due 1) fino a un massimo di 12 (ottenuto dal lancio di due 6), coprendo così tutti i possibili risultati della somma dei due dadi. La distribuzione di <span class="math notranslate nohighlight">\(Z\)</span> ci offre una panoramica sulle probabilità associate a ogni possibile somma risultante.</p>
+<p>È importante sottolineare che l’evento <span class="math notranslate nohighlight">\(Z = u\)</span>, dove <span class="math notranslate nohighlight">\(u\)</span> è un valore compreso tra 2 e 12, rappresenta un “evento composto”. Ciò significa che può essere formato da più di un “evento elementare”. Ad esempio, l’evento <span class="math notranslate nohighlight">\(Z = 2\)</span> corrisponde esclusivamente all’evento elementare (1, 1), mentre l’evento <span class="math notranslate nohighlight">\(Z = 3\)</span> è il risultato di due eventi elementari differenti: (1, 2) e (2, 1). La stessa logica si applica agli altri valori di <span class="math notranslate nohighlight">\(Z\)</span>, dove il numero di eventi elementari che contribuiscono a un dato evento composto <span class="math notranslate nohighlight">\(Z = u\)</span> aumenta all’aumentare del valore di <span class="math notranslate nohighlight">\(u\)</span>. Questa caratteristica della distribuzione di <span class="math notranslate nohighlight">\(Z\)</span> è fondamentale per comprendere e calcolare le probabilità associate ai diversi totali possibili nella somma dei due dadi.</p>
 <p>Nel nostro esempio costruito usando Python, ogni elemento della lista <code class="docutils literal notranslate"><span class="pre">sample</span></code> è una lista di due elementi. Per trovare il valore della variabile casuale <span class="math notranslate nohighlight">\(Z\)</span>, quindi, dobbiamo sommare i due elementi di ciascuna lista. Nel primo punto campione (1, 1), il valore di <span class="math notranslate nohighlight">\(Z\)</span> è 2:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -799,285 +863,192 @@ Z = Y_1 + Y_2 + Y_3.
 </div>
 </div>
 </div>
-<p>Nel nostro esperimento, contiamo quante volte si presenta ciascun possibile valore <span class="math notranslate nohighlight">\(Z\)</span> nello spazio campione. Per chiarire cosa viene eseguito nella <em>list comprehension</em>, stampiamo l’oggetto <code class="docutils literal notranslate"><span class="pre">event</span></code> in ciascuna iterazione del ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code>.</p>
+<p>Contiamo dunque quante volte si presenta ciascun possibile valore <span class="math notranslate nohighlight">\(Z\)</span> nello spazio campione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">):</span>
-    <span class="n">event</span> <span class="o">=</span> <span class="p">[</span><span class="n">roll</span> <span class="k">for</span> <span class="n">roll</span> <span class="ow">in</span> <span class="n">sample</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;z = </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">event</span><span class="p">)</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conteggio delle occorrenze di ciascun valore in z</span>
+<span class="n">frequencies</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="c1"># Ordinamento dei risultati in base al valore di z</span>
+<span class="n">sorted_frequencies</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">frequencies</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_frequencies</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(1, 1)]
-z = 2 : 1 / 36
-[(1, 2), (2, 1)]
-z = 3 : 2 / 36
-[(1, 3), (2, 2), (3, 1)]
-z = 4 : 3 / 36
-[(1, 4), (2, 3), (3, 2), (4, 1)]
-z = 5 : 4 / 36
-[(1, 5), (2, 4), (3, 3), (4, 2), (5, 1)]
-z = 6 : 5 / 36
-[(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)]
-z = 7 : 6 / 36
-[(2, 6), (3, 5), (4, 4), (5, 3), (6, 2)]
-z = 8 : 5 / 36
-[(3, 6), (4, 5), (5, 4), (6, 3)]
-z = 9 : 4 / 36
-[(4, 6), (5, 5), (6, 4)]
-z = 10 : 3 / 36
-[(5, 6), (6, 5)]
-z = 11 : 2 / 36
-[(6, 6)]
-z = 12 : 1 / 36
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}
 </pre></div>
 </div>
 </div>
 </div>
-<p>La variabile casuale <span class="math notranslate nohighlight">\(Z\)</span> assume il valore 2 in un solo punto dello spazio campione: (1, 1); assume il valore 3 in corrispondenza di due punti dello spazio campione: (1, 2) e (2, 1); e così via.</p>
-<p>Calcoliamo infine la <em>proporzione</em> di volte in cui ciascun valore <span class="math notranslate nohighlight">\(Z\)</span> si presenta nello spazio campione, ovvero la frazione di volte in cui un certo valore di <span class="math notranslate nohighlight">\(Z\)</span> compare rispetto al numero totale di punti nello spazio campione: 1/36, 2/36, ecc.</p>
+<p>I valori di probabilità per ciascun valore di <span class="math notranslate nohighlight">\( z \)</span> sono calcolati in base alla frequenza con cui quel particolare valore di <span class="math notranslate nohighlight">\( z \)</span> emerge all’interno dell’intero insieme dei risultati. In altre parole, per ogni valore <span class="math notranslate nohighlight">\( z \)</span>, la probabilità corrispondente è determinata dalla proporzione di occorrenze di quel valore <span class="math notranslate nohighlight">\( z \)</span> nell’elenco dei risultati prodotti dall’esperimento casuale. Questo elenco rappresenta tutti i possibili valori che la variabile casuale <span class="math notranslate nohighlight">\( Z \)</span> può assumere, calcolati per ogni combinazione di punti nello spazio campionario dell’esperimento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">px</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcolo delle proporzioni (probabilità)</span>
+<span class="n">total_outcomes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="p">{</span><span class="n">z_value</span><span class="p">:</span> <span class="n">count</span> <span class="o">/</span> <span class="n">total_outcomes</span> <span class="k">for</span> <span class="n">z_value</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">sorted_frequencies</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">):</span>
-    <span class="n">event</span> <span class="o">=</span> <span class="p">[</span><span class="n">roll</span> <span class="k">for</span> <span class="n">roll</span> <span class="ow">in</span> <span class="n">sample</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
-    <span class="n">px</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">px</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.028 0.056 0.083 0.111 0.139 0.167 0.139 0.111 0.083 0.056 0.028]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{2: 0.027777777777777776, 3: 0.05555555555555555, 4: 0.08333333333333333, 5: 0.1111111111111111, 6: 0.1388888888888889, 7: 0.16666666666666666, 8: 0.1388888888888889, 9: 0.1111111111111111, 10: 0.08333333333333333, 11: 0.05555555555555555, 12: 0.027777777777777776}
 </pre></div>
 </div>
 </div>
 </div>
-<p>È possibile visualizzare il risultato ottenuto mediante una lista.</p>
+<p>Creiamo un DataFrame con i valori di z e le loro probabilità.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">)),</span> <span class="n">px</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">probabilities</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;Probability&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(2, 0.027777777777777776),
- (3, 0.05555555555555555),
- (4, 0.08333333333333333),
- (5, 0.1111111111111111),
- (6, 0.1388888888888889),
- (7, 0.16666666666666666),
- (8, 0.1388888888888889),
- (9, 0.1111111111111111),
- (10, 0.08333333333333333),
- (11, 0.05555555555555555),
- (12, 0.027777777777777776)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     z  Probability
+0    2     0.027778
+1    3     0.055556
+2    4     0.083333
+3    5     0.111111
+4    6     0.138889
+5    7     0.166667
+6    8     0.138889
+7    9     0.111111
+8   10     0.083333
+9   11     0.055556
+10  12     0.027778
 </pre></div>
 </div>
 </div>
 </div>
-<p>Oppure, in alternativa, possiamo generare un DataFrame.</p>
+<p>Possiamo usare un un grafico a barre per rappresentare la distribuzione di probabilità di <span class="math notranslate nohighlight">\(Z\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Z&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Probability&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">px</span>
-
-<span class="n">df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Probability&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Valore di Z&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probabilità&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribuzione di Probabilità di Z&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>  <span class="c1"># Per mostrare tutte le etichette sull&#39;asse x</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Z</th>
-      <th>Probability</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2</td>
-      <td>0.028</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>3</td>
-      <td>0.056</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4</td>
-      <td>0.083</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>5</td>
-      <td>0.111</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>6</td>
-      <td>0.139</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>7</td>
-      <td>0.167</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>8</td>
-      <td>0.139</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>9</td>
-      <td>0.111</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>10</td>
-      <td>0.083</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>11</td>
-      <td>0.056</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>12</td>
-      <td>0.028</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<img alt="../_images/44ab97416f0732584092e3867841e9c2d1d6f4e8cdcbb82b2869b9331081b201.png" src="../_images/44ab97416f0732584092e3867841e9c2d1d6f4e8cdcbb82b2869b9331081b201.png" />
 </div>
-<p>La funzione <span class="math notranslate nohighlight">\(p_Z\)</span> così ottenuta associa a ciascun valore <span class="math notranslate nohighlight">\(u\)</span> della variabile casuale <span class="math notranslate nohighlight">\(Z\)</span> la probabilità dell’evento <span class="math notranslate nohighlight">\(Z = u\)</span>.</p>
+</div>
+<p>Nel corso di questo esercizio, abbiamo calcolato le probabilità determinando il numero di casi favorevoli, cioè le occorrenze di ogni possibile somma <span class="math notranslate nohighlight">\(D_1 + D_2\)</span>, all’interno dello spazio campionario dell’esperimento di lancio di due dadi. Queste probabilità si ottengono dividendo il numero di tali occorrenze per il numero totale di combinazioni possibili nello spazio campionario. In termini formali, la probabilità di ogni valore specifico di <span class="math notranslate nohighlight">\( Z \)</span> è indicata come <span class="math notranslate nohighlight">\( P_Z(z) = P(Z = z) \)</span>, dove <span class="math notranslate nohighlight">\( P_Z(z) \)</span> rappresenta “la probabilità che la variabile casuale <span class="math notranslate nohighlight">\( Z \)</span> assuma il valore <span class="math notranslate nohighlight">\( z \)</span>“. La funzione che associa a ogni valore <span class="math notranslate nohighlight">\( u \)</span> di <span class="math notranslate nohighlight">\( Z \)</span> la probabilità dell’evento <span class="math notranslate nohighlight">\( Z = u \)</span> è nota come <em>funzione di massa di probabilità</em> della variabile casuale <span class="math notranslate nohighlight">\( Z \)</span>.</p>
+<p>Questa funzione, <span class="math notranslate nohighlight">\( p_Z \)</span>, è definita per ciascun valore possibile di <span class="math notranslate nohighlight">\( Z \)</span> come segue:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{rclll}
-p_Z(2) &amp; =&amp;  1/36 \\
-p_Z(3) &amp; = &amp; 2/36 \\
-p_Z(4) &amp; = &amp; 3/36 \\
-p_Z(5) &amp; = &amp; 4/36 \\
-p_Z(6) &amp; = &amp; 5/36 \\
-p_Z(7) &amp; = &amp; 6/36 \\
-p_Z(8) &amp; = &amp; 5/36 \\
-p_Z(9) &amp; = &amp; 4/36 \\
-p_Z(10) &amp; = &amp; 3/36 \\
-p_Z(11) &amp; = &amp; 2/36 \\
-p_Z(12) &amp; = &amp; 1/36 \\
+p_Z(2) &amp; = &amp; 1/36, \\
+p_Z(3) &amp; = &amp; 2/36, \\
+p_Z(4) &amp; = &amp; 3/36, \\
+p_Z(5) &amp; = &amp; 4/36, \\
+p_Z(6) &amp; = &amp; 5/36, \\
+p_Z(7) &amp; = &amp; 6/36, \\
+p_Z(8) &amp; = &amp; 5/36, \\
+p_Z(9) &amp; = &amp; 4/36, \\
+p_Z(10) &amp; = &amp; 3/36, \\
+p_Z(11) &amp; = &amp; 2/36, \\
+p_Z(12) &amp; = &amp; 1/36. \\
 \end{array}
 \end{split}\]</div>
-<p>Nell’esercizio precedente, abbiamo calcolato le probabilità dividendo il numero di casi favorevoli nello spazio campionario che corrispondono allo stesso valore <span class="math notranslate nohighlight">\(D_1 + D_2\)</span>, per il numero totale di casi possibili nello spazio campionario. Queste probabilità sono convenzionalmente indicate come <span class="math notranslate nohighlight">\(P_Z(z) = P(Z = z)\)</span>. La notazione <span class="math notranslate nohighlight">\(P_Z(z)\)</span> indica “la probabilità che la variabile casuale <span class="math notranslate nohighlight">\(Z\)</span> assuma il valore <span class="math notranslate nohighlight">\(z\)</span>”. La funzione così definita è chiamata <em>funzione di massa di probabilità</em> della variabile casuale <span class="math notranslate nohighlight">\(Z\)</span>.</p>
-<p>Ogni variabile casuale discreta ha un’unica funzione di massa di probabilità che soddisfa le seguenti proprietà:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(0 \leq P(Z=z) \leq 1\)</span>,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sum_{z \in Z} P(Z=z) = 1\)</span>.</p></li>
-</ul>
-<p>Se <span class="math notranslate nohighlight">\(A\)</span> è un sottoinsieme della variabile casuale <span class="math notranslate nohighlight">\(Z\)</span>, indichiamo con <span class="math notranslate nohighlight">\(P_Z(A)\)</span> la probabilità assegnata ad <span class="math notranslate nohighlight">\(A\)</span> dalla distribuzione <span class="math notranslate nohighlight">\(P_Z\)</span>. Utilizzando la distribuzione di probabilità <span class="math notranslate nohighlight">\(P_Z\)</span>, possiamo determinare la probabilità di ciascun sottoinsieme <span class="math notranslate nohighlight">\(A \subset Z\)</span> come:</p>
+<p>Ogni variabile casuale discreta possiede una funzione di massa di probabilità unica che rispetta le seguenti proprietà:</p>
+<ol class="arabic simple">
+<li><p>La probabilità di ogni evento singolo è compresa tra 0 e 1, ovvero <span class="math notranslate nohighlight">\( 0 \leq P(Z=z) \leq 1 \)</span>.</p></li>
+<li><p>La somma delle probabilità di tutti gli eventi possibili è pari a 1, cioè <span class="math notranslate nohighlight">\( \sum_{z \in Z} P(Z=z) = 1 \)</span>.</p></li>
+</ol>
+<p>Se consideriamo un sottoinsieme <span class="math notranslate nohighlight">\( A \)</span> della variabile casuale <span class="math notranslate nohighlight">\( Z \)</span>, la probabilità associata a <span class="math notranslate nohighlight">\( A \)</span> dalla distribuzione <span class="math notranslate nohighlight">\( P_Z \)</span> è data da:</p>
 <div class="math notranslate nohighlight">
 \[
 P_Z(A) = \sum_{z \in A} P(Z = z).
 \]</div>
-<p>Ad esempio, considerando nuovamente la variabile casuale <span class="math notranslate nohighlight">\(Z\)</span> definita dall’esperimento del lancio di due dadi, la probabilità che <span class="math notranslate nohighlight">\(Z\)</span> sia un numero dispari è:</p>
+<p>Per esempio, per la variabile casuale <span class="math notranslate nohighlight">\( Z \)</span> relativa al lancio di due dadi, la probabilità che <span class="math notranslate nohighlight">\( Z \)</span> sia un numero dispari si calcola sommando le probabilità dei valori dispari:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-P(\text{Z è un numero dispari}) &amp;= P_Z(Z = 3) + P_Z(Z = 5) + P_Z(Z = 7) + P_Z(Z = 11)\\
-&amp;= \frac{2}{36} + \frac{4}{36} + \frac{6}{36} + \frac{4}{36} + \frac{2}{36}\\
+P(\text{&quot;Z è un numero dispari&quot;}) &amp;= P_Z(3) + P_Z(5) + P_Z(7) + P_Z(9) + P_Z(11) \\
+&amp;= \frac{2}{36} + \frac{4}{36} + \frac{6}{36} + \frac{4}{36} + \frac{2}{36} \\
+&amp;= \frac{18}{36} \\
 &amp;= \frac{1}{2}.
 \end{align}
 \end{split}\]</div>
-<section id="funzione-di-ripartizione">
-<h3>Funzione di ripartizione<a class="headerlink" href="#funzione-di-ripartizione" title="Permalink to this heading">#</a></h3>
-<p>Nel caso di una variabile casuale discreta <span class="math notranslate nohighlight">\(X\)</span>, possiamo calcolare la probabilità che <span class="math notranslate nohighlight">\(X\)</span> non superi un determinato valore <span class="math notranslate nohighlight">\(x\)</span> utilizzando la sua <em>funzione di ripartizione</em>. Poiché <span class="math notranslate nohighlight">\(X\)</span> assume valori discreti, possiamo cumulare le probabilità tramite una somma:</p>
+<p>Questa formula ci permette di calcolare la probabilità di qualsiasi sottoinsieme di <span class="math notranslate nohighlight">\( Z \)</span> utilizzando la distribuzione di probabilità <span class="math notranslate nohighlight">\( P_Z \)</span>.</p>
+</section>
+</section>
+<section id="funzione-di-ripartizione-per-variabili-casuali-discrete">
+<h3>Funzione di Ripartizione per Variabili Casuali Discrete<a class="headerlink" href="#funzione-di-ripartizione-per-variabili-casuali-discrete" title="Permalink to this heading">#</a></h3>
+<p>La funzione di ripartizione di una variabile casuale discreta, come <span class="math notranslate nohighlight">\( X \)</span>, è un mezzo per calcolare la probabilità che <span class="math notranslate nohighlight">\( X \)</span> assuma un valore non maggiore di un certo valore <span class="math notranslate nohighlight">\( x \)</span>. Questa funzione, indicata con <span class="math notranslate nohighlight">\( F(x) \)</span>, cumula progressivamente le probabilità fino a <span class="math notranslate nohighlight">\( x \)</span>, ed è definita come:</p>
 <div class="math notranslate nohighlight">
 \[
-F(x_k) = P(X \leq x_k) = \sum_{x \leq x_k} P(x).
+F(x_k) = P(X \leq x_k) = \sum_{x_i \leq x_k} P(x_i).
 \]</div>
-<p>La funzione di ripartizione di una variabile casuale <span class="math notranslate nohighlight">\(X\)</span> associa a ogni valore <span class="math notranslate nohighlight">\(x\)</span> la probabilità che la variabile casuale assuma un valore minore o uguale a <span class="math notranslate nohighlight">\(x\)</span>. In altre parole, la funzione di ripartizione <span class="math notranslate nohighlight">\(F(x)\)</span> ci fornisce la probabilità che <span class="math notranslate nohighlight">\(X\)</span> sia minore o uguale a <span class="math notranslate nohighlight">\(x\)</span>.</p>
-<p>Ad esempio, consideriamo una variabile casuale discreta che rappresenta il numero di lanci di testa in un certo numero di lanci di una moneta equilibrata. La funzione di ripartizione <span class="math notranslate nohighlight">\(F(x)\)</span> di questa variabile casuale ci dà la probabilità che il numero di lanci di testa sia inferiore o uguale a un certo valore <span class="math notranslate nohighlight">\(x\)</span>. In questo caso, la somma <span class="math notranslate nohighlight">\(\sum_{k=0}^{x} P(k)\)</span> rappresenta la probabilità di ottenere fino a <span class="math notranslate nohighlight">\(x\)</span> lanci di testa in una serie di lanci di monete equilibrate.</p>
-<p>Per l’esempio relativo al lancio dei due dadi, la funzione di ripartizione della variabile casuale <span class="math notranslate nohighlight">\(Z\)</span> è fornita nella tabella seguente:</p>
+<p>In questa formula, <span class="math notranslate nohighlight">\( F(x_k) \)</span> è la probabilità che la variabile casuale <span class="math notranslate nohighlight">\( X \)</span> assuma un valore minore o uguale a <span class="math notranslate nohighlight">\( x_k \)</span>. In altre parole, <span class="math notranslate nohighlight">\( F(x) \)</span> fornisce la probabilità cumulativa di <span class="math notranslate nohighlight">\( X \)</span> fino a un dato punto <span class="math notranslate nohighlight">\( x \)</span>.</p>
+<p>Per il caso del lancio di due dadi e la variabile casuale <span class="math notranslate nohighlight">\( Z \)</span> definita come la loro somma, la funzione di ripartizione di <span class="math notranslate nohighlight">\( Z \)</span> può essere illustrata come segue:</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>z</p></th>
 <th class="head"><p>p(z)</p></th>
-<th class="head"><p>p(z &lt;= k)</p></th>
+<th class="head"><p>F(z)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>2</p></td>
 <td><p>1/36</p></td>
-<td><p>1/16</p></td>
+<td><p>1/36</p></td>
 </tr>
 <tr class="row-odd"><td><p>3</p></td>
 <td><p>2/36</p></td>
-<td><p>3/16</p></td>
+<td><p>3/36</p></td>
 </tr>
 <tr class="row-even"><td><p>4</p></td>
 <td><p>3/36</p></td>
-<td><p>6/16</p></td>
+<td><p>6/36</p></td>
 </tr>
 <tr class="row-odd"><td><p>5</p></td>
 <td><p>4/36</p></td>
-<td><p>10/16</p></td>
+<td><p>10/36</p></td>
 </tr>
 <tr class="row-even"><td><p>6</p></td>
 <td><p>5/36</p></td>
-<td><p>15/16</p></td>
+<td><p>15/36</p></td>
 </tr>
 <tr class="row-odd"><td><p>7</p></td>
 <td><p>6/36</p></td>
-<td><p>21/16</p></td>
+<td><p>21/36</p></td>
 </tr>
 <tr class="row-even"><td><p>8</p></td>
 <td><p>5/36</p></td>
-<td><p>26/16</p></td>
+<td><p>26/36</p></td>
 </tr>
 <tr class="row-odd"><td><p>9</p></td>
 <td><p>4/36</p></td>
-<td><p>30/16</p></td>
+<td><p>30/36</p></td>
 </tr>
 <tr class="row-even"><td><p>10</p></td>
 <td><p>3/36</p></td>
-<td><p>33/16</p></td>
+<td><p>33/36</p></td>
 </tr>
 <tr class="row-odd"><td><p>11</p></td>
 <td><p>2/36</p></td>
-<td><p>35/16</p></td>
+<td><p>35/36</p></td>
 </tr>
 <tr class="row-even"><td><p>12</p></td>
 <td><p>1/36</p></td>
-<td><p>36/16</p></td>
+<td><p>36/36</p></td>
 </tr>
 </tbody>
 </table>
+<p>In questa tabella, <span class="math notranslate nohighlight">\( F(z) \)</span> rappresenta la funzione di ripartizione cumulativa per ciascun valore <span class="math notranslate nohighlight">\( z \)</span>. Questo aiuta a comprendere la distribuzione cumulativa delle probabilità per la variabile casuale <span class="math notranslate nohighlight">\( Z \)</span> nel contesto del lancio dei due dadi.</p>
 </section>
 <section id="trovare-la-probabilita-con-una-simulazione">
 <h3>Trovare la probabilità con una simulazione<a class="headerlink" href="#trovare-la-probabilita-con-una-simulazione" title="Permalink to this heading">#</a></h3>
-<p>La distribuzione di probabilità che abbiamo calcolato precedentemente per il lancio dei due dadi è corretta, ma esiste un altro metodo per ottenere un risultato molto simile attraverso la simulazione. Questo metodo prevede la generazione di un grande numero di ripetizioni dell’esperimento casuale e l’analisi delle frequenze relative dei risultati ottenuti. In altre parole, simulando l’esperimento molte volte, possiamo approssimare la distribuzione di probabilità empirica, la quale si avvicina sempre di più alla distribuzione teorica man mano che aumenta il numero di ripetizioni. Questo approccio è comune in statistica ed è particolarmente utile quando la distribuzione di probabilità teorica non è facilmente calcolabile o è troppo complessa per essere gestita in modo analitico.</p>
+<p>La distribuzione di probabilità che abbiamo precedentemente calcolato per il lancio dei due dadi è corretta, ma esiste un altro metodo per ottenere un risultato molto simile attraverso la simulazione. Questo metodo implica la generazione di un elevato numero di ripetizioni dell’esperimento casuale e l’analisi delle frequenze relative dei risultati ottenuti. In altre parole, simulando l’esperimento numerose volte, possiamo approssimare la distribuzione di probabilità empirica, che si avvicina sempre di più alla distribuzione teorica man mano che il numero di ripetizioni aumenta. Questo approccio è comune in statistica ed è particolarmente utile quando la distribuzione di probabilità teorica non è facilmente calcolabile o è troppo complessa per essere gestita in modo analitico.</p>
 <p>Nel capitolo <a class="reference internal" href="../chapter_1/01_python_1.html#intro-python-notebook"><span class="std std-ref">Python (1)</span></a> abbiamo visto come creare una funzione che ritorna il risultato del lancio di un dado:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1121,7 +1092,7 @@ F(x_k) = P(X \leq x_k) = \sum_{x \leq x_k} P(x).
 </div>
 </div>
 </div>
-<p>Definiamo un DataFrame con al suo interno la variabile <code class="docutils literal notranslate"><span class="pre">y</span></code> che corrisponde ai risultati delle 10,000 ripetizioni dell’esperimento casuale.</p>
+<p>Creiamo un DataFrame che contiene la variabile <code class="docutils literal notranslate"><span class="pre">y</span></code> corrispondente ai risultati delle 10,000 ripetizioni dell’esperimento casuale.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -1130,7 +1101,7 @@ F(x_k) = P(X \leq x_k) = \sum_{x \leq x_k} P(x).
 </div>
 </div>
 </div>
-<p>Ora, utilizzeremo il metodo <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code>, che può essere applicato a un DataFrame, come abbiamo visto nel capitolo <a class="reference internal" href="../chapter_2/03_freq_distr.html#freq-distr-notebook"><span class="std std-ref">Dati e frequenze</span></a>, per trovare le frequenze assolute di ciascuno dei possibili risultati dell’esperimento casuale (cioè, 2, 3, …, 12). Dividendo per il numero totale delle ripetizioni, otterremo una stima empirica della probabilità. Si noti che i risultati saranno simili a quelli teorici ottenuti in precedenza.</p>
+<p>Utilizziamo dunque il metodo <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code>, che può essere applicato a un DataFrame, come abbiamo visto nel capitolo <a class="reference internal" href="../chapter_2/03_freq_distr.html#freq-distr-notebook"><span class="std std-ref">Dati e frequenze</span></a>, per trovare le frequenze assolute di ciascuno dei possibili risultati dell’esperimento casuale (cioè, 2, 3, …, 12). Dividendo per il numero totale delle ripetizioni, otterremo una stima empirica della probabilità. Si noti che i risultati saranno simili a quelli teorici ottenuti in precedenza.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">abs_freqs</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
@@ -1158,7 +1129,7 @@ F(x_k) = P(X \leq x_k) = \sum_{x \leq x_k} P(x).
 </section>
 <section id="il-problema-del-compleanno">
 <h3>Il problema del compleanno<a class="headerlink" href="#il-problema-del-compleanno" title="Permalink to this heading">#</a></h3>
-<p>Consideriamo ora il famoso paradosso del compleanno, anche noto come problema del compleanno, che è un curioso risultato della teoria della probabilità introdotto da Richard von Mises nel 1939. Questo paradosso afferma che la probabilità che almeno due persone in un gruppo abbiano la stessa data di compleanno è notevolmente più alta di quanto ci si potrebbe aspettare intuitivamente. Ad esempio, in un gruppo di soli 23 persone, la probabilità che almeno due di loro abbiano lo stesso compleanno è di circa il 51%, mentre con 30 persone questa probabilità supera il 70% e con 50 persone raggiunge addirittura il 97%. Questo esempio mette in evidenza come le intuizioni umane possano essere fuorvianti quando si tratta di calcolare la probabilità di eventi rari o improbabili.</p>
+<p>Consideriamo ora il famoso paradosso del compleanno, anche noto come problema del compleanno, che è un curioso risultato della teoria della probabilità introdotto da Richard von Mises nel 1939. Questo paradosso afferma che la probabilità che almeno due persone in un gruppo abbiano la stessa data di compleanno è notevolmente più alta di quanto ci si potrebbe aspettare intuitivamente. Ad esempio, in un gruppo di sole 23 persone, la probabilità che almeno due di loro abbiano lo stesso compleanno è di circa il 51%, mentre con 30 persone questa probabilità supera il 70% e con 50 persone raggiunge addirittura il 97%. Questo esempio mette in evidenza come le nostre intuizioni possano essere fuorvianti quando si tratta di calcolare la probabilità di eventi rari o improbabili.</p>
 <p>La soluzione matematica al problema del compleanno è data dalla seguente formula:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1226,18 +1197,18 @@ Actual prob. for N = 100 = 0.7053034120089917
 <p>In questo caso, così come in tutti gli altri in cui si utilizzano modelli probabilistici per descrivere fenomeni empirici, è importante tenere presente che la risposta ottenuta è plausibile solo se le assunzioni fatte nei modelli riflettono correttamente i vincoli e le caratteristiche del mondo reale. Le probabilità e le previsioni derivate da tali modelli sono valide solo nella misura in cui le ipotesi sottostanti sono realistiche e pertinenti al contesto specifico.</p>
 </section>
 <section id="la-legge-dei-grandi-numeri">
-<h3>La legge dei grandi numeri<a class="headerlink" href="#la-legge-dei-grandi-numeri" title="Permalink to this heading">#</a></h3>
-<p>Per comprendere come la stima della probabilità di un evento <span class="math notranslate nohighlight">\(P(Y=y)\)</span> cambia al variare del numero di ripetizioni di un esperimento casuale, possiamo registrare tale stima per ogni numero di ripetizioni <span class="math notranslate nohighlight">\(m\)</span> da 1 a <span class="math notranslate nohighlight">\(M\)</span>. Questo processo ci consente di ottenere una rappresentazione empirica della legge dei grandi numeri.</p>
-<p>La <em>legge dei grandi numeri</em> è un teorema fondamentale della teoria delle probabilità che stabilisce che, all’aumentare del numero di ripetizioni di un esperimento casuale, la media dei risultati ottenuti tende a convergere al valore teorico atteso della variabile casuale. In altre parole, man mano che si effettuano sempre più prove dell’esperimento, la stima empirica della media dei risultati si avvicina sempre di più al valore reale previsto dalla teoria.</p>
-<p>Questo fenomeno implica che, con un numero sufficientemente grande di ripetizioni, la probabilità stimata di un evento diventa sempre più accurata e si avvicina alla probabilità teorica. Ciò offre una fondamentale garanzia di coerenza tra le osservazioni empiriche e le leggi probabilistiche teoriche.</p>
-<p>La legge dei grandi numeri è un pilastro essenziale della statistica e dell’inferenza, poiché fornisce una base solida per l’uso dei modelli probabilistici per descrivere fenomeni reali. Essa sottolinea che, nonostante le fluttuazioni casuali che possono verificarsi nelle singole prove, la tendenza generale di un numero sufficientemente grande di prove rifletterà fedelmente le leggi probabilistiche sottostanti.</p>
-<p>Formalmente, per una sequenza di variabili casuali indipendenti <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> con media <span class="math notranslate nohighlight">\(\mu\)</span>, la legge dei grandi numeri stabilisce che:</p>
+<h3>La Legge dei Grandi Numeri<a class="headerlink" href="#la-legge-dei-grandi-numeri" title="Permalink to this heading">#</a></h3>
+<p>La <em>legge dei grandi numeri</em> è un principio fondamentale nella teoria della probabilità che illustra come la precisione della stima della probabilità di un evento, indicata come <span class="math notranslate nohighlight">\(P(Y=y)\)</span>, si modifichi all’aumentare delle ripetizioni di un esperimento aleatorio. Per visualizzare questo, possiamo monitorare la stima di probabilità per ogni incremento nel numero di ripetizioni <span class="math notranslate nohighlight">\(m\)</span>, da 1 fino a un valore massimo <span class="math notranslate nohighlight">\(M\)</span>. Questo approccio ci fornisce una dimostrazione empirica di questo importante teorema.</p>
+<p>Il teorema stabilisce che, incrementando il numero di volte in cui un esperimento casuale viene ripetuto, la media dei risultati osservati tende a convergere verso il valore atteso teorico della variabile aleatoria. Questo significa che, con un numero sempre maggiore di tentativi, la media empirica dei risultati si avvicina progressivamente al valore medio teorico predetto dalla teoria delle probabilità.</p>
+<p>L’importanza di questo fenomeno sta nel fatto che, con un numero adeguatamente elevato di ripetizioni, la probabilità stimata di un evento si affina, diventando sempre più vicina alla probabilità teorica. Questa è una garanzia fondamentale che collega le osservazioni empiriche alle leggi teoriche della probabilità.</p>
+<p>Dal punto di vista della statistica e dell’inferenza, la legge dei grandi numeri è cruciale perché fornisce un supporto robusto all’impiego di modelli probabilistici per descrivere fenomeni reali. Essa assicura che, nonostante le variazioni casuali che possono manifestarsi in singole osservazioni, la tendenza a lungo termine di un grande numero di ripetizioni rifletterà con precisione le leggi probabilistiche.</p>
+<p>Formalmente, considerando una sequenza di variabili casuali indipendenti <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span>, ciascuna con una media <span class="math notranslate nohighlight">\(\mu\)</span>, la legge dei grandi numeri afferma che:</p>
 <div class="math notranslate nohighlight">
 \[
 \lim_{{n \to \infty}} P\left(\left|\frac{X_1 + X_2 + \ldots + X_n}{n} - \mu\right| &lt; \epsilon\right) = 1,
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\(\epsilon\)</span> è un valore positivo arbitrariamente piccolo e <span class="math notranslate nohighlight">\(P(\cdot)\)</span> rappresenta la probabilità. Questo risultato implica che, con un numero sufficientemente elevato di ripetizioni, la stima empirica della media campionaria si avvicina sempre di più al valore atteso teorico, consentendo di ottenere conclusioni affidabili sulla probabilità degli eventi considerati.</p>
-<p>Nel seguente codice, effettuiamo una simulazione di una serie di lanci di un dado a sei facce. Generiamo casualmente numeri interi compresi tra 1 e 6 per simulare ciascun lancio. Teniamo traccia della somma cumulativa dei lanci e del numero di lanci effettuati. Ad ogni passaggio, calcoliamo il valore medio dividendo la somma cumulativa per il numero di lanci. Infine, visualizziamo il valore medio dopo ogni lancio, insieme a una linea orizzontale che indica il valore atteso di 3.5, che rappresenta la media dei punti per un dado a sei facce.</p>
+<p>dove <span class="math notranslate nohighlight">\(\epsilon\)</span> è un valore positivo arbitrariamente piccolo e <span class="math notranslate nohighlight">\(P(\cdot)\)</span> rappresenta la probabilità. Ciò significa che, con un numero elevato di ripetizioni, la stima empirica della media campionaria diventerà sempre più vicina al valore medio atteso teorico, permettendo di trarre conclusioni affidabili sulla probabilità degli eventi in esame.</p>
+<p>Faccaimo un esempio conceto. Mediante il seguente codice, effettuiamo una simulazione di una serie di lanci di un dado a sei facce. Generiamo casualmente numeri interi compresi tra 1 e 6 per simulare ciascun lancio. Teniamo traccia della somma cumulativa dei lanci e del numero di lanci effettuati. Ad ogni passaggio, calcoliamo il valore medio dividendo la somma cumulativa per il numero di lanci. Infine, visualizziamo il valore medio dopo ogni lancio, insieme a una linea orizzontale che indica il valore atteso di 3.5, che rappresenta la media dei punti per un dado a sei facce.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_dice_rolls</span><span class="p">(</span><span class="n">num_rolls</span><span class="p">):</span>
@@ -1327,9 +1298,6 @@ Compleanno giugno 12: Francesco Ferrari, Giovanna Romano
 </div>
 </div>
 <p>Altri esercizi sulla probabilità discreta sono proposti nell’appendice <a class="reference internal" href="../chapter_7/a30_prob_tutorial.html#discr-prob-appendix"><span class="std std-ref">Esercizi di probabilità discreta</span></a>.</p>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
@@ -1338,18 +1306,18 @@ Compleanno giugno 12: Francesco Ferrari, Giovanna Romano
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 22 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Jan 28 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
 IPython version      : 8.19.0
 
-arviz     : 0.17.0
-matplotlib: 3.8.2
 scipy     : 1.11.4
+matplotlib: 3.8.2
+seaborn   : 0.13.0
 pandas    : 2.1.4
 numpy     : 1.26.2
-seaborn   : 0.13.0
+arviz     : 0.17.0
 
 Watermark: 2.4.3
 </pre></div>
@@ -1439,21 +1407,30 @@ Watermark: 2.4.3
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concetti-di-base">Concetti di base</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esperimento-casuale-ed-eventi">Esperimento casuale ed eventi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali">Variabili casuali</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assiomi-della-probabilita">Assiomi della probabilità</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-multiple">Variabili casuali multiple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali">Variabili casuali</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notazione">Notazione</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-multiple">Variabili casuali multiple</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-di-massa-di-probabilita">Funzione di massa di probabilità</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-di-ripartizione">Funzione di ripartizione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-di-massa-di-probabilita-e-distribuzione-di-probabilita">Funzione di Massa di Probabilità e Distribuzione di Probabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-discrete">Variabili Casuali Discrete</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabili-casuali-continue">Variabili Casuali Continue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-supporto-della-variabile-casuale">Il Supporto della Variabile Casuale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assegnazione-di-probabilita-nelle-variabili-casuali">Assegnazione di Probabilità nelle Variabili Casuali</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">Un Esempio Pratico</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-di-ripartizione-per-variabili-casuali-discrete">Funzione di Ripartizione per Variabili Casuali Discrete</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trovare-la-probabilita-con-una-simulazione">Trovare la probabilità con una simulazione</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-problema-del-compleanno">Il problema del compleanno</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-legge-dei-grandi-numeri">La legge dei grandi numeri</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-legge-dei-grandi-numeri">La Legge dei Grandi Numeri</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">Commenti e considerazioni finali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esercizio">Esercizio</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

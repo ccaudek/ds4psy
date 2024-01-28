@@ -751,6 +751,11 @@ t = \frac{\bar{x}_0 - \bar{x}_1}{s_p \sqrt{1/n_0 + 1/n_1}},
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/outdated/utils.py:14: OutdatedPackageWarning: The package pingouin is out of date. Your version is 0.5.3, the latest is 0.5.4.
+Set the environment variable OUTDATED_IGNORE=1 to disable these warnings.
+  return warn(
+</pre></div>
+</div>
 <img alt="../_images/6bbece78b84715548f693abfe72f1556ad0ee50adbc3bfe6294d15c8cb146181.png" src="../_images/6bbece78b84715548f693abfe72f1556ad0ee50adbc3bfe6294d15c8cb146181.png" />
 </div>
 </div>
@@ -822,11 +827,6 @@ t = \frac{\bar{x}_0 - \bar{x}_1}{s_p \sqrt{1/n_0 + 1/n_1}},
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/outdated/utils.py:14: OutdatedPackageWarning: The package pingouin is out of date. Your version is 0.5.3, the latest is 0.5.4.
-Set the environment variable OUTDATED_IGNORE=1 to disable these warnings.
-  return warn(
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.013265602643801042
 </pre></div>
 </div>
@@ -853,28 +853,27 @@ T-test  0.743519
 <p>Il risultato conferma quanto trovato in precedenza attraverso i calcoli effettuati. Il valore-<span class="math notranslate nohighlight">\(p\)</span> indica che possiamo rifiutare l’ipotesi nulla di uguaglianza delle medie delle due popolazioni. Quindi, possiamo concludere con un livello di confidenza del 95% che la media del peso dei maschi nella popolazione è superiore alla media del peso delle femmine nella popolazione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> ../wm.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Watermark:</span>
-<span class=" -Color -Color-Red">----------</span>
-<span class=" -Color -Color-Blue">Last updated: 2024-01-26T19:05:45.874583+01:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Fri Jan 26 2024
 
-<span class=" -Color -Color-Blue">Python implementation: CPython</span>
-<span class=" -Color -Color-Blue">Python version       : 3.11.7</span>
-<span class=" -Color -Color-Blue">IPython version      : 8.19.0</span>
+Python implementation: CPython
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-<span class=" -Color -Color-Blue">Compiler    : Clang 16.0.6 </span>
-<span class=" -Color -Color-Blue">OS          : Darwin</span>
-<span class=" -Color -Color-Blue">Release     : 23.3.0</span>
-<span class=" -Color -Color-Blue">Machine     : x86_64</span>
-<span class=" -Color -Color-Blue">Processor   : i386</span>
-<span class=" -Color -Color-Blue">CPU cores   : 8</span>
-<span class=" -Color -Color-Blue">Architecture: 64bit</span>
+arviz     : 0.17.0
+pandas    : 2.1.4
+seaborn   : 0.13.0
+scipy     : 1.11.4
+pingouin  : 0.5.3
+matplotlib: 3.8.2
+numpy     : 1.26.2
 
-
+Watermark: 2.4.3
 </pre></div>
 </div>
 </div>

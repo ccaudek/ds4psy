@@ -37,7 +37,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-model = bmb.Model("Y ~ X", df)
-results = model.fit(method="nuts_numpyro", idata_kwargs={"log_likelihood": True})
+['import numpy as np', 'import pandas as pd', 'import matplotlib.pyplot as plt', 'import seaborn as sns', 'import scipy as sc']
+...
+['import warnings', '', 'warnings.filterwarnings("ignore", category=UserWarning)', 'warnings.filterwarnings("ignore", category=FutureWarning)', 'warnings.filterwarnings("ignore", category=Warning)']
 -------------------
 

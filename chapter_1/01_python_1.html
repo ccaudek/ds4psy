@@ -222,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -241,6 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -250,7 +251,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -265,9 +265,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -286,7 +290,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -312,8 +316,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_virtual_env.html">Ambiente virtuale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
@@ -323,6 +327,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
@@ -510,36 +516,44 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iniziare-ad-usare-python">Iniziare ad usare Python 🐍</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espressioni-e-operatori">Espressioni e operatori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iniziare-ad-usare-python">Iniziare ad Usare Python 🐍</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espressioni-e-operatori">Espressioni e Operatori</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assegnazione">Assegnazione</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipologie-di-dati-in-python">Tipologie di dati in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nomi-delle-variabili">Nomi delle Variabili</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipologie-di-dati-in-python">Tipologie di Dati in Python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stringhe-string">Stringhe (String)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-interi-integer">Numeri interi (Integer)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-in-virgola-mobile-float">Numeri in virgola mobile (Float)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-booleani-boolean">Valori booleani (Boolean)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipizzazione-dinamica-in-python">Tipizzazione dinamica in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-interi-integer">Numeri Interi (Integer)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-in-virgola-mobile-float">Numeri in Virgola Mobile (Float)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-booleani-boolean">Valori Booleani (Boolean)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipizzazione-dinamica-in-python">Tipizzazione Dinamica in Python</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-dati-in-python-e-mutabilita">Tipi di dati in Python e mutabilità</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dettagli-su-alcune-tipologie-di-dati-numerici">Dettagli su alcune tipologie di dati numerici</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-interi-int">Numeri interi (int)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Numeri in virgola mobile (float)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-dati-in-python-e-mutabilita">Tipi di Dati in Python e Mutabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-dati-immutabili">Tipi di Dati Immutabili</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#esempi">Esempi</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificazione-del-tipo-di-dato">Identificazione del tipo di dato</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-dati-mutabili">Tipi di Dati Mutabili</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Esempi</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dettagli-su-alcune-tipologie-di-dati-numerici">Dettagli su Alcune Tipologie di Dati Numerici</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-interi-int">Numeri Interi (int)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Numeri in Virgola Mobile (float)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stringhe">Stringhe</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parsing-strings">Parsing strings</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-strings">Slicing strings</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi">Metodi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-booleani-e-confronti">Valori booleani e confronti</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operatori-di-confronto">Operatori di confronto</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operatori-booleani">Operatori Booleani</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-numerici-di-true-e-false">Valori Numerici di True e False</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-booleani-e-confronti">Valori Booleani e Confronti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatori-di-confronto">Operatori di confronto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatori-booleani">Operatori Booleani</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-numerici-di-true-e-false">Valori Numerici di True e False</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequenze">Sequenze</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-tuple">Le tuple</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-liste">Le liste</a></li>
@@ -550,10 +564,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contenitori-vuoti">Contenitori vuoti</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-di-calcolo">Ambiente di calcolo</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -570,20 +581,19 @@ document.write(`
 </a>
 <section class="tex2jax_ignore mathjax_ignore" id="python-1">
 <span id="intro-python-notebook"></span><h1>Python (1)<a class="headerlink" href="#python-1" title="Permalink to this heading">#</a></h1>
-<p>Python è un linguaggio di programmazione generalista noto per la sua leggibilità e flessibilità, utilizzabile in una vasta gamma di applicazioni. Sebbene il nome “Python” sia un omaggio ai <a class="reference external" href="https://www.youtube.com/results?search_query=monty+Python">Monty Python</a>, raggiungere la padronanza del linguaggio richiede impegno, pratica e dedizione.</p>
-<p>Questa guida è focalizzata sull’insegnamento dei concetti fondamentali della programmazione, piuttosto che su tecnicismi o sintassi specifiche. L’idea è che, con una solida base teorica, gli studenti saranno meglio equipaggiati per affrontare problemi specifici e saranno in grado di ricercare dettagli tecnici in modo autonomo.</p>
-<p>In un’era dominata dall’intelligenza artificiale e da strumenti come ChatGPT, la competenza più preziosa è la capacità di pensare in un modo algoritmico. Questa competenza transcende la mera programmazione, fornendo gli strumenti per affrontare problemi complessi in modo strutturato. E sebbene gli algoritmi di intelligenza artificiale siano spesso utili, la comprensione profonda dei principi di programmazione rimane fondamentale per interpretare, adattare o correggere le soluzioni proposte da tali sistemi. In sostanza, il pensiero algoritmico e una solida comprensione dei fondamenti della programmazione rimangono centrali anche nell’era dell’IA.</p>
+<p>Python è un linguaggio di programmazione versatile e facile da leggere, adatto per svariati usi. Anche se il suo nome è un tributo al gruppo comico <a class="reference external" href="https://www.youtube.com/results?search_query=monty+Python">Monty Python</a>, imparare Python richiede tempo, pratica e impegno.</p>
+<p>Questa guida si concentra sull’insegnamento dei principi di base della programmazione, anziché su dettagli tecnici o specifiche di sintassi. L’obiettivo è fornire agli studenti una base teorica solida. Con questa conoscenza, saranno più capaci di risolvere problemi specifici e cercare autonomamente dettagli tecnici.</p>
+<p>Oggi, in un mondo guidato dall’intelligenza artificiale e strumenti come ChatGPT, è essenziale saper pensare in modo algoritmico. Questa abilità va oltre la semplice programmazione, offrendo un metodo strutturato per affrontare problemi complessi. Sebbene gli algoritmi di intelligenza artificiale siano utili, capire approfonditamente i principi di programmazione è cruciale per interpretare, modificare o migliorare le soluzioni fornite da questi sistemi. In conclusione, anche nell’era dell’IA, il pensiero algoritmico e una buona comprensione dei fondamenti della programmazione sono essenziali.</p>
 <section id="iniziare-ad-usare-python">
-<h2>Iniziare ad usare Python 🐍<a class="headerlink" href="#iniziare-ad-usare-python" title="Permalink to this heading">#</a></h2>
+<h2>Iniziare ad Usare Python 🐍<a class="headerlink" href="#iniziare-ad-usare-python" title="Permalink to this heading">#</a></h2>
 <p>Esistono due metodi per verificare la versione di Python:</p>
 <ol class="arabic simple">
-<li><p>Apertura del prompt dei comandi o del terminale e l’esecuzione del comando <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>.</p></li>
-<li><p>Utilizzo del modulo <code class="docutils literal notranslate"><span class="pre">sys</span></code> incorporato di Python direttamente in un Jupyter Notebook.</p></li>
+<li><p>Aprire il prompt dei comandi o il terminale e eseguire il comando <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>.</p></li>
+<li><p>Utilizzare il modulo <code class="docutils literal notranslate"><span class="pre">sys</span></code> incorporato di Python direttamente in un Jupyter Notebook. Questo secondo metodo è più utile poiché un Jupyter Notebook utilizzerà un ambiente virtuale specifico, e noi desideriamo conoscere la versione di Python in quell’ambiente virtuale (si veda <a class="reference internal" href="../chapter_7/a00_installation.html#sec-virtual-environment"><span class="std std-ref">L’Ambiente Virtuale in Python</span></a>).</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -596,7 +606,7 @@ document.write(`
 </div>
 </section>
 <section id="espressioni-e-operatori">
-<h2>Espressioni e operatori<a class="headerlink" href="#espressioni-e-operatori" title="Permalink to this heading">#</a></h2>
+<h2>Espressioni e Operatori<a class="headerlink" href="#espressioni-e-operatori" title="Permalink to this heading">#</a></h2>
 <p>I programmi sono insiemi di espressioni che elaborano dati per fornire istruzioni specifiche al computer. Ad esempio, in Python, l’operazione di moltiplicazione si esegue utilizzando l’asterisco (<code class="docutils literal notranslate"><span class="pre">*</span></code>) tra due numeri. Quando si incontra un’espressione come <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span></code>, il computer la valuta e produce il risultato, che può essere visualizzato in una cella successiva di un notebook Jupyter.</p>
 <p>Le regole sintattiche in un linguaggio di programmazione come Python sono stringenti. Ad esempio, non è consentito inserire due simboli asterisco in sequenza senza un operando intermedio. Qualora un’espressione violi queste norme sintattiche, il sistema ritornerà un “SyntaxError”, un errore che indica la non conformità alle regole del linguaggio. Per esempio</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="o">*</span> <span class="mi">4</span>
@@ -771,12 +781,15 @@ a ** b is 16
 </div>
 </div>
 </div>
-<p>I nomi devono iniziare con una lettera, ma possono contenere sia lettere che numeri. Un nome non può contenere uno spazio; invece, è comune utilizzare il carattere <code class="docutils literal notranslate"><span class="pre">_</span></code> per sostituire ogni spazio. Sta al programmatore scegliere nomi facili da interpretare.</p>
-<p>Possiamo utilizzare il pacchetto incorporato “keyword” per ottenere la lista delle parole chiave di Python che non possono essere usate per i nomi di variabili.</p>
+</section>
+<section id="nomi-delle-variabili">
+<h2>Nomi delle Variabili<a class="headerlink" href="#nomi-delle-variabili" title="Permalink to this heading">#</a></h2>
+<p>I nomi delle variabili in Python possono contenere caratteri alfanumerici da a-z, A-Z, 0-9 e alcuni caratteri speciali come _. I nomi delle variabili normali devono iniziare con una lettera. I nomi delle variabili non possono contenere uno spazio; invece, è comune utilizzare il carattere <code class="docutils literal notranslate"><span class="pre">_</span></code> per sostituire ogni spazio. Sta al programmatore scegliere nomi facili da interpretare.</p>
+<p>Per convenzione, i nomi delle variabili iniziano con una lettera minuscola, mentre i nomi delle classi iniziano con una lettera maiuscola.</p>
+<p>Inoltre, ci sono una serie di parole chiave (<em>keyword</em>) in Python che non possono essere utilizzate come nomi di variabili. Queste parole chiave sono:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keyword</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -821,10 +834,11 @@ yield
 </div>
 </div>
 </div>
+<p>Si presti attenzione alla parola chiave “lambda”, che potrebbe facilmente essere un nome di variabile naturale in un programma scientifico. Tuttavia, essendo una parola chiave, non può essere utilizzata come nome di variabile.</p>
 </section>
 <section id="tipologie-di-dati-in-python">
-<h2>Tipologie di dati in Python<a class="headerlink" href="#tipologie-di-dati-in-python" title="Permalink to this heading">#</a></h2>
-<p>Nel linguaggio di programmazione Python, i dati possono essere classificati in diverse tipologie, ognuna con caratteristiche e utilizzi specifici. Ecco una descrizione dettagliata delle principali categorie di dati che si possono incontrare quando si lavora con Python:</p>
+<h2>Tipologie di Dati in Python<a class="headerlink" href="#tipologie-di-dati-in-python" title="Permalink to this heading">#</a></h2>
+<p>Nel linguaggio di programmazione Python, i dati possono essere classificati in diverse tipologie, ognuna con caratteristiche e utilizzi specifici.</p>
 <section id="stringhe-string">
 <h3>Stringhe (String)<a class="headerlink" href="#stringhe-string" title="Permalink to this heading">#</a></h3>
 <p>Le stringhe sono sequenze di caratteri, utilizzate per rappresentare testo. In Python, le stringhe possono essere create utilizzando apici singoli (<code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code>), doppi (<code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">&quot;</span></code>) o tripli (<code class="docutils literal notranslate"><span class="pre">'''</span> <span class="pre">'''</span></code> oppure <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span> <span class="pre">&quot;&quot;&quot;</span></code>) per delimitare il testo. Esempi di stringhe sono:</p>
@@ -835,29 +849,29 @@ yield
 </div>
 </section>
 <section id="numeri-interi-integer">
-<h3>Numeri interi (Integer)<a class="headerlink" href="#numeri-interi-integer" title="Permalink to this heading">#</a></h3>
+<h3>Numeri Interi (Integer)<a class="headerlink" href="#numeri-interi-integer" title="Permalink to this heading">#</a></h3>
 <p>I numeri interi rappresentano numeri senza una componente decimale. In Python, possono essere creati assegnando un valore senza parte decimale a una variabile. Esempio di un numero intero è:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">20</span>
 </pre></div>
 </div>
 </section>
 <section id="numeri-in-virgola-mobile-float">
-<h3>Numeri in virgola mobile (Float)<a class="headerlink" href="#numeri-in-virgola-mobile-float" title="Permalink to this heading">#</a></h3>
+<h3>Numeri in Virgola Mobile (Float)<a class="headerlink" href="#numeri-in-virgola-mobile-float" title="Permalink to this heading">#</a></h3>
 <p>I numeri in virgola mobile, o “float”, rappresentano numeri che hanno una componente decimale. Sono creati assegnando un valore con una parte decimale a una variabile. Esempio di un numero float è:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">temperature</span> <span class="o">=</span> <span class="mf">36.4</span>
 </pre></div>
 </div>
 </section>
 <section id="valori-booleani-boolean">
-<h3>Valori booleani (Boolean)<a class="headerlink" href="#valori-booleani-boolean" title="Permalink to this heading">#</a></h3>
+<h3>Valori Booleani (Boolean)<a class="headerlink" href="#valori-booleani-boolean" title="Permalink to this heading">#</a></h3>
 <p>I valori booleani possono assumere solo due stati: vero (<code class="docutils literal notranslate"><span class="pre">True</span></code>) o falso (<code class="docutils literal notranslate"><span class="pre">False</span></code>). Sono utilizzati per rappresentare le condizioni logiche e sono ottenuti attraverso espressioni di confronto. Esempio di un valore booleano è:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">is_raining</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
 </section>
 <section id="tipizzazione-dinamica-in-python">
-<h3>Tipizzazione dinamica in Python<a class="headerlink" href="#tipizzazione-dinamica-in-python" title="Permalink to this heading">#</a></h3>
-<p>Python è un linguaggio con tipizzazione dinamica, il che significa che il tipo di una variabile è determinato dal valore che le viene assegnato durante l’esecuzione del programma, e non necessita di essere dichiarato esplicitamente.</p>
+<h3>Tipizzazione Dinamica in Python<a class="headerlink" href="#tipizzazione-dinamica-in-python" title="Permalink to this heading">#</a></h3>
+<p>Python è un linguaggio con tipizzazione dinamica, il che significa che il tipo di una variabile è determinato dal valore che le viene assegnato durante l’esecuzione del programma e non necessita di essere dichiarato esplicitamente.</p>
 <p>Per identificare il tipo di una variabile o del risultato di un’espressione, Python mette a disposizione la funzione <code class="docutils literal notranslate"><span class="pre">type()</span></code>. Questa funzione, quando chiamata con una variabile o un’espressione come argomento, restituisce il tipo di dati corrispondente.</p>
 <p>Nell’esempio seguente il programma stamperà <code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'str'&gt;</span></code>, indicando che <code class="docutils literal notranslate"><span class="pre">x</span></code> è una variabile di tipo “stringa”.</p>
 <div class="cell docutils container">
@@ -873,77 +887,23 @@ yield
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="tipi-di-dati-in-python-e-mutabilita">
-<h2>Tipi di dati in Python e mutabilità<a class="headerlink" href="#tipi-di-dati-in-python-e-mutabilita" title="Permalink to this heading">#</a></h2>
-<p>In Python, i dati hanno un attributo distintivo: essere mutabili o immutabili. Un tipo di dato mutabile può essere modificato dopo la sua creazione, mentre un tipo immutabile non può subire modifiche una volta creato. Di seguito è riportata una tabella che illustra i tipi di dati comuni in Python e la loro mutabilità:</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Tipo di dati</p></th>
-<th class="head"><p>Mutabile?</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>None</p></td>
-<td><p>❌</p></td>
-</tr>
-<tr class="row-odd"><td><p>bytes</p></td>
-<td><p>❌</p></td>
-</tr>
-<tr class="row-even"><td><p>bool</p></td>
-<td><p>❌</p></td>
-</tr>
-<tr class="row-odd"><td><p>int</p></td>
-<td><p>❌</p></td>
-</tr>
-<tr class="row-even"><td><p>float</p></td>
-<td><p>❌</p></td>
-</tr>
-<tr class="row-odd"><td><p>complex</p></td>
-<td><p>❌</p></td>
-</tr>
-<tr class="row-even"><td><p>str</p></td>
-<td><p>❌</p></td>
-</tr>
-<tr class="row-odd"><td><p>tuple</p></td>
-<td><p>❌</p></td>
-</tr>
-<tr class="row-even"><td><p>list</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p>set</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p>dictionary</p></td>
-<td><p>✅</p></td>
-</tr>
-</tbody>
-</table>
-<section id="dettagli-su-alcune-tipologie-di-dati-numerici">
-<h3>Dettagli su alcune tipologie di dati numerici<a class="headerlink" href="#dettagli-su-alcune-tipologie-di-dati-numerici" title="Permalink to this heading">#</a></h3>
-<section id="numeri-interi-int">
-<h4>Numeri interi (int)<a class="headerlink" href="#numeri-interi-int" title="Permalink to this heading">#</a></h4>
-<p>Gli interi (indicati con <code class="docutils literal notranslate"><span class="pre">int</span></code>) rappresentano numeri senza una componente decimale, possono essere sia positivi che negativi, oltre allo zero. Sono immutabili e non presentano un punto decimale nella loro rappresentazione.</p>
-</section>
-<section id="id1">
-<h4>Numeri in virgola mobile (float)<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
-<p>I numeri in virgola mobile, o “float”, possono rappresentare sia valori interi che frazionari, ed includono sempre un punto decimale. Tuttavia, hanno una precisione limitata a circa 15-16 cifre decimali; oltre questo limite, la precisione viene persa. Nonostante questa limitazione, sono sufficienti per la maggior parte delle applicazioni.</p>
-<p>Inoltre, è possibile utilizzare la notazione scientifica per rappresentare numeri molto grandi o molto piccoli. In questa notazione, <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">*</span> <span class="pre">10^n</span></code> viene comunemente abbreviato come <code class="docutils literal notranslate"><span class="pre">mEn</span></code>, dove “E” rappresenta l’esponente dieci. Ad esempio, <code class="docutils literal notranslate"><span class="pre">1E9</span></code> equivale a un miliardo (<span class="math notranslate nohighlight">\(1 \times 10^9\)</span>) e <code class="docutils literal notranslate"><span class="pre">1E-9</span></code> rappresenta un miliardesimo (<span class="math notranslate nohighlight">\(1 \times 10^{-9}\)</span>).</p>
-</section>
-</section>
-<section id="identificazione-del-tipo-di-dato">
-<h3>Identificazione del tipo di dato<a class="headerlink" href="#identificazione-del-tipo-di-dato" title="Permalink to this heading">#</a></h3>
-<p>In Python, è possibile identificare il tipo di dato di un’espressione o di una variabile utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">type()</span></code>. Questa funzione restituisce il tipo di dato corrispondente, facilitando la gestione e manipolazione corretta dei dati durante la programmazione. Ad esempio, per conoscere il tipo di dato di una variabile <code class="docutils literal notranslate"><span class="pre">x</span></code>, si può utilizzare il seguente codice:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">3.14</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>Nel caso sopra, il programma stamperà <code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'float'&gt;</span></code>, indicando che <code class="docutils literal notranslate"><span class="pre">x</span></code> è una variabile di tipo “float”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">3.14</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;int&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temperature</span> <span class="o">=</span> <span class="mf">36.4</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">temperature</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -953,6 +913,88 @@ yield
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="tipi-di-dati-in-python-e-mutabilita">
+<h2>Tipi di Dati in Python e Mutabilità<a class="headerlink" href="#tipi-di-dati-in-python-e-mutabilita" title="Permalink to this heading">#</a></h2>
+<p>In Python, i dati hanno un attributo distintivo: essere mutabili o immutabili. La mutabilità di un tipo di dato si riferisce alla capacità di modificare un oggetto dopo la sua creazione senza doverne creare uno nuovo.</p>
+<section id="tipi-di-dati-immutabili">
+<h3>Tipi di Dati Immutabili<a class="headerlink" href="#tipi-di-dati-immutabili" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Esempi Immutabili</strong>: <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">tuple</span></code>, <code class="docutils literal notranslate"><span class="pre">bytes</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+<li><p><strong>Caratteristiche</strong>: Non possono essere modificati dopo la loro creazione. Qualsiasi operazione che sembra modificarli in realtà ne crea una nuova istanza.</p></li>
+<li><p><strong>Implicazioni</strong>:</p>
+<ul>
+<li><p><strong>Sicurezza</strong>: Non ci sono effetti collaterali in altre parti del codice.</p></li>
+<li><p><strong>Efficienza</strong>: Ottimizzazioni possibili perché non possono essere modificate.</p></li>
+<li><p><strong>Utilizzo</strong>: Spesso usati come chiavi in dizionari o elementi in set, grazie alla loro immutabilità.</p></li>
+</ul>
+</li>
+</ul>
+<section id="esempi">
+<h4>Esempi<a class="headerlink" href="#esempi" title="Permalink to this heading">#</a></h4>
+<ul>
+<li><p><strong>Stringhe (<code class="docutils literal notranslate"><span class="pre">str</span></code>)</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">saluto</span> <span class="o">=</span> <span class="s2">&quot;Ciao&quot;</span>
+<span class="n">saluto_modificato</span> <span class="o">=</span> <span class="n">saluto</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>  <span class="c1"># Crea una nuova stringa &quot;Biao&quot;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">saluto</span></code> rimane invariato.</p>
+</li>
+<li><p><strong>Tuple (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>)</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># tupla[0] = 4  # Questo genererebbe un errore</span>
+</pre></div>
+</div>
+<p>Non è possibile modificare gli elementi di una tupla.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="tipi-di-dati-mutabili">
+<h3>Tipi di Dati Mutabili<a class="headerlink" href="#tipi-di-dati-mutabili" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Esempi Mutabili</strong>: <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span></code>, <code class="docutils literal notranslate"><span class="pre">dictionary</span></code></p></li>
+<li><p><strong>Caratteristiche</strong>: Possono essere modificati dopo la loro creazione. L’oggetto stesso cambia.</p></li>
+<li><p><strong>Implicazioni</strong>:</p>
+<ul>
+<li><p><strong>Flessibilità</strong>: Possono cambiare dimensione, contenuto.</p></li>
+<li><p><strong>Precauzione</strong>: Modifiche possono avere effetti collaterali in altre parti del codice.</p></li>
+</ul>
+</li>
+</ul>
+<section id="id1">
+<h4>Esempi<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<ul>
+<li><p><strong>Liste (<code class="docutils literal notranslate"><span class="pre">list</span></code>)</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># Modifica la lista aggiungendo 4</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">lista</span></code> ora è <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code>.</p>
+</li>
+<li><p><strong>Dizionari (<code class="docutils literal notranslate"><span class="pre">dictionary</span></code>)</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dizionario</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chiave&quot;</span><span class="p">:</span> <span class="s2">&quot;valore&quot;</span><span class="p">}</span>
+<span class="n">dizionario</span><span class="p">[</span><span class="s2">&quot;nuova_chiave&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;nuovo_valore&quot;</span>  <span class="c1"># Aggiunge una nuova coppia chiave-valore</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">dizionario</span></code> ora contiene anche <code class="docutils literal notranslate"><span class="pre">&quot;nuova_chiave&quot;:</span> <span class="pre">&quot;nuovo_valore&quot;</span></code>.</p>
+</li>
+</ul>
+<p>La comprensione di questi concetti è importante in Python, soprattutto quando si lavora con strutture dati complesse o si condividono oggetti tra diverse parti di un programma. È necessario considerare la mutabilità per prevenire effetti indesiderati e garantire l’efficienza del codice.</p>
+</section>
+</section>
+<section id="dettagli-su-alcune-tipologie-di-dati-numerici">
+<h3>Dettagli su Alcune Tipologie di Dati Numerici<a class="headerlink" href="#dettagli-su-alcune-tipologie-di-dati-numerici" title="Permalink to this heading">#</a></h3>
+<section id="numeri-interi-int">
+<h4>Numeri Interi (int)<a class="headerlink" href="#numeri-interi-int" title="Permalink to this heading">#</a></h4>
+<p>Gli interi (indicati con <code class="docutils literal notranslate"><span class="pre">int</span></code>) rappresentano numeri senza una componente decimale, possono essere sia positivi che negativi, oltre allo zero. Sono immutabili e non presentano un punto decimale nella loro rappresentazione.</p>
+</section>
+<section id="id2">
+<h4>Numeri in Virgola Mobile (float)<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<p>I numeri in virgola mobile, o “float”, possono rappresentare sia valori interi che frazionari, ed includono sempre un punto decimale. Tuttavia, hanno una precisione limitata a circa 15-16 cifre decimali; oltre questo limite, la precisione viene persa. Nonostante questa limitazione, sono sufficienti per la maggior parte delle applicazioni.</p>
+<p>Inoltre, è possibile utilizzare la notazione scientifica per rappresentare numeri molto grandi o molto piccoli. In questa notazione, <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">*</span> <span class="pre">10^n</span></code> viene comunemente abbreviato come <code class="docutils literal notranslate"><span class="pre">mEn</span></code>, dove “E” rappresenta l’esponente dieci. Ad esempio, <code class="docutils literal notranslate"><span class="pre">1E9</span></code> equivale a un miliardo (<span class="math notranslate nohighlight">\(1 \times 10^9\)</span>) e <code class="docutils literal notranslate"><span class="pre">1E-9</span></code> rappresenta un miliardesimo (<span class="math notranslate nohighlight">\(1 \times 10^{-9}\)</span>).</p>
+</section>
 <section id="stringhe">
 <h4>Stringhe<a class="headerlink" href="#stringhe" title="Permalink to this heading">#</a></h4>
 <p>Gli oggetti di tipo stringa contengono una sequenza di caratteri.</p>
@@ -1133,8 +1175,10 @@ yield
 </div>
 </div>
 </section>
+</section>
+</section>
 <section id="valori-booleani-e-confronti">
-<h4>Valori booleani e confronti<a class="headerlink" href="#valori-booleani-e-confronti" title="Permalink to this heading">#</a></h4>
+<h2>Valori Booleani e Confronti<a class="headerlink" href="#valori-booleani-e-confronti" title="Permalink to this heading">#</a></h2>
 <p>Gli oggetti booleani possono assumere solo uno dei due valori possibili: <code class="docutils literal notranslate"><span class="pre">True</span></code> o <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p>Nel contesto delle operazioni aritmetiche, <code class="docutils literal notranslate"><span class="pre">True</span></code> è equivalente al numero intero 1, mentre <code class="docutils literal notranslate"><span class="pre">False</span></code> corrisponde a 0. Questo permette di includere valori booleani in calcoli matematici. Per esempio:</p>
 <div class="cell docutils container">
@@ -1164,9 +1208,8 @@ yield
 </div>
 <p>Il valore True indica che il confronto è valido; Python ha confermato questo semplice fatto sulla relazione tra 3 e 1+1.</p>
 <p>Si noti la regola di precedenza: gli operatori &gt;, &lt;, &gt;=, &lt;=, ==, != hanno la precedenza più bassa (vengono valutati per ultimi), il che significa che nell’espressione precedente viene prima valutato (1 + 1) e poi (3 &gt; 2).</p>
-</section>
 <section id="operatori-di-confronto">
-<h4>Operatori di confronto<a class="headerlink" href="#operatori-di-confronto" title="Permalink to this heading">#</a></h4>
+<h3>Operatori di confronto<a class="headerlink" href="#operatori-di-confronto" title="Permalink to this heading">#</a></h3>
 <p>Un operatore di confronto è un operatore che esegue un qualche tipo di confronto e restituisce un valore booleano (True oppure False). Per esempio, l’operatore <code class="docutils literal notranslate"><span class="pre">==</span></code> confronta le espressioni su entrambi i lati e restituisce <code class="docutils literal notranslate"><span class="pre">True</span></code> se hanno gli stessi valori e <code class="docutils literal notranslate"><span class="pre">False</span></code> altrimenti. L’opposto di <code class="docutils literal notranslate"><span class="pre">==</span></code> è <code class="docutils literal notranslate"><span class="pre">!=</span></code>, che si può leggere come ‘non uguale al valore di’. Gli operatori di confronto sono elencati qui sotto:</p>
 <table class="table">
 <thead>
@@ -1249,7 +1292,7 @@ a &lt;= b is False
 </div>
 </section>
 <section id="operatori-booleani">
-<h4>Operatori Booleani<a class="headerlink" href="#operatori-booleani" title="Permalink to this heading">#</a></h4>
+<h3>Operatori Booleani<a class="headerlink" href="#operatori-booleani" title="Permalink to this heading">#</a></h3>
 <p>Gli operatori booleani (o operatori logici) confrontano <em>espressioni</em> (non valori) e ritornano un valore booleano. Python ha tre operatori logici:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">and</span></code>  – Ritorna True solo se entrambi le espressioni sono vere, altrimenti ritorna False</p></li>
@@ -1390,10 +1433,8 @@ False
 </div>
 <p>Abbiamo tralasciato alcuni operatori in Python. Due di quelli che abbiamo omesso sono gli operatori di appartenenza, <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">in</span></code>. Gli altri operatori che abbiamo tralasciato sono gli operatori bitwise e gli operatori sugli insiemi, che verranno trattati in seguito.</p>
 </section>
-</section>
-</section>
 <section id="valori-numerici-di-true-e-false">
-<h2>Valori Numerici di True e False<a class="headerlink" href="#valori-numerici-di-true-e-false" title="Permalink to this heading">#</a></h2>
+<h3>Valori Numerici di True e False<a class="headerlink" href="#valori-numerici-di-true-e-false" title="Permalink to this heading">#</a></h3>
 <p>È fondamentale comprendere i valori numerici associati alle parole chiave <code class="docutils literal notranslate"><span class="pre">True</span></code> e <code class="docutils literal notranslate"><span class="pre">False</span></code>. Queste due parole chiave hanno i valori numerici di 1 e 0, rispettivamente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1443,6 +1484,7 @@ False
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="sequenze">
 <h2>Sequenze<a class="headerlink" href="#sequenze" title="Permalink to this heading">#</a></h2>
@@ -1887,7 +1929,7 @@ Number of vegetables: 5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;potato&#39;, &#39;cabbage&#39;, &#39;lemon&#39;, &#39;banana&#39;, &#39;carrot&#39;, &#39;mango&#39;, &#39;onion&#39;, &#39;tomato&#39;, &#39;orange&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;mango&#39;, &#39;cabbage&#39;, &#39;potato&#39;, &#39;banana&#39;, &#39;tomato&#39;, &#39;onion&#39;, &#39;orange&#39;, &#39;carrot&#39;, &#39;lemon&#39;}
 </pre></div>
 </div>
 </div>
@@ -2029,10 +2071,7 @@ Per verificare se un insieme è un sovrainsieme di un altro, si utilizza il meto
 </section>
 <section id="watermark">
 <h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
-<section id="ambiente-di-calcolo">
-<h3>Ambiente di calcolo<a class="headerlink" href="#ambiente-di-calcolo" title="Permalink to this heading">#</a></h3>
 <p>Alla fine di ogni capitolo e, in effetti, alla fine (o all’inizio) di qualsiasi notebook che creiamo, è utile includere informazioni sull’ambiente di calcolo, compresi i numeri di versione di tutti i pacchetti che utilizziamo. Il pacchetto <code class="docutils literal notranslate"><span class="pre">watermark</span></code> può essere usato per questo scopo. Il pacchetto <code class="docutils literal notranslate"><span class="pre">watermark</span></code> contiene comandi speciali ed è un’estensione di IPython. In generale, per utilizzare tali comandi speciali, li precediamo con il segno % o %% in una cella. Utilizziamo la funzione speciale built-in <code class="docutils literal notranslate"><span class="pre">%load_ext</span></code> per caricare <code class="docutils literal notranslate"><span class="pre">watermark</span></code>, e quindi utilizziamo <code class="docutils literal notranslate"><span class="pre">%watermark</span></code> per invocarlo.</p>
-<p>Utilizziamo l’opzione <code class="docutils literal notranslate"><span class="pre">-v</span></code> per chiedere a <code class="docutils literal notranslate"><span class="pre">watermark</span></code> di fornirci i numeri di versione di Python e IPython e l’opzione <code class="docutils literal notranslate"><span class="pre">-p</span></code> per fornirci i numeri di versione dei pacchetti specifici che abbiamo utilizzato. Possiamo anche utilizzare un’opzione <code class="docutils literal notranslate"><span class="pre">-m</span></code> per fornire informazioni sulla macchina in cui viene eseguito il notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
@@ -2041,7 +2080,7 @@ Per verificare se un insieme è un sovrainsieme di un altro, si utilizza il meto
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Jan 21 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 29 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
@@ -2049,7 +2088,7 @@ IPython version      : 8.19.0
 
 Compiler    : Clang 16.0.6 
 OS          : Darwin
-Release     : 23.2.0
+Release     : 23.3.0
 Machine     : x86_64
 Processor   : i386
 CPU cores   : 8
@@ -2063,7 +2102,16 @@ Watermark: 2.4.3
 </div>
 </div>
 </div>
-</section>
+<p>Ecco una spiegazione dettagliata delle opzioni che sono state utilizzate nell’istruzione precedente.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code> o <code class="docutils literal notranslate"><span class="pre">--datename</span></code>: Aggiunge la data e l’ora correnti al watermark. Questo può essere utile per mantenere una cronologia delle modifiche o delle esecuzioni del notebook.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-u</span></code> o <code class="docutils literal notranslate"><span class="pre">--updated</span></code>: Mostra l’ultima volta in cui il notebook è stato salvato. È utile per tenere traccia delle modifiche recenti apportate al notebook.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> o <code class="docutils literal notranslate"><span class="pre">--python</span></code>: Mostra la versione di Python utilizzata nel kernel del notebook. Questo è importante per garantire la compatibilità del codice e replicare gli ambienti di lavoro.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-iv</span></code> o <code class="docutils literal notranslate"><span class="pre">--iversions</span></code>: Visualizza le versioni delle librerie importate nel notebook. È fondamentale per la replicabilità degli esperimenti e degli analisi, dato che diverse versioni delle librerie possono comportare risultati diversi.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-w</span></code> o <code class="docutils literal notranslate"><span class="pre">--watermark</span></code>: Aggiunge il watermark stesso, che è semplicemente il logo “watermark”. È più una questione estetica che funzionale.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code> o <code class="docutils literal notranslate"><span class="pre">--machine</span></code>: Fornisce informazioni sulla macchina su cui viene eseguito il Jupyter Notebook, come il tipo di sistema operativo e l’architettura della macchina (ad esempio, x86_64). Questo può essere utile per documentare l’ambiente hardware in cui vengono eseguiti gli esperimenti.</p></li>
+</ol>
+<p>Queste opzioni forniscono un modo semplice e immediato per documentare e tracciare importanti metadati nei notebook Jupyter.</p>
 </section>
 </section>
 
@@ -2130,36 +2178,44 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iniziare-ad-usare-python">Iniziare ad usare Python 🐍</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espressioni-e-operatori">Espressioni e operatori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iniziare-ad-usare-python">Iniziare ad Usare Python 🐍</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espressioni-e-operatori">Espressioni e Operatori</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assegnazione">Assegnazione</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipologie-di-dati-in-python">Tipologie di dati in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nomi-delle-variabili">Nomi delle Variabili</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipologie-di-dati-in-python">Tipologie di Dati in Python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stringhe-string">Stringhe (String)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-interi-integer">Numeri interi (Integer)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-in-virgola-mobile-float">Numeri in virgola mobile (Float)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-booleani-boolean">Valori booleani (Boolean)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipizzazione-dinamica-in-python">Tipizzazione dinamica in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-interi-integer">Numeri Interi (Integer)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-in-virgola-mobile-float">Numeri in Virgola Mobile (Float)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-booleani-boolean">Valori Booleani (Boolean)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipizzazione-dinamica-in-python">Tipizzazione Dinamica in Python</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-dati-in-python-e-mutabilita">Tipi di dati in Python e mutabilità</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dettagli-su-alcune-tipologie-di-dati-numerici">Dettagli su alcune tipologie di dati numerici</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-interi-int">Numeri interi (int)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Numeri in virgola mobile (float)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-dati-in-python-e-mutabilita">Tipi di Dati in Python e Mutabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-dati-immutabili">Tipi di Dati Immutabili</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#esempi">Esempi</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificazione-del-tipo-di-dato">Identificazione del tipo di dato</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-dati-mutabili">Tipi di Dati Mutabili</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Esempi</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dettagli-su-alcune-tipologie-di-dati-numerici">Dettagli su Alcune Tipologie di Dati Numerici</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#numeri-interi-int">Numeri Interi (int)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Numeri in Virgola Mobile (float)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stringhe">Stringhe</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parsing-strings">Parsing strings</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-strings">Slicing strings</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi">Metodi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-booleani-e-confronti">Valori booleani e confronti</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operatori-di-confronto">Operatori di confronto</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operatori-booleani">Operatori Booleani</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-numerici-di-true-e-false">Valori Numerici di True e False</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-booleani-e-confronti">Valori Booleani e Confronti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatori-di-confronto">Operatori di confronto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatori-booleani">Operatori Booleani</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-numerici-di-true-e-false">Valori Numerici di True e False</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequenze">Sequenze</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-tuple">Le tuple</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-liste">Le liste</a></li>
@@ -2170,10 +2226,7 @@ Watermark: 2.4.3
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contenitori-vuoti">Contenitori vuoti</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-di-calcolo">Ambiente di calcolo</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

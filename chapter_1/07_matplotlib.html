@@ -220,7 +220,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -239,6 +239,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -248,7 +249,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -267,6 +267,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -511,8 +514,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-ruolo-delle-funzioni-pyplot-nella-creazione-di-grafici">Il ruolo delle funzioni pyplot nella creazione di grafici</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzionalita-di-base-per-la-creazione-di-grafici">Funzionalità di base per la creazione di grafici</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-interfaccia-pyplot-per-creare-grafici">L’Interfaccia pyplot per Creare Grafici</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzioni-base">Funzioni Base</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-1-grafico-lineare-semplice">Esempio 1: Grafico lineare semplice</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-2-grafico-con-legenda-e-stile">Esempio 2: Grafico con legenda e stile</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-3-istogramma">Esempio 3: Istogramma</a></li>
@@ -545,7 +548,10 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Questa istruzione consente di visualizzare i grafici generati dai comandi di </span>
+<span class="c1"># plot direttamente all&#39;interno del notebook.</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
@@ -554,27 +560,27 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="il-ruolo-delle-funzioni-pyplot-nella-creazione-di-grafici">
-<h2>Il ruolo delle funzioni pyplot nella creazione di grafici<a class="headerlink" href="#il-ruolo-delle-funzioni-pyplot-nella-creazione-di-grafici" title="Permalink to this heading">#</a></h2>
-<p>Una delle interfacce più usate di Matplotlib è <code class="docutils literal notranslate"><span class="pre">pyplot</span></code>, progettata per fornire un modo intuitivo e facile per creare grafici. Ma cosa fa realmente ogni funzione di pyplot?</p>
-<p>Immaginate di essere pittori e la figura come la vostra tela. Ogni funzione di pyplot è simile a un pennello o a un utensile che vi permette di aggiungere elementi o dettagli a questa tela.</p>
+<section id="l-interfaccia-pyplot-per-creare-grafici">
+<h2>L’Interfaccia pyplot per Creare Grafici<a class="headerlink" href="#l-interfaccia-pyplot-per-creare-grafici" title="Permalink to this heading">#</a></h2>
+<p>Matplotlib è una libreria in Python famosa per la creazione di grafici, e la sua interfaccia <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> è particolarmente apprezzata per la sua semplicità e intuizione. Vediamo in dettaglio come funzionano le sue funzioni principali:</p>
 <ul class="simple">
-<li><p><strong>Iniziamo con una tela vuota</strong>: La funzione <code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code> ci fornisce una nuova “tela” su cui lavorare. È come aprire un nuovo foglio di carta su cui disegnerete il vostro grafico.</p></li>
-<li><p><strong>Disegniamo le nostre aree di interesse</strong>: Una volta che abbiamo la nostra tela, utilizziamo <code class="docutils literal notranslate"><span class="pre">plt.subplot()</span></code> o <code class="docutils literal notranslate"><span class="pre">plt.axes()</span></code> per definire le specifiche aree (o “axes”) all’interno della figura dove posizioneremo i nostri grafici. Queste aree di tracciamento possono essere pensate come i “quadranti” della nostra tela, in cui ogni grafico avrà il suo spazio dedicato.</p></li>
-<li><p><strong>Aggiungiamo i contorni e i dettagli</strong>: Con le aree di tracciamento pronte, possiamo iniziare a popolarle. Che si tratti di linee con <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code>, punti con <code class="docutils literal notranslate"><span class="pre">plt.scatter()</span></code>, o altre forme geometriche, ogni funzione di pyplot aggiunge un nuovo elemento al nostro disegno, arricchendo la nostra visualizzazione.</p></li>
-<li><p><strong>Forniamo il contesto</strong>: Un grafico senza etichette o titoli è come un libro senza un titolo o capitoli. Utilizziamo <code class="docutils literal notranslate"><span class="pre">plt.xlabel()</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.ylabel()</span></code>, e <code class="docutils literal notranslate"><span class="pre">plt.title()</span></code> per aggiungere etichette e titoli, rendendo il nostro grafico comprensibile e informativo.</p></li>
+<li><p><strong>Prepariamo la Tela</strong>: Iniziamo con <code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code>, che ci dà una tela vuota, simile a un foglio bianco su cui disegneremo il nostro grafico.</p></li>
+<li><p><strong>Definiamo le Aree di Disegno</strong>: Successivamente, con <code class="docutils literal notranslate"><span class="pre">plt.subplot()</span></code> o <code class="docutils literal notranslate"><span class="pre">plt.axes()</span></code>, possiamo creare aree specifiche, o “assi”, sulla nostra tela. Queste corrispondono a differenti sezioni dove posizioneremo i vari grafici, come se dividessimo la tela in più parti.</p></li>
+<li><p><strong>Aggiungiamo Elementi al Grafico</strong>: Ora possiamo iniziare a disegnare. Usando funzioni come <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> per tracciare linee o <code class="docutils literal notranslate"><span class="pre">plt.scatter()</span></code> per punti, aggiungiamo elementi grafici alla nostra area di disegno.</p></li>
+<li><p><strong>Rendiamo il Grafico Comprensibile</strong>: Per far sì che il grafico sia leggibile e informativo, aggiungiamo etichette e titoli con <code class="docutils literal notranslate"><span class="pre">plt.xlabel()</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.ylabel()</span></code> e <code class="docutils literal notranslate"><span class="pre">plt.title()</span></code>. Questo passaggio è come dare un titolo a un libro e capitoli alle sue pagine.</p></li>
 </ul>
 </section>
-<section id="funzionalita-di-base-per-la-creazione-di-grafici">
-<h2>Funzionalità di base per la creazione di grafici<a class="headerlink" href="#funzionalita-di-base-per-la-creazione-di-grafici" title="Permalink to this heading">#</a></h2>
-<p>Ora che abbiamo una comprensione intuitiva del ruolo delle funzioni di <code class="docutils literal notranslate"><span class="pre">pyplot</span></code>, esploriamo alcune delle funzioni di base più utilizzate:</p>
+<section id="funzioni-base">
+<h2>Funzioni Base<a class="headerlink" href="#funzioni-base" title="Permalink to this heading">#</a></h2>
+<p>Esaminiamo ora alcune delle funzioni più comuni di <code class="docutils literal notranslate"><span class="pre">pyplot</span></code>:</p>
 <ul class="simple">
-<li><p><strong>Creare grafici lineari</strong>: La funzione <code class="docutils literal notranslate"><span class="pre">plt.plot(x,</span> <span class="pre">y)</span></code> consente di tracciare linee e marcatori. Fornite le coordinate <code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code>, e questa funzione disegnerà il grafico per voi.</p></li>
-<li><p><strong>Etichettare gli assi</strong>: Dare un nome agli assi è cruciale per la comprensione del grafico. Utilizzate <code class="docutils literal notranslate"><span class="pre">plt.xlabel('Nome')</span></code> per l’asse delle ascisse e <code class="docutils literal notranslate"><span class="pre">plt.ylabel('Nome')</span></code> per l’asse delle ordinate.</p></li>
-<li><p><strong>Titolo del grafico</strong>: Un buon titolo fornisce una panoramica immediata del contenuto del grafico. Aggiungete un titolo usando <code class="docutils literal notranslate"><span class="pre">plt.title('Titolo')</span></code>.</p></li>
-<li><p><strong>Legenda</strong>: Per grafici con più linee o forme, una legenda è indispensabile. Usate <code class="docutils literal notranslate"><span class="pre">plt.legend()</span></code> per aggiungere una legenda che distingue tra i diversi elementi del grafico.</p></li>
-<li><p><strong>Mostrare il grafico</strong>: Infine, dopo aver aggiunto tutti gli elementi e i dettagli, è il momento di mostrare il vostro lavoro. Utilizzate <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code> per visualizzare il grafico.</p></li>
+<li><p><strong>Tracciare Grafici Lineari</strong>: La funzione <code class="docutils literal notranslate"><span class="pre">plt.plot(x,</span> <span class="pre">y)</span></code> permette di creare grafici lineari. Fornendo le coordinate <code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code>, Matplotlib traccerà il grafico per voi.</p></li>
+<li><p><strong>Etichettare gli Assi</strong>: Assegnare un nome agli assi è essenziale per la chiarezza. Usate <code class="docutils literal notranslate"><span class="pre">plt.xlabel('Nome')</span></code> per l’asse orizzontale e <code class="docutils literal notranslate"><span class="pre">plt.ylabel('Nome')</span></code> per quello verticale.</p></li>
+<li><p><strong>Titolo del Grafico</strong>: Un titolo ben scelto offre una visione immediata del contenuto del grafico. Potete aggiungere un titolo con <code class="docutils literal notranslate"><span class="pre">plt.title('Titolo')</span></code>.</p></li>
+<li><p><strong>Aggiungere una Legenda</strong>: In grafici con più linee o elementi, una legenda aiuta a distinguere tra i vari elementi. Utilizzate <code class="docutils literal notranslate"><span class="pre">plt.legend()</span></code> per inserire una legenda.</p></li>
+<li><p><strong>Visualizzare il Grafico</strong>: Dopo aver aggiunto tutti gli elementi, è il momento di mostrare il grafico. Con <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code> potete visualizzare il risultato finale.</p></li>
 </ul>
+<p>In breve, <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> offre un metodo intuitivo e versatile per creare e personalizzare grafici in Python.</p>
 </section>
 <section id="esempio-1-grafico-lineare-semplice">
 <h2>Esempio 1: Grafico lineare semplice<a class="headerlink" href="#esempio-1-grafico-lineare-semplice" title="Permalink to this heading">#</a></h2>
@@ -671,7 +677,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_92842/2827118044.py:19: UserWarning: The figure layout has changed to tight
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_15735/2827118044.py:19: UserWarning: The figure layout has changed to tight
   plt.tight_layout();
 </pre></div>
 </div>
@@ -698,22 +704,30 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -m
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Fri Jan 26 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 29 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
 IPython version      : 8.19.0
 
-matplotlib: 3.8.2
-pandas    : 2.1.4
-arviz     : 0.17.0
+Compiler    : Clang 16.0.6 
+OS          : Darwin
+Release     : 23.3.0
+Machine     : x86_64
+Processor   : i386
+CPU cores   : 8
+Architecture: 64bit
+
 seaborn   : 0.13.0
 numpy     : 1.26.2
+arviz     : 0.17.0
+matplotlib: 3.8.2
+pandas    : 2.1.4
 
 Watermark: 2.4.3
 </pre></div>
@@ -786,8 +800,8 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-ruolo-delle-funzioni-pyplot-nella-creazione-di-grafici">Il ruolo delle funzioni pyplot nella creazione di grafici</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzionalita-di-base-per-la-creazione-di-grafici">Funzionalità di base per la creazione di grafici</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-interfaccia-pyplot-per-creare-grafici">L’Interfaccia pyplot per Creare Grafici</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzioni-base">Funzioni Base</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-1-grafico-lineare-semplice">Esempio 1: Grafico lineare semplice</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-2-grafico-con-legenda-e-stile">Esempio 2: Grafico con legenda e stile</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-3-istogramma">Esempio 3: Istogramma</a></li>

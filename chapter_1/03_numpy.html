@@ -222,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -241,6 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -250,7 +251,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -265,9 +265,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -278,7 +282,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
@@ -287,7 +290,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -311,22 +314,27 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="00_installation.html">Ambiente di lavoro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a05_sets.html">Insiemi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a13_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a53_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a60_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a70_predict_counts.html">La predizione delle frequenze</a></li>
 </ul>
 </li>
 </ul>
@@ -508,19 +516,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gli-array-nel-modulo-numpy">Gli array nel modulo NumPy</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-degli-array-nel-modulo-numpy">Utilizzo degli Array nel Modulo NumPy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funzioni-per-ndarray">Funzioni per <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipolazione-di-array-con-numpy">Manipolazione di array con Numpy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vettorizzazione">Vettorizzazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipolazione-di-array-con-numpy">Manipolazione di Array con NumPy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosa-significa-vettorizzare-un-operazione">Cosa Significa Vettorizzare un’Operazione</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-di-broadcasting">Esempio di Broadcasting</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#altre-operazioni-sugli-array">Altre operazioni sugli array</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lavorare-con-formule-matematiche">Lavorare con formule matematiche</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copia-e-copia-profonda-in-python">Copia e “Copia Profonda” in Python</a></li>
 </ul>
             </nav>
         </div>
@@ -537,47 +548,35 @@ document.write(`
 </a>
 <section class="tex2jax_ignore mathjax_ignore" id="numpy">
 <span id="intro-numpy-notebook"></span><h1>NumPy<a class="headerlink" href="#numpy" title="Permalink to this heading">#</a></h1>
-<p>Anche se la Standard Library di Python offre molte funzioni utili per l’analisi dei dati, è conveniente utilizzare varie funzioni specifiche contenute in altri moduli. I moduli più utili per l’analisi dei dati sono:</p>
-<ul class="simple">
-<li><p>NumPy per i calcoli numerici,</p></li>
-<li><p>Pandas per caricare e manipolare i dati,</p></li>
-<li><p>Matplotlib e Seaborn per visualizzare i dati.</p></li>
-</ul>
-<p>In questo capitolo introdurremo NumPy. NumPy è l’abbreviazione di Numerical Python: un’estensione del linguaggio pensata per il calcolo algebrico e matriciale. Numpy consente di lavorare con vettori e matrici in maniera più efficiente e veloce di quanto non si possa fare con le liste e le liste di liste (matrici) di Python. Inoltre, Numpy aggiunge una serie di funzioni matematiche di base e la possibilità di generare numeri casuali.</p>
+<p>La Standard Library di Python mette a disposizione un’ampia gamma di funzioni utili per l’analisi dei dati. Tuttavia, per un’analisi più approfondita ed efficiente, è raccomandato avvalersi di funzioni specifiche disponibili in altri moduli esterni. Tra questi, i più rilevanti per l’analisi dei dati includono NumPy, Pandas, Matplotlib e Seaborn.</p>
+<p>NumPy, abbreviazione di Numerical Python, rappresenta un’estensione del linguaggio Python focalizzata sul calcolo algebrico e matriciale. Questo pacchetto, fondamentale per quasi tutti i tipi di calcolo numerico in Python, offre strutture dati performanti e ottimizzate per gestire vettori, matrici e dati di dimensioni maggiori. Grazie alla sua implementazione in linguaggi come C e Fortran, NumPy garantisce prestazioni eccellenti, soprattutto quando i calcoli sono vettorializzati, ossia formulati utilizzando vettori e matrici.</p>
+<p>In parallelo, Pandas emerge come uno strumento indispensabile per il caricamento e la manipolazione dei dati, mentre Matplotlib e Seaborn si distinguono per le loro capacità di visualizzazione dei dati, permettendo di creare grafici e rappresentazioni visive informative ed esteticamente gradevoli. Questi moduli, combinati insieme, costituiscono un ecosistema robusto e versatile per l’analisi e l’elaborazione dei dati in Python.</p>
+<p>In questo capitolo, introdurremo NumPy, che è ampiamente utilizzato in quasi tutti i calcoli numerici in Python. NumPy consente di lavorare con vettori e matrici in modo più efficiente e veloce rispetto alle liste e alle liste di liste (utilizzate come matrici) di Python. Oltre a ciò, NumPy fornisce una vasta gamma di funzioni matematiche di base, nonché strumenti avanzati per la generazione di numeri casuali.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
 </div>
-</div>
-</div>
-<section id="gli-array-nel-modulo-numpy">
-<h2>Gli array nel modulo NumPy<a class="headerlink" href="#gli-array-nel-modulo-numpy" title="Permalink to this heading">#</a></h2>
-<p>In Python puro abbiamo a disposizione oggetti numerici (interi e a virgola mobile) e contenitori (liste, dizionari e insiemi). Numpy fornisce un nuovo tipo di dato: un array N-dimensionale (<code class="docutils literal notranslate"><span class="pre">ndarray</span></code>). Il costrutto <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> è  un oggetto di tipo array multidimensionale caratterizzato da alcune proprietà, come:</p>
+<section id="utilizzo-degli-array-nel-modulo-numpy">
+<h2>Utilizzo degli Array nel Modulo NumPy<a class="headerlink" href="#utilizzo-degli-array-nel-modulo-numpy" title="Permalink to this heading">#</a></h2>
+<p>In Python standard, abbiamo a disposizione tipi di dati numerici (come numeri interi e decimali) e strutture come liste, dizionari e insiemi. NumPy, d’altro canto, introduce un nuovo tipo di struttura dati: l’array N-dimensionale, noto come <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>. Questi array hanno alcune caratteristiche distintive:</p>
 <ul class="simple">
-<li><p><em>dimensioni</em>: gli <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> possono avere da una a un numero arbitrario di dimensioni, che vengono definite come “assi”. Ad esempio, un array può essere unidimensionale (un vettore), bidimensionale (una matrice), tridimensionale (un cubo), e così via;</p></li>
-<li><p><em>tipo di dato</em>: tutti gli elementi di un <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> devono avere lo stesso tipo di dato, che può essere ad esempio float, int, bool o string (questo li differenzia dalle liste in puro Python, che non sono omogenee);</p></li>
-<li><p><em>forma</em>: la forma di un <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> indica le dimensioni dell’array, cioè il numero di elementi per ogni asse. Ad esempio, un array con forma (3, 4) ha 3 righe e 4 colonne;</p></li>
-<li><p><em>indicizzazione</em>: gli <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> possono essere indicizzati come gli array Python standard, ma consentono anche indicizzazioni più avanzate.</p></li>
+<li><p><strong>Dimensioni</strong>: Gli <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> possono variare nel numero di dimensioni, definite come “assi”. Ad esempio, un array può essere unidimensionale (simile a un vettore lineare), bidimensionale (come una matrice o una tabella), tridimensionale (simile a un cubo), e così via.</p></li>
+<li><p><strong>Tipo di Dato</strong>: A differenza delle liste in Python standard che possono contenere diversi tipi di dati, ogni elemento all’interno di un <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> deve essere dello stesso tipo, come numeri interi, decimali, booleani o stringhe.</p></li>
+<li><p><strong>Forma</strong>: La “forma” di un <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> si riferisce alle sue dimensioni, ovvero quante righe, colonne o altri livelli di profondità ha. Per esempio, la forma (3, 4) indica un array con 3 righe e 4 colonne.</p></li>
+<li><p><strong>Indicizzazione</strong>: Gli <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> possono essere indicizzati in modo simile agli array standard di Python, ma offrono anche opzioni più avanzate per l’indicizzazione.</p></li>
 </ul>
-<p>Gli <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> offrono una vasta gamma di funzioni e metodi per manipolare e analizzare i dati in essi contenuti, tra cui operazioni matematiche, statistiche, trasformazioni e manipolazioni di dati.</p>
-<p><strong>Terminologia</strong></p>
+<p>Gli <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> sono potenti per manipolare e analizzare i dati, grazie alle loro funzioni e metodi che includono operazioni matematiche e statistiche, trasformazioni e altre manipolazioni dei dati.</p>
+<p><strong>Terminologia Importante:</strong></p>
 <ul class="simple">
-<li><p>Con <em>size</em> di un array intendiamo il numero di elementi presenti in un array;</p></li>
-<li><p>Con <em>rank</em> di un array si intende il numero di assi/dimensioni di un array;</p></li>
-<li><p>Con <em>shape</em> di un array intendiamo le dimensioni dell’array, cioè una tupla di interi
-contenente il numero di elementi per ogni dimensione.</p></li>
+<li><p><strong>Size</strong>: Indica il numero totale di elementi in un array.</p></li>
+<li><p><strong>Rank</strong>: Si riferisce al numero di dimensioni, o assi, di un array.</p></li>
+<li><p><strong>Shape</strong>: Denota le dimensioni specifiche dell’array, ovvero una sequenza di numeri che rappresentano il conteggio degli elementi in ogni dimensione.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/size_rank_shape.png"><img alt="../_images/size_rank_shape.png" class="align-center" src="../_images/size_rank_shape.png" style="height: 300px;" /></a>
-<br>
-<p><strong>Creare <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></strong></p>
-<p>Il modo più semplice per creare un <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> è quello di convertire una lista Python. Per esempio, possiamo creare un array 1-D nel modo seguente:</p>
+<p><strong>Come Creare un <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>:</strong>
+Il modo più diretto per creare un <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> è attraverso la conversione di una lista Python. Ad esempio, è possibile creare un array unidimensionale (1-D) a partire da una lista standard di Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
@@ -585,7 +584,7 @@ contenente il numero di elementi per ogni dimensione.</p></li>
 </div>
 </div>
 </div>
-<p>L’istruzione precedente ha creato un vettore, chiamato <code class="docutils literal notranslate"><span class="pre">x</span></code>, con 6 elementi che sono i numeri interi indicati in parentesi quadra:</p>
+<p>L’istruzione precedente crea un array in NumPy, assegnandolo alla variabile <code class="docutils literal notranslate"><span class="pre">x</span></code>. Questo array è un vettore unidimensionale contenente sei elementi, che sono i numeri interi specificati all’interno delle parentesi quadre.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -599,7 +598,7 @@ contenente il numero di elementi per ogni dimensione.</p></li>
 </div>
 </div>
 <p><strong>Indicizzazione</strong></p>
-<p>Se voglio estrarre un singolo elemento del vettore lo indicizzo con la sua posizione (si ricordi che l’indice inizia da 0):</p>
+<p>Se vogliamo estrarre un singolo elemento del vettore lo indicizziamo con la sua posizione (si ricordi che l’indice inizia da 0):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -640,7 +639,7 @@ contenente il numero di elementi per ogni dimensione.</p></li>
 </div>
 </div>
 </div>
-<p>Estraggo un singolo elemento dall’array:</p>
+<p>Estraiamo un singolo elemento dall’array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
@@ -653,7 +652,7 @@ contenente il numero di elementi per ogni dimensione.</p></li>
 </div>
 </div>
 </div>
-<p>Estraggo la seconda riga dall’array:</p>
+<p>Estraiamo la seconda riga dall’array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -666,7 +665,7 @@ contenente il numero di elementi per ogni dimensione.</p></li>
 </div>
 </div>
 </div>
-<p>Estraggo la seconda colonna dall’array:</p>
+<p>Estraiamo la seconda colonna dall’array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> 
@@ -685,29 +684,56 @@ contenente il numero di elementi per ogni dimensione.</p></li>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the first row of the array</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Displaying the first row:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
-
-<span class="c1"># Show the last two elements in the first row</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Showing the last two elements in the first row:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
-
-<span class="c1"># Retrieve every second element in the first row</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Retrieving every second element in the first row:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">::</span><span class="mi">2</span><span class="p">])</span>
-
-<span class="c1"># Extract a submatrix from the original array</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracting a submatrix:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Displaying the first row:
 [1 2 3 4]
-Showing the last two elements in the first row:
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the last two elements in the first row</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Showing the last two elements in the first row:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Showing the last two elements in the first row:
 [3 4]
-Retrieving every second element in the first row:
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve every second element in the first row</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Retrieving every second element in the first row:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Retrieving every second element in the first row:
 [1 3]
-Extracting a submatrix:
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract a submatrix from the original array</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracting a submatrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting a submatrix:
 [[2 3]
  [6 7]]
 </pre></div>
@@ -843,11 +869,11 @@ Extracting a submatrix:
 </section>
 </section>
 <section id="manipolazione-di-array-con-numpy">
-<h2>Manipolazione di array con Numpy<a class="headerlink" href="#manipolazione-di-array-con-numpy" title="Permalink to this heading">#</a></h2>
-<p>Numpy è una libreria essenziale per effettuare operazioni algebriche su array, rendendo facile e efficiente la manipolazione di grandi set di dati. In particolare, spesso utilizziamo array monodimensionali, noti anche come array di rango 1, per rappresentare vettori. Questi vettori possono contenere misurazioni di una variabile specifica. Grazie a Numpy, è possibile eseguire operazioni aritmetiche su questi array in maniera automatizzata, trattando tutti gli elementi in un’unica operazione.</p>
-<section id="vettorizzazione">
-<h3>Vettorizzazione<a class="headerlink" href="#vettorizzazione" title="Permalink to this heading">#</a></h3>
-<p>Una delle caratteristiche più potenti di Numpy è la vettorizzazione. Un’operazione è definita come vettorizzata quando viene applicata simultaneamente a tutti gli elementi di un array. Al contrario, un’operazione non vettorizzata può essere effettuata solo su elementi singoli dell’array. La vettorizzazione rende possibile la manipolazione di dati su larga scala in modo efficiente e agevole.</p>
+<h2>Manipolazione di Array con NumPy<a class="headerlink" href="#manipolazione-di-array-con-numpy" title="Permalink to this heading">#</a></h2>
+<p>NumPy rende più agevole lavorare con grandi quantità di dati. Un concetto fondamentale in NumPy sono gli array monodimensionali, spesso utilizzati per rappresentare vettori, ovvero sequenze di numeri che possono rappresentare, ad esempio, le misurazioni di una variabile specifica. Grazie a NumPy, possiamo eseguire operazioni aritmetiche su questi vettori in modo semplice, applicando la stessa operazione a tutti gli elementi dell’array contemporaneamente.</p>
+<section id="cosa-significa-vettorizzare-un-operazione">
+<h3>Cosa Significa Vettorizzare un’Operazione<a class="headerlink" href="#cosa-significa-vettorizzare-un-operazione" title="Permalink to this heading">#</a></h3>
+<p>La vettorizzazione è una delle funzionalità più efficaci di NumPy. Quando diciamo che un’operazione è vettorizzata, significa che questa operazione viene applicata in un colpo solo a tutti gli elementi dell’array, invece di dover agire su ciascun elemento individualmente. Questo approccio rende la manipolazione di grandi insiemi di dati non solo più veloce ma anche più intuitiva, poiché consente di trattare l’intero insieme di dati come un’unica entità anziché come una serie di punti dati individuali.</p>
 <p>Supponiamo di avere raccolto i dati di 4 individui</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -924,43 +950,41 @@ BMI = \frac{kg}{m^2}.
 </section>
 <section id="broadcasting">
 <h2>Broadcasting<a class="headerlink" href="#broadcasting" title="Permalink to this heading">#</a></h2>
-<p>Il broadcasting è un meccanismo che consente a Numpy di eseguire operazioni tra array di diverse dimensioni o tra un array e uno scalare, anche quando le dimensioni non sono compatibili tra loro. In questo modo, Numpy può estendere automaticamente la dimensione di uno degli operandi in modo da rendere possibile l’operazione.</p>
-<p>Ad esempio, è possibile effettuare un’operazione tra un array e un singolo numero (operazione tra un vettore e uno scalare), oppure tra array di due dimensioni diverse, senza dover esplicitamente allineare le dimensioni degli array. In questi casi, Numpy utilizza il <em>broadcasting</em> per allineare le dimensioni degli array in modo da eseguire l’operazione richiesta. Questo rende il codice più compatto e leggibile, e consente di evitare il lavoro manuale di espansione degli array.</p>
-<p>In sintesi, il <em>broadcasting</em> è un meccanismo molto utile in Numpy che consente di eseguire operazioni tra array di diverse dimensioni o tra un array e uno scalare in modo automatico, senza dover esplicitamente allineare le dimensioni degli array.</p>
-<p>Ad esempio</p>
+<p>Il broadcasting è una caratteristica distintiva di NumPy che facilita l’esecuzione di operazioni tra array di dimensioni diverse o tra un array e uno scalare, anche se le loro dimensioni non sono direttamente compatibili. Grazie al broadcasting, NumPy è in grado di “espandere” automaticamente le dimensioni di uno degli operandi per rendere possibile l’operazione.</p>
+<p>Questo significa che possiamo, per esempio, eseguire un’operazione tra un array e un numero singolo (un vettore e uno scalare) o tra due array di dimensioni differenti, senza la necessità di modificare manualmente le dimensioni di questi array. Il broadcasting si occupa di adattare le dimensioni in modo coerente per consentire l’operazione desiderata. Ciò rende il codice più snello e leggibile, eliminando la necessità di espandere gli array manualmente.</p>
+<p>In breve, il broadcasting in NumPy è un potente strumento che semplifica l’esecuzione di operazioni su array di dimensioni diverse o tra array e scalari, automatizzando l’allineamento delle dimensioni.</p>
+<section id="esempio-di-broadcasting">
+<h3>Esempio di Broadcasting<a class="headerlink" href="#esempio-di-broadcasting" title="Permalink to this heading">#</a></h3>
+<p>Immaginiamo di avere un array <code class="docutils literal notranslate"><span class="pre">A</span></code> con dimensioni 3x3 e un numero scalare <code class="docutils literal notranslate"><span class="pre">B</span></code>. Senza broadcasting, dovremmo espandere <code class="docutils literal notranslate"><span class="pre">B</span></code> in un array 3x3 riempiendo ogni cella con il valore di <code class="docutils literal notranslate"><span class="pre">B</span></code> per eseguire un’operazione come l’addizione su ciascun elemento di <code class="docutils literal notranslate"><span class="pre">A</span></code>. Grazie al broadcasting, possiamo semplicemente scrivere <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span></code>, e NumPy si occuperà automaticamente di “espandere” <code class="docutils literal notranslate"><span class="pre">B</span></code> durante l’operazione, applicando il valore scalare a ogni elemento di <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creiamo un array 3x3</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+
+<span class="c1"># Definiamo uno scalare</span>
+<span class="n">B</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Applichiamo il broadcasting per aggiungere lo scalare a ogni elemento dell&#39;array</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  2  3  4]
- [ 5  6  7  8]
- [ 9 10 11 12]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 6  7  8]
+ [ 9 10 11]
+ [12 13 14]]
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2  4  6  8]
- [10 12 14 16]
- [18 20 22 24]]
-</pre></div>
-</div>
-</div>
-</div>
+<p>In questo esempio, <code class="docutils literal notranslate"><span class="pre">C</span></code> conterrà l’array originale <code class="docutils literal notranslate"><span class="pre">A</span></code> con ogni elemento incrementato di 5, dimostrando come il broadcasting semplifichi operazioni che altrimenti richiederebbero passaggi aggiuntivi.</p>
+</section>
 </section>
 <section id="altre-operazioni-sugli-array">
 <h2>Altre operazioni sugli array<a class="headerlink" href="#altre-operazioni-sugli-array" title="Permalink to this heading">#</a></h2>
-<p>C’è un numero enorme di funzioni predefinite in NumPy che calcolano automaticamente diverse quantità sui <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>. Ad esempio:</p>
+<p>C’è un numero enorme di funzioni predefinite in NumPy che calcolano automaticamente diverse quantità sugli <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>. Ad esempio:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">mean()</span></code>: calcola la media di un vettore o matrice;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sum()</span></code>: calcola la somma di un vettore o matrice;</p></li>
@@ -1247,25 +1271,115 @@ s = \sqrt{\sum_{i=1}^n\frac{(x_i - \bar{x})^2}{n}}
 </div>
 </div>
 </section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
+<section id="copia-e-copia-profonda-in-python">
+<h2>Copia e “Copia Profonda” in Python<a class="headerlink" href="#copia-e-copia-profonda-in-python" title="Permalink to this heading">#</a></h2>
+<p>In Python, per ottimizzare le prestazioni, le assegnazioni di solito non copiano gli oggetti sottostanti. Questo è particolarmente importante, ad esempio, quando gli oggetti vengono passati tra funzioni, per evitare una quantità eccessiva di copie in memoria quando non sono necessarie (questo approccio è noto tecnicamente come “passaggio per riferimento”).</p>
+<p>Consideriamo il seguente esempio con un array <code class="docutils literal notranslate"><span class="pre">A</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -p pytensor
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se creiamo un nuovo riferimento <code class="docutils literal notranslate"><span class="pre">B</span></code> a <code class="docutils literal notranslate"><span class="pre">A</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">A</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ora <code class="docutils literal notranslate"><span class="pre">B</span></code> si riferisce allo stesso insieme di dati di <code class="docutils literal notranslate"><span class="pre">A</span></code>. Se modifichiamo <code class="docutils literal notranslate"><span class="pre">B</span></code>, anche <code class="docutils literal notranslate"><span class="pre">A</span></code> viene modificato di conseguenza:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dopo questa modifica, sia <code class="docutils literal notranslate"><span class="pre">B</span></code> che <code class="docutils literal notranslate"><span class="pre">A</span></code> saranno:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Sep 17 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[10  2]
+ [ 3  4]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se desideriamo evitare questo comportamento, in modo tale che <code class="docutils literal notranslate"><span class="pre">B</span></code> diventi un oggetto completamente indipendente da <code class="docutils literal notranslate"><span class="pre">A</span></code>, dobbiamo effettuare una cosiddetta “copia profonda” utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">copy</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ora, se modificassimo <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">A</span></code> non subirebbe alcuna modifica. Ad esempio:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A questo punto, <code class="docutils literal notranslate"><span class="pre">B</span></code> sarà:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-5  2]
+ [ 3  4]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ma <code class="docutils literal notranslate"><span class="pre">A</span></code> rimarrà invariato:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[10  2]
+ [ 3  4]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questo esempio mostra chiaramente la differenza tra una semplice assegnazione, che crea un riferimento all’oggetto originale, e una “copia profonda”, che crea un nuovo oggetto indipendente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -m
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 29 2024
 
 Python implementation: CPython
-Python version       : 3.11.5
-IPython version      : 8.15.0
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-pytensor: 2.12.3
+Compiler    : Clang 16.0.6 
+OS          : Darwin
+Release     : 23.3.0
+Machine     : x86_64
+Processor   : i386
+CPU cores   : 8
+Architecture: 64bit
 
-numpy: 1.25.2
+numpy: 1.26.2
 
 Watermark: 2.4.3
 </pre></div>
@@ -1338,19 +1452,22 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gli-array-nel-modulo-numpy">Gli array nel modulo NumPy</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-degli-array-nel-modulo-numpy">Utilizzo degli Array nel Modulo NumPy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funzioni-per-ndarray">Funzioni per <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipolazione-di-array-con-numpy">Manipolazione di array con Numpy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vettorizzazione">Vettorizzazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipolazione-di-array-con-numpy">Manipolazione di Array con NumPy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosa-significa-vettorizzare-un-operazione">Cosa Significa Vettorizzare un’Operazione</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-di-broadcasting">Esempio di Broadcasting</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#altre-operazioni-sugli-array">Altre operazioni sugli array</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lavorare-con-formule-matematiche">Lavorare con formule matematiche</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copia-e-copia-profonda-in-python">Copia e “Copia Profonda” in Python</a></li>
 </ul>
   </nav></div>
 

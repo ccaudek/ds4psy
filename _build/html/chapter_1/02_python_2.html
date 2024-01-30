@@ -222,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -241,6 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -250,7 +251,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -265,9 +265,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -278,7 +282,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
@@ -287,7 +290,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -311,22 +314,27 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../references/bibliography.html">Bibliografia</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="00_installation.html">Ambiente di lavoro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a05_sets.html">Insiemi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a13_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a14_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a15_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a53_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a60_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_7/a70_predict_counts.html">La predizione delle frequenze</a></li>
 </ul>
 </li>
 </ul>
@@ -535,7 +543,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formattazione-del-codice">Formattazione del codice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
             </nav>
         </div>
@@ -552,12 +559,14 @@ document.write(`
 </a>
 <section class="tex2jax_ignore mathjax_ignore" id="python-2">
 <span id="intro-python-notebook"></span><h1>Python (2)<a class="headerlink" href="#python-2" title="Permalink to this heading">#</a></h1>
-<p>In questo capitolo proseguiremo la nostra discussione sulle nozioni di base relative al linguaggio Python. In particolare, esamineremo le funzioni, il flusso di esecuzione, i cicli, le list comprehension e le librerie e i moduli.</p>
+<p>In questo capitolo, approfondiremo ulteriormente le nozioni fondamentali legate al linguaggio Python. Ci concentreremo principalmente sull’analisi delle funzioni, la gestione del flusso di esecuzione, l’utilizzo dei cicli, l’implementazione delle list comprehension e l’esplorazione delle librerie e dei moduli disponibili.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -568,18 +577,7 @@ document.write(`
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;az&#39; is not defined
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -620,7 +618,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
-
 <span class="k">def</span> <span class="nf">roll_die</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    returns a random int between 1 and 6</span>
@@ -638,7 +635,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 </pre></div>
 </div>
 </div>
@@ -650,7 +647,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
 </div>
@@ -662,14 +659,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>roll_die<span class="o">?</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Signature:</span> roll_die<span class=" -Color -Color-Blue">()</span>
-<span class=" -Color -Color-Red">Docstring:</span> returns a random int between 1 and 6
-<span class=" -Color -Color-Red">File:</span>      /var/folders/hl/dt523djx7_q7xjrthzjpdvc40000gn/T/ipykernel_1234/1878901983.py
-<span class=" -Color -Color-Red">Type:</span>      function
 </pre></div>
 </div>
 </div>
@@ -798,7 +787,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;filter at 0x7ff56cea6c50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;filter at 0x169ad3160&gt;
 </pre></div>
 </div>
 </div>
@@ -854,7 +843,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x112d2f300&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;zip at 0x169b903c0&gt;
 </pre></div>
 </div>
 </div>
@@ -908,7 +897,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maria, hai ottenuto un ottimo voto all&#39;esame!
-Tu potresti essere Giovanna o potresti avere ottenuto un ottimo voto all&#39;esame.
+Tu potresti essere Giovanna oppure potresti avere ottenuto un ottimo voto all&#39;esame.
 Tu non sei Giovanna ma hai ottenuto un ottimo voto all&#39;esame.
 </pre></div>
 </div>
@@ -957,6 +946,11 @@ False
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Luca&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -1260,9 +1254,9 @@ n
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maria
+Giovanna
 Marco
 Francesco
-Giovanna
 </pre></div>
 </div>
 </div>
@@ -1579,18 +1573,48 @@ Giovanna
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="c1"># call function by</span>
 <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-
-<span class="c1">#import everything, but change name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8276798945954928
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import everything, but change name</span>
 <span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">rnd</span>
 <span class="c1"># call function by</span>
 <span class="n">rnd</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-
-<span class="c1"># select what to import from library</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.44867236987906334
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select what to import from library</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
 <span class="c1">#call function by</span>
 <span class="n">random</span><span class="p">()</span>
-
-<span class="c1"># import everything from library</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8841713742867969
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import everything from library</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1"># call function by</span>
 <span class="n">random</span><span class="p">()</span>
@@ -1598,7 +1622,7 @@ Giovanna
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9405997945352496
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1387220122450915
 </pre></div>
 </div>
 </div>
@@ -1658,6 +1682,11 @@ Giovanna
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+</pre></div>
+</div>
+</div>
 </div>
 <p>Si noti che, nel corpo di una funzione, è possibile usare altre funzioni: qui, <code class="docutils literal notranslate"><span class="pre">np.sum()</span></code> e <code class="docutils literal notranslate"><span class="pre">len()</span></code>.</p>
 <p>È sempre possibile usare la funzione di <code class="docutils literal notranslate"><span class="pre">help</span></code> su una funzione:</p>
@@ -1687,25 +1716,33 @@ sum(iterable, /, start=0)
 <h2>Formattazione del codice<a class="headerlink" href="#formattazione-del-codice" title="Permalink to this heading">#</a></h2>
 <br>
 <img alt="../_images/code_quality_2x.png" class="align-center" src="../_images/code_quality_2x.png" />
-<br>
-</section>
-<section id="watermark">
-<h2>Watermark<a class="headerlink" href="#watermark" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
+<br><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -p pytensor
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -m
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Jul 23 2023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 29 2024
 
 Python implementation: CPython
-Python version       : 3.11.4
-IPython version      : 8.12.0
+Python version       : 3.11.7
+IPython version      : 8.19.0
 
-pytensor: 2.12.3
+Compiler    : Clang 16.0.6 
+OS          : Darwin
+Release     : 23.3.0
+Machine     : x86_64
+Processor   : i386
+CPU cores   : 8
+Architecture: 64bit
+
+pandas    : 2.1.4
+matplotlib: 3.8.2
+numpy     : 1.26.2
+arviz     : 0.17.0
+seaborn   : 0.13.0
 
 Watermark: 2.4.3
 </pre></div>
@@ -1805,7 +1842,6 @@ Watermark: 2.4.3
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formattazione-del-codice">Formattazione del codice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watermark">Watermark</a></li>
 </ul>
   </nav></div>
 

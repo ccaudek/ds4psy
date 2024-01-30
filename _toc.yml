@@ -99,6 +99,8 @@ chapters:
       - file: chapter_5/05_params_recovery
       - file: chapter_5/05_reglin_3
       - file: chapter_5/05_reglin_4
+      - file: chapter_5/05_causal_inference
+      - file: chapter_5/E_causal_inference
       - file: chapter_5/05_reglin_5
       - file: chapter_5/05_reglin_7
       - file: chapter_5/05_simpson

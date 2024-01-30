@@ -220,7 +220,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -239,6 +239,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -248,7 +249,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -267,6 +267,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -511,7 +514,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ampliare-le-possibilita-di-visualizzazione-dei-dati-con-seaborn">Ampliare le possibilità di visualizzazione dei dati con Seaborn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elevare-la-visualizzazione-dei-dati-con-seaborn">Elevare la Visualizzazione dei Dati con Seaborn</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizzare-la-distribuzione-dei-dati">Visualizzare la distribuzione dei dati</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizzazione-di-dati-categoriali">Visualizzazione di dati categoriali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relazioni-tra-variabili">Relazioni tra variabili</a></li>
@@ -531,12 +534,12 @@ document.write(`
 </a>
 <section class="tex2jax_ignore mathjax_ignore" id="seaborn">
 <span id="intro-seaborn-notebook"></span><h1>Seaborn<a class="headerlink" href="#seaborn" title="Permalink to this heading">#</a></h1>
-<section id="ampliare-le-possibilita-di-visualizzazione-dei-dati-con-seaborn">
-<h2>Ampliare le possibilità di visualizzazione dei dati con Seaborn<a class="headerlink" href="#ampliare-le-possibilita-di-visualizzazione-dei-dati-con-seaborn" title="Permalink to this heading">#</a></h2>
-<p>Nel capitolo precedente, abbiamo esplorato le potenzialità di Matplotlib, una delle librerie più versatile per la visualizzazione dei dati in Python. Tuttavia, se desiderate portare le vostre visualizzazioni a un livello superiore con una maggiore facilità d’uso, Seaborn è la risposta. Pensata come un’estensione di Matplotlib, Seaborn offre una vasta gamma di opzioni di visualizzazione specificamente progettate per rispondere alle esigenze della data science.</p>
-<p>Seaborn non solo migliora l’estetica dei grafici, ma semplifica anche la creazione di visualizzazioni complesse, rendendo l’intero processo più intuitivo. Dalle mappe di calore ai grafici a violino, la libreria offre una grande varietà di metodi per esplorare e presentare i dati.</p>
-<p>Per chi è interessato a esplorare più a fondo le funzionalità di Seaborn, i tutorial disponibili sulla <a class="reference external" href="https://seaborn.pydata.org/">pagina web ufficiale di Seaborn</a> rappresentano una risorsa molto utile.</p>
-<p>Esaminiamo qui alcuni esempi.</p>
+<section id="elevare-la-visualizzazione-dei-dati-con-seaborn">
+<h2>Elevare la Visualizzazione dei Dati con Seaborn<a class="headerlink" href="#elevare-la-visualizzazione-dei-dati-con-seaborn" title="Permalink to this heading">#</a></h2>
+<p>Nel capitolo precedente, abbiamo esaminato Matplotlib, una libreria estremamente versatile per la visualizzazione dei dati in Python. Ora esamineremo le funzionalità di Seabonrn. Seaborn, che si basa su Matplotlib, arricchisce l’esperienza di visualizzazione dei dati offrendo una gamma più ampia e specializzata di opzioni grafiche, particolarmente utili nel campo della data science.</p>
+<p>Il vero punto di forza di Seaborn è la sua capacità di migliorare non solo l’aspetto estetico dei grafici ma anche di facilitare la creazione di visualizzazioni più complesse. Questo rende il processo più diretto e intuitivo. La libreria è dotata di un’ampia varietà di strumenti, dalle mappe di calore ai grafici a violino, permettendo agli utenti di esplorare e rappresentare i dati in modi innovativi e informativi.</p>
+<p>Per chi vuole approfondire ulteriormente, i tutorial presenti sul <a class="reference external" href="https://seaborn.pydata.org/">sito ufficiale di Seaborn</a> sono una risorsa preziosa e facilmente accessibile.</p>
+<p>Vediamo alcuni esempi pratici per scoprire come Seaborn possa trasformare il modo in cui visualizziamo i dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -554,6 +557,7 @@ document.write(`
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 <span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -589,7 +593,7 @@ document.write(`
   self._figure.tight_layout(*args, **kwargs)
 </pre></div>
 </div>
-<img alt="../_images/dc7e4007fcb2b70d7cc02fa06c808b5287f24cc0c020f04ba44850a7fc593c28.png" src="../_images/dc7e4007fcb2b70d7cc02fa06c808b5287f24cc0c020f04ba44850a7fc593c28.png" />
+<img alt="../_images/3501e1ad6969ae755927e8706528f4334684551f9f76dec07197a7be58d71f1c.png" src="../_images/3501e1ad6969ae755927e8706528f4334684551f9f76dec07197a7be58d71f1c.png" />
 </div>
 </details>
 </div>
@@ -608,7 +612,7 @@ document.write(`
   self._figure.tight_layout(*args, **kwargs)
 </pre></div>
 </div>
-<img alt="../_images/66d57d29f6503a1e745cefe19cd97fb8f30816a5fcd9d6c655993b605ece25a6.png" src="../_images/66d57d29f6503a1e745cefe19cd97fb8f30816a5fcd9d6c655993b605ece25a6.png" />
+<img alt="../_images/7009dbb261c71b8f89352de1e11ff79001950ef44f92756494d111bec7d9af3b.png" src="../_images/7009dbb261c71b8f89352de1e11ff79001950ef44f92756494d111bec7d9af3b.png" />
 </div>
 </div>
 </section>
@@ -618,9 +622,7 @@ document.write(`
 <p>Consideriamo, ad esempio, la massa corporea in relazione alla specie, differenziando le osservazioni per genere. Creiamo il grafico utilizzando i boxplot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a custom color palette</span>
-<span class="n">palette</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;male&#39;</span><span class="p">:</span> <span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">:</span> <span class="s1">&#39;C3&#39;</span><span class="p">}</span>  
-<span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -629,15 +631,17 @@ document.write(`
   self._figure.tight_layout(*args, **kwargs)
 </pre></div>
 </div>
-<img alt="../_images/68ea02a9a8a54f4522700f9175cf02533c8f5f0bcf688048568071d80447ff8d.png" src="../_images/68ea02a9a8a54f4522700f9175cf02533c8f5f0bcf688048568071d80447ff8d.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x16ea65690&gt;
+</pre></div>
+</div>
+<img alt="../_images/dcb843195bbb23c4edd2773720a3bdcccde59327a91f1187d03c45d972e816d5.png" src="../_images/dcb843195bbb23c4edd2773720a3bdcccde59327a91f1187d03c45d972e816d5.png" />
 </div>
 </div>
 <p>Dai diagrammi risulta evidente che i pinguini maschi hanno un peso maggiore rispetto alle femmine in tutte le specie, e che i pinguini Gentoo hanno un peso superiore rispetto ad Adelie e Chinstrap.</p>
 <p>Come alternativa, possiamo utilizzare il violinplot per la rappresentazione grafica dei dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">palette</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;male&#39;</span><span class="p">:</span> <span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">:</span> <span class="s1">&#39;C3&#39;</span><span class="p">}</span>  
-<span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;violin&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;body_mass_g&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;violin&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -646,7 +650,10 @@ document.write(`
   self._figure.tight_layout(*args, **kwargs)
 </pre></div>
 </div>
-<img alt="../_images/40a18df84df35e6c042fad76b72118595f0d5afc0a81eecc2ae25325c0fe70a6.png" src="../_images/40a18df84df35e6c042fad76b72118595f0d5afc0a81eecc2ae25325c0fe70a6.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x16eac4150&gt;
+</pre></div>
+</div>
+<img alt="../_images/eb94f03ec2a8b36092d57b85a302c809ba56cafaf5fc3e13435c7d2fe3ffd7e6.png" src="../_images/eb94f03ec2a8b36092d57b85a302c809ba56cafaf5fc3e13435c7d2fe3ffd7e6.png" />
 </div>
 </div>
 </section>
@@ -722,12 +729,12 @@ document.write(`
 <p>Queste informazioni possono essere comunicate in forma più diretta se usiamo una rappresentazione grafica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">5</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0a9b4a3b6f9e123097889ab0017e2c9422a682906df2afe9e6eb0ca6d92a7d57.png" src="../_images/0a9b4a3b6f9e123097889ab0017e2c9422a682906df2afe9e6eb0ca6d92a7d57.png" />
+<img alt="../_images/23a0f308406d00e40e2bf2ea8284876e732d8a9a63d1183625c0f13ab26dc63d.png" src="../_images/23a0f308406d00e40e2bf2ea8284876e732d8a9a63d1183625c0f13ab26dc63d.png" />
 </div>
 </div>
 <p>La lunghezza della pinna e la massa corporea mostrano un forte legame, con una correlazione di 0.87. Ciò indica che i pinguini con pinne più lunghe tendono a pesare di più.</p>
@@ -739,7 +746,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c24f73bf6152ad52d4a67c8d2b0c59cb5fc712ebb4f137701ba6055823d30faf.png" src="../_images/c24f73bf6152ad52d4a67c8d2b0c59cb5fc712ebb4f137701ba6055823d30faf.png" />
+<img alt="../_images/0d066af7de6fa890bb176ce7d1aae94f00ec8b9eb0877df5a51632291e7aee33.png" src="../_images/0d066af7de6fa890bb176ce7d1aae94f00ec8b9eb0877df5a51632291e7aee33.png" />
 </div>
 </div>
 <p>Evidentemente, le osservazioni delle tre specie formano cluster distinti. Per ciascuna specie, la lunghezza e la larghezza del becco presentano un intervallo specifico.</p>
@@ -768,28 +775,36 @@ document.write(`
   self._figure.tight_layout(*args, **kwargs)
 </pre></div>
 </div>
-<img alt="../_images/0fff455477bed6078eaa5135b2770669d035a7a7fa4af3ddad52e36699b30cb4.png" src="../_images/0fff455477bed6078eaa5135b2770669d035a7a7fa4af3ddad52e36699b30cb4.png" />
+<img alt="../_images/8a0b598ae70f71f1c66d0423b0f9dc7421c1621d4604f5130e6b7baaa8b93072.png" src="../_images/8a0b598ae70f71f1c66d0423b0f9dc7421c1621d4604f5130e6b7baaa8b93072.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -m
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Fri Jan 26 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 29 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
 IPython version      : 8.19.0
 
-seaborn   : 0.13.0
-pandas    : 2.1.4
+Compiler    : Clang 16.0.6 
+OS          : Darwin
+Release     : 23.3.0
+Machine     : x86_64
+Processor   : i386
+CPU cores   : 8
+Architecture: 64bit
+
 numpy     : 1.26.2
+seaborn   : 0.13.0
 matplotlib: 3.8.2
 arviz     : 0.17.0
+pandas    : 2.1.4
 
 Watermark: 2.4.3
 </pre></div>
@@ -862,7 +877,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ampliare-le-possibilita-di-visualizzazione-dei-dati-con-seaborn">Ampliare le possibilità di visualizzazione dei dati con Seaborn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elevare-la-visualizzazione-dei-dati-con-seaborn">Elevare la Visualizzazione dei Dati con Seaborn</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizzare-la-distribuzione-dei-dati">Visualizzare la distribuzione dei dati</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizzazione-di-dati-categoriali">Visualizzazione di dati categoriali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relazioni-tra-variabili">Relazioni tra variabili</a></li>

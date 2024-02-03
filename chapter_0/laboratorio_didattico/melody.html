@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Il significato sociale della musica in età evolutiva &#8212; ds4p</title>
+    <title>Il Significato Sociale della Musica in Età Evolutiva &#8212; ds4p</title>
   
   
   
@@ -220,7 +220,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_3/04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -239,6 +239,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -248,7 +249,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -263,9 +263,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/24_multiple_groups.html">Gruppi multipli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/30_entropy.html">Entropia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/31_kl.html">La divergenza di Kullback-Leibler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4/32_loo.html">Validazione Incrociata Leave-One-Out</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -275,8 +279,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_causal_inference.html">Inferenza causale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_5/E_causal_inference.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/E_reglin_1.html">✏️ Esercizi</a></li>
@@ -285,7 +290,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/E_reglin_4.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_logistic_reg.html">Modello di regressione logistica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_binomial_reg.html">Regressione binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_covid.html">Inferenza controfattuale: calcolo delle morti in eccesso dovute al COVID-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_covid.html">Inferenza controfattuale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/05_counterfactual.html">Analisi causale con PyMC</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../../chapter_5/E_stab.html">✏️ Esercizi</a></li>
@@ -309,22 +314,27 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../references/bibliography.html">Bibliografia</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../chapter_7/introduction_appendix.html">Appendici</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_1/00_installation.html">Ambiente di lavoro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a01_math_symbols.html">Simbologia di base</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a02_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a04_summation_notation.html">Simbolo di somma (sommatorie)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a05_sets.html">Insiemi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a06_combinatorics.html">Calcolo combinatorio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a07_calculus.html">Per liberarvi dai terrori preliminari</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a08_kde_plot.html">Kernel Density Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a09_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a12_rng.html">Generazione di numeri casuali</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a14_predict_counts.html">La predizione delle frequenze</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a15_lin_fun.html">La funzione lineare</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a20_reglin_1.html">Regressione lineare bivariata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a21_reglin_2.html">Regressione lineare con Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a23_reglin_4.html">Posterior Predictive Checks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a30_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a00_installation.html">Ambiente di lavoro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a01_markdown.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a02_shell.html">La Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a03_virtual_env.html">Ambiente virtuale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a10_math_symbols.html">Simbologia di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a11_numbers.html">Numeri binari, interi, razionali, irrazionali e reali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a12_sum_notation.html">Simbolo di somma (sommatorie)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a13_sets.html">Insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a14_combinatorics.html">Calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a15_calculus.html">Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a20_kde_plot.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a30_prob_tutorial.html">Esercizi di probabilità discreta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a40_rng.html">Generazione di numeri casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a44_montecarlo.html">Simulazione Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a45_mcmc.html">Catene di Markov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a50_lin_fun.html">La funzione lineare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a51_reglin_1.html">Regressione lineare bivariata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a52_reglin_2.html">Regressione lineare con Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a53_reglin_4.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a60_ttest_exercises.html">Esercizi sull’inferenza frequentista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_7/a70_predict_counts.html">La predizione delle frequenze</a></li>
 </ul>
 </li>
 </ul>
@@ -496,7 +506,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Il significato sociale della musica in età evolutiva</h1>
+    <h1>Il Significato Sociale della Musica in Età Evolutiva</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -507,6 +517,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivazione">Motivazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-dei-dati">Analisi dei dati</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-t-di-student-per-un-solo-campione">Test <span class="math notranslate nohighlight">\(t\)</span> di Student per un solo campione</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#approccio-frequentista">Approccio frequentista</a></li>
@@ -539,7 +550,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="il-significato-sociale-della-musica-in-eta-evolutiva">
-<h1>Il significato sociale della musica in età evolutiva<a class="headerlink" href="#il-significato-sociale-della-musica-in-eta-evolutiva" title="Permalink to this heading">#</a></h1>
+<h1>Il Significato Sociale della Musica in Età Evolutiva<a class="headerlink" href="#il-significato-sociale-della-musica-in-eta-evolutiva" title="Permalink to this heading">#</a></h1>
 <section id="motivazione">
 <h2>Motivazione<a class="headerlink" href="#motivazione" title="Permalink to this heading">#</a></h2>
 <p>La produzione e fruizione della musica è una caratteristica universale del genere umano. I neonati umani imparano e ricordano le melodie e si muovono spontaneamente al ritmo della musica. I genitori cantano frequentemente delle canzoni ai loro figli piccoli, in uno stile che è comune a molte culture. Ci possiamo dunque chiedere quale sia la <em>funzione</em> di questo comportamento dei genitori nei confronti dei loro figli. Mehr, Song e Spelke (2016) esplorano l’ipotesi che la melodia, una caratteristica saliente della musica vocale, trasmetta informazioni sociali ai bambini.</p>
@@ -551,9 +562,8 @@ document.write(`
 <p>L’analisi statistica eseguita dagli autori è un test <span class="math notranslate nohighlight">\(t\)</span> di Student. L’articolo di Mehr et al. (2016) riporta un valore della statistica test pari a <span class="math notranslate nohighlight">\(t_{31} = 2.96\)</span>, un <span class="math notranslate nohighlight">\(p\)</span>-valore di 0.06 e un intervallo di confidenza al 95% pari a [0.529, 0.658]. La dimensione dell’effetto, misurata con un <span class="math notranslate nohighlight">\(d\)</span> di Cohen, è pari a 0.52.</p>
 <p>Lo scopo dell’analisi statistica riportata qui di seguito è quello di replicare questi risultati mediante l’analisi dei dati messi a disposizione dagli autori. La stessa analisi statistica verrà eseguita usando due metodi diversi: l’approccio frequentista e l’approccio bayesiano.</p>
 </section>
-<section id="analisi-dei-dati">
-<h2>Analisi dei dati<a class="headerlink" href="#analisi-dei-dati" title="Permalink to this heading">#</a></h2>
-<p>Per replicare i risultati riportati da  Mehr et al. (2016), importiamo i dati contenuti nel file <code class="docutils literal notranslate"><span class="pre">MehrSongSpelke_exp_1.csv</span></code>.</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -562,6 +572,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sc</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="k">as</span> <span class="n">st</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
 <span class="kn">import</span> <span class="nn">bambi</span> <span class="k">as</span> <span class="nn">bmb</span>
 <span class="kn">import</span> <span class="nn">pymc</span> <span class="k">as</span> <span class="nn">pm</span>
@@ -569,160 +580,35 @@ document.write(`
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-<span class="o">%</span><span class="k">load_ext</span> watermark
-
-<span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/main/nma.mplstyle&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sc</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="k">as</span> <span class="n">st</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
-
-<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1229,</span> in <span class="ni">_handle_fromlist</span><span class="nt">(module, fromlist, import_, recursive)</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/scipy/__init__.py:189,</span> in <span class="ni">__getattr__</span><span class="nt">(name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">187</span> <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span>     <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">submodules</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">189</span>         <span class="k">return</span> <span class="n">_importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;scipy.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">190</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span>         <span class="k">try</span><span class="p">:</span>
-
-<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/importlib/__init__.py:126,</span> in <span class="ni">import_module</span><span class="nt">(name, package)</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span>             <span class="k">break</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span>         <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="ne">--&gt; </span><span class="mi">126</span> <span class="k">return</span> <span class="n">_bootstrap</span><span class="o">.</span><span class="n">_gcd_import</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">level</span><span class="p">:],</span> <span class="n">package</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">stats</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">608</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> .. _statsrefmanual:</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">603</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">604</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">606</span> <span class="kn">from</span> <span class="nn">._warnings_errors</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ConstantInputWarning</span><span class="p">,</span> <span class="n">NearConstantInputWarning</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">607</span>                                <span class="n">DegenerateDataWarning</span><span class="p">,</span> <span class="n">FitError</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">608</span> <span class="kn">from</span> <span class="nn">._stats_py</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">    </span><span class="mi">609</span> <span class="kn">from</span> <span class="nn">._variation</span> <span class="kn">import</span> <span class="n">variation</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">stats</span><span class="o">/</span><span class="n">_stats_py</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">39</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="kn">from</span> <span class="nn">numpy.lib</span> <span class="kn">import</span> <span class="n">NumpyVersion</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="kn">from</span> <span class="nn">numpy.testing</span> <span class="kn">import</span> <span class="n">suppress_warnings</span>
-<span class="ne">---&gt; </span><span class="mi">39</span> <span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">_measurements</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="kn">from</span> <span class="nn">scipy._lib._util</span> <span class="kn">import</span> <span class="p">(</span><span class="n">check_random_state</span><span class="p">,</span> <span class="n">MapWrapper</span><span class="p">,</span> <span class="n">_get_nan</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span>                               <span class="n">rng_integers</span><span class="p">,</span> <span class="n">_rename_parameter</span><span class="p">,</span> <span class="n">_contains_nan</span><span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">spatial</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">110</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> =============================================================</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> Spatial algorithms and data structures (:mod:`scipy.spatial`)</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="sd">    QhullError</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">110</span> <span class="kn">from</span> <span class="nn">._kdtree</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="kn">from</span> <span class="nn">._ckdtree</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="kn">from</span> <span class="nn">._qhull</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">spatial</span><span class="o">/</span><span class="n">_kdtree</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Copyright Anne M. Archibald 2008</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Released under the scipy license</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">._ckdtree</span> <span class="kn">import</span> <span class="n">cKDTree</span><span class="p">,</span> <span class="n">cKDTreeNode</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;minkowski_distance_p&#39;</span><span class="p">,</span> <span class="s1">&#39;minkowski_distance&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>            <span class="s1">&#39;distance_matrix&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>            <span class="s1">&#39;Rectangle&#39;</span><span class="p">,</span> <span class="s1">&#39;KDTree&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">def</span> <span class="nf">minkowski_distance_p</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-
-<span class="nn">File _ckdtree.pyx:12,</span> in <span class="ni">init scipy.spatial._ckdtree</span><span class="nt">()</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">sparse</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">287</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span> <span class="kn">from</span> <span class="nn">._matrix_io</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="c1"># For backward compatibility with v0.19.</span>
-<span class="ne">--&gt; </span><span class="mi">287</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">csgraph</span>
-<span class="g g-Whitespace">    </span><span class="mi">289</span> <span class="c1"># Deprecated namespaces, to be removed in v2.0.0</span>
-<span class="g g-Whitespace">    </span><span class="mi">290</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span>     <span class="n">base</span><span class="p">,</span> <span class="n">bsr</span><span class="p">,</span> <span class="n">compressed</span><span class="p">,</span> <span class="n">construct</span><span class="p">,</span> <span class="n">coo</span><span class="p">,</span> <span class="n">csc</span><span class="p">,</span> <span class="n">csr</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">dia</span><span class="p">,</span> <span class="n">dok</span><span class="p">,</span> <span class="n">extract</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">292</span>     <span class="n">lil</span><span class="p">,</span> <span class="n">sparsetools</span><span class="p">,</span> <span class="n">sputils</span>
-<span class="g g-Whitespace">    </span><span class="mi">293</span> <span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">sparse</span><span class="o">/</span><span class="n">csgraph</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">185</span>
-<span class="g g-Whitespace">    </span><span class="mi">157</span> <span class="n">__docformat__</span> <span class="o">=</span> <span class="s2">&quot;restructuredtext en&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;connected_components&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">160</span>            <span class="s1">&#39;laplacian&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span>            <span class="s1">&#39;shortest_path&#39;</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">182</span>            <span class="s1">&#39;csgraph_to_masked&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">183</span>            <span class="s1">&#39;NegativeCycleError&#39;</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">185</span> <span class="kn">from</span> <span class="nn">._laplacian</span> <span class="kn">import</span> <span class="n">laplacian</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span> <span class="kn">from</span> <span class="nn">._shortest_path</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">187</span>     <span class="n">shortest_path</span><span class="p">,</span> <span class="n">floyd_warshall</span><span class="p">,</span> <span class="n">dijkstra</span><span class="p">,</span> <span class="n">bellman_ford</span><span class="p">,</span> <span class="n">johnson</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span>     <span class="n">NegativeCycleError</span>
-<span class="g g-Whitespace">    </span><span class="mi">189</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">190</span> <span class="kn">from</span> <span class="nn">._traversal</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span>     <span class="n">breadth_first_order</span><span class="p">,</span> <span class="n">depth_first_order</span><span class="p">,</span> <span class="n">breadth_first_tree</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span>     <span class="n">depth_first_tree</span><span class="p">,</span> <span class="n">connected_components</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span> <span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">sparse</span><span class="o">/</span><span class="n">csgraph</span><span class="o">/</span><span class="n">_laplacian</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">issparse</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">LinearOperator</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="c1">###############################################################################</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># Graph laplacian</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="k">def</span> <span class="nf">laplacian</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">csgraph</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">normed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="n">symmetrized</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="p">):</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">sparse</span><span class="o">/</span><span class="n">linalg</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">121</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> Sparse linear algebra (:mod:`scipy.sparse.linalg`)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> ==================================================</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="kn">from</span> <span class="nn">._isolve</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="ne">--&gt; </span><span class="mi">121</span> <span class="kn">from</span> <span class="nn">._dsolve</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="kn">from</span> <span class="nn">._interface</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="kn">from</span> <span class="nn">._eigen</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">sparse</span><span class="o">/</span><span class="n">linalg</span><span class="o">/</span><span class="n">_dsolve</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">58</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> Linear Solvers</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> ==============</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">51</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">54</span> <span class="c1">#import umfpack</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="c1">#__doc__ = &#39;\n\n&#39;.join( (__doc__,  umfpack.__doc__) )</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="c1">#del umfpack</span>
-<span class="ne">---&gt; </span><span class="mi">58</span> <span class="kn">from</span> <span class="nn">.linsolve</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span> <span class="kn">from</span> <span class="nn">._superlu</span> <span class="kn">import</span> <span class="n">SuperLU</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_add_newdocs</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">pymc_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">sparse</span><span class="o">/</span><span class="n">linalg</span><span class="o">/</span><span class="n">_dsolve</span><span class="o">/</span><span class="n">linsolve</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">11</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">LinAlgError</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">copy</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_superlu</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">noScikit</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="k">try</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisi-dei-dati">
+<h2>Analisi dei dati<a class="headerlink" href="#analisi-dei-dati" title="Permalink to this heading">#</a></h2>
+<p>Per replicare i risultati riportati da  Mehr et al. (2016), importiamo i dati contenuti nel file <code class="docutils literal notranslate"><span class="pre">MehrSongSpelke_exp_1.csv</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Quando si lavora in un Jupyter Notebook e si necessita di leggere un file di dati, come un file CSV, la gestione del percorso del file è cruciale. Se il file CSV si trova nella stessa directory (cartella) in cui è salvato il Jupyter Notebook, non è richiesto indicare il percorso completo del file. In questo caso, è sufficiente fornire il nome del file, incluso l’estensione <code class="docutils literal notranslate"><span class="pre">.csv</span></code>, nella funzione di lettura, ad esempio <code class="docutils literal notranslate"><span class="pre">pd.read_csv(&quot;nomefile.csv&quot;)</span></code>, assumendo l’uso di pandas per la lettura del file.</p>
+<p>Tuttavia, se il file si trova in una cartella diversa da quella in cui risiede il Jupyter Notebook, sarà necessario specificare il percorso del file in modo relativo o assoluto. Un percorso relativo descrive la posizione del file in relazione alla posizione corrente del Notebook. Ad esempio, se il file si trova in una sottocartella della directory corrente, si può specificare il percorso come <code class="docutils literal notranslate"><span class="pre">&quot;sottocartella/nomefile.csv&quot;</span></code>. Se, invece, il file si trova in una directory superiore o in una sottodirectory di essa, si utilizzerebbe il prefisso <code class="docutils literal notranslate"><span class="pre">&quot;../&quot;</span></code> per ogni livello che si desidera risalire, prima di specificare il percorso verso il file. Ad esempio, <code class="docutils literal notranslate"><span class="pre">&quot;../cartellaSuperiore/nomefile.csv&quot;</span></code> per accedere a una cartella superiore e poi entrare in <code class="docutils literal notranslate"><span class="pre">cartellaSuperiore</span></code>.</p>
+<p>Ricorrendo a un percorso relativo, si mantiene la portabilità del notebook, facilitando la condivisione con altri utenti senza la necessità di riconfigurare i percorsi dei file, a patto che la struttura delle cartelle rimanga invariata. I percorsi assoluti, che specificano la posizione completa di un file nel sistema di file, sono meno flessibili in questo senso e quindi meno consigliati per progetti che devono essere condivisi o eseguiti in ambienti diversi.</p>
+<p>In sintesi, la gestione dei percorsi dei file in un Jupyter Notebook dipende dalla loro posizione relativa al notebook stesso. Utilizzare il nome del file da solo quando è nella stessa directory del notebook, o specificare un percorso relativo (o assoluto, se necessario) quando il file si trova in una differente directory, per assicurare che il notebook possa localizzare e leggere il file correttamente.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tot_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;MehrSongSpelke_exp_1.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -730,8 +616,7 @@ document.write(`
 <p>Il DataFrame è costituito da 96 righe e 153 colonne.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tot_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;MehrSongSpelke_exp_1.csv&quot;</span><span class="p">)</span>
-<span class="n">tot_df</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tot_df</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -741,7 +626,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Esamino i nomi delle colonne.</p>
+<p>Elenchiamo i nomi delle colonne.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">tot_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
@@ -754,7 +639,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Considero la colonna <code class="docutils literal notranslate"><span class="pre">exp1</span></code>.</p>
+<p>Estraiamo la colonna <code class="docutils literal notranslate"><span class="pre">exp1</span></code> ed esaminiamo le modalità di questa variabile.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tot_df</span><span class="p">[</span><span class="s2">&quot;exp1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -767,7 +652,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Quando <code class="docutils literal notranslate"><span class="pre">exp1</span></code> assume il valore 1 le osservazioni (righe) appartengono al primo esperimento. Seleziono dunque i dati del primo esperimento.</p>
+<p>Quando <code class="docutils literal notranslate"><span class="pre">exp1</span></code> assume il valore 1, ciò significa che le osservazioni (righe) appartengono al primo esperimento. Seleziamo dunque i dati del primo esperimento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">tot_df</span><span class="p">[</span><span class="n">tot_df</span><span class="p">[</span><span class="s2">&quot;exp1&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
@@ -781,24 +666,23 @@ document.write(`
 </div>
 </div>
 </div>
-<p>La variabile <code class="docutils literal notranslate"><span class="pre">Test_Proportion_Gaze_to_Singer</span></code> viene usata per la seconda delle due analisi descritte sopra. Creo un istogramma lisciato (KDE plot, o stima della densità della frequenza dei dati) di questa variabile.</p>
+<p>Una delle variabile di interesse è <code class="docutils literal notranslate"><span class="pre">Test_Proportion_Gaze_to_Singer</span></code>, in quanto  viene usata per la seconda delle due analisi statistiche descritte sopra.</p>
+<p>Per acquisire una comprensione più approfondita delle caratteristiche di questi dati, possiamo iniziare creando un grafico della densità kernel (KDE plot) per questa variabile. Un KDE plot è una stima della densità di frequenza dei dati che ci consente di visualizzare la distribuzione dei dati tramite una curva che racchiude un’area unitaria, fornendo così una rappresentazione più agevole della distribuzione dei dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Test_Proportion_Gaze_to_Singer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">();</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Test_Proportion_Gaze_to_Singer&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9e8c16466b73181e8cef96fe3c37b32072ee565e88c15f86202ac32ed9f0672d.png" src="../../_images/9e8c16466b73181e8cef96fe3c37b32072ee565e88c15f86202ac32ed9f0672d.png" />
+<img alt="../../_images/1e02b988ea9d22f5fdbcac936a9a60be3adee7734e2269e4587b3a31a63bceca.png" src="../../_images/1e02b988ea9d22f5fdbcac936a9a60be3adee7734e2269e4587b3a31a63bceca.png" />
 </div>
 </div>
 <p>Media, mediana, deviazione standard, minimo e massimo delle proporzioni del tempo intercorso a fissare la faccia della persona target si ottengono nel modo seguente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statistics</span>
-
-<span class="n">summary_stats</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">,</span> <span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">,</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">statistics</span><span class="o">.</span><span class="n">stdev</span><span class="p">,</span> <span class="nb">max</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_stats</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="nb">max</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Test_Proportion_Gaze_to_Singer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">summary_stats</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -807,7 +691,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>min       0.262846
 median    0.556953
 mean      0.593491
-stdev     0.178688
+std       0.178688
 max       0.950920
 Name: Test_Proportion_Gaze_to_Singer, dtype: float64
 </pre></div>
@@ -827,18 +711,12 @@ H_0: \mu = 0.5.
 <p>Inizio ad esaminare la distribuzione dei dati. Assumo una distribuzione gaussiana e produco un diagramma quantile-quantile.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Test_Proportion_Gaze_to_Singer&quot;</span><span class="p">]);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Test_Proportion_Gaze_to_Singer&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
-</pre></div>
-</div>
-<img alt="../../_images/47291d2f35d0c554e7d493cbef4abc9f33226bba13390b1a04536e095b7e3841.png" src="../../_images/47291d2f35d0c554e7d493cbef4abc9f33226bba13390b1a04536e095b7e3841.png" />
+<img alt="../../_images/3073a00021e7d25fabc78e81ab5f63d14b8bfa85653efbbfd09554836cb51671.png" src="../../_images/3073a00021e7d25fabc78e81ab5f63d14b8bfa85653efbbfd09554836cb51671.png" />
 </div>
 </div>
 <p>Il plot è ragionevolmente lineare per assumere la gaussianità. Dato che l’assunzione di gaussianità è ragionevole, procedo con il <span class="math notranslate nohighlight">\(t\)</span> test.</p>
@@ -999,33 +877,132 @@ T = \frac{\bar{y} - \mu_0}{\hat{\sigma}_{\bar{y}}} = \frac{0.59 - 0.50}{0.032} =
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-assigning NUTS sampler...
-Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (4 chains in 4 jobs)
-NUTS: [mu, sigma]
 </pre></div>
 </div>
-<div class="output text_html">
-<style>
-    /* Turns off some styling */
-    progress {
-        /* gets rid of default border in Firefox and Opera. */
-        border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
-        background-size: auto;
-    }
-    progress:not([value]), progress:not([value])::-webkit-progress-bar {
-        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
-    }
-    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-        background: #F44336;
-    }
-</style>
-</div><div class="output text_html">
-    <div>
-      <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      100.00% [8000/8000 00:04&lt;00:00 Sampling 4 chains, 0 divergences]
-    </div>
-    </div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 23 seconds.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initializing NUTS using jitter+adapt_diag...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multiprocess sampling (4 chains in 4 jobs)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NUTS: [mu, sigma]
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Likelihood of observations</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">Y_obs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;Y_obs&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">trace1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/mcmc.py:802,</span> in <span class="ni">sample</span><span class="nt">(draws, tune, chains, cores, random_seed, progressbar, step, nuts_sampler, initvals, init, jitter_max_retries, n_init, trace, discard_tuned_samples, compute_convergence_checks, keep_warning_stat, return_inferencedata, idata_kwargs, nuts_sampler_kwargs, callback, mp_ctx, model, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">800</span> <span class="n">_print_step_hierarchy</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">801</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">802</span>     <span class="n">_mp_sample</span><span class="p">(</span><span class="o">**</span><span class="n">sample_args</span><span class="p">,</span> <span class="o">**</span><span class="n">parallel_args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">803</span> <span class="k">except</span> <span class="n">pickle</span><span class="o">.</span><span class="n">PickleError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">804</span>     <span class="n">_log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Could not pickle model, sampling singlethreaded.&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/mcmc.py:1177,</span> in <span class="ni">_mp_sample</span><span class="nt">(draws, tune, step, chains, cores, random_seed, start, progressbar, traces, model, callback, mp_ctx, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1174</span> <span class="c1"># We did draws += tune in pm.sample</span>
+<span class="g g-Whitespace">   </span><span class="mi">1175</span> <span class="n">draws</span> <span class="o">-=</span> <span class="n">tune</span>
+<span class="ne">-&gt; </span><span class="mi">1177</span> <span class="n">sampler</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">ParallelSampler</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1178</span>     <span class="n">draws</span><span class="o">=</span><span class="n">draws</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1179</span>     <span class="n">tune</span><span class="o">=</span><span class="n">tune</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1180</span>     <span class="n">chains</span><span class="o">=</span><span class="n">chains</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1181</span>     <span class="n">cores</span><span class="o">=</span><span class="n">cores</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1182</span>     <span class="n">seeds</span><span class="o">=</span><span class="n">random_seed</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1183</span>     <span class="n">start_points</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1184</span>     <span class="n">step_method</span><span class="o">=</span><span class="n">step</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1185</span>     <span class="n">progressbar</span><span class="o">=</span><span class="n">progressbar</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1186</span>     <span class="n">mp_ctx</span><span class="o">=</span><span class="n">mp_ctx</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1187</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1188</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1189</span>     <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/parallel.py:402,</span> in <span class="ni">ParallelSampler.__init__</span><span class="nt">(self, draws, tune, chains, cores, seeds, start_points, step_method, progressbar, mp_ctx)</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="n">mp_ctx</span><span class="o">.</span><span class="n">get_start_method</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;fork&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">step_method_pickled</span> <span class="o">=</span> <span class="n">cloudpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">step_method</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">402</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samplers</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="n">ProcessAdapter</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>         <span class="n">draws</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>         <span class="n">tune</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>         <span class="n">step_method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>         <span class="n">step_method_pickled</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="n">chain</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="n">seed</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="n">start</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="n">mp_ctx</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span>     <span class="p">)</span>
+<span class="nn">    413     for chain, seed, start</span> in <span class="ni">zip(range</span><span class="nt">(chains), seeds, start_points)</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inactive</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samplers</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finished</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ProcessAdapter</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/parallel.py:403,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="n">mp_ctx</span><span class="o">.</span><span class="n">get_start_method</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;fork&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="n">step_method_pickled</span> <span class="o">=</span> <span class="n">cloudpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">step_method</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samplers</span> <span class="o">=</span> <span class="p">[</span>
+<span class="ne">--&gt; </span><span class="mi">403</span>     <span class="n">ProcessAdapter</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>         <span class="n">draws</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>         <span class="n">tune</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>         <span class="n">step_method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>         <span class="n">step_method_pickled</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="n">chain</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="n">seed</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="n">start</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="n">mp_ctx</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span>     <span class="p">)</span>
+<span class="nn">    413     for chain, seed, start</span> in <span class="ni">zip(range</span><span class="nt">(chains), seeds, start_points)</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inactive</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samplers</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finished</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ProcessAdapter</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/pymc/sampling/parallel.py:259,</span> in <span class="ni">ProcessAdapter.__init__</span><span class="nt">(self, draws, tune, step_method, step_method_pickled, chain, seed, start, mp_ctx)</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>     <span class="n">step_method_send</span> <span class="o">=</span> <span class="n">step_method</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process</span> <span class="o">=</span> <span class="n">mp_ctx</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span>     <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="n">name</span><span class="o">=</span><span class="n">process_name</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">259</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span> <span class="c1"># Close the remote pipe, so that we get notified if the other</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span> <span class="c1"># end is closed.</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span> <span class="n">remote_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/process.py:121,</span> in <span class="ni">BaseProcess.start</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span> <span class="k">assert</span> <span class="ow">not</span> <span class="n">_current_process</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;daemon&#39;</span><span class="p">),</span> \
+<span class="g g-Whitespace">    </span><span class="mi">119</span>        <span class="s1">&#39;daemonic processes are not allowed to have children&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="n">_cleanup</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">121</span> <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Popen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sentinel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span><span class="o">.</span><span class="n">sentinel</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="c1"># Avoid a refcycle if the target function holds an indirect</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span> <span class="c1"># reference to the process object (see bpo-30775)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/context.py:300,</span> in <span class="ni">ForkServerProcess._Popen</span><span class="nt">(process_obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span> <span class="nd">@staticmethod</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span> <span class="k">def</span> <span class="nf">_Popen</span><span class="p">(</span><span class="n">process_obj</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>     <span class="kn">from</span> <span class="nn">.popen_forkserver</span> <span class="kn">import</span> <span class="n">Popen</span>
+<span class="ne">--&gt; </span><span class="mi">300</span>     <span class="k">return</span> <span class="n">Popen</span><span class="p">(</span><span class="n">process_obj</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/popen_forkserver.py:35,</span> in <span class="ni">Popen.__init__</span><span class="nt">(self, process_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_obj</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_fds</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">---&gt; </span><span class="mi">35</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">process_obj</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/popen_fork.py:19,</span> in <span class="ni">Popen.__init__</span><span class="nt">(self, process_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalizer</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="bp">self</span><span class="o">.</span><span class="n">_launch</span><span class="p">(</span><span class="n">process_obj</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/pymc_env/lib/python3.11/multiprocessing/popen_forkserver.py:58,</span> in <span class="ni">Popen._launch</span><span class="nt">(self, process_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalizer</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">Finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">util</span><span class="o">.</span><span class="n">close_fds</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span>                                <span class="p">(</span><span class="n">_parent_w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentinel</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">closefd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">58</span>     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">getbuffer</span><span class="p">())</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="n">forkserver</span><span class="o">.</span><span class="n">read_signed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sentinel</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -1901,6 +1878,7 @@ There were 2 divergences after tuning. Increase `target_accept` or reparameteriz
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivazione">Motivazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-dei-dati">Analisi dei dati</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-t-di-student-per-un-solo-campione">Test <span class="math notranslate nohighlight">\(t\)</span> di Student per un solo campione</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#approccio-frequentista">Approccio frequentista</a></li>

@@ -81,7 +81,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/increasing.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Correlazione e causazione" href="06_causality.html" />
+    <link rel="next" title="Lo Studio delle Cause dei Fenomeni" href="06_causality.html" />
     <link rel="prev" title="Indici di posizione e di scala" href="04_loc_scale.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -186,6 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_1/introduction_chapter_1.html">Python</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_1/00_prelims.html">Preliminari</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_1/01_python_1.html">Python (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_1/02_python_2.html">Python (2)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_1/ex_python.html">✏️ Esercizi</a></li>
@@ -209,7 +210,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="E_sums.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_loc_scale.html">Indici di posizione e di scala</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Le relazioni tra variabili</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_causality.html">Correlazione e causazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_causality.html">Lo Studio delle Cause dei Fenomeni</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_crisis.html">La crisi della generalizzabilità</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_eda.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_mehr_song_spelke.html">✏️ Esercizi</a></li>
@@ -222,7 +223,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_3/04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_3/E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -241,6 +242,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapter_4/introduction_part_4.html">Inferenza bayesiana</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/01_intro_bayes.html">Modellazione bayesiana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/01a_models.html">Modelli scientifici</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/02_subj_prop.html">Pensare ad una proporzione in termini soggettivi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/03_conjugate_families_1.html">Distribuzioni coniugate (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/04_conjugate_families_2.html">Distribuzioni coniugate (2)</a></li>
@@ -250,7 +252,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/10_metropolis.html">Monte Carlo a Catena di Markov</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/11_beta_binomial_pymc.html">Inferenza bayesiana con PyMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/12_jax.html">Usare JAX per un campionamento più veloce</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_4/13_preliz.html">Scegliere le distribuzioni a priori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/16_summary_posterior_pymc.html">Metodi di sintesi della distribuzione a posteriori</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/17_prediction.html">La predizione bayesiana</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/18_mcmc_diagnostics.html">Diagnostica delle catene markoviane</a></li>
@@ -269,6 +270,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/40_hier_beta_binom.html">Modello gerarchico beta-binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/41_hier_poisson.html">Modello gerarchico di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/42_hier_gaussian.html">Modello gerarchico gaussiano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_4/45_missing.html">1. Perdita di Dati Casuale e Indipendente dalle Cause</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../chapter_4/hssm.html">Drift Diffusion Model</a></li>
 </ul>
 </li>
@@ -278,6 +282,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_causal_inference.html">Inferenza causale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_causal_inference.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
@@ -581,7 +587,6 @@ document.write(`
 <h2>Grafico a dispersione<a class="headerlink" href="#grafico-a-dispersione" title="Permalink to this heading">#</a></h2>
 <p>Il metodo più diretto per visualizzare la relazione tra due variabili continue è tramite un grafico a dispersione, comunemente noto come “scatterplot”. Questo tipo di diagramma rappresenta le coppie di dati ottenute da due variabili, posizionandole sull’asse delle ascisse (orizzontale) e delle ordinate (verticale).</p>
 <p>Per rendere l’idea più chiara, consideriamo i dati di uno studio condotto da <span id="id1"></span>, in cui i ricercatori hanno utilizzato due scale psicometriche, il Beck Depression Inventory II (BDI-II) e la Center for Epidemiologic Studies Depression Scale (CES-D), per misurare il livello di depressione nei partecipanti. Il BDI-II è uno strumento di autovalutazione che valuta la presenza e l’intensità dei sintomi depressivi in pazienti adulti e adolescenti con diagnosi psichiatrica, mentre la CES-D è una scala di autovalutazione progettata per misurare i sintomi depressivi sperimentati nella settimana precedente nella popolazione generale, in particolare negli adolescenti e nei giovani adulti. Poiché entrambe le scale misurano lo stesso costrutto, ovvero la depressione, ci aspettiamo una relazione tra i punteggi ottenuti dal BDI-II e dalla CES-D. Un diagramma a dispersione ci consente di esaminare questa relazione in modo visuale e intuitivo.</p>
-<p>Posizionando i valori del BDI-II sull’asse delle ascisse e quelli del CES-D sull’asse delle ordinate, ogni punto sul grafico rappresenta un individuo, di cui conosciamo il livello di depressione misurato dalle due scale. È evidente che i valori delle scale BDI-II e CES-D non possono coincidere per due motivi principali: (1) la presenza di errori di misurazione e (2) l’utilizzo di unità di misura arbitrarie per le due variabili. L’errore di misurazione è una componente inevitabile che influisce in parte su qualsiasi misurazione, ed è particolarmente rilevante in psicologia, dove la precisione degli strumenti di misurazione è generalmente inferiore rispetto ad altre discipline, come la fisica. Il secondo motivo per cui i valori delle scale BDI-II e CES-D non possono essere identici è che l’unità di misura della depressione è una questione arbitraria e non standardizzata. Tuttavia, nonostante le differenze dovute agli errori di misurazione e all’uso di unità di misura diverse, ci aspettiamo che, se le due scale misurano lo stesso costrutto (la depressione), i valori prodotti dalle due scale dovrebbero essere associati linearmente tra di loro. Per comprendere meglio il concetto di “associazione lineare”, è possibile esaminare i dati attraverso l’utilizzo di un diagramma a dispersione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Leggi i dati dal file CSV</span>
@@ -595,8 +600,19 @@ document.write(`
 
 <span class="c1"># Rimuovi le righe con valori mancanti nella colonna &quot;bdi&quot;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bdi&quot;</span><span class="p">])</span>
-
-<span class="c1"># Crea uno scatterplot con colori diversi per i due gruppi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Posizionando i valori del BDI-II sull’asse delle ascisse e quelli del CES-D sull’asse delle ordinate, ogni punto sul grafico rappresenta un individuo, di cui conosciamo il livello di depressione misurato dalle due scale. È evidente che i valori delle scale BDI-II e CES-D non possono coincidere per due motivi principali: (1) la presenza di errori di misurazione e (2) l’utilizzo di unità di misura arbitrarie per le due variabili. L’errore di misurazione è una componente inevitabile che influisce in parte su qualsiasi misurazione, ed è particolarmente rilevante in psicologia, dove la precisione degli strumenti di misurazione è generalmente inferiore rispetto ad altre discipline, come la fisica. Il secondo motivo per cui i valori delle scale BDI-II e CES-D non possono essere identici è che l’unità di misura della depressione è una questione arbitraria e non standardizzata. Tuttavia, nonostante le differenze dovute agli errori di misurazione e all’uso di unità di misura diverse, ci aspettiamo che, se le due scale misurano lo stesso costrutto (la depressione), i valori prodotti dalle due scale dovrebbero essere associati linearmente tra di loro. Per comprendere meglio il concetto di “associazione lineare”, è possibile esaminare i dati attraverso l’utilizzo di un diagramma a dispersione.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crea uno scatterplot con colori diversi per i due gruppi</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;mdd&quot;</span><span class="p">][</span><span class="s2">&quot;bdi&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;mdd&quot;</span><span class="p">][</span><span class="s2">&quot;cesd_sum&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Pazienti&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ctl&quot;</span><span class="p">][</span><span class="s2">&quot;bdi&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ctl&quot;</span><span class="p">][</span><span class="s2">&quot;cesd_sum&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Controlli&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">)</span>
 
@@ -628,6 +644,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/957cb619c0e64818cafd36221633bf171004b17449ad5f75a670d7f46d9b3211.png" src="../_images/957cb619c0e64818cafd36221633bf171004b17449ad5f75a670d7f46d9b3211.png" />
 </div>
@@ -1016,7 +1033,7 @@ r_{XY} = \frac{S_{XY}}{S_X S_Y}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_3965/188333220.py:14: UserWarning: The figure layout has changed to tight
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_61814/188333220.py:14: UserWarning: The figure layout has changed to tight
   plt.tight_layout()
 </pre></div>
 </div>
@@ -1031,23 +1048,31 @@ r_{XY} = \frac{S_{XY}}{S_X S_Y}.
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -m
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Jan 21 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sat Feb 03 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
 IPython version      : 8.19.0
 
-pandas    : 2.1.4
-seaborn   : 0.13.0
-matplotlib: 3.8.2
-numpy     : 1.26.2
+Compiler    : Clang 16.0.6 
+OS          : Darwin
+Release     : 23.3.0
+Machine     : x86_64
+Processor   : i386
+CPU cores   : 8
+Architecture: 64bit
+
 arviz     : 0.17.0
+numpy     : 1.26.2
+matplotlib: 3.8.2
+seaborn   : 0.13.0
+pandas    : 2.1.4
 scipy     : 1.11.4
 
 Watermark: 2.4.3
@@ -1102,7 +1127,7 @@ Watermark: 2.4.3
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Correlazione e causazione</p>
+        <p class="prev-next-title">Lo Studio delle Cause dei Fenomeni</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

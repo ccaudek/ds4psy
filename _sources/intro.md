@@ -32,17 +32,23 @@ Il presente sito web costituisce l'unica fonte ufficiale da consultare per otten
 
 ## Obiettivi Formativi
 
-In questo insegnameto, gli studenti impareranno a:
+Questo percorso didattico è progettato per introdurre gli studenti alla statistica e alla data science. L'obiettivo principale è quello di fornire agli studenti gli strumenti necessari per analizzare e interpretare i dati psicologici in maniera critica e informata. Gli obiettivi formativi specifici includono:
 
-- Implementare l'analisi bayesiana dei dati attraverso la programmazione probabilistica utilizzando Python e PyMC, acquisendo competenze per modellare la probabilità in maniera dinamica e flessibile.
-- Applicare approcci computazionali avanzati per la modellazione statistica, inclusi metodi di campionamento e algoritmi Markov Chain Monte Carlo (MCMC), per affrontare problemi complessi di inferenza.
-- Esplorare il concetto di inferenza causale per costruire modelli statistici più solidi ed evidenziare le relazioni di causa-effetto all'interno dei dati.
-- Adottare strategie efficaci per minimizzare l'overfitting nei modelli statistici, tra cui la validazione incrociata, la regolarizzazione, lo shrinkage e il pooling, migliorando la generalizzabilità dei risultati.
-- Comprendere i limiti dell'inferenza basata sui test dell'ipotesi nulla e sugli intervalli di confidenza frequentisti, orientandosi verso metodologie più robuste e informative.
+1. **Approfondimento sull'Analisi Esplorativa dei Dati**: Il corso enfatizza l'importanza critica dell'Analisi Esplorativa dei Dati (EDA) per una comprensione accurata dei dati. Gli studenti acquisiranno competenza nell'utilizzo delle statistiche descrittive fondamentali (media, moda, deviazione standard, intervallo interquartile) e nell'applicazione di tecniche di visualizzazione dei dati (istogrammi, grafici a dispersione) per individuare tendenze, anomalie e strutture intrinseche nei dati.
+
+2. **Implementazione dell'Analisi Bayesiana**: Introducendo l'analisi bayesiana come fondamento della modellazione statistica moderna, il corso guiderà gli studenti attraverso la programmazione probabilistica in Python con PyMC, sviluppando competenze per modellare l'incertezza e aggiornare le inferenze dinamicamente in risposta a nuove informazioni.
+
+3. **Tecniche Avanzate di Modellazione Statistica**: Verranno esplorati metodi computazionali avanzati, inclusi i procedimenti di campionamento e gli algoritmi Markov Chain Monte Carlo (MCMC), per superare i limiti dell'inferenza statistica tradizionale. Gli studenti impareranno a implementare queste tecniche per affrontare problemi complessi di inferenza.
+
+4. **Fondamenti di Inferenza Causale**: Il corso punta a fornire una solida comprensione dell'inferenza causale, essenziale per costruire modelli che vadano oltre la correlazione, identificando le relazioni di causa-effetto. Questo approccio permette di elaborare conclusioni basate su solide basi causali.
+
+5. **Critica ai Limiti dell'Inferenza Frequentista**: Una sezione dedicata del corso esaminerà criticamente i limiti dell'approccio frequentista tradizionale, concentrandosi sui test dell'ipotesi nulla e sugli intervalli di confidenza. Gli studenti saranno stimolati ad adottare metodologie statistiche più avanzate e informative, che forniscono una comprensione più ricca delle strutture dati e delle incertezze associate.
+
+Attraverso questi obiettivi formativi, il corso mira a preparare gli studenti ad affrontare sfide reali nel mondo della data science, fornendo loro una solida base teorica e pratiche competenze analitiche.
 
 ### Panoramica del Corso
 
-Questo corso offre una solida base teorica e pratica per l'inferenza statistica, con un forte focus sull'applicazione pratica attraverso la programmazione. Attraverso esercitazioni guidate, gli studenti apprenderanno a manipolare i dati passo dopo passo in Python, garantendo una comprensione approfondita necessaria per effettuare scelte informate e interpretazioni accurate nei loro progetti di modellazione.
+Questo corso offre una solida base teorica e pratica per l'inferenza statistica, con un forte focus sull'applicazione pratica attraverso la programmazione. Attraverso esercitazioni guidate, gli studenti apprenderanno a manipolare i dati psicologici passo dopo passo in Python, garantendo una comprensione approfondita necessaria per effettuare scelte informate e interpretazioni accurate nei loro progetti di modellazione.
 
 Il programma si articola dall'analisi descrittiva fino ai modelli gerarchici, con un particolare accento sull'inferenza causale da una prospettiva bayesiana, includendo l'uso di Grafi Aciclici Diretti (DAG) per una comprensione profonda delle relazioni causali. L'obiettivo è superare i limiti della modellazione lineare tradizionale, illustrando anche come integrare modelli psicologici avanzati nelle analisi statistiche.
 

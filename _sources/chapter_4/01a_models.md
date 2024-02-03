@@ -1,20 +1,17 @@
 # Modelli scientifici
 
-Nel contesto della data science e della statistica, un modello rappresenta un modo formalizzato per interpretare e prevedere fenomeni basati su dati osservati. Questi modelli sono fondamentali perché offrono una struttura per capire le complesse relazioni che esistono nella realtà, sebbene con una semplificazione necessaria.
+I modelli sono descrizioni semplificate di un dato sistema o processo che, per qualche motivo, ci interessa. Queste descrizioni sono deliberatamente progettate per catturare solo gli aspetti più rilevanti del sistema e non per spiegare ogni minimo dettaglio. Questo è uno dei motivi per cui un modello più complesso non è sempre migliore. Esistono molti tipi diversi di modelli; in questo corso, ci limiteremo ai modelli Bayesiani.
 
-## Modello Scientifico e Metodo Scientifico
+Il processo di modellazione Bayesiana può essere riassunto in tre passaggi:
 
-- **Semplificazione della Realtà**: I modelli scientifici riducono la complessità del mondo reale in forma più gestibile, focalizzandosi sugli aspetti ritenuti più rilevanti per l'indagine in corso.
-- **Metodo Scientifico**: Il processo di modellazione inizia spesso con l'osservazione e la formulazione di ipotesi basate sulla realtà. Queste ipotesi vengono poi trasformate in modelli.
+1. Dati alcuni dati e alcune ipotesi su come questi dati potrebbero essere stati generati, progettiamo un modello combinando blocchi di costruzione noti come distribuzioni di probabilità. La maggior parte delle volte questi modelli sono approssimazioni grossolane, ma nella maggior parte dei casi è tutto ciò di cui abbiamo bisogno.
 
-### Matematica e Analisi Bayesiana
+2. Utilizziamo il teorema di Bayes per aggiungere dati ai nostri modelli e derivare le conseguenze logiche della combinazione dei dati e delle nostre ipotesi. Diciamo che stiamo condizionando il modello sui nostri dati.
 
-- **Matematica come Strumento**: La matematica fornisce il linguaggio e gli strumenti per esprimere e manipolare questi modelli. In particolare, la matematica nel presente contesto si riferisce all'analisi bayesiana e alla teoria della probabilità.
-- **Analisi Bayesiana e Teoria della Probabilità**: Questi approcci permettono di quantificare l'incertezza e di aggiornare le conoscenze in base a nuove informazioni. L'analisi bayesiana in particolare si basa sull'idea di aggiornare le probabilità a posteriori alla luce di nuovi dati.
+3. Valutiamo il modello e le sue previsioni, secondo diversi criteri, inclusi i dati, la nostra competenza sull'argomento e talvolta mediante il confronto con altri modelli.
 
-### Arte e Scienza nella Creazione di Modelli
+In generale, ci troveremo a eseguire questi tre passaggi in modo iterativo e non lineare. Potremmo ritracciare i nostri passi in qualsiasi momento: forse abbiamo commesso un banale errore di codifica, o abbiamo trovato un modo per cambiare il modello e migliorarlo, o ci siamo resi conto che dobbiamo aggiungere più dati o raccogliere un tipo di dati diverso.
 
-- **Creare un Modello Iniziale**: La costruzione dei modelli scienticici richiede intuizione, creatività e esperienza. Non esiste una formula per questo, e spesso si deve bilanciare la complessità del modello con la comprensibilità e la praticabilità.
-- **Miglioramento Iterativo**: Una volta creato un modello iniziale, esso non è statico. Attraverso un processo iterativo di confronto tra le previsioni del modello e le osservazioni reali, il modello può essere affinato e migliorato.
+I modelli Bayesiani sono anche noti come modelli probabilistici perché sono costruiti utilizzando le probabilità. Perché le probabilità? Perché le probabilità sono uno strumento molto utile per modellare l'incertezza; abbiamo anche buoni argomenti per affermare che sono il concetto matematico corretto.
 
-In sintesi, i modelli in ambito scientifico e analitico servono come strumenti per comprendere la realtà, pur non essendo rappresentazioni perfette di essa. L'abilità nel costruire e affinare modelli è centrale nelle discipline che si basano sull'analisi dei dati, come la data science, e richiede una combinazione di conoscenze tecniche e intuizione.
+Nel contesto della data science e della statistica, dunque, un modello rappresenta un modo formalizzato per interpretare e prevedere fenomeni basati su dati osservati. Questi modelli sono fondamentali perché offrono una struttura per comprendere le complesse relazioni che esistono nella realtà, sebbene attraverso una necessaria semplificazione.

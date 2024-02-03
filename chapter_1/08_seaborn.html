@@ -184,6 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="introduction_chapter_1.html">Python</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="00_prelims.html">Preliminari</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_python_1.html">Python (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_python_2.html">Python (2)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ex_python.html">✏️ Esercizi</a></li>
@@ -207,7 +208,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_sums.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/04_loc_scale.html">Indici di posizione e di scala</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/05_correlation.html">Le relazioni tra variabili</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_2/06_causality.html">Correlazione e causazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/06_causality.html">Lo Studio delle Cause dei Fenomeni</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/07_crisis.html">La crisi della generalizzabilità</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_eda.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_mehr_song_spelke.html">✏️ Esercizi</a></li>
@@ -279,6 +280,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_causal_inference.html">Inferenza causale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_causal_inference.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
@@ -515,6 +518,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elevare-la-visualizzazione-dei-dati-con-seaborn">Elevare la Visualizzazione dei Dati con Seaborn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizzare-la-distribuzione-dei-dati">Visualizzare la distribuzione dei dati</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizzazione-di-dati-categoriali">Visualizzazione di dati categoriali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relazioni-tra-variabili">Relazioni tra variabili</a></li>
@@ -539,7 +543,9 @@ document.write(`
 <p>Nel capitolo precedente, abbiamo esaminato Matplotlib, una libreria estremamente versatile per la visualizzazione dei dati in Python. Ora esamineremo le funzionalità di Seabonrn. Seaborn, che si basa su Matplotlib, arricchisce l’esperienza di visualizzazione dei dati offrendo una gamma più ampia e specializzata di opzioni grafiche, particolarmente utili nel campo della data science.</p>
 <p>Il vero punto di forza di Seaborn è la sua capacità di migliorare non solo l’aspetto estetico dei grafici ma anche di facilitare la creazione di visualizzazioni più complesse. Questo rende il processo più diretto e intuitivo. La libreria è dotata di un’ampia varietà di strumenti, dalle mappe di calore ai grafici a violino, permettendo agli utenti di esplorare e rappresentare i dati in modi innovativi e informativi.</p>
 <p>Per chi vuole approfondire ulteriormente, i tutorial presenti sul <a class="reference external" href="https://seaborn.pydata.org/">sito ufficiale di Seaborn</a> sono una risorsa preziosa e facilmente accessibile.</p>
-<p>Vediamo alcuni esempi pratici per scoprire come Seaborn possa trasformare il modo in cui visualizziamo i dati.</p>
+</section>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -562,6 +568,10 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="visualizzare-la-distribuzione-dei-dati">
+<h2>Visualizzare la distribuzione dei dati<a class="headerlink" href="#visualizzare-la-distribuzione-dei-dati" title="Permalink to this heading">#</a></h2>
+<p>Vediamo alcuni esempi pratici per scoprire come Seaborn possa trasformare il modo in cui visualizziamo i dati.</p>
 <p>Consideriamo nuovamente i dati Palmer penguin.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -570,9 +580,6 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="visualizzare-la-distribuzione-dei-dati">
-<h2>Visualizzare la distribuzione dei dati<a class="headerlink" href="#visualizzare-la-distribuzione-dei-dati" title="Permalink to this heading">#</a></h2>
 <p>Una delle forme di visualizzazione più comuni e informative nel campo dell’analisi dei dati è l’istogramma, e la sua variante più sofisticata, l’istogramma lisciato. Vediamo dunque come generare istogrammi che, per il DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>, sono stratificati sia in base alla specie che al genere dei pinguini.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -878,6 +885,7 @@ Watermark: 2.4.3
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elevare-la-visualizzazione-dei-dati-con-seaborn">Elevare la Visualizzazione dei Dati con Seaborn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizzare-la-distribuzione-dei-dati">Visualizzare la distribuzione dei dati</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizzazione-di-dati-categoriali">Visualizzazione di dati categoriali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relazioni-tra-variabili">Relazioni tra variabili</a></li>

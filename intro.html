@@ -183,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="chapter_1/introduction_chapter_1.html">Python</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter_1/00_prelims.html">Preliminari</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_1/01_python_1.html">Python (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_1/02_python_2.html">Python (2)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_1/ex_python.html">✏️ Esercizi</a></li>
@@ -206,7 +207,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="chapter_2/E_sums.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_2/04_loc_scale.html">Indici di posizione e di scala</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_2/05_correlation.html">Le relazioni tra variabili</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chapter_2/06_causality.html">Correlazione e causazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_2/06_causality.html">Lo Studio delle Cause dei Fenomeni</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_2/07_crisis.html">La crisi della generalizzabilità</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_2/E_eda.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_2/E_mehr_song_spelke.html">✏️ Esercizi</a></li>
@@ -539,17 +540,18 @@ document.write(`
 </section>
 <section id="obiettivi-formativi">
 <h2>Obiettivi Formativi<a class="headerlink" href="#obiettivi-formativi" title="Permalink to this heading">#</a></h2>
-<p>In questo insegnameto, gli studenti impareranno a:</p>
-<ul class="simple">
-<li><p>Implementare l’analisi bayesiana dei dati attraverso la programmazione probabilistica utilizzando Python e PyMC, acquisendo competenze per modellare la probabilità in maniera dinamica e flessibile.</p></li>
-<li><p>Applicare approcci computazionali avanzati per la modellazione statistica, inclusi metodi di campionamento e algoritmi Markov Chain Monte Carlo (MCMC), per affrontare problemi complessi di inferenza.</p></li>
-<li><p>Esplorare il concetto di inferenza causale per costruire modelli statistici più solidi ed evidenziare le relazioni di causa-effetto all’interno dei dati.</p></li>
-<li><p>Adottare strategie efficaci per minimizzare l’overfitting nei modelli statistici, tra cui la validazione incrociata, la regolarizzazione, lo shrinkage e il pooling, migliorando la generalizzabilità dei risultati.</p></li>
-<li><p>Comprendere i limiti dell’inferenza basata sui test dell’ipotesi nulla e sugli intervalli di confidenza frequentisti, orientandosi verso metodologie più robuste e informative.</p></li>
-</ul>
+<p>Questo percorso didattico è progettato per introdurre gli studenti alla statistica e alla data science. L’obiettivo principale è quello di fornire agli studenti gli strumenti necessari per analizzare e interpretare i dati psicologici in maniera critica e informata. Gli obiettivi formativi specifici includono:</p>
+<ol class="arabic simple">
+<li><p><strong>Approfondimento sull’Analisi Esplorativa dei Dati</strong>: Il corso enfatizza l’importanza critica dell’Analisi Esplorativa dei Dati (EDA) per una comprensione accurata dei dati. Gli studenti acquisiranno competenza nell’utilizzo delle statistiche descrittive fondamentali (media, moda, deviazione standard, intervallo interquartile) e nell’applicazione di tecniche di visualizzazione dei dati (istogrammi, grafici a dispersione) per individuare tendenze, anomalie e strutture intrinseche nei dati.</p></li>
+<li><p><strong>Implementazione dell’Analisi Bayesiana</strong>: Introducendo l’analisi bayesiana come fondamento della modellazione statistica moderna, il corso guiderà gli studenti attraverso la programmazione probabilistica in Python con PyMC, sviluppando competenze per modellare l’incertezza e aggiornare le inferenze dinamicamente in risposta a nuove informazioni.</p></li>
+<li><p><strong>Tecniche Avanzate di Modellazione Statistica</strong>: Verranno esplorati metodi computazionali avanzati, inclusi i procedimenti di campionamento e gli algoritmi Markov Chain Monte Carlo (MCMC), per superare i limiti dell’inferenza statistica tradizionale. Gli studenti impareranno a implementare queste tecniche per affrontare problemi complessi di inferenza.</p></li>
+<li><p><strong>Fondamenti di Inferenza Causale</strong>: Il corso punta a fornire una solida comprensione dell’inferenza causale, essenziale per costruire modelli che vadano oltre la correlazione, identificando le relazioni di causa-effetto. Questo approccio permette di elaborare conclusioni basate su solide basi causali.</p></li>
+<li><p><strong>Critica ai Limiti dell’Inferenza Frequentista</strong>: Una sezione dedicata del corso esaminerà criticamente i limiti dell’approccio frequentista tradizionale, concentrandosi sui test dell’ipotesi nulla e sugli intervalli di confidenza. Gli studenti saranno stimolati ad adottare metodologie statistiche più avanzate e informative, che forniscono una comprensione più ricca delle strutture dati e delle incertezze associate.</p></li>
+</ol>
+<p>Attraverso questi obiettivi formativi, il corso mira a preparare gli studenti ad affrontare sfide reali nel mondo della data science, fornendo loro una solida base teorica e pratiche competenze analitiche.</p>
 <section id="panoramica-del-corso">
 <h3>Panoramica del Corso<a class="headerlink" href="#panoramica-del-corso" title="Permalink to this heading">#</a></h3>
-<p>Questo corso offre una solida base teorica e pratica per l’inferenza statistica, con un forte focus sull’applicazione pratica attraverso la programmazione. Attraverso esercitazioni guidate, gli studenti apprenderanno a manipolare i dati passo dopo passo in Python, garantendo una comprensione approfondita necessaria per effettuare scelte informate e interpretazioni accurate nei loro progetti di modellazione.</p>
+<p>Questo corso offre una solida base teorica e pratica per l’inferenza statistica, con un forte focus sull’applicazione pratica attraverso la programmazione. Attraverso esercitazioni guidate, gli studenti apprenderanno a manipolare i dati psicologici passo dopo passo in Python, garantendo una comprensione approfondita necessaria per effettuare scelte informate e interpretazioni accurate nei loro progetti di modellazione.</p>
 <p>Il programma si articola dall’analisi descrittiva fino ai modelli gerarchici, con un particolare accento sull’inferenza causale da una prospettiva bayesiana, includendo l’uso di Grafi Aciclici Diretti (DAG) per una comprensione profonda delle relazioni causali. L’obiettivo è superare i limiti della modellazione lineare tradizionale, illustrando anche come integrare modelli psicologici avanzati nelle analisi statistiche.</p>
 </section>
 <section id="filosofia-didattica">

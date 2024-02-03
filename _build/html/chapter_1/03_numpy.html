@@ -186,6 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="introduction_chapter_1.html">Python</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="00_prelims.html">Preliminari</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_python_1.html">Python (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_python_2.html">Python (2)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ex_python.html">✏️ Esercizi</a></li>
@@ -209,7 +210,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_sums.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/04_loc_scale.html">Indici di posizione e di scala</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/05_correlation.html">Le relazioni tra variabili</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapter_2/06_causality.html">Correlazione e causazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_2/06_causality.html">Lo Studio delle Cause dei Fenomeni</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/07_crisis.html">La crisi della generalizzabilità</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_eda.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_2/E_mehr_song_spelke.html">✏️ Esercizi</a></li>
@@ -281,6 +282,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_causal_inference.html">Inferenza causale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_causal_inference.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
@@ -516,6 +519,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-degli-array-nel-modulo-numpy">Utilizzo degli Array nel Modulo NumPy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funzioni-per-ndarray">Funzioni per <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
 </ul>
@@ -549,9 +553,10 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="numpy">
 <span id="intro-numpy-notebook"></span><h1>NumPy<a class="headerlink" href="#numpy" title="Permalink to this heading">#</a></h1>
 <p>La Standard Library di Python mette a disposizione un’ampia gamma di funzioni utili per l’analisi dei dati. Tuttavia, per un’analisi più approfondita ed efficiente, è raccomandato avvalersi di funzioni specifiche disponibili in altri moduli esterni. Tra questi, i più rilevanti per l’analisi dei dati includono NumPy, Pandas, Matplotlib e Seaborn.</p>
-<p>NumPy, abbreviazione di Numerical Python, rappresenta un’estensione del linguaggio Python focalizzata sul calcolo algebrico e matriciale. Questo pacchetto, fondamentale per quasi tutti i tipi di calcolo numerico in Python, offre strutture dati performanti e ottimizzate per gestire vettori, matrici e dati di dimensioni maggiori. Grazie alla sua implementazione in linguaggi come C e Fortran, NumPy garantisce prestazioni eccellenti, soprattutto quando i calcoli sono vettorializzati, ossia formulati utilizzando vettori e matrici.</p>
-<p>In parallelo, Pandas emerge come uno strumento indispensabile per il caricamento e la manipolazione dei dati, mentre Matplotlib e Seaborn si distinguono per le loro capacità di visualizzazione dei dati, permettendo di creare grafici e rappresentazioni visive informative ed esteticamente gradevoli. Questi moduli, combinati insieme, costituiscono un ecosistema robusto e versatile per l’analisi e l’elaborazione dei dati in Python.</p>
-<p>In questo capitolo, introdurremo NumPy, che è ampiamente utilizzato in quasi tutti i calcoli numerici in Python. NumPy consente di lavorare con vettori e matrici in modo più efficiente e veloce rispetto alle liste e alle liste di liste (utilizzate come matrici) di Python. Oltre a ciò, NumPy fornisce una vasta gamma di funzioni matematiche di base, nonché strumenti avanzati per la generazione di numeri casuali.</p>
+<p>NumPy, abbreviazione di Numerical Python, rappresenta un’estensione del linguaggio Python focalizzata sul calcolo algebrico e matriciale. Questo modulo è essenziale per la maggior parte delle operazioni di calcolo numerico in Python, poiché introduce strutture dati avanzate progettate per l’elaborazione efficiente di vettori, matrici e insiemi di dati di grandi dimensioni. Beneficiando dell’implementazione in linguaggi ad alte prestazioni come C e Fortran, NumPy offre un’elevata efficienza, specialmente in operazioni vettorializzate che sfruttano vettori e matrici per formulare calcoli. Parallelamente, Pandas si afferma come strumento fondamentale per l’importazione e la manipolazione dei dati, mentre Matplotlib e Seaborn si distinguono per le loro capacità di visualizzazione, facilitando notevolmente la creazione di rappresentazioni grafiche dei dati. Questi moduli, combinati insieme, costituiscono un ecosistema robusto e versatile per l’analisi e l’elaborazione dei dati in Python.</p>
+<p>In questo capitolo, introdurremo NumPy, che è ampiamente utilizzato in quasi tutti i calcoli numerici in Python. NumPy consente di lavorare con vettori e matrici in modo più efficiente e veloce rispetto alle liste e alle liste di liste (utilizzate come matrici) di Python. Oltre a ciò, NumPy fornisce una vasta gamma di funzioni matematiche di base, nonché strumenti avanzati per la generazione di numeri casuali (si veda il capitolo <a class="reference internal" href="../chapter_7/a40_rng.html#appendix-rng"><span class="std std-ref">Generazione di numeri casuali</span></a>).</p>
+<section id="preparazione-del-notebook">
+<h2>Preparazione del Notebook<a class="headerlink" href="#preparazione-del-notebook" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -559,6 +564,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="utilizzo-degli-array-nel-modulo-numpy">
 <h2>Utilizzo degli Array nel Modulo NumPy<a class="headerlink" href="#utilizzo-degli-array-nel-modulo-numpy" title="Permalink to this heading">#</a></h2>
 <p>In Python standard, abbiamo a disposizione tipi di dati numerici (come numeri interi e decimali) e strutture come liste, dizionari e insiemi. NumPy, d’altro canto, introduce un nuovo tipo di struttura dati: l’array N-dimensionale, noto come <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>. Questi array hanno alcune caratteristiche distintive:</p>
@@ -1452,6 +1458,7 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparazione-del-notebook">Preparazione del Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-degli-array-nel-modulo-numpy">Utilizzo degli Array nel Modulo NumPy</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funzioni-per-ndarray">Funzioni per <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
 </ul>

@@ -222,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="E_cond_prob.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_bayes_theorem.html">Il teorema di Bayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_bayes_theorem.html">✏️ Esercizi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_expval_var.html">Variabili casuali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_expval_var.html">Proprietà delle variabili casuali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04a_sampling_distr.html">Stime, stimatori e parametri</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04b_illusion.html">Incertezza inferenziale e variabilità dei risultati</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_rv_discrete.html">✏️ Esercizi</a></li>
@@ -281,6 +281,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_causal_inference.html">Inferenza causale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_causal_inference.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
@@ -527,7 +529,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-discreta-uniforme">Distribuzione Discreta Uniforme</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-di-poisson">Distribuzione di Poisson</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-beta-binomiale">Distribuzione Beta-Binomiale</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni-sulle-distribuzioni-discrete">Conclusioni sulle Distribuzioni Discrete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">Considerazioni Conclusive</a></li>
 </ul>
             </nav>
         </div>
@@ -559,6 +561,7 @@ che sono fondamentali per analizzare e modellare una vasta gamma di fenomeni cas
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">preliz</span> <span class="k">as</span> <span class="nn">pz</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
@@ -676,6 +679,17 @@ P(Y=2) = \frac{4!}{2!(4-2)!} \cdot 0.2^{2} \cdot (1-0.2)^{4-2} = 0.1536.
 <img alt="../_images/15d966f6f6d8190e230ed950f26594ec5dcff3e63073ef7ef869a3d0b90fce3c.png" src="../_images/15d966f6f6d8190e230ed950f26594ec5dcff3e63073ef7ef869a3d0b90fce3c.png" />
 </div>
 </div>
+<p>Usando <code class="docutils literal notranslate"><span class="pre">preliz</span></code> otteniamo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e30d48fd82f1199c7b814681c831d55bc3b435030481bfabebaa38bbbbcb7f0f.png" src="../_images/e30d48fd82f1199c7b814681c831d55bc3b435030481bfabebaa38bbbbcb7f0f.png" />
+</div>
+</div>
 <p>Un’altra proprietà interessante della distribuzione binomiale è la sua riproducibilità. Se abbiamo due variabili casuali indipendenti che seguono distribuzioni binomiali con lo stesso parametro <span class="math notranslate nohighlight">\(\theta\)</span> ma con diversi numeri di prove, la loro somma seguirà anch’essa una distribuzione binomiale. Questo può essere dimostrato analiticamente o sperimentato praticamente utilizzando strumenti come Python.</p>
 <p>Per esplorare ulteriormente, consideriamo la distribuzione di probabilità di diverse distribuzioni binomiali per due valori di <span class="math notranslate nohighlight">\(n\)</span> e <span class="math notranslate nohighlight">\(\theta\)</span>. La seguente visualizzazione mostra come cambia la distribuzione al variare di <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
 <div class="cell docutils container">
@@ -762,6 +776,17 @@ P(Y=2) = \frac{4!}{2!(4-2)!} \cdot 0.2^{2} \cdot (1-0.2)^{4-2} = 0.1536.
 <img alt="../_images/89bd01c22380e520de587b7a87d8db35fd9cc915b144ebc15918a63f371a829d.png" src="../_images/89bd01c22380e520de587b7a87d8db35fd9cc915b144ebc15918a63f371a829d.png" />
 </div>
 </div>
+<p>Con <code class="docutils literal notranslate"><span class="pre">preliz</span></code> otteniamo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">plot_cdf</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/32fd0a8c3f5438ab665b79092c85a79738e96e0c84d662ddb013c0e839a70d80.png" src="../_images/32fd0a8c3f5438ab665b79092c85a79738e96e0c84d662ddb013c0e839a70d80.png" />
+</div>
+</div>
 <p>Per generare una sequenza di valori casuali seguendo una distribuzione binomiale, possiamo utilizzare il concetto di una variabile casuale ‘frozen’ (congelata). Una variabile casuale congelata rappresenta una specifica istanza di una distribuzione di probabilità con parametri fissi. In altre parole, una volta che la variabile casuale è stata definita e i suoi parametri (come il numero di prove e la probabilità di successo in una distribuzione binomiale) sono stati impostati, questi rimangono immutabili.</p>
 <p>La creazione di una variabile casuale congelata è utile perché permette di simulare ripetutamente l’esperimento senza la necessità di riconfigurare i parametri ogni volta. Dopo aver definito la variabile casuale con i parametri desiderati, possiamo generare campioni dalla distribuzione associata utilizzando il metodo <code class="docutils literal notranslate"><span class="pre">rvs()</span></code>.</p>
 <p>Per esempio, in Python, possiamo creare una variabile casuale binomiale congelata specificando il numero di prove e la probabilità di successo. Una volta creata, possiamo utilizzare il metodo <code class="docutils literal notranslate"><span class="pre">rvs()</span></code> per generare una sequenza di valori casuali che segue la distribuzione binomiale con i parametri specificati. Questo processo facilita la simulazione e l’analisi di esperimenti che seguono un modello binomiale.</p>
@@ -783,7 +808,7 @@ P(Y=2) = \frac{4!}{2!(4-2)!} \cdot 0.2^{2} \cdot (1-0.2)^{4-2} = 0.1536.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 2 3 3 3 3 3 4 5 1 2 2 2 2 3 2 1 3 3 3 2 1 3 1 3 4 2 3 1 5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 4 2 2 0 0 2 2 2 1 1 4 3 2 2 2 4 3 2 3 4 4 1 1 1 3 3 3 5 1
 </pre></div>
 </div>
 </div>
@@ -797,7 +822,7 @@ P(Y=2) = \frac{4!}{2!(4-2)!} \cdot 0.2^{2} \cdot (1-0.2)^{4-2} = 0.1536.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 5 3 3 2 3 4 1 4 3 3 2 1 2 4 3 3 2 4 1 4 3 2 2 2 3 2 2 2 3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 3 4 2 2 2 3 4 2 3 1 3 1 2 2 2 2 2 2 4 5 1 2 3 1 3 3 2 3 1
 </pre></div>
 </div>
 </div>
@@ -856,7 +881,7 @@ P(Y=2) = \frac{4!}{2!(4-2)!} \cdot 0.2^{2} \cdot (1-0.2)^{4-2} = 0.1536.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.79872
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.79747
 </pre></div>
 </div>
 </div>
@@ -868,7 +893,7 @@ P(Y=2) = \frac{4!}{2!(4-2)!} \cdot 0.2^{2} \cdot (1-0.2)^{4-2} = 0.1536.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6393263615999999
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6364115991
 </pre></div>
 </div>
 </div>
@@ -961,6 +986,17 @@ f(y \mid \lambda) = \frac{\lambda^y \cdot e^{-\lambda}}{y!} \quad \text{per} \qu
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/9c80d219e192709ba5eaf59b22db26dbc225711797b569cb1b7659083c7a58f2.png" src="../_images/9c80d219e192709ba5eaf59b22db26dbc225711797b569cb1b7659083c7a58f2.png" />
+</div>
+</div>
+<p>Usando <code class="docutils literal notranslate"><span class="pre">preliz</span></code> otteniamo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/52854c3189d170c9aec5cd42c607a1322c1343f0747594f3ea4d0e6effbc2dce.png" src="../_images/52854c3189d170c9aec5cd42c607a1322c1343f0747594f3ea4d0e6effbc2dce.png" />
 </div>
 </div>
 <p>La probabilità di un singolo valore <span class="math notranslate nohighlight">\(y\)</span> si ottiene utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">pmf</span></code>, in cui l’argomento <code class="docutils literal notranslate"><span class="pre">k</span></code> rappresenta il numero di eventi (<span class="math notranslate nohighlight">\(y\)</span>) e <code class="docutils literal notranslate"><span class="pre">mu</span></code> è uguale a <span class="math notranslate nohighlight">\(\lambda\)</span>. Ad esempio, la probabilità di osservare esattamente un evento (<span class="math notranslate nohighlight">\(y = 1\)</span>) dato un tasso di occorrenza <span class="math notranslate nohighlight">\(\lambda\)</span> = 2, è data da:</p>
@@ -1178,8 +1214,8 @@ B(u, v) = \frac{\Gamma(u)\Gamma(v)}{\Gamma(u+v)},
 <p>in cui <span class="math notranslate nohighlight">\(\Gamma\)</span> rappresenta la funzione gamma, un’estensione del concetto di fattoriale a numeri reali e complessi.</p>
 <p>Questa distribuzione è particolarmente utile in contesti dove le probabilità di successo variano in maniera casuale, ma seguendo una certa distribuzione, come può accadere in studi clinici o in ricerche comportamentali. La distribuzione beta-binomiale fornisce una modellazione più flessibile rispetto alla semplice distribuzione binomiale, adattandosi meglio a situazioni reali dove l’ipotesi di una probabilità di successo costante non è valida.</p>
 </section>
-<section id="conclusioni-sulle-distribuzioni-discrete">
-<h2>Conclusioni sulle Distribuzioni Discrete<a class="headerlink" href="#conclusioni-sulle-distribuzioni-discrete" title="Permalink to this heading">#</a></h2>
+<section id="considerazioni-conclusive">
+<h2>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
 <p>In questo capitolo, abbiamo esplorato diverse distribuzioni discrete fondamentali, ciascuna con le sue specifiche applicazioni e peculiarità. Abbiamo iniziato con la distribuzione Bernoulliana, che modella esperimenti con due possibili esiti, come il lancio di una moneta. Abbiamo poi approfondito la distribuzione Binomiale, una generalizzazione della Bernoulliana, che si focalizza sul conteggio del numero di successi in un dato numero di prove indipendenti.</p>
 <p>Abbiamo anche esaminato la distribuzione Beta-Binomiale, che estende ulteriormente il modello Binomiale incorporando la variabilità nella probabilità di successo, e la distribuzione di Poisson, utilizzata per modellare il numero di eventi che si verificano in un intervallo di tempo o spazio, quando questi eventi sono rari e indipendenti.</p>
 <p>Infine, abbiamo discusso la distribuzione Discreta Uniforme, che attribuisce la stessa probabilità a ogni evento in un insieme finito e discreto. Questa distribuzione è particolarmente utile quando non abbiamo ragioni per assegnare probabilità diverse ai diversi esiti.</p>
@@ -1189,25 +1225,32 @@ B(u, v) = \frac{\Gamma(u)\Gamma(v)}{\Gamma(u+v)},
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
-<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -p pytensor
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w -m
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Tue Jan 23 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Fri Feb 02 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
 IPython version      : 8.19.0
 
-pytensor: 2.18.4
+Compiler    : Clang 16.0.6 
+OS          : Darwin
+Release     : 23.3.0
+Machine     : x86_64
+Processor   : i386
+CPU cores   : 8
+Architecture: 64bit
 
+arviz     : 0.17.0
+preliz    : 0.3.7
 pandas    : 2.1.4
-scipy     : 1.11.4
-numpy     : 1.26.2
 seaborn   : 0.13.0
 matplotlib: 3.8.2
-arviz     : 0.17.0
+scipy     : 1.11.4
+numpy     : 1.26.2
 
 Watermark: 2.4.3
 </pre></div>
@@ -1291,7 +1334,7 @@ Watermark: 2.4.3
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-discreta-uniforme">Distribuzione Discreta Uniforme</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-di-poisson">Distribuzione di Poisson</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuzione-beta-binomiale">Distribuzione Beta-Binomiale</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni-sulle-distribuzioni-discrete">Conclusioni sulle Distribuzioni Discrete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">Considerazioni Conclusive</a></li>
 </ul>
   </nav></div>
 

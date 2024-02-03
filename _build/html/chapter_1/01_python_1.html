@@ -82,7 +82,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Python (2)" href="02_python_2.html" />
-    <link rel="prev" title="Python" href="introduction_chapter_1.html" />
+    <link rel="prev" title="Preliminari" href="00_prelims.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -186,6 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="introduction_chapter_1.html">Python</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="00_prelims.html">Preliminari</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Python (1)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_python_2.html">Python (2)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ex_python.html">✏️ Esercizi</a></li>
@@ -281,6 +282,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_params_recovery.html">Analisi di simulazione per la stima dei parametri nel modello di regressione</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_3.html">Zucchero sintattico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_4.html">Confronto tra le medie di due gruppi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_causal_inference.html">Inferenza causale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter_5/E_causal_inference.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_5.html">Il modello lineare gerarchico</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_reglin_7.html">Regressione robusta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapter_5/05_simpson.html">Paradosso di Simpson</a></li>
@@ -516,7 +519,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iniziare-ad-usare-python">Iniziare ad Usare Python 🐍</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espressioni-e-operatori">Espressioni e Operatori</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assegnazione">Assegnazione</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nomi-delle-variabili">Nomi delle Variabili</a></li>
@@ -583,28 +585,7 @@ document.write(`
 <span id="intro-python-notebook"></span><h1>Python (1)<a class="headerlink" href="#python-1" title="Permalink to this heading">#</a></h1>
 <p>Python è un linguaggio di programmazione versatile e facile da leggere, adatto per svariati usi. Anche se il suo nome è un tributo al gruppo comico <a class="reference external" href="https://www.youtube.com/results?search_query=monty+Python">Monty Python</a>, imparare Python richiede tempo, pratica e impegno.</p>
 <p>Questa guida si concentra sull’insegnamento dei principi di base della programmazione, anziché su dettagli tecnici o specifiche di sintassi. L’obiettivo è fornire agli studenti una base teorica solida. Con questa conoscenza, saranno più capaci di risolvere problemi specifici e cercare autonomamente dettagli tecnici.</p>
-<p>Oggi, in un mondo guidato dall’intelligenza artificiale e strumenti come ChatGPT, è essenziale saper pensare in modo algoritmico. Questa abilità va oltre la semplice programmazione, offrendo un metodo strutturato per affrontare problemi complessi. Sebbene gli algoritmi di intelligenza artificiale siano utili, capire approfonditamente i principi di programmazione è cruciale per interpretare, modificare o migliorare le soluzioni fornite da questi sistemi. In conclusione, anche nell’era dell’IA, il pensiero algoritmico e una buona comprensione dei fondamenti della programmazione sono essenziali.</p>
-<section id="iniziare-ad-usare-python">
-<h2>Iniziare ad Usare Python 🐍<a class="headerlink" href="#iniziare-ad-usare-python" title="Permalink to this heading">#</a></h2>
-<p>Esistono due metodi per verificare la versione di Python:</p>
-<ol class="arabic simple">
-<li><p>Aprire il prompt dei comandi o il terminale e eseguire il comando <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>.</p></li>
-<li><p>Utilizzare il modulo <code class="docutils literal notranslate"><span class="pre">sys</span></code> incorporato di Python direttamente in un Jupyter Notebook. Questo secondo metodo è più utile poiché un Jupyter Notebook utilizzerà un ambiente virtuale specifico, e noi desideriamo conoscere la versione di Python in quell’ambiente virtuale (si veda <a class="reference internal" href="../chapter_7/a00_installation.html#sec-virtual-environment"><span class="std std-ref">L’Ambiente Virtuale in Python</span></a>).</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.11.7 | packaged by conda-forge | (main, Dec 23 2023, 14:38:52) [Clang 16.0.6 ]
-</pre></div>
-</div>
-</div>
-</div>
-</section>
+<p>Nel mondo attuale, in cui l’intelligenza artificiale e strumenti come ChatGPT rivestono un ruolo sempre più centrale, è fondamentale sviluppare la capacità di pensare in modo algoritmico. Questa competenza va oltre la mera programmazione e fornisce un approccio strutturato per risolvere problemi complessi. Nonostante gli algoritmi di intelligenza artificiale siano di grande utilità, una comprensione approfondita dei principi di programmazione rimane essenziale per interpretare, modificare o migliorare le soluzioni proposte da tali sistemi. In conclusione, anche nell’era dell’IA, il pensiero algoritmico e una solida comprensione dei fondamenti della programmazione sono indispensabili.</p>
 <section id="espressioni-e-operatori">
 <h2>Espressioni e Operatori<a class="headerlink" href="#espressioni-e-operatori" title="Permalink to this heading">#</a></h2>
 <p>I programmi sono insiemi di espressioni che elaborano dati per fornire istruzioni specifiche al computer. Ad esempio, in Python, l’operazione di moltiplicazione si esegue utilizzando l’asterisco (<code class="docutils literal notranslate"><span class="pre">*</span></code>) tra due numeri. Quando si incontra un’espressione come <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span></code>, il computer la valuta e produce il risultato, che può essere visualizzato in una cella successiva di un notebook Jupyter.</p>
@@ -1929,7 +1910,7 @@ Number of vegetables: 5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;mango&#39;, &#39;cabbage&#39;, &#39;potato&#39;, &#39;banana&#39;, &#39;tomato&#39;, &#39;onion&#39;, &#39;orange&#39;, &#39;carrot&#39;, &#39;lemon&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;carrot&#39;, &#39;tomato&#39;, &#39;banana&#39;, &#39;onion&#39;, &#39;lemon&#39;, &#39;orange&#39;, &#39;mango&#39;, &#39;cabbage&#39;, &#39;potato&#39;}
 </pre></div>
 </div>
 </div>
@@ -2080,7 +2061,7 @@ Per verificare se un insieme è un sovrainsieme di un altro, si utilizza il meto
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Mon Jan 29 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sat Feb 03 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
@@ -2094,7 +2075,6 @@ Processor   : i386
 CPU cores   : 8
 Architecture: 64bit
 
-sys  : 3.11.7 | packaged by conda-forge | (main, Dec 23 2023, 14:38:52) [Clang 16.0.6 ]
 numpy: 1.26.2
 
 Watermark: 2.4.3
@@ -2146,12 +2126,12 @@ Watermark: 2.4.3
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="introduction_chapter_1.html"
+       href="00_prelims.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Python</p>
+        <p class="prev-next-title">Preliminari</p>
       </div>
     </a>
     <a class="right-next"
@@ -2178,7 +2158,6 @@ Watermark: 2.4.3
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iniziare-ad-usare-python">Iniziare ad Usare Python 🐍</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espressioni-e-operatori">Espressioni e Operatori</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assegnazione">Assegnazione</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nomi-delle-variabili">Nomi delle Variabili</a></li>

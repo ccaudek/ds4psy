@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Lo Studio delle Cause dei Fenomeni &#8212; ds4p</title>
+    <title>Lo studio delle cause dei fenomeni &#8212; ds4p</title>
   
   
   
@@ -210,7 +210,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="E_sums.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_loc_scale.html">Indici di posizione e di scala</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_correlation.html">Le relazioni tra variabili</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lo Studio delle Cause dei Fenomeni</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lo studio delle cause dei fenomeni</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_crisis.html">La crisi della generalizzabilità</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_eda.html">✏️ Esercizi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_mehr_song_spelke.html">✏️ Esercizi</a></li>
@@ -509,7 +509,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lo Studio delle Cause dei Fenomeni</h1>
+    <h1>Lo studio delle cause dei fenomeni</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -534,7 +534,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-percorsi">Tipi di Percorsi</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strutture-causali-elementari">Strutture Causali Elementari</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strutture-causali-elementari">Strutture Causali Elementari</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catene">Catene</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#biforcazioni">Biforcazioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#biforcazioni-invertite">Biforcazioni invertite</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-discendente">Il Discendente</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#irreversibilita-e-aciclicita-nei-dag">Irreversibilità e Aciclicità nei DAG</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-confondimento-nei-dati-osservazionali">Il Confondimento nei Dati Osservazionali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-dei-dag-per-identificare-il-confondimento">Uso dei DAG per Identificare il Confondimento</a><ul class="nav section-nav flex-column">
@@ -598,7 +604,7 @@ document.write(`
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 <section class="tex2jax_ignore mathjax_ignore" id="lo-studio-delle-cause-dei-fenomeni">
-<span id="correlation-causation-notebook"></span><h1>Lo Studio delle Cause dei Fenomeni<a class="headerlink" href="#lo-studio-delle-cause-dei-fenomeni" title="Permalink to this heading">#</a></h1>
+<span id="correlation-causation-notebook"></span><h1>Lo studio delle cause dei fenomeni<a class="headerlink" href="#lo-studio-delle-cause-dei-fenomeni" title="Permalink to this heading">#</a></h1>
 <p>Per assicurare l’integrità e la validità scientifica dei modelli statistici, è essenziale abbinarli a un’analisi causale. La pura osservazione dei dati può rivelare correlazioni e pattern nei dati, ma senza un’indagine sulle cause che stanno dietro a queste correlazioni, le conclusioni tratte possono essere fuorvianti o incomplete.</p>
 <p>Anche nell’ambito di una discussione sull’<em>analisi descrittiva</em> dei dati (e, forse, soprattutto in un tale contesto), è importante sottolineare le limitazioni di un tale approccio. L’aspetto cruciale da tenere a mente è che le cause dei fenomeni non possono essere inferite <em>solamente</em> dall’analisi dei dati. Né dall’analisi descrittiva dei dati che stiamo discutendo adesso, né dall’analisi inferenziale dei dati che discuteremo in seguito. Pertanto, per giungere ad una comprensione dei fenomeni è necessario integrare il processo di modellazione statistica con una comprensione delle cause sottostanti del fenomeno oggetto d’esame. In altre parole, per una comprensione scientificamente valida, è necessario combinare la modellazione statistica e con l’analisi causale.</p>
 <p>In questo capitolo, ci concentreremo sull’introduzione dei concetti fondamentali dell’analisi causale, i quali costituiscono una base cruciale per l’interpretazione dei dati. Cominceremo con la distinzione chiara e universalmente riconosciuta tra correlazione e causalità. La correlazione indica una relazione tra due variabili, mettendo in evidenza la loro forza e direzione, mentre la causalità implica un legame di causa ed effetto tra le variabili. È di importanza cruciale comprendere che il fatto che due variabili siano correlate non implica automaticamente l’esistenza di un rapporto causale tra di esse. Il noto principio “correlazione non implica causalità” sottolinea questa distinzione critica. Numerosi esempi di correlazioni che non sono basate su una relazione causale diretta possono essere esaminati sul sito <a class="reference external" href="https://tylervigen.com/spurious-correlations">spurious correlations</a>.</p>
@@ -774,10 +780,16 @@ Nel contesto della ricerca, il concetto di causalità si riferisce a come una va
 </section>
 <section id="strutture-causali-elementari">
 <h2>Strutture Causali Elementari<a class="headerlink" href="#strutture-causali-elementari" title="Permalink to this heading">#</a></h2>
-<p>All’interno dei DAG, si possono riconoscere tre tipologie fondamentali di strutture causali: catene, biforcazioni e biforcazioni invertite.</p>
-<ol class="arabic simple">
-<li><p><strong>Catene (X → Z → Y)</strong>: Le catene, conosciute anche come sequenze causali o <em>pipe</em>, sono strutture rappresentate dalla successione X <span class="math notranslate nohighlight">\(\rightarrow\)</span> Z <span class="math notranslate nohighlight">\(\rightarrow\)</span> Y, dove una variabile intermedia Z trasmette l’effetto causale da X a Y. Questa struttura riflette una vera e propria catena di causalità. Un esempio potrebbe essere: intelligenza (X) influisce sul livello di istruzione (Z), che a sua volta influisce sul reddito (Y). In questa catena, il livello di istruzione agisce come un mediatore tra intelligenza e reddito.</p></li>
-</ol>
+<p>All’interno dei DAG, si possono riconoscere quattro tipologie fondamentali di strutture causali: catene, biforcazioni, biforcazioni invertite, e discendenti.  La comprensione di queste strutture causali di base è fondamentale per analizzare i percorsi causali più complessi.</p>
+<figure class="align-default" id="four-confounders-fig">
+<a class="reference internal image-reference" href="../_images/four_confounders.png"><img alt="../_images/four_confounders.png" src="../_images/four_confounders.png" style="height: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">I quattro confondenti di base.  (Figura tratta da <span id="id13">McElreath [<a class="reference internal" href="../references/bibliography.html#id114" title="Richard McElreath. Statistical rethinking: A Bayesian course with examples in R and Stan. CRC Press, Boca Raton, Florida, 2nd edition edition, 2020.">McE20</a>]</span>).</span><a class="headerlink" href="#four-confounders-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="catene">
+<h3>Catene<a class="headerlink" href="#catene" title="Permalink to this heading">#</a></h3>
+<p>Le catene (X → Z → Y), conosciute anche come sequenze causali o <em>pipe</em>, sono strutture rappresentate dalla successione X <span class="math notranslate nohighlight">\(\rightarrow\)</span> Z <span class="math notranslate nohighlight">\(\rightarrow\)</span> Y, dove una variabile intermedia Z trasmette l’effetto causale da X a Y. Questa struttura riflette una vera e propria catena di causalità. Un esempio potrebbe essere: intelligenza (X) influisce sul livello di istruzione (Z), che a sua volta influisce sul reddito (Y). In questa catena, il livello di istruzione agisce come un mediatore tra intelligenza e reddito.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
@@ -791,9 +803,16 @@ Nel contesto della ricerca, il concetto di causalità si riferisce a come una va
 <div class="cell_output docutils container">
 <img alt="../_images/0403e612a1c981672b1ee4a38f37afca00d7d84309c42edcb2b1cae0caa3422f.svg" src="../_images/0403e612a1c981672b1ee4a38f37afca00d7d84309c42edcb2b1cae0caa3422f.svg" /></div>
 </div>
-<ol class="arabic simple" start="2">
-<li><p><strong>Biforcazioni (X ← Z → Y)</strong>: Nel contesto dei Diagrammi Aciclici Diretti (DAGs), le <em>biforcazioni</em>, rappresentate dalla struttura <span class="math notranslate nohighlight">\(X \leftarrow Z \rightarrow Y\)</span>, giocano un ruolo cruciale nell’analisi causale, poiché evidenziano situazioni in cui una variabile comune <span class="math notranslate nohighlight">\(Z\)</span> funge da causa antecedente per due variabili distinte, <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>. Questo schema non denota una relazione causale diretta tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, ma indica piuttosto che entrambe sono influenzate da <span class="math notranslate nohighlight">\(Z\)</span>, una causa comune. Questa configurazione è essenziale per capire il fenomeno del <em>confondimento</em>, che si verifica quando una correlazione osservata tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> può essere attribuita alla presenza di <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
-</ol>
+<p>In sintesi,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> sono associati: <span class="math notranslate nohighlight">\(X \not\perp Y\)</span>.</p></li>
+<li><p>L’influenza di <span class="math notranslate nohighlight">\(X\)</span> sulla <span class="math notranslate nohighlight">\(Y\)</span> viene trasmessa mediante <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
+<li><p>Se stratifichiamo i dati in base a <span class="math notranslate nohighlight">\(Z\)</span>, l’associazione scompare: <span class="math notranslate nohighlight">\(X \perp Y \mid Z\)</span>.</p></li>
+</ul>
+</section>
+<section id="biforcazioni">
+<h3>Biforcazioni<a class="headerlink" href="#biforcazioni" title="Permalink to this heading">#</a></h3>
+<p>Le  biforcazioni, rappresentate dalla struttura <span class="math notranslate nohighlight">\(X \leftarrow Z \rightarrow Y\)</span>, giocano un ruolo cruciale nell’analisi causale, poiché evidenziano situazioni in cui una variabile comune <span class="math notranslate nohighlight">\(Z\)</span> funge da causa antecedente per due variabili distinte, <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>. Questo schema non denota una relazione causale diretta tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, ma indica piuttosto che entrambe sono influenzate da <span class="math notranslate nohighlight">\(Z\)</span>, una causa comune. Questa configurazione è essenziale per capire il fenomeno del <em>confondimento</em>, che si verifica quando una correlazione osservata tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> può essere attribuita alla presenza di <span class="math notranslate nohighlight">\(Z\)</span>.</p>
 <p>Per illustrare meglio questo concetto, prendiamo in esame le variabili rappresentate dal livello di istruzione (<span class="math notranslate nohighlight">\(X\)</span>) e dal reddito (<span class="math notranslate nohighlight">\(Y\)</span>), tra cui si osserva una correlazione. Questa correlazione, tuttavia, non implica necessariamente un legame di causalità diretta tra istruzione e reddito. Potrebbe invece emergere dall’influenza di una terza variabile, come l’intelligenza (<span class="math notranslate nohighlight">\(Z\)</span>), che agisce come causa comune influenzando sia <span class="math notranslate nohighlight">\(X\)</span> che <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 <p>In questa situazione, l’associazione percepita tra istruzione e reddito non deriva da un’influenza diretta dell’una sull’altro, ma piuttosto dall’influenza esercitata dall’intelligenza su entrambe. Introducendo il concetto di <em>condizionamento</em>, ovvero l’analisi dei dati tenendo conto dei diversi livelli di intelligenza, è possibile chiarire la natura di questa associazione. Condizionando su <span class="math notranslate nohighlight">\(Z\)</span> (l’intelligenza), e quindi esaminando i dati all’interno di gruppi che condividono lo stesso livello di intelligenza, l’associazione apparente tra istruzione e reddito potrebbe attenuarsi o scomparire del tutto. Questo processo dimostra che la correlazione inizialmente osservata tra istruzione e reddito non è il risultato di un effetto diretto tra queste variabili, ma piuttosto l’effetto di una causa comune.</p>
 <p>Il condizionamento, quindi, permette di stratificare i dati in base a <span class="math notranslate nohighlight">\(Z\)</span>, isolando l’effetto delle variabili di interesse da quello delle cause comuni. Questa metodologia è fondamentale per discernere le relazioni causali autentiche da quelle che appaiono meramente correlazionali a causa di confondimenti, offrendo una comprensione più precisa delle dinamiche causali sottostanti.</p>
@@ -809,9 +828,16 @@ Nel contesto della ricerca, il concetto di causalità si riferisce a come una va
 <div class="cell_output docutils container">
 <img alt="../_images/21656cd2b29b1d0c7f94e4410b98b3ec83dfc35fbbeb57d859900d0d56d84d70.svg" src="../_images/21656cd2b29b1d0c7f94e4410b98b3ec83dfc35fbbeb57d859900d0d56d84d70.svg" /></div>
 </div>
-<ol class="arabic simple" start="3">
-<li><p><strong>Biforcazioni Invertite (X → Z ← Y)</strong>: Le <strong>biforcazioni invertite</strong>, note anche come <em>collider</em>, presentano una configurazione specifica in cui due variabili, <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, convergono influenzando una terza variabile, <span class="math notranslate nohighlight">\(Z\)</span>, formando una struttura <span class="math notranslate nohighlight">\(X \rightarrow Z \leftarrow Y\)</span>. In questo schema, <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> sono considerate variabili indipendenti, il che significa che non esiste una relazione causale diretta o un’influenza reciproca evidente tra di loro. Nonostante <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> confluiscano su <span class="math notranslate nohighlight">\(Z\)</span>, non si può dedurre l’esistenza di un legame causale diretto tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> basandosi esclusivamente sulla loro comune influenza su <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
-</ol>
+<p>In sintesi,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> sono associati: <span class="math notranslate nohighlight">\(X \not\perp Y\)</span>.</p></li>
+<li><p>L’associazione osservata deriva dal fatto che entrambe le variabili condividono una causa comune, <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
+<li><p>Se stratifichiamo i dati in base a <span class="math notranslate nohighlight">\(Z\)</span>, l’associazione scompare: <span class="math notranslate nohighlight">\(X \perp Y \mid Z\)</span>.</p></li>
+</ul>
+</section>
+<section id="biforcazioni-invertite">
+<h3>Biforcazioni invertite<a class="headerlink" href="#biforcazioni-invertite" title="Permalink to this heading">#</a></h3>
+<p>Le biforcazioni invertite, note anche come <em>collider</em>, presentano una configurazione specifica in cui due variabili, <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, convergono influenzando una terza variabile, <span class="math notranslate nohighlight">\(Z\)</span>, formando una struttura <span class="math notranslate nohighlight">\(X \rightarrow Z \leftarrow Y\)</span>. In questo schema, <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> sono considerate variabili indipendenti, il che significa che non esiste una relazione causale diretta o un’influenza reciproca evidente tra di loro. Nonostante <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> confluiscano su <span class="math notranslate nohighlight">\(Z\)</span>, non si può dedurre l’esistenza di un legame causale diretto tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> basandosi esclusivamente sulla loro comune influenza su <span class="math notranslate nohighlight">\(Z\)</span>.</p>
 <p>Un concetto chiave da comprendere è che, sebbene <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> abbiano un impatto su <span class="math notranslate nohighlight">\(Z\)</span>, ciò non implica automaticamente una relazione causale tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>. Tuttavia, analizzando specificamente i casi in cui <span class="math notranslate nohighlight">\(Z\)</span> manifesta determinate caratteristiche, si potrebbe incorrere erroneamente in ciò che è conosciuto come il <em>bias del collider</em>. Questo tipo di bias si verifica quando la selezione di casi basata su <span class="math notranslate nohighlight">\(Z\)</span> introduce un’associazione artificiale tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, che non riflette le relazioni presenti nell’intera popolazione.</p>
 <p>Per illustrare questo fenomeno con un esempio pratico, consideriamo il talento musicale (<span class="math notranslate nohighlight">\(X\)</span>), il supporto familiare (<span class="math notranslate nohighlight">\(Y\)</span>), e il successo in una carriera musicale (<span class="math notranslate nohighlight">\(Z\)</span>). Il talento e il supporto familiare possono influenzare positivamente il successo musicale, ma non necessariamente implica che esista una relazione diretta tra il talento di una persona e il supporto familiare che riceve. Tuttavia, se ci concentriamo esclusivamente sulle persone che hanno raggiunto il successo musicale (<span class="math notranslate nohighlight">\(Z\)</span>), potremmo erroneamente percepire un’associazione tra talento e supporto familiare, un’associazione che potrebbe non essere presente o essere significativamente diversa nell’intera popolazione, che include individui talentuosi non riusciti a ottenere successo.</p>
 <p>La comprensione delle biforcazioni invertite e del bias del collider è essenziale per evitare interpretazioni errate dei dati e conclusioni causali fuorvianti. Questo è particolarmente importante in studi dove variabili potenzialmente collider sono coinvolte, richiedendo un’analisi attenta per identificare e gestire correttamente queste strutture complesse nell’elaborazione delle inferenze causali.</p>
@@ -827,13 +853,52 @@ Nel contesto della ricerca, il concetto di causalità si riferisce a come una va
 <div class="cell_output docutils container">
 <img alt="../_images/777f3bac16aac9a72af51e6f9711cd2eacc7c29460477490474fdd32e0f525b5.svg" src="../_images/777f3bac16aac9a72af51e6f9711cd2eacc7c29460477490474fdd32e0f525b5.svg" /></div>
 </div>
-<p>La comprensione di queste strutture causali di base è fondamentale per analizzare i percorsi causali più complessi. Esistono principalmente tre tipi di strutture causali di base che determinano le caratteristiche dei percorsi più estesi:</p>
-<ol class="arabic simple">
-<li><p><strong>Percorsi di Tipo Catena</strong>. Questi percorsi sono formati da una serie di collegamenti causali diretti. Un percorso composto esclusivamente da catene può trasmettere un’associazione causale. Ad esempio, consideriamo il percorso: intelligenza → voti → titolo di studio → reddito. In questo caso, c’è una trasmissione diretta dell’associazione causale lungo la catena. Ogni variabile lungo il percorso può essere vista come un “discendente” delle variabili precedenti e un “antenato” delle variabili successive. In altre parole, la variabile “intelligenza” influenzerebbe i “voti”, che a loro volta influenzano il “titolo di studio”, il quale infine influenzerebbe il “reddito”. Questi percorsi mostrano come un effetto può essere trasmesso attraverso una serie di variabili intermedie.</p></li>
-<li><p><strong>Percorsi con Biforcazioni</strong>. Un percorso che contiene anche delle biforcazioni trasmette un’associazione, ma non rappresenta più una relazione causale a causa dell’introduzione di una variabile di confondimento. Per esempio, consideriamo il percorso: titolo di studio ← voti ← intelligenza → reddito. Qui, “intelligenza” è una variabile comune che influenza sia “voti” che “reddito”. In questa struttura, “intelligenza” agisce come una variabile di confondimento, rendendo la relazione tra “voti” e “reddito” meno diretta. Questo perché l’effetto di “voti” su “reddito” potrebbe essere spiegato o influenzato da “intelligenza”.</p></li>
-<li><p><strong>Percorsi con Biforcazioni Invertite</strong>. Un percorso che presenta una biforcazione invertita è bloccato e non trasmette alcuna associazione. Questi percorsi includono una struttura dove due variabili indipendenti influenzano una terza. Ad esempio, nel percorso titolo di studio → reddito ← intelligenza → voti, abbiamo una biforcazione invertita al “reddito”. In questo caso, nonostante “titolo di studio” e “voti” influenzino entrambi il “reddito”, non c’è necessariamente una relazione diretta o una correlazione tra “titolo di studio” e “voti”. Questi percorsi sono “bloccati” in termini di trasmissione associativa tra le variabili agli estremi della biforcazione invertita.</p></li>
-</ol>
-<p>In breve, le tre strutture causali di base determinano le caratteristiche dei percorsi più lunghi. Un percorso costituito esclusivamente da catene può trasmettere un’associazione causale. I percorsi che includono biforcazioni sono in grado di trasmettere un’associazione, ma questa non è causale in quanto è influenzata dalla presenza di variabili confondenti. Infine, i percorsi che contengono biforcazioni invertite sono interrotti e non trasmettono alcuna associazione.</p>
+<p>In sintesi,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> non sono associati: <span class="math notranslate nohighlight">\(X \perp Y\)</span>.</p></li>
+<li><p>Sia <span class="math notranslate nohighlight">\(X\)</span> che <span class="math notranslate nohighlight">\(Y\)</span> influenzano <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
+<li><p>Se stratifichiamo i dati in base a <span class="math notranslate nohighlight">\(Z\)</span>, emerge un’associazione spuria: <span class="math notranslate nohighlight">\(X \not\perp Y \mid Z\)</span>.</p></li>
+</ul>
+</section>
+<section id="il-discendente">
+<h3>Il Discendente<a class="headerlink" href="#il-discendente" title="Permalink to this heading">#</a></h3>
+<p>Questa configurazione è caratterizzata dalla presenza di una variabile, denominata <span class="math notranslate nohighlight">\(Z\)</span>, che riceve l’influenza da una variabile precedente, <span class="math notranslate nohighlight">\(X\)</span>, e trasmette tale effetto a una variabile successiva, <span class="math notranslate nohighlight">\(Y\)</span>. Inoltre, <span class="math notranslate nohighlight">\(Z\)</span> esercita un’influenza diretta su un’altra variabile, identificata come <span class="math notranslate nohighlight">\(A\)</span>. Pertanto, <span class="math notranslate nohighlight">\(Z\)</span> agisce sia come mediatore nella relazione causale tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, sia come collegamento causale diretto con <span class="math notranslate nohighlight">\(A\)</span>. La struttura risultante può essere rappresentata come <span class="math notranslate nohighlight">\(X \rightarrow Z \rightarrow Y\)</span>, con una ramificazione aggiuntiva da <span class="math notranslate nohighlight">\(Z\)</span> ad <span class="math notranslate nohighlight">\(A\)</span> (<span class="math notranslate nohighlight">\(Z \rightarrow A\)</span>).</p>
+<p>In questa configurazione:</p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(X\)</span></strong> è la variabile indipendente che provoca un cambiamento in <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(Z\)</span></strong> funge da variabile mediatrice, trasmettendo l’effetto di <span class="math notranslate nohighlight">\(X\)</span> su <span class="math notranslate nohighlight">\(Y\)</span> e influenzando simultaneamente <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(Y\)</span></strong> è la variabile dipendente, influenzata da <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(A\)</span></strong> è una variabile direttamente influenzata da <span class="math notranslate nohighlight">\(Z\)</span>, e quindi considerata una variabile discendente.</p></li>
+</ul>
+<p>Una variabile discendente come <span class="math notranslate nohighlight">\(A\)</span> può teoricamente agire come mediatore in relazioni causali aggiuntive, potenzialmente con un’altra variabile che indicheremo come <span class="math notranslate nohighlight">\(B\)</span>. <span class="math notranslate nohighlight">\(B\)</span> può avere un’interazione (diretta o indiretta) con <span class="math notranslate nohighlight">\(Y\)</span>, complicando l’analisi causale tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>. Di conseguenza, condizionare statisticamente su <span class="math notranslate nohighlight">\(A\)</span> potrebbe interferire con la corretta identificazione dell’effetto causale di interesse.</p>
+<p>Inoltre, i discendenti di <span class="math notranslate nohighlight">\(A\)</span>, come <span class="math notranslate nohighlight">\(D\)</span>, possono agire da collider, ovvero variabili influenzate da più cause. Se <span class="math notranslate nohighlight">\(D\)</span> è influenzato da una causa comune non osservata con <span class="math notranslate nohighlight">\(Y\)</span> (indicata come <span class="math notranslate nohighlight">\(U\)</span>), condizionare su <span class="math notranslate nohighlight">\(D\)</span> potrebbe introdurre un bias nell’analisi, aprendo un percorso non causale (<span class="math notranslate nohighlight">\(A \rightarrow D \leftarrow U \rightarrow Y\)</span>).</p>
+<p>L’inclusione di <span class="math notranslate nohighlight">\(A\)</span> nel modello, in qualità di discendente di <span class="math notranslate nohighlight">\(Z\)</span>, indica che la stima della relazione tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> può essere influenzata da altre variabili intermedie. Escludendo <span class="math notranslate nohighlight">\(A\)</span> e altri discendenti simili dal modello causale, si evita la confusione causata da queste variabili intermedie, isolando meglio l’effetto di <span class="math notranslate nohighlight">\(X\)</span> su <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>Concludendo, è cruciale aderire alla condizione del criterio del backdoor, che prescrive di escludere i discendenti dalle variabili controllate per prevenire il confondimento. Ciò garantisce che le variabili considerate nell’analisi non siano influenzate da <span class="math notranslate nohighlight">\(A\)</span>, consentendo così una stima imparziale dell’effetto causale di <span class="math notranslate nohighlight">\(X\)</span> su <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">f</span><span class="o">.</span><span class="n">subgraph</span><span class="p">()</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>  <span class="c1"># Assicura che X, Z, e Y siano sullo stesso livello</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+
+<span class="n">f</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>  
+
+<span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/37bd7c2e7429d0447d9b098898f2cbef8540f606c911a821a2e5a890cfdbf924.svg" src="../_images/37bd7c2e7429d0447d9b098898f2cbef8540f606c911a821a2e5a890cfdbf924.svg" /></div>
+</div>
+<p>In sintesi,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> sono associati in maniera causale attraverso <span class="math notranslate nohighlight">\(Z\)</span>: <span class="math notranslate nohighlight">\(X \not\perp Y\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> fornisce informazioni su <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
+<li><p>Se stratifichiamo i dati in base ad <span class="math notranslate nohighlight">\(A\)</span>, l’associazione tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> si indebolisce (o scompare): <span class="math notranslate nohighlight">\(X \perp Y \mid A\)</span>.</p></li>
+</ul>
+</section>
 </section>
 <section id="irreversibilita-e-aciclicita-nei-dag">
 <h2>Irreversibilità e Aciclicità nei DAG<a class="headerlink" href="#irreversibilita-e-aciclicita-nei-dag" title="Permalink to this heading">#</a></h2>
@@ -871,7 +936,7 @@ Nel contesto della ricerca, il concetto di causalità si riferisce a come una va
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9478699776586944
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9499777054020487
 </pre></div>
 </div>
 </div>
@@ -906,11 +971,11 @@ Nel contesto della ricerca, il concetto di causalità si riferisce a come una va
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_69505/259294172.py:22: UserWarning: This figure was using a layout engine that is incompatible with subplots_adjust and/or tight_layout; not calling subplots_adjust.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/ipykernel_92636/259294172.py:22: UserWarning: This figure was using a layout engine that is incompatible with subplots_adjust and/or tight_layout; not calling subplots_adjust.
   plt.subplots_adjust(wspace=0.3)
 </pre></div>
 </div>
-<img alt="../_images/5c52c51b15afff4d78a2e4fc8b116791b0f8683b2d0afa4bec45addbe727181f.png" src="../_images/5c52c51b15afff4d78a2e4fc8b116791b0f8683b2d0afa4bec45addbe727181f.png" />
+<img alt="../_images/103c9be1363b74194dd916edc198c8eb96690637953720a5f35181a488d4b0b8.png" src="../_images/103c9be1363b74194dd916edc198c8eb96690637953720a5f35181a488d4b0b8.png" />
 </div>
 </div>
 <p>In conclusione, quando osserviamo l’associazione tra due variabili, <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, una tale associazione potrebbe non essere una conseguenza della diretta relazione causale tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, ma piuttosto un effetto di una terza variabile, in questo caso <span class="math notranslate nohighlight">\(C\)</span>, che è una “causa comune” per entrambe.</p>
@@ -936,7 +1001,7 @@ Nel contesto della ricerca, il concetto di causalità si riferisce a come una va
 <h3>Controllo Statistico per Bloccare i Percorsi Retrostanti<a class="headerlink" href="#controllo-statistico-per-bloccare-i-percorsi-retrostanti" title="Permalink to this heading">#</a></h3>
 <section id="obiettivo-del-controllo-di-terze-variabili">
 <h4>Obiettivo del Controllo di Terze Variabili<a class="headerlink" href="#obiettivo-del-controllo-di-terze-variabili" title="Permalink to this heading">#</a></h4>
-<p>La procedura di controllo delle variabili terze ha l’obiettivo di interrompere i percorsi retrostanti aperti tra le variabili coinvolte. Se è possibile bloccare tutti i percorsi retrostanti tra le variabili indipendenti e quelle dipendenti, è quindi possibile identificare l’effetto causale che connette queste variabili, anche quando i dati sono di natura puramente osservazionale. Questo principio segue il criterio del “back-door” proposto da <span id="id13">Pearl [<a class="reference internal" href="../references/bibliography.html#id3" title="Judea Pearl. Causality. Cambridge University Press, 2009.">Pea09</a>]</span>. L’identificazione di un tale effetto causale è valida, a condizione che il DAG rifletta accuratamente la rete causale sottostante.</p>
+<p>La procedura di controllo delle variabili terze ha l’obiettivo di interrompere i percorsi retrostanti aperti tra le variabili coinvolte. Se è possibile bloccare tutti i percorsi retrostanti tra le variabili indipendenti e quelle dipendenti, è quindi possibile identificare l’effetto causale che connette queste variabili, anche quando i dati sono di natura puramente osservazionale. Questo principio segue il criterio del “back-door” proposto da <span id="id14">Pearl [<a class="reference internal" href="../references/bibliography.html#id3" title="Judea Pearl. Causality. Cambridge University Press, 2009.">Pea09</a>]</span>. L’identificazione di un tale effetto causale è valida, a condizione che il DAG rifletta accuratamente la rete causale sottostante.</p>
 <p>Tuttavia, l’assunzione di aver catturato correttamente la rete causale e di aver bloccato con successo tutti i percorsi retrostanti spesso si rivela molto impegnativa, poiché implica che non siano state trascurate variabili rilevanti all’interno del grafo causale. La plausibilità di questa assunzione deve essere valutata attentamente caso per caso, poiché può variare a seconda del contesto e della complessità della rete causale in esame.</p>
 </section>
 <section id="come-bloccare-un-percorso-retrostante">
@@ -1189,6 +1254,7 @@ Correlazione nel gruppo selezionato: -0.2557322309536501
 <p>Quando si tratta di mediatori e collider, il terreno si fa ancora più scivoloso. I mediatori, essendo ponti tra cause ed effetti, necessitano di una gestione oculata per non perdere di vista l’effetto causale che intendiamo esplorare. Allo stesso tempo, è fondamentale resistere alla tentazione di controllare indiscriminatamente i collider, poiché ciò può aprire la porta a correlazioni spurie che distorcono la realtà dei fenomeni studiati.</p>
 <p>La questione del bilanciamento tra validità interna ed esterna ci ricorda che, sebbene gli esperimenti randomizzati possano offrire garanzie solide di validità interna, la loro capacità di parlare al mondo esterno allo studio – la validità esterna – non è da dare per scontata. Solo un approccio che valorizza la diversità metodologica, abbracciando tanto gli studi sperimentali quanto quelli osservazionali, può aspirare a rispondere in modo compiuto alle domande di ricerca che ci poniamo.</p>
 <p>Per studiare con successo le dinamiche nascoste che regolano le relazioni tra le variabili che studiamo, è essenziale non solo un’attenta valutazione dei dati a disposizione ma anche una profonda riflessione sulle strutture causali in gioco. Integrare diversi approcci di ricerca arricchisce la nostra comprensione e ci avvicina a conclusioni causali solide e generalizzabili.</p>
+<p>Un sommario ironico è fornito in questa vignetta <a class="reference external" href="https://www.explainxkcd.com/wiki/index.php/2560:_Confounding_Variables">xkcd</a>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1203,7 +1269,7 @@ Correlazione nel gruppo selezionato: -0.2557322309536501
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sat Feb 03 2024
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: Sun Feb 04 2024
 
 Python implementation: CPython
 Python version       : 3.11.7
@@ -1217,13 +1283,13 @@ Processor   : i386
 CPU cores   : 8
 Architecture: 64bit
 
-arviz     : 0.17.0
-scipy     : 1.11.4
-graphviz  : 0.20.1
 matplotlib: 3.8.2
-seaborn   : 0.13.0
-numpy     : 1.26.2
 pandas    : 2.1.4
+scipy     : 1.11.4
+numpy     : 1.26.2
+seaborn   : 0.13.0
+arviz     : 0.17.0
+graphviz  : 0.20.1
 
 Watermark: 2.4.3
 </pre></div>
@@ -1311,7 +1377,13 @@ Watermark: 2.4.3
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipi-di-percorsi">Tipi di Percorsi</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strutture-causali-elementari">Strutture Causali Elementari</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strutture-causali-elementari">Strutture Causali Elementari</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catene">Catene</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#biforcazioni">Biforcazioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#biforcazioni-invertite">Biforcazioni invertite</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-discendente">Il Discendente</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#irreversibilita-e-aciclicita-nei-dag">Irreversibilità e Aciclicità nei DAG</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-confondimento-nei-dati-osservazionali">Il Confondimento nei Dati Osservazionali</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-dei-dag-per-identificare-il-confondimento">Uso dei DAG per Identificare il Confondimento</a><ul class="nav section-nav flex-column">
